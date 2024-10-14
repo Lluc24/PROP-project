@@ -1,14 +1,13 @@
-package ?;
-import ???;
+package edu.upc.prop.clusterxx;
 
 public class Solucio {
     // Atributs
     private vector<Producte> solucio;
-    private string algorisme;
+    private Algorisme algorisme;
     private string nom;
 
     // Constructor
-    public Solucio(vector<Producte> s, string a, string n) {
+    public Solucio(vector<Producte> s, Algorisme a, string n) {
         this.solucio = s;
         this.algorisme = a;
         this.nom = n;

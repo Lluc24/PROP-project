@@ -1,5 +1,5 @@
-package ??;
-import ????;
+package edu.upc.prop.clusterxx;
+
 
 public class GestioSolucions {
     // Llista de solucions
@@ -59,7 +59,7 @@ public class GestioSolucions {
 
     }
 
-    public void creaSolucio(const &vector<Productes> productes, const& vector<vector<int>> similituds, string nomSolucio){
+    public void creaSolucio(const vector<Productes>& productes, const vector<vector<int>>& similituds, string nomSolucio){
         //la classe cataleg crida aquesta funcio passant-me la matriu de similituds i nomSolucio
         //crido a la funcio publica Resol de l'algorismeAct passant-li com a paràmetre similituds i nomSolucio
         for (Solucio s: solucions){
@@ -92,11 +92,11 @@ public class GestioSolucions {
     }
 
     // Afegir una nova solució
-    public void afegeixSolucio(vector<Productes> solucio, string tipusAlgorisme, string nom) {
+    public void afegeixSolucio(vector<Productes> solucio, Algorisme a, string nom) {
 //         la clase algorisme et passa la solucio  sol
 //        has de fer que sol sigui una nova instància del conjunt de solucions
         //també s'ha d'afegir aquesta nova solucio a la llista solucions (atribut privat d'aquesta mateixa classe)
-        Solucio s = new Solucio(solucio, tipusAlgorisme, nom);
+        Solucio s = new Solucio(solucio, a, nom);
         solucions.add(solucio);
     }
 
