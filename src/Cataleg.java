@@ -3,6 +3,7 @@ import Producte;
 import pair;
 import java.util.ArrayList;
 /**
+ * @Class Cataleg
  * Cataleg representa el conjunt de productes (@see Classe Productes) que es troben dins del sistema
  * @author Alejandro Lorenzo Navarro
  * @version 2.0
@@ -28,10 +29,11 @@ public class Cataleg {
      private ArrayList<Producte> Cataleg_Productes;
 
      // Constructor
-     /**
-      * Descripció: Es crea un objecte cataleg buit, sense cap producte
+
+    /**
+     * Metode de construccio d'un cataleg buit, sense cap producte
      */
-     public Cataleg() {
+    public Cataleg() {
           //creacio Cataleg Productes
           ArrayList<Producte> aux = new ArrayList<Producte>();
           this.Cataleg_Productes = aux;
@@ -40,18 +42,18 @@ public class Cataleg {
      //Metodes
      /**
       * Descripció: S'afegeix un producte al final del cataleg si no es troba al cataleg un amb el mateix nom, 
-      * tambe es confiquren les similtuts associades amb el nou producte.
+      * tambe es confiquren les similituds associades amb el nou producte.
       * Aquests metode se ha de fer servir per la creacio i de productes dins del sistema.
       * @param new_nom Nom del producte a afegir
-      * @param llista_simi Similituds dels productes, <Nom_Productes, Similitud>
+      * @param llista_simi Similituds dels productes, < Nom_Productes, Similitud>
       */
-     public void afegir_producte(String new_nom, pair<String, Int>[] llista_simi) {
+     public void afegir_producte(String new_nom, pair<String, Double>[] llista_simi) {
           //Existe producto con new_nom
           if (Cataleg_Productes.find_prod(new_nom)) return; //Error
 
           //Nova instancia producta
           int new_index = Cataleg_Productes.size();
-          ArrayList<Int> new_simi = new ArrayList<Int>(new_index+1);
+          ArrayList<Double> new_simi = new ArrayList<Double>(new_index+1);
           
                //Afegim les similituds a la llista
                for (int i = 0; i < llista_simi.size(); ++i) {
@@ -101,26 +103,27 @@ public class Cataleg {
           eliminar_producte_index((index_out));
      }
 
+
      /**
-      *  Descripció: Modifica la similituts entre el dos productes donats tal que es igual a la similitud donada
+      *  Descripció: Modifica la similituds entre el dos productes donats tal que es igual a la similitud donada
       * @param index_prod1 Index del primer producte
       * @param index_prod2 Index del segon producte
       * @param new_simi Nova similitud
       */
-     public void editar_similitud_index(int index_prod1, int index_prod2, int new_simi) {
+     public void editar_similitud_index(int index_prod1, int index_prod2, double new_simi) {
           //Modifiquem les similituds
           Cataleg_Productes(index1).llista_Similituds.set(index2, new_simi);
           Cataleg_Productes(index2).llista_Similituds.set(index1, new_simi);
      }
 
      /**
-      *  Descripció: Modifica la similituts entre el dos productes donats tal que es igual a la similitud donada
+      *  Descripció: Modifica la similituds entre el dos productes donats tal que es igual a la similitud donada
       *  Si algun dels productes no es troba al cataleg es es dona error
       * @param nom_prod1 String que representa el nom del primer producte
       * @param nom_prod2 String que representa el nom del segon producte
       * @param new_simi Nova similitud entre el dos productes
       */
-     public void editar_similitud(String nom_prod1, String nom_prod2, int new_simi) {
+     public void editar_similitud(String nom_prod1, String nom_prod2, double new_simi) {
           int index1 =Cataleg_Productes.index_prod(nom_prod1);
           if (index1 == -1) return; //error
 
@@ -148,6 +151,11 @@ public class Cataleg {
 
      }
 
+     /**
+      * Valida si el index rebut es valid, i per tant es pot fer servir per accedir al cataleg
+      * @param index_in Index a validar
+      * @return TRUE si es valid, FALSE si no
+      */
      public boolean valida_index(int index_in) {
           return (index_in < Cataleg_Productes.size()); 
      }
@@ -164,6 +172,14 @@ public class Cataleg {
           return -1;
      }
 
+    /**
+     *
+     * @param index_in Index del producte
+     * @return Es retorna el nom de producte representat per el index
+     */
+     public String getNomProd_index(int index_in) {
+         return Cataleg_Productes.get(i).nom;
+     }
 
      /**
       * 
@@ -183,7 +199,7 @@ public class Cataleg {
       * @param index_prod2 Index del segon producte
       * @return La similitud entre el dos productes 
       */
-     public int consultar_similitud_index(int index_prod1, int index_prod2) {
+     public double consultar_similitud_index(int index_prod1, int index_prod2) {
           return Cataleg_Productes(index_prod1).llista_Similituds(index_prod2);
      }
      /**
@@ -193,7 +209,7 @@ public class Cataleg {
       * @return Integer igual al valor de la similitud entre el dos productes
       * @see consultar_similitud_index(int index_prod1, int index_prod2)
       */
-     public int consultar_similitud_nom(Producte nom_prod1, Producte nom_prod2){
+     public double consultar_similitud_nom(Producte nom_prod1, Producte nom_prod2){
           int index_prod1 = Cataleg_Productes.index_prod(nom_prod1);
           if (index_prod1 == -1) return -1;
           
@@ -209,7 +225,7 @@ public class Cataleg {
      * @param index_prod Index del producte 
      * @return Retornar una ArrayList, que representa el valor integer de les similituds del producte
      */
-    public ArrayList<Int> consultar_similituds_producte(int index_prod) {
+    public ArrayList<Double> consultar_similituds_producte_index(int index_prod) {
           return Cataleg_Productes(index_prod).llista_Similituds;
      }
 
@@ -219,13 +235,11 @@ public class Cataleg {
       * @return Retornar una ArrayList, que representa el valor integer de les similituds del producte, si no es troba retorna null
       * @see consultar_similituds_producte(int index_prod)
       */
-    public ArrayList<Int> consultar_similituds_producte(String nom_prod) { 
+    public ArrayList<Double> consultar_similituds_producte_string(String nom_prod) {
           int index_prod = Cataleg_Productes.index_prod(nom_prod);
           if (index_prod == -1) return null;
-          
 
-
-          return Cataleg_Productes.consultar_similituds_producte(index_prod);
+          return Cataleg_Productes.consultar_similituds_producte_index(index_prod);
      }
 
      /**
@@ -236,11 +250,43 @@ public class Cataleg {
           return Cataleg_Productes.size();;
      }
 
-     /**
-          Descripció: Retorna el cataleg de productes
+    /**
+     *
+     * @return El cataleg de productes
      */
     public ArrayList<Producte> consultar_cataleg(){
           return Cataleg_Productes;
 
      }
+
+    /**
+     * Transforma un arrayList de Double en un Double[]
+     * @param aux ArrayList a transformar
+     * @return Un double[] con el mateixos valors de aux.
+     */
+     private double[] transformArray(ArrayList<double> aux) {
+        double[] ret = new double[aux.size()];
+        for (int i = 0; i < aux.size(); ++i) {
+            ret[i] = aux.get(i);
+        }
+        return ret;
+     }
+
+    /**
+     * Transforma el cataleg Productes, en una matriu de similituds.
+     * Cada fila respresenta de les similituds del productes.
+     * @return Matriz de doubles de mida  Num_productes x Num_productes
+     */
+     public double[][] getMatriuSimilituds() {
+         double[][] ret_MS = new double[Cataleg_Productes.size()][Cataleg_Productes.size()];
+
+         for (int i = 0; i < Cataleg_Productes.size(); ++i) {
+              double[] aux = Cataleg.transformArray(Cataleg_Productes.get(i).llista_Similituts)
+              ret_MS[i] = aux;
+         }
+         return ret_MS;
+     }
+
+
+
 }
