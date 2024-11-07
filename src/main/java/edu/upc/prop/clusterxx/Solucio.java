@@ -1,20 +1,21 @@
 package edu.upc.prop.clusterxx;
+import java.util.ArrayList;
 
 public class Solucio {
     // Atributs
-    private vector<Producte> solucio;
+    private AraryList<Producte> solucio;
     private Algorisme algorisme;
     private string nom;
 
     // Constructor
-    public Solucio(vector<Producte> s, Algorisme a, string n) {
+    public Solucio(ArrayList<int> s, Algorisme a, string n) {
         this.solucio = s;
         this.algorisme = a;
         this.nom = n;
     }
 
     // Getters i Setters
-    public string getNom() {
+    public String getNom() {
         return nom;
     }
 
@@ -25,7 +26,5 @@ public class Solucio {
             System.out.println(p.getNom() + ", ");
         }
         System.out.println(); // Solo realiza un salto de línea
-
     }
-
 }
