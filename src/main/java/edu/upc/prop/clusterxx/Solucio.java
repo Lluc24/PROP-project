@@ -7,7 +7,7 @@ public class Solucio {
     private String nom;
 
     // Constructor
-    public Solucio(ArrayList<String> s, Algorisme a, String n) {
+    public Solucio(ArrayList<Producte> s, Algorisme a, String n) {
         this.solucio = s;
         this.algorisme = a;
         this.nom = n;
