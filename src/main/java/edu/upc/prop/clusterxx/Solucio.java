@@ -1,14 +1,13 @@
-package edu.upc.prop.clusterxx;
 import java.util.ArrayList;
 
 public class Solucio {
     // Atributs
-    private AraryList<Producte> solucio;
+    private ArrayList<Producte> solucio;
     private Algorisme algorisme;
-    private string nom;
+    private String nom;
 
     // Constructor
-    public Solucio(ArrayList<int> s, Algorisme a, string n) {
+    public Solucio(ArrayList<String> s, Algorisme a, String n) {
         this.solucio = s;
         this.algorisme = a;
         this.nom = n;
@@ -19,12 +18,45 @@ public class Solucio {
         return nom;
     }
 
-    //Metodes addicionals
-    public void mostrarSolucio() {
-
-        for (Producte p : solucio){
-            System.out.println(p.getNom() + ", ");
-        }
-        System.out.println(); // Solo realiza un salto de línea
+    public Algorisme getAlgorisme() {
+        return algorisme;
     }
+
+    public ArrayList<Producte> solucio() {
+        return nom;
+    }
+
+
+    //Metodes addicionals
+    /**
+     * @Class Solucio
+     * Mostra el nom dels productes d'una solucio en ordre.
+     * @author Eulalia Peiret Santacana
+     */
+    public void mostrarSolucio() {
+        for (int i = 0; i < solucio.size(); i++) {
+            Producte p = solucio.get(i);  // Obtener el producto en la posición i
+            System.out.print(p.getNom());
+
+            if (i != solucio.size() - 1) {
+                System.out.print(", ");
+            } else {
+                System.out.println();
+            }
+        }
+    }
+
+    /**
+     * @Class Solucio
+     * @param x: el nom d'un producte
+     * @return retorna true si hi ha un producte amb nom x a la solució. Fals en cas contrari.
+     * @author Eulalia Peiret Santacana
+     */
+    public boolean trobarProducte(String x){
+        for (p : solucio){
+            if (p.getNom().equals(x)) return true;
+        }
+        return false;
+    }
+
 }
