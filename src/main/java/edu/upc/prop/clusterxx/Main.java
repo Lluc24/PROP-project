@@ -1,17 +1,17 @@
 package edu.upc.prop.clusterxx;
 
-import com.google.gson.Gson;
-
 public class Main {
   public static void main(String[] args) {
-    System.out.println("Hello world!");
-    new Gson();
+      double[][] similituds = new double[4][4];
+      similituds[0][1] = 10;
+      similituds[0][2] = 15;
+      similituds[0][3] = 20;
+      similituds[1][2] = 35;
+      similituds[1][3] = 25;
+      similituds[2][3] = 30;
+      for (int i = 0; i < 4; ++i) similituds[i][i] = 0;
 
-    Main divisioner = new Main();
-    System.out.println("Dividing 10 by 2 is " + divisioner.division(10,2));
-  }
-
-  public float division(int a, int b) throws ArithmeticException {
-    return a/b;
+      Algorisme a = new Aproximacio();
+      a.solucionar(similituds);
   }
 }
