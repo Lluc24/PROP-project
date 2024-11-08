@@ -1,7 +1,6 @@
 package edu.upc.prop.clusterxx;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 
 public class Aproximacio extends Algorisme {
     private double[][] similituds;
@@ -24,23 +23,19 @@ public class Aproximacio extends Algorisme {
 
         ordenacioRapida(arestesOrdenades, 0, m-1);
         int[] idxArestesMST = kruskal(arestesOrdenades);
-        ArrayList<Integer>[] grafDobleDirigit = new ArrayList[n];
+
+        List<Set<Integer>> grafDobleDirigit = new ArrayList<Set<Integer>>(n);
+        for (int i = 0; i < n; ++i) grafDobleDirigit.add(new HashSet<Integer>());
         for (int i = 0; i < n - 1; ++i) {
-            grafDobleDirigit[arestesOrdenades[idxArestesMST[i]].getPrimer()].add(arestesOrdenades[idxArestesMST[i]].getSegon());
-            grafDobleDirigit[arestesOrdenades[idxArestesMST[i]].getSegon()].add(arestesOrdenades[idxArestesMST[i]].getPrimer());
-        }
-        for (int i = 0; i < n; ++i) {
-            System.out.print(i + ": ");
-            Iterator<Integer> it = grafDobleDirigit[i].iterator();
-            while(it.hasNext()) {
-                System.out.print(it.next() + ", ");
-            }
+            ParellInt aresta = arestesOrdenades[idxArestesMST[i]];
+            grafDobleDirigit.get(aresta.getPrimer()).add(aresta.getSegon());
+            grafDobleDirigit.get(aresta.getSegon()).add(aresta.getPrimer());
         }
 
-        //int[] cicleEuleria = cercarCicleEuleria(grafDobleDirigit);
-        //for (int i = 0; i < cicleEuleria.length; ++i) System.out.print(cicleEuleria[i] + ", ");
-        //System.out.println();
-        return new int[1];
+        List<Integer> cicle = new ArrayList<Integer>();
+        dfs(grafDobleDirigit, cicle, 0, -1);
+
+        simplificar(cicle);
     }
 
     void ordenacioRapida(ParellInt[] arestes, int e, int d) {
@@ -89,27 +84,20 @@ public class Aproximacio extends Algorisme {
         return idxArestes;
     }
 
-    int[] cercarCicleEuleria(ArrayList<Integer>[] grafDobleDirigit) {
-        int[] cicle = new int[2 * (n - 1)];
-        dfs(grafDobleDirigit, cicle, 0, 0, -1);
-        return cicle;
-    }
-
-    int dfs(ArrayList<Integer>[] grafDobleDirigit, int[] cicle, int idxActual, int vtxActual, int vtxPrevi) {
-        cicle[idxActual] = vtxActual;
-        Iterator<Integer> it = grafDobleDirigit[vtxActual].iterator();
-        int idx = -1;
-        while (it.hasNext()) {
-            int proper = it.next();
+    void dfs(List<Set<Integer>> grafDobleDirigit, List<Integer> cicle, int vtxActual, int vtxPrevi) {
+        cicle.add(vtxActual);
+        for (int proper : grafDobleDirigit.get(vtxActual)) {
             if (proper != vtxPrevi) {
-                idx = dfs(grafDobleDirigit, cicle, idxActual+1, proper, vtxActual);
+                dfs(grafDobleDirigit, cicle, proper, vtxActual);
+                cicle.add(vtxActual);
             }
         }
-        if (idx != -1) {
-            cicle[idx] = vtxActual;
-            return idx+1;
+    }
+
+    void simplificar(List<Integer> cicle) {
+        while (cicle.size() > n) {
+
         }
-        else return idxActual+1;
     }
 
     private void imprimirArrayParellInt(ParellInt[] arestes) {
