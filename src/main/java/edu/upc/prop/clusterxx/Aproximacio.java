@@ -1,6 +1,7 @@
 package edu.upc.prop.clusterxx;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Aproximacio extends Algorisme {
     private double[][] similituds;
@@ -28,8 +29,17 @@ public class Aproximacio extends Algorisme {
             grafDobleDirigit[arestesOrdenades[idxArestesMST[i]].getPrimer()].add(arestesOrdenades[idxArestesMST[i]].getSegon());
             grafDobleDirigit[arestesOrdenades[idxArestesMST[i]].getSegon()].add(arestesOrdenades[idxArestesMST[i]].getPrimer());
         }
+        for (int i = 0; i < n; ++i) {
+            System.out.print(i + ": ");
+            Iterator<Integer> it = grafDobleDirigit[i].iterator();
+            while(it.hasNext()) {
+                System.out.print(it.next() + ", ");
+            }
+        }
 
-        int[] cicleEuleria = cercarCicleEuleria(grafDobleDirigit);
+        //int[] cicleEuleria = cercarCicleEuleria(grafDobleDirigit);
+        //for (int i = 0; i < cicleEuleria.length; ++i) System.out.print(cicleEuleria[i] + ", ");
+        //System.out.println();
         return new int[1];
     }
 
@@ -81,11 +91,25 @@ public class Aproximacio extends Algorisme {
 
     int[] cercarCicleEuleria(ArrayList<Integer>[] grafDobleDirigit) {
         int[] cicle = new int[2 * (n - 1)];
-        boolean[] visitat = new boolean[n];
-        visitat[0] = true;
-        for (int i = 1; i < n; ++i) visitat[i] = false;
-        dfs(grafDobleDirigit, cicle, 0, -1);
+        dfs(grafDobleDirigit, cicle, 0, 0, -1);
         return cicle;
+    }
+
+    int dfs(ArrayList<Integer>[] grafDobleDirigit, int[] cicle, int idxActual, int vtxActual, int vtxPrevi) {
+        cicle[idxActual] = vtxActual;
+        Iterator<Integer> it = grafDobleDirigit[vtxActual].iterator();
+        int idx = -1;
+        while (it.hasNext()) {
+            int proper = it.next();
+            if (proper != vtxPrevi) {
+                idx = dfs(grafDobleDirigit, cicle, idxActual+1, proper, vtxActual);
+            }
+        }
+        if (idx != -1) {
+            cicle[idx] = vtxActual;
+            return idx+1;
+        }
+        else return idxActual+1;
     }
 
     private void imprimirArrayParellInt(ParellInt[] arestes) {
