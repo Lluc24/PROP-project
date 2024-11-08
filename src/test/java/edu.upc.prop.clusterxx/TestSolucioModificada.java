@@ -16,133 +16,89 @@ import static org.junit.Assert.assertFalse;
  * Classe de testeig de Solucio.java
  */
 public class TestSolucioModificada {
+    ArrayList<Double> similituds1, similituds2, similituds3, similituds4;
+    Producte p1, p2, p3, p4;
+    ArrayList<Producte> productes;
+    Algorisme alg;
+    SolucioModificada solucioModificada;
 
-    public Solucio crearSolucioModificadaTest(){
-        ArrayList<Double> similituds1 = new ArrayList<>();
+    @before
+    {
+        similituds1 = new ArrayList<>();
         similituds1.add(0.0);
         similituds1.add(0.7);
         similituds1.add(0.8);
         similituds1.add(0.1);
 
-        ArrayList<Double> similituds2 = new ArrayList<>();
+        similituds2 = new ArrayList<>();
         similituds2.add(0.7);
         similituds2.add(0.0);
         similituds2.add(0.9);
         similituds2.add(0.3);
 
-        ArrayList<Double> similituds3 = new ArrayList<>();
+        similituds3 = new ArrayList<>();
         similituds3.add(0.8);
         similituds3.add(0.9);
         similituds3.add(0.0);
         similituds3.add(0.4);
 
-        ArrayList<Double> similituds4 = new ArrayList<>();
+        similituds4 = new ArrayList<>();
         similituds4.add(0.1);
         similituds4.add(0.3);
         similituds4.add(0.4);
         similituds4.add(0.0);
 
         // Crear instancias de Producte
-        Producte p1 = new Producte(1, "Producte1", similituds1);
-        Producte p2 = new Producte(2, "Producte2", similituds2);
-        Producte p3 = new Producte(1, "Producte3", similituds3);
-        Producte p4 = new Producte(2, "Producte4", similituds4);
+        p1 = new Producte(0, "Producte1", similituds1);
+        p2 = new Producte(1, "Producte2", similituds2);
+        p3 = new Producte(2, "Producte3", similituds3);
+        p4 = new Producte(3, "Producte4", similituds4);
 
-        ArrayList<Producte> productes = new ArrayList<>();
+        productes = new ArrayList<>();
         productes.add(p1);
         productes.add(p2);
         productes.add(p3);
         productes.add(p4);
 
         // Crear la instancia de Algorisme (suponiendo que tiene un constructor simple)
-        Algorisme alg = new Algorisme("Algorisme1");
+        alg = new Aproximacio();
 
         // Crear la instancia de Solucio
-        Solucio solucio = new Solucio(productes, alg, "Solucio1");
+        solucioModificada = new SolucioModificada(productes, alg, "Solucio1");
 
-        return solucio;
     }
 
     @Test
     public void testConstructor() {
-        ArrayList<Double> similituds1 = new ArrayList<>();
-
-        ArrayList<Double> similituds1 = new ArrayList<>();
-        similituds1.add(0.0);
-        similituds1.add(0.7);
-        similituds1.add(0.8);
-        similituds1.add(0.1);
-
-        ArrayList<Double> similituds2 = new ArrayList<>();
-        similituds2.add(0.7);
-        similituds2.add(0.0);
-        similituds2.add(0.9);
-        similituds2.add(0.3);
-
-        // Crear instancias de Producte
-        Producte p1 = new Producte(1, "Producte1", similituds1);
-        Producte p2 = new Producte(2, "Producte2", similituds2);
-
-        ArrayList<Producte> productes = new ArrayList<>();
-        productes.add(p1);
-        productes.add(p2);
-
-        // Crear la instancia de Algorisme (suponiendo que tiene un constructor simple)
-        Algorisme alg = new Algorisme("Algorisme1");
-
-        // Crear la instancia de Solucio
-        Solucio solucio = new Solucio(productes, alg, "Solucio1");
-
-         // Verificar que la informació de Solucio es correcta
-        assertEquals("Verificar nom", "Solucio1", solucio.getNom());
-        assertEquals("Verificar algorisme", alg, solucio.getAlgorisme());
-        assertEquals("Verificar productes", productes, solucio.getSolucio());
+        assertEquals("Verificar nom", "Solucio1", solucioModificada.getNom());
+        assertEquals("Verificar algorisme", alg, solucioModificada.getAlgorisme());
+        assertEquals("Verificar productes", productes, solucioModificada.getSolucio());
     }
 
     @Test
-    public void testIntercanvia() {
-        Solucio solucio = crearSolucioModificadaTest();
-        Solucio solucioM = crearSolucioModificadaTest();
-        solucioM.intercanvia(producte1, producte2);
+    public void testIntercanvia1() {
+        solucioModificada.intercanvia(producte1, producte2);
 
-        ArrayList<Double> similituds1 = new ArrayList<>();
-        similituds1.add(0.0);
-        similituds1.add(0.7);
-        similituds1.add(0.8);
-        similituds1.add(0.1);
+        ArrayList<Producte> productesIntercanviats = new ArrayList<>();
+        productesIntercanviats.add(p2);
+        productesIntercanviats.add(p1);
+        productesIntercanviats.add(p3);
+        productesIntercanviats.add(p4);
 
-        ArrayList<Double> similituds2 = new ArrayList<>();
-        similituds2.add(0.7);
-        similituds2.add(0.0);
-        similituds2.add(0.9);
-        similituds2.add(0.3);
+        assertEquals("Verificar intercanvi", productesIntercanviats, solucioModificada.getSolucio());
+    }
 
-        ArrayList<Double> similituds3 = new ArrayList<>();
-        similituds3.add(0.8);
-        similituds3.add(0.9);
-        similituds3.add(0.0);
-        similituds3.add(0.4);
+    @Test
+    public void testIntercanvia2() {
+        solucioModificada.intercanvia(producte1, producte4);
 
-        ArrayList<Double> similituds4 = new ArrayList<>();
-        similituds4.add(0.1);
-        similituds4.add(0.3);
-        similituds4.add(0.4);
-        similituds4.add(0.0);
+        ArrayList<Producte> productesIntercanviats = new ArrayList<>();
+        productesIntercanviats.add(p4);
+        productesIntercanviats.add(p2);
+        productesIntercanviats.add(p3);
+        productesIntercanviats.add(p1);
 
-        Producte p1 = new Producte(1, "Producte1", similituds1);
-        Producte p2 = new Producte(2, "Producte2", similituds2);
-        Producte p3 = new Producte(1, "Producte3", similituds3);
-        Producte p4 = new Producte(2, "Producte4", similituds4);
-
-        ArrayList<Producte> productes = new ArrayList<>();
-        productes.add(p2);
-        productes.add(p1);
-        productes.add(p3);
-        productes.add(p4);
-
-        assertEquals("Verificar nom", solucio.getNom(), solucioM.getNom());
-        assertEquals("Verificar algorisme", solucio.getAlgorisme(), solucioM.getAlgorisme());
-        assertEquals("Verificar intercanvi", productes, solucioM.getSolucio());
+        assertEquals("Verificar intercanvi", productesIntercanviats, solucioModificada.getSolucio());
     }
 
     }
