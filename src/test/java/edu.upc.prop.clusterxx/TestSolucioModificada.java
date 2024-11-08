@@ -1,19 +1,21 @@
-package test;
+package edu.upc.prop.clusterxx;
 
-import main.domain.classes.Solucio;
-import main.domain.classes.Producte;
-import main.domain.classes.Algorisme;
+import edu.upc.prop.clusterxx.Solucio;
+import edu.upc.prop.clusterxx.SolucioModificada;
+import edu.upc.prop.clusterxx.Producte;
+import edu.upc.prop.clusterxx.Algorisme;
 
-import org.junit.*;
+import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+
 /**
  * Classe de testeig de Solucio.java
  */
-public class TestSolucio {
+public class TestSolucioModificada {
 
     public Solucio crearSolucioModificadaTest(){
         ArrayList<Double> similituds1 = new ArrayList<>();
@@ -64,6 +66,8 @@ public class TestSolucio {
     @Test
     public void testConstructor() {
         ArrayList<Double> similituds1 = new ArrayList<>();
+
+        ArrayList<Double> similituds1 = new ArrayList<>();
         similituds1.add(0.0);
         similituds1.add(0.7);
         similituds1.add(0.8);
@@ -98,12 +102,47 @@ public class TestSolucio {
     @Test
     public void testIntercanvia() {
         Solucio solucio = crearSolucioModificadaTest();
-        solucio.intercanvia(producte1, producte2);
+        Solucio solucioM = crearSolucioModificadaTest();
+        solucioM.intercanvia(producte1, producte2);
 
-        //falta
+        ArrayList<Double> similituds1 = new ArrayList<>();
+        similituds1.add(0.0);
+        similituds1.add(0.7);
+        similituds1.add(0.8);
+        similituds1.add(0.1);
 
-        assertEquals("Verificar nom", "solucioModif", solucio.getNom());
-        assertEquals("Verificar nom", "solucioModif", solucio.getNom());
+        ArrayList<Double> similituds2 = new ArrayList<>();
+        similituds2.add(0.7);
+        similituds2.add(0.0);
+        similituds2.add(0.9);
+        similituds2.add(0.3);
+
+        ArrayList<Double> similituds3 = new ArrayList<>();
+        similituds3.add(0.8);
+        similituds3.add(0.9);
+        similituds3.add(0.0);
+        similituds3.add(0.4);
+
+        ArrayList<Double> similituds4 = new ArrayList<>();
+        similituds4.add(0.1);
+        similituds4.add(0.3);
+        similituds4.add(0.4);
+        similituds4.add(0.0);
+
+        Producte p1 = new Producte(1, "Producte1", similituds1);
+        Producte p2 = new Producte(2, "Producte2", similituds2);
+        Producte p3 = new Producte(1, "Producte3", similituds3);
+        Producte p4 = new Producte(2, "Producte4", similituds4);
+
+        ArrayList<Producte> productes = new ArrayList<>();
+        productes.add(p2);
+        productes.add(p1);
+        productes.add(p3);
+        productes.add(p4);
+
+        assertEquals("Verificar nom", solucio.getNom(), solucioM.getNom());
+        assertEquals("Verificar algorisme", solucio.getAlgorisme(), solucioM.getAlgorisme());
+        assertEquals("Verificar intercanvi", productes, solucioM.getSolucio());
     }
 
     }

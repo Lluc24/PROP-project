@@ -1,15 +1,17 @@
-package test;
+package edu.upc.prop.clusterxx;
 
-import main.domain.classes.Solucio;
-import main.domain.classes.Producte;
-import main.domain.classes.Algorisme;
+import edu.upc.prop.clusterxx.Solucio;
+import edu.upc.prop.clusterxx.Producte;
+import edu.upc.prop.clusterxx.Algorisme;
 
-import org.junit.*;
+import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+
+
 /**
  * Classe de testeig de Solucio.java
  */
