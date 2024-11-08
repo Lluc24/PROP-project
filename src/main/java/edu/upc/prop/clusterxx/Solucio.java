@@ -22,8 +22,8 @@ public class Solucio {
         return algorisme;
     }
 
-    public ArrayList<Producte> solucio() {
-        return nom;
+    public ArrayList<Producte> getSolucio() {
+        return solucio;
     }
 
 

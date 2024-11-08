@@ -1,5 +1,7 @@
 package edu.upc.prop.clusterxx;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class GestioSolucio {
     // Llista de solucions
@@ -19,19 +21,32 @@ public class GestioSolucio {
         this.aproximacio = new ArrayList<Aproximacio>();
     }
 
+    //Getters i setters
 
+    public ArrayList<Solucio> getSolucions(){ return solucions }
+
+    public Cataleg getCataleg(){ return cataleg }
+
+    public Algorisme getAlgorismeAct(){return algorismeAct}
+
+    public ArrayList<Vorac> getVorac(){return vorac}
+
+    public ArrayList<Aproximacio> getAproximacio(){ return aproximacio }
+
+    //Mètodes addicionals
     /**
-     * pre: l'usuari crida aquesta funcio passant-me el tipus d'algorisme (i més endevant pasarà paràmetres)
+     * pre: l'usuari crida aquesta funcio passant el tipus d'algorisme (i més endevant pasarà paràmetres)
      * post: S'ha creat una instància d'Algorisme amb els paràmetres indicats
      * @param tipusAlgorisme
      */
     public void gestioAlgorisme(String tipusAlgorisme) {
 
-        if (tipusAlgorisme == vorac){
+        if (tipusAlgorisme.equals("vorac")){
             boolean trobat = false;
-            for (Vorac v: vorac && !trobat){
+            for (Vorac v: vorac){
                 trobat = true;
                 algorismeAct = v;
+                break;
                 /*
                 if (v.getParametre() == parametre) {
                     algorismeAct = v;
@@ -45,11 +60,12 @@ public class GestioSolucio {
                 algorismeAct = v;
             }
         }
-        else if (tipusAlgorime == aproximacio){
+        else if (tipusAlgorisme.equals("aproximacio")){
             boolean trobat = false;
-            for (Aproximacio a: aproximacio && !trobat){
+            for (Aproximacio a: aproximacio){
                 trobat = true;
                 algorismeAct = a;
+                break;
                 /*
                 if (v.getParametre() == parametre) {
                     algorismeAct = v;
@@ -66,7 +82,6 @@ public class GestioSolucio {
         else {
             System.out.println("GestioSolucio: error al especificar el tipus d'algorisme");
         }
-
     }
     /**
      * pre: l'usuari crida a aquesta funcio quan vol crear una nova solucio
@@ -74,38 +89,43 @@ public class GestioSolucio {
      */
     public void creaSolucio(String nomSolucio){
         for (Solucio s: solucions){
-            if (s.getNom() == nomSolucio) System.out.println("GestioSolucions: error ja existeix una solucio amb aquest nom");
+            if (s.getNom().equals(nomSolucio)) System.out.println("GestioSolucions: error ja existeix una solucio amb aquest nom");
         }
-        double[][] similituds = cataleg.getMatriuSimilituds();
-        if (similituds.length() < 4) System.out.println("GestioSolucions: no hi ha suficients productes a ordenar");
-        algorismeAct.resol(similituds, nomSolucio);
+        if (similituds.length() < 4) {
+            for (Solucio s: solucions){
+                if (s.getNom().equals(nom)) System.out.println("GestioSolucions: error ja existeix una solucio amb aquest nom");
+            }
+            ArrayList<Producte> llistaProd = cataleg.getCataleg_Productes();
+            Solucio sol = new Solucio(llistaProd, a, nom);
+            solucions.add(sol);
+        }
+        else {
+            double[][] similituds = cataleg.getMatriuSimilituds();
+            algorismeAct.resol(similituds, nomSolucio);
+        }
     }
 
     /**
-     *
+     *L'usuari crida a aquesta funcio quan vol intercanviar dos productes d'una solucio
      * @param prod1
      * @param prod2
-     * @param nomSolucioAnt
-     * @param nomSolucioNova
+     * @param nomSolucio
      */
-    public void modificarSolucio (Producte prod1, Producte prod2, String nomSolucioAnt, String nomSolucioNova){
-        //busco una solucio al del conjunt de solucions que tingui nom = nomSolucio
-        //si no n'hi ha cap, aviso del error
-        //si la trobo, en creo una copia amb nom nomSolucioNova , cridant a la funció copia(nomSolucioNova) de la classe solucio
-        //afegeixo la nova solucioModificada a la llista de solucions
-        //un cop creada la copia, crido a la funcio esModificada() de la copia
-        //i despres crido a la funcio intercanvia(prod1,prod2)
-
-        for (Solucio s: solucions){
-            if (s.getNom() == nomSolucioNova) System.out.println("GestioSolucions: error ja existeix una solucio amb aquest nom");
-        }
+    public void modificarSolucio (Producte prod1, Producte prod2, String nomSolucio){
         boolean trobat = false;
-        for (Solucio s: solucions){
-            if (s.getNom() == nomSolucioAnt){
+        Iterator<Solucio> iterator = solucions.iterator();
+        while (iterator.hasNext()){
+            Solucio s = iterator.next();
+            if (s.getNom().equals("nomSolucio")){
                 trobat = true;
-                SolucioModificada solMod = SolucioModificada(s);
-                solucions.add(solMod);
-                solmod.intercanvia(prod1, prod2);
+                if (s.trobarProducte(prod1) && s.trobarProducte(prod2)) {
+                    SolucioModificada solMod = SolucioModificada(s);
+                    iterator.remove();
+                    solucions.add(solMod);
+                    solMod.intercanvia(prod1, prod2);
+                }
+                else System.out.println("GestioSolucions: error no existeix algun dels productes en la solucio");
+                break;
             }
         }
         if (!trobat)System.out.println("GestioSolucions: error no existeix una solucio amb aquest nom");
@@ -120,28 +140,35 @@ public class GestioSolucio {
      * @param a:instància del algorisme que ha solucionat el problema
      * @param nom: nom de la solucio a crear
      */
-    public void afegeixSolucio(ArrayList<int> solucio, Algorisme a, string nom) {
+    public void afegeixSolucio(ArrayList<String> solucio, Algorisme a, String nom) {
         for (Solucio s: solucions){
-            if (s.getNom() == nom) System.out.println("GestioSolucions: error ja existeix una solucio amb aquest nom");
+            if (s.getNom().equals(nom)) System.out.println("GestioSolucions: error ja existeix una solucio amb aquest nom");
         }
-        Solucio s = new Solucio(solucio, a, nom);
-        solucions.add(solucio);
+        ArrayList<Producte> llistaProd = new ArrayList<Productes>();
+        for (String s: solucio){
+            llistaProd.add(cataleg.getProducte(s));
+        }
+        Solucio sol = new Solucio(llistaProd, a, nom);
+        solucions.add(sol);
     }
 
     // Eliminar una solució
-    public void eliminarSolucio(string nomSolucio) {
+    public void eliminarSolucio(String nomSolucio) {
         boolean trobat = false;
-        for (Solucio s: solucions){
-            if (s.getNom() == nomSolucio){
-                solucions.remove(s);
+        Iterator<Solucio> iterator = solucions.iterator();
+        while (iterator.hasNext()){
+            Solucio s = iterator.next();
+            if (s.getNom().equals(nomSolucio)){
                 trobat = true;
+                iterator.remove();
+                break;
             }
         }
-        if (!trobat) System.out.println("GestioSolucions: error no existeix una solucio amb aquest nom");
+        if (!trobat)System.out.println("GestioSolucions: error no existeix una solucio amb aquest nom");
     }
 
     // Obtenir totes les solucions
-    public ArrayList<Solucio> mostrarSolucions() {
+    public void mostrarSolucions() {
         //per cada Solucio de la llista solucions, s'ha de cridar a la seva funcio publica mostrarSolucio()
         for (Solucio s: solucions) s.mostrarSolucio;
     }
