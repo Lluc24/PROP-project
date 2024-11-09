@@ -96,7 +96,18 @@ public class Aproximacio extends Algorisme {
 
     void simplificar(List<Integer> cicle) {
         while (cicle.size() > n) {
+            boolean[] visitat = new boolean[n];
+            for (int i = 0; i < n; ++i) visitat[i] = false;
+            Iterator<Integer> it = cicle.iterator();
+            while (it.hasNext()) {
+                int vtx = it.next();
+                if (visitat[vtx]) {
 
+                }
+                else {
+                    visitat[vtx] = true;
+                }
+            }
         }
     }
 
