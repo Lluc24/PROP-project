@@ -1,5 +1,6 @@
 package edu.upc.prop.clusterxx;
 import edu.upc.prop.clusterxx.Producte;
+import edu.upc.prop.clusterxx.pair;
 import java.util.ArrayList;
 /**
  * @Class Cataleg
@@ -65,6 +66,7 @@ public class Cataleg {
             }
         }
 
+        new_simi.add(new_index, 0.0);
         Producte new_prod = new Producte(new_index, new_nom, new_simi);
         Cataleg_Productes.add(new_index, new_prod);
 
@@ -266,7 +268,7 @@ public class Cataleg {
      *
      * @return El cataleg de productes
      */
-    public ArrayList<Producte> consultar_cataleg(){
+    public ArrayList<Producte> getCataleg(){
           return Cataleg_Productes;
 
      }
