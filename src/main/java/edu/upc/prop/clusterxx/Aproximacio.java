@@ -36,6 +36,9 @@ public class Aproximacio extends Algorisme {
         dfs(grafDobleDirigit, cicle, 0, -1);
 
         simplificar(cicle);
+        int[] cicleHam = new int[n];
+        for (int i = 0; i < n; ++i) cicleHam[i] = cicle.get(i);
+        return cicleHam;
     }
 
     void ordenacioRapida(ParellInt[] arestes, int e, int d) {
@@ -95,19 +98,52 @@ public class Aproximacio extends Algorisme {
     }
 
     void simplificar(List<Integer> cicle) {
-        while (cicle.size() > n) {
+        int tallaCicle = cicle.size();
+        while (tallaCicle > n) {
             boolean[] visitat = new boolean[n];
-            for (int i = 0; i < n; ++i) visitat[i] = false;
-            Iterator<Integer> it = cicle.iterator();
-            while (it.hasNext()) {
-                int vtx = it.next();
-                if (visitat[vtx]) {
-
+            for (int i = 1; i < n; ++i) visitat[i] = false;
+            visitat[0] = true;
+            ArrayList<ParellInt> idxsRepeticio = new ArrayList<ParellInt>();
+            ArrayList<Double> costRepeticio = new ArrayList<Double>();
+            int nRepeticions = 0;
+            int vtxPrevi = 0;
+            for (int i = 1; i < tallaCicle-1; ++i) {
+                int vtxActual = cicle.get(i);
+                if (visitat[vtxActual]) {
+                    if (visitat[vtxPrevi]) {
+                        Double costAcumulat = costRepeticio.get(nRepeticions);
+                        costRepeticio.set(nRepeticions, costAcumulat + similituds[vtxPrevi][vtxActual]);
+                    }
+                    else {
+                        costRepeticio.add(similituds[vtxPrevi][vtxActual]);
+                        idxsRepeticio.add(new ParellInt(i-1, -1));
+                        ++nRepeticions;
+                    }
                 }
                 else {
-                    visitat[vtx] = true;
+                    if (nRepeticions > 0 && idxsRepeticio.get(nRepeticions).getSegon() == -1) {
+                        Double costAcumulat = costRepeticio.get(nRepeticions);
+                        costRepeticio.set(nRepeticions, costAcumulat + similituds[vtxPrevi][vtxActual]);
+                        idxsRepeticio.get(nRepeticions).setSegon(i);
+                    }
+                    visitat[vtxActual] = true;
                 }
             }
+            if (nRepeticions > 0 && idxsRepeticio.get(nRepeticions).getSegon() == -1) {
+                Double costAcumulat = costRepeticio.get(nRepeticions);
+                costRepeticio.set(nRepeticions, costAcumulat + similituds[vtxPrevi][cicle.get(tallaCicle-1)]);
+                idxsRepeticio.get(nRepeticions).setSegon(tallaCicle-1);
+            }
+            for (int i = 0; i < cicle.size(); ++i) {
+                System.out.print("Cicle: " + cicle.get(i));
+            }
+            System.out.println();
+            for (int i = 0; i < nRepeticions; ++i) {
+                System.out.println("Shortcut de " + idxsRepeticio.get(i).getPrimer() + " a " + idxsRepeticio.get(i).getSegon());
+                double costEstalviat = costRepeticio.get(i) - similituds[idxsRepeticio.get(i).getPrimer()][idxsRepeticio.get(i).getSegon()];
+                System.out.print("Cost estalviat: " + costEstalviat);
+            }
+            tallaCicle = 0;
         }
     }
 
