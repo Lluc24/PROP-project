@@ -35,7 +35,13 @@ public class Aproximacio extends Algorisme {
         List<Integer> cicle = new ArrayList<Integer>();
         dfs(grafDobleDirigit, cicle, 0, -1);
 
+        System.out.print("Cicle euleria: ");
+        for (int i = 0; i < cicle.size(); ++i) System.out.print(cicle.get(i) + " ");
+        System.out.println();
         simplificar(cicle);
+        System.out.print("Cicle hamiltonia: ");
+        for (int i = 0; i < cicle.size(); ++i) System.out.print(cicle.get(i) + " ");
+        System.out.println();
         int[] cicleHam = new int[n];
         for (int i = 0; i < n; ++i) cicleHam[i] = cicle.get(i);
         return cicleHam;
@@ -99,59 +105,59 @@ public class Aproximacio extends Algorisme {
 
     void simplificar(List<Integer> cicle) {
         int tallaCicle = cicle.size();
-        while (tallaCicle > n) {
-            boolean[] visitat = new boolean[n];
-            for (int i = 1; i < n; ++i) visitat[i] = false;
-            visitat[0] = true;
+        while (tallaCicle > n + 1) {
+            int[] frequencia = new int[n];
+            for (int i = 1; i < n; ++i) frequencia[i] = 0;
+            frequencia[0] = 1;
             ArrayList<ParellInt> idxsRepeticio = new ArrayList<ParellInt>();
             ArrayList<Double> costRepeticio = new ArrayList<Double>();
-            int nRepeticions = 0;
+            int idxRepeticio = -1;
             int vtxPrevi = 0;
             for (int i = 1; i < tallaCicle-1; ++i) {
                 int vtxActual = cicle.get(i);
-                if (visitat[vtxActual]) {
-                    if (visitat[vtxPrevi]) {
-                        Double costAcumulat = costRepeticio.get(nRepeticions);
-                        costRepeticio.set(nRepeticions, costAcumulat + similituds[vtxPrevi][vtxActual]);
+                if (frequencia[vtxActual] > 0) {
+                    if (frequencia[vtxPrevi] > 1) {
+                        double costAcumulat = costRepeticio.get(idxRepeticio);
+                        costRepeticio.set(idxRepeticio, costAcumulat + similituds[vtxPrevi][vtxActual]);
                     }
                     else {
                         costRepeticio.add(similituds[vtxPrevi][vtxActual]);
                         idxsRepeticio.add(new ParellInt(i-1, -1));
-                        ++nRepeticions;
+                        ++idxRepeticio;
                     }
                 }
-                else {
-                    if (nRepeticions > 0 && idxsRepeticio.get(nRepeticions).getSegon() == -1) {
-                        Double costAcumulat = costRepeticio.get(nRepeticions);
-                        costRepeticio.set(nRepeticions, costAcumulat + similituds[vtxPrevi][vtxActual]);
-                        idxsRepeticio.get(nRepeticions).setSegon(i);
-                    }
-                    visitat[vtxActual] = true;
+                else if (frequencia[vtxPrevi] > 1){
+                    double costAcumulat = costRepeticio.get(idxRepeticio);
+                    costRepeticio.set(idxRepeticio, costAcumulat + similituds[vtxPrevi][vtxActual]);
+                    idxsRepeticio.get(idxRepeticio).setSegon(i);
+                }
+                ++frequencia[vtxActual];
+                vtxPrevi = vtxActual;
+            }
+            if (frequencia[vtxPrevi] > 1) {
+                double costAcumulat = costRepeticio.get(idxRepeticio);
+                costRepeticio.set(idxRepeticio, costAcumulat + similituds[vtxPrevi][cicle.get(tallaCicle-1)]);
+                idxsRepeticio.get(idxRepeticio).setSegon(tallaCicle-1);
+            }
+            int millorCandidat = 0;
+            ParellInt repeCicle = idxsRepeticio.getFirst();
+            ParellInt repeVertexs = new ParellInt(cicle.get(repeCicle.getPrimer()), cicle.get(repeCicle.getSegon()));
+            double menorDiferencia = costRepeticio.getFirst() - similituds[repeVertexs.getPrimer()][repeVertexs.getSegon()];
+            for (int i = 1; i <= idxRepeticio; ++i) {
+                repeCicle = idxsRepeticio.get(i);
+                repeVertexs = new ParellInt(cicle.get(repeCicle.getPrimer()), cicle.get(repeCicle.getSegon()));
+                double diferencia = costRepeticio.get(i) - similituds[repeVertexs.getPrimer()][repeVertexs.getSegon()];
+                if (diferencia < menorDiferencia) {
+                    millorCandidat = i;
+                    menorDiferencia = diferencia;
                 }
             }
-            if (nRepeticions > 0 && idxsRepeticio.get(nRepeticions).getSegon() == -1) {
-                Double costAcumulat = costRepeticio.get(nRepeticions);
-                costRepeticio.set(nRepeticions, costAcumulat + similituds[vtxPrevi][cicle.get(tallaCicle-1)]);
-                idxsRepeticio.get(nRepeticions).setSegon(tallaCicle-1);
+            int idxInicial = idxsRepeticio.get(millorCandidat).getPrimer() + 1;
+            int idxFinal = idxsRepeticio.get(millorCandidat).getSegon() - 1;
+            tallaCicle -= idxFinal - idxInicial + 1;
+            for (int i = idxInicial; i <= idxFinal; ++i) {
+                cicle.remove(idxInicial);
             }
-            for (int i = 0; i < cicle.size(); ++i) {
-                System.out.print("Cicle: " + cicle.get(i));
-            }
-            System.out.println();
-            for (int i = 0; i < nRepeticions; ++i) {
-                System.out.println("Shortcut de " + idxsRepeticio.get(i).getPrimer() + " a " + idxsRepeticio.get(i).getSegon());
-                double costEstalviat = costRepeticio.get(i) - similituds[idxsRepeticio.get(i).getPrimer()][idxsRepeticio.get(i).getSegon()];
-                System.out.print("Cost estalviat: " + costEstalviat);
-            }
-            tallaCicle = 0;
         }
-    }
-
-    private void imprimirArrayParellInt(ParellInt[] arestes) {
-        int mida = arestes.length;
-        for (int i = 0; i < mida; ++i) {
-            System.out.print(arestes[i].toString() + ", ");
-        }
-        System.out.println();
     }
 }
