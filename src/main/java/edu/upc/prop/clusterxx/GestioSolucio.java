@@ -23,15 +23,15 @@ public class GestioSolucio {
 
     //Getters i setters
 
-    public ArrayList<Solucio> getSolucions(){ return solucions }
+    public ArrayList<Solucio> getSolucions(){ return solucions; }
 
-    public Cataleg getCataleg(){ return cataleg }
+    public Cataleg getCataleg(){ return cataleg; }
 
-    public Algorisme getAlgorismeAct(){return algorismeAct}
+    public Algorisme getAlgorismeAct(){ return algorismeAct;}
 
-    public ArrayList<Vorac> getVorac(){return vorac}
+    public ArrayList<Vorac> getVorac(){ return vorac;}
 
-    public ArrayList<Aproximacio> getAproximacio(){ return aproximacio }
+    public ArrayList<Aproximacio> getAproximacio(){ return aproximacio; }
 
     //Mètodes addicionals
     /**
@@ -91,18 +91,8 @@ public class GestioSolucio {
         for (Solucio s: solucions){
             if (s.getNom().equals(nomSolucio)) System.out.println("GestioSolucions: error ja existeix una solucio amb aquest nom");
         }
-        if (similituds.length() < 4) {
-            for (Solucio s: solucions){
-                if (s.getNom().equals(nom)) System.out.println("GestioSolucions: error ja existeix una solucio amb aquest nom");
-            }
-            ArrayList<Producte> llistaProd = cataleg.getCataleg_Productes();
-            Solucio sol = new Solucio(llistaProd, a, nom);
-            solucions.add(sol);
-        }
-        else {
-            double[][] similituds = cataleg.getMatriuSimilituds();
-            algorismeAct.resol(similituds, nomSolucio);
-        }
+        double[][] similituds = cataleg.getMatriuSimilituds();
+        algorismeAct.resol(similituds, nomSolucio);
     }
 
     /**
@@ -116,7 +106,7 @@ public class GestioSolucio {
         Iterator<Solucio> iterator = solucions.iterator();
         while (iterator.hasNext()){
             Solucio s = iterator.next();
-            if (s.getNom().equals("nomSolucio")){
+            if (s.getNom().equals(nomSolucio)){
                 trobat = true;
                 if (s.trobarProducte(prod1) && s.trobarProducte(prod2)) {
                     SolucioModificada solMod = SolucioModificada(s);
@@ -170,6 +160,6 @@ public class GestioSolucio {
     // Obtenir totes les solucions
     public void mostrarSolucions() {
         //per cada Solucio de la llista solucions, s'ha de cridar a la seva funcio publica mostrarSolucio()
-        for (Solucio s: solucions) s.mostrarSolucio;
+        for (Solucio s: solucions) s.mostrarSolucio();
     }
 }

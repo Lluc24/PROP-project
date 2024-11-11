@@ -16,6 +16,7 @@ public class SolucioModificada extends Solucio {
      * @author Eulalia Peiret Santacana
      */
     public void intercanvia(Producte prod1, Producte prod2){
+        if (prod1 == prod2) System.out.println("SolucioModificada: error no pots intercanviar dos productes iguals");
         int index1 = -1;
         int index2 = -1;
         // Busca els idx dels prod a solucio
@@ -32,5 +33,6 @@ public class SolucioModificada extends Solucio {
             solucio.set(index1, prod2);
             solucio.set(index2, prod1);
         }
+        else System.out.println("SolucioModificada: error no existeix algun dels dos productes");
     }
 }

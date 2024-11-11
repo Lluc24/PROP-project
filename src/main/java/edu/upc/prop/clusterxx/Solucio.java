@@ -53,7 +53,7 @@ public class Solucio {
      * @author Eulalia Peiret Santacana
      */
     public boolean trobarProducte(String x){
-        for (p : solucio){
+        for (Producte p : solucio){
             if (p.getNom().equals(x)) return true;
         }
         return false;
