@@ -1,3 +1,5 @@
+package edu.upc.prop.clusterxx;
+
 import java.util.ArrayList;
 
 public class Solucio {

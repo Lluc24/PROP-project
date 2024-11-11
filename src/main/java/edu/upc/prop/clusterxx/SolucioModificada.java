@@ -1,3 +1,7 @@
+package edu.upc.prop.clusterxx;
+
+import java.util.*;
+
 public class SolucioModificada extends Solucio {
 
     // Constructor
