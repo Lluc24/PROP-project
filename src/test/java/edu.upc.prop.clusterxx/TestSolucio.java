@@ -18,27 +18,28 @@ public class TestSolucio {
     ArrayList<Producte> productes;
     Algorisme alg;
     Solucio solucio;
+
     @before
     {
-        similituds1 = new ArrayList<>();
+        similituds1 = new ArrayList<double>();
         similituds1.add(0.0);
         similituds1.add(0.7);
         similituds1.add(0.8);
         similituds1.add(0.1);
 
-        similituds2 = new ArrayList<>();
+        similituds2 = new ArrayList<double>();
         similituds2.add(0.7);
         similituds2.add(0.0);
         similituds2.add(0.9);
         similituds2.add(0.3);
 
-        similituds3 = new ArrayList<>();
+        similituds3 = new ArrayList<double>();
         similituds3.add(0.8);
         similituds3.add(0.9);
         similituds3.add(0.0);
         similituds3.add(0.4);
 
-        similituds4 = new ArrayList<>();
+        similituds4 = new ArrayList<double>();
         similituds4.add(0.1);
         similituds4.add(0.3);
         similituds4.add(0.4);
@@ -50,7 +51,7 @@ public class TestSolucio {
         p3 = new Producte(2, "Producte3", similituds3);
         p4 = new Producte(3, "Producte4", similituds4);
 
-        productes = new ArrayList<>();
+        productes = new ArrayList<Productes>();
         productes.add(p1);
         productes.add(p2);
         productes.add(p3);
