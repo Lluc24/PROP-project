@@ -1,24 +1,30 @@
-import Cataleg
+import Cataleg;
 
 //Classe Algorisme
 
 public abstract class Algorisme {
-     public List<String> parametres;
 
-     public Algorisme(List<String> parametres) {
-          this.parametres = parametres;
+     //Paràmetres comuns
+
+
+     //
+
+     //Creadora
+     public Algorisme() {
+
      }
 
-     //Obté els paràmetres de l'algorisme
-     public List<String> getParametres() {
-          return parametres;
+     //Getters i Setters per als paràmetres
+     //public Y getX() {
+          return X;
      }
 
-     // Estableix els paràmetres de l'algorisme
-     public void setParametres(List<String> parametres) {
-          this.parametres = parametres;
+     //public void setX(String X) {
+          this.X = X;
      }
 
-     // Implementat per les subclasses per donar una solució
-     public abstract Solució resoldre(Cataleg cataleg);
+     /**
+      *
+      */
+     public abstract int[] resoldre(Cataleg cataleg);
 }
