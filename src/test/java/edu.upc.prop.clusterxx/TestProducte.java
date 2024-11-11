@@ -19,9 +19,9 @@ public class TestProducte {
             simi.add(i, 0.33+i);
         }
         Producte P = new Producte(1, "Proba", simi);
-        assertEquals("Index Correcte", 1, P.index);
-        assertEquals("Nom Correcte", "Proba", P.nom);
-        assertEquals("Llista correcta", simi, P.llista_Similituds);
+        assertEquals("Index Correcte", 1, P.getIndex());
+        assertEquals("Nom Correcte", "Proba", P.getNom());
+        assertEquals("Llista correcta", simi, P.getSimilituds());
     }
 
 

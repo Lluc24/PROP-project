@@ -1,5 +1,5 @@
 package edu.upc.prop.clusterxx;
-import edu.upc.prop.clusterxx.Cataleg;
+
 import java.util.ArrayList;
 
 
@@ -14,12 +14,12 @@ import java.util.ArrayList;
 public class Producte {
 
     /** Index que concideix amb index on es troba el producte dins de cataleg*/
-    public int index;
+    private int index;
     /** String que representa el nom unic que se li ha donat al producte */
-    public String nom;
+    private String nom;
     /** ArrayList que representa les similituds de aquest producte amb la resta
      * cada similitud amb un producte es troba a index corresponent al index*/
-    public ArrayList<Double> llista_Similituds;
+    private ArrayList<Double> llista_Similituds;
 
     /**
      * @param index El index a Cataleg_Productes de la classe Cataleg on es troba el producte
@@ -40,6 +40,39 @@ public class Producte {
      */
     public double get_simil_prod(int index_prod) {
         return llista_Similituds.get(index_prod);
+    }
+
+    public String getNom() {return nom;}
+    public int getIndex() {return index;}
+    public ArrayList<Double> getSimilituds() {return llista_Similituds;}
+    public void setNom(String nom) {this.nom = nom;}
+    public void setIndex(int index) {this.index = index;}
+    public void setSimilituds(ArrayList<Double> similituds) {this.llista_Similituds = similituds;}
+
+    /**
+     *
+     * @param index Index de producte dins de llista_similituds
+     * @param simi Similitud nova
+     */
+    public void addSimiProd(int index, Double simi) {
+        llista_Similituds.add(index, simi);
+    }
+
+    /**
+     *
+     * @param index_out Index de la similitud a eliminar
+     */
+    public void remSimiProd(int index_out) {
+        llista_Similituds.remove(index_out);
+    }
+
+    /**
+     *
+     * @param index Index de producte dins de llista_similituds
+     * @param simi Similitud nova
+     */
+    public void setSimiProd(int index, Double simi) {
+        llista_Similituds.set(index, simi);
     }
 
 }

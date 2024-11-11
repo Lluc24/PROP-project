@@ -62,7 +62,7 @@ public class Cataleg {
             int index_in = get_index_prod(llista_simi[i].first);
             if (valida_index(index_in)) {
                 new_simi.add(index_in, llista_simi[i].second); //Afegim a la nova llista de similituds
-                Cataleg_Productes.get(index_in).llista_Similituds.add(new_index, llista_simi[i].second); //La similitud del producte preexisten amb el nou
+                Cataleg_Productes.get(index_in).addSimiProd(new_index, llista_simi[i].second); //La similitud del producte preexisten amb el nou
             }
         }
 
@@ -86,12 +86,12 @@ public class Cataleg {
 
           //Eliminem totes les similituds associades al producte
           for (int i = 0; i < Cataleg_Productes.size(); ++i) {
-               Cataleg_Productes.get(i).llista_Similituds.remove(index_out);
+               Cataleg_Productes.get(i).remSimiProd(index_out);
           }
 
           //Actualitzem tots els index del productes
           for (int i = 0; i < Cataleg_Productes.size(); ++i) {
-               Cataleg_Productes.get(i).index = i;
+               Cataleg_Productes.get(i).setIndex(i);
           }
      }
 
@@ -121,8 +121,8 @@ public class Cataleg {
      public void editar_similitud_index(int index_prod1, int index_prod2, double new_simi) {
          if (valida_index(index_prod1) && valida_index(index_prod2)) {
              //Modifiquem les similituds
-             Cataleg_Productes.get(index_prod1).llista_Similituds.set(index_prod2, new_simi);
-             Cataleg_Productes.get(index_prod2).llista_Similituds.set(index_prod1, new_simi);
+             Cataleg_Productes.get(index_prod1).setSimiProd(index_prod2,new_simi);
+             Cataleg_Productes.get(index_prod2).setSimiProd(index_prod1, new_simi);
          }  //error
      }
 
@@ -152,7 +152,7 @@ public class Cataleg {
       */
      public boolean find_prod(String nom_in){
           for (int i = 0; i < Cataleg_Productes.size(); ++i) {
-               if (Cataleg_Productes.get(i).nom.equals(nom_in)) return true;
+               if (Cataleg_Productes.get(i).getNom().equals(nom_in)) return true;
           }
           return false;
 
@@ -174,7 +174,7 @@ public class Cataleg {
       */
      public int get_index_prod(String nom_in){
           for (int i = 0; i < Cataleg_Productes.size(); ++i) {
-               if (Cataleg_Productes.get(i).nom.equals(nom_in)) return i;
+               if (Cataleg_Productes.get(i).getNom().equals(nom_in)) return i;
           }
           return -1;
      }
@@ -186,7 +186,7 @@ public class Cataleg {
      */
      public String getNomProd_index(int index_in) {
          if (!valida_index(index_in)) return null; //error
-         return Cataleg_Productes.get(index_in).nom;
+         return Cataleg_Productes.get(index_in).getNom();
      }
 
     /**
@@ -216,7 +216,7 @@ public class Cataleg {
       * @return La similitud entre el dos productes 
       */
      public double getSimilitud_index(int index_prod1, int index_prod2) {
-          return Cataleg_Productes.get(index_prod1).llista_Similituds.get(index_prod2);
+          return Cataleg_Productes.get(index_prod1).getSimilituds().get(index_prod2);
      }
      /**
       * Descripcio: Retorna la similituds entre dos productes donats, si algun producte no es troba retorna -1
@@ -241,7 +241,7 @@ public class Cataleg {
      * @return Retornar una ArrayList, que representa el valor integer de les similituds del producte
      */
     public ArrayList<Double> getAllSimilitudsProd_index(int index_prod) {
-          return Cataleg_Productes.get(index_prod).llista_Similituds;
+          return Cataleg_Productes.get(index_prod).getSimilituds();
      }
 
      /**
@@ -295,7 +295,7 @@ public class Cataleg {
          double[][] ret_MS = new double[Cataleg_Productes.size()][Cataleg_Productes.size()];
 
          for (int i = 0; i < Cataleg_Productes.size(); ++i) {
-              double[] aux = Cataleg.transformArray(Cataleg_Productes.get(i).llista_Similituds);
+              double[] aux = Cataleg.transformArray(Cataleg_Productes.get(i).getSimilituds());
               ret_MS[i] = aux;
          }
          return ret_MS;
