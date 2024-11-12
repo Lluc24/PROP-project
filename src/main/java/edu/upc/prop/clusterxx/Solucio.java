@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Solucio {
     // Atributs
-    private ArrayList<Producte> solucio;
-    private Algorisme algorisme;
-    private String nom;
+    protected ArrayList<Producte> solucio;
+    protected Algorisme algorisme;
+    protected String nom;
 
     // Constructor
     public Solucio(ArrayList<Producte> s, Algorisme a, String n) {

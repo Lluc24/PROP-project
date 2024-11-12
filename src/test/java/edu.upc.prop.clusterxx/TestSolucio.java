@@ -1,13 +1,9 @@
 package edu.upc.prop.clusterxx;
 
-import edu.upc.prop.clusterxx.*;
-
 import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
-
-
 
 /**
  * Classe de testeig de Solucio.java
@@ -51,7 +47,7 @@ public class TestSolucio {
         p3 = new Producte(2, "Producte3", similituds3);
         p4 = new Producte(3, "Producte4", similituds4);
 
-        productes = new ArrayList<Productes>();
+        productes = new ArrayList<Producte>();
         productes.add(p1);
         productes.add(p2);
         productes.add(p3);
@@ -62,9 +58,12 @@ public class TestSolucio {
 
         // Crear la instancia de Solucio
         solucio = new Solucio(productes, alg, "Solucio1");
-
     }
 
+    /**
+     * Test de constructora
+     * Valors estudiats: Crea una instància de SolucioModificada i comprova que els paràmetres siguin correctes.
+     */
     @Test
     public void testConstructor() {
         assertEquals("Verificar nom", "Solucio1", solucio.getNom());
@@ -72,22 +71,37 @@ public class TestSolucio {
         assertEquals("Verificar productes", productes, solucio.getSolucio());
     }
 
+    /**
+     * Test de getNom
+     * Valors estudiats: Crea una instància de Solucio i comprova que el nom sigui correcte.
+     */
     @Test
     public void testgetNom() {
         assertEquals("Verificar nom", "Solucio1", solucio.getNom());
     }
 
+    /**
+     * Test de getAlgorisme
+     * Valors estudiats: Crea una instància de Solucio i comprova que el algorisme sigui correcte.
+     */
     @Test
     public void testgetAlgorisme() {
         assertEquals("Verificar algorisme", alg, solucio.getAlgorisme());
     }
 
+    /**
+     * Test de getSolucio
+     * Valors estudiats: Crea una instància de Solucio i comprova que el paràmetre solucio sigui correcte.
+     */
     @Test
     public void testgetSolucio() {
         assertEquals("Verificar llista de productes", productes, solucio.getSolucio());
-
     }
 
+    /**
+     * Test de producteExisteix
+     * Valors estudiats: Afegim un producte i comprovem que producteExisteix el detecta.
+     */
     @Test
     public void testTrobarProducteExisteix1() {
         // Testeja si el producte amb nom "Producte2" existeix
@@ -95,24 +109,31 @@ public class TestSolucio {
         assertTrue("El producte hauria d'existir", resultat);  // Ens assegurem que retorna true
     }
 
+    /**
+     * Test de producteExisteix
+     * Valors estudiats: Afegim un producte i comprovem que producteExisteix el detecta.
+     */
     @Test
     public void testTrobarProducteExisteix2() {
         // Testeja si el producte amb nom "Producte2" existeix
         boolean resultat = solucio.trobarProducte("Producte2");
         assertTrue("El producte hauria d'existir", resultat);  // Ens assegurem que retorna true
     }
+
     @Test
     public void testTrobarProducteExisteix3() {
-        // Testeja si el producte amb nom "Producte2" existeix
         boolean resultat = solucio.trobarProducte("Producte4");
         assertTrue("El producte hauria d'existir", resultat);  // Ens assegurem que retorna true
     }
 
+    /**
+     * Test de producteExisteix
+     * Valors estudiats: Comprovem que producteExisteix no detecti un producte que no existeix.
+     */
     @Test
     public void testTrobarProducteNoExisteix() {
         // Testeja si el producte amb nom "ProducteNoExisteix" existeix
         boolean resultat = solucio.trobarProducte("ProducteNoExisteix");
         assertFalse("El producte no hauria d'existir", resultat);  // Ens assegurem que retorna false
     }
-
     }
