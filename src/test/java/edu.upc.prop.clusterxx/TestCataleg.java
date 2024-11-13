@@ -7,6 +7,7 @@ import edu.upc.prop.clusterxx.Producte;
 import edu.upc.prop.clusterxx.Cataleg;
 
 import org.junit.Test;
+import org.junit.Before;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -142,8 +143,8 @@ public class TestCataleg {
 
             CatalegTest.editar_similitud(noms_editats[0], noms_editats[1], 99.99);
 
-        asserEquals("Similitud producte editat", CatalegTest.getProd_index(index1).get_simil_prod(index2), 99.99);
-        asserEquals("Similitud producte editat", CatalegTest.getProd_index(index2).get_simil_prod(index1), 99.99);
+        assertEquals("Similitud producte editat", CatalegTest.getProd_index(index1).get_simil_prod(index2), 99.99);
+        assertEquals("Similitud producte editat", CatalegTest.getProd_index(index2).get_simil_prod(index1), 99.99);
 
     }
 
