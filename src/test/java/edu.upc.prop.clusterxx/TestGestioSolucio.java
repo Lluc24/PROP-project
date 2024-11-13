@@ -59,6 +59,33 @@ public class TestGestioSolucio {
     }
 
     /**
+     * Test de gestioAlgorisme
+     * Valors estudiats: Es crea un nou objecte AlgorismeBT i es comprova que el algorismeAct sigui el mateix.
+     */
+    @Test
+    public void testGestioAlgorisme3() {
+        AlgorismeBT vor = new AlgorismeBT();
+
+        gs.gestioAlgorisme("algorismeBT");
+
+        assertEquals("Verificar algorismeAct", vor, gs.getAlgorismeAct());
+    }
+
+    /**
+     * Test de gestioAlgorisme
+     * Valors estudiats: Es crea un nou objecte Aproximacio i es comprova que el algorismeAct sigui el mateix.
+     */
+    @Test
+    public void testGestioAlgorisme4() {
+        Aproximacio aprox = new Aproximacio();
+
+        gs.gestioAlgorisme("aproximacio");
+        gs.gestioAlgorisme("NoExisteix");
+
+        assertEquals("Verificar algorismeAct", aprox, gs.getAlgorismeAct());
+    }
+
+    /**
      * Test de crearSolucio
      * Valors estudiats: Es crea un nou objecte Solucio amb algorismeAct de tipus Aproximacio i s'hagi creat una Solucio igual.
      */

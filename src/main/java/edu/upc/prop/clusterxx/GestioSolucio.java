@@ -40,6 +40,9 @@ public class GestioSolucio {
         else if (tipusAlgorisme.equals("aproximacio")){
             algorismeAct = new Aproximacio();;
         }
+        else if (tipusAlgorisme.equals("algorismeBT")){
+            algorismeAct = new AlgorismeBT();;
+        }
         else {
             System.out.println("GestioSolucio: error al especificar el tipus d'algorisme");
         }
