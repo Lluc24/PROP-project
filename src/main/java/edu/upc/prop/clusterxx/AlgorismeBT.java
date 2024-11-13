@@ -19,6 +19,13 @@ import java.util.ArrayList;
 public class AlgorismeBT extends Algorisme {
 
     /**
+     * Constructor de la classe AlgorismeBT
+     */
+    public AlgorismeBT() {
+
+    }
+
+    /**
      * Mètode principal per trobar la configuració òptima de la prestatgeria.
      * @param matriuSimilituds Matriu de similituds entre productes, on matriuSimilituds[i][j] és la similitud entre els productes i i j.
      * @return Un vector d'índexs de productes al catàleg que representa la millor configuració trobada.
