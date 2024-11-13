@@ -11,12 +11,11 @@ public class Aproximacio extends Algorisme {
         n = matriuSimilituds.length;
         m = n * (n - 1) / 2;
         similituds = matriuSimilituds;
-        ParellInt[] arestesOrdenades = new ParellInt[m];
+        Pair<Integer, Integer>[] arestesOrdenades = new Pair[m];
         int k = 0;
         for (int i = 0; i < n; ++i) {
             for (int j = i + 1; j < n; ++j) {
-                ParellInt parellInt = new ParellInt(i, j);
-                arestesOrdenades[k] = parellInt;
+                arestesOrdenades[k] = new Pair<>(i, j);
                 ++k;
             }
         }

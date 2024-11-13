@@ -1,6 +1,4 @@
 package edu.upc.prop.clusterxx;
-import edu.upc.prop.clusterxx.Producte;
-import edu.upc.prop.clusterxx.pair;
 import java.util.ArrayList;
 /**
  * @Class Cataleg
@@ -49,7 +47,7 @@ public class Cataleg {
      * @param new_nom Nom del producte a afegir
      * @param llista_simi Similituds dels productes, < Nom_Productes, Similitud>
      */
-    public void afegir_producte(String new_nom, pair<String, Double>[] llista_simi) {
+    public void afegir_producte(String new_nom, Pair<String, Double>[] llista_simi) {
         //Existe producto con new_nom
         if (find_prod(new_nom)) return; //Error
 
