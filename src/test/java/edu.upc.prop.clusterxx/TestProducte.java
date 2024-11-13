@@ -102,6 +102,33 @@ public class TestProducte {
 
     }
 
+    @Test
+    public void TestAddSimiProd() {
+        ArrayList<Double> simi = new ArrayList<>();
+        for (int i = 0; i < 10; ++i) {
+            simi.add(i, 1.0);
+        }
+        Producte P = new Producte(1, "NewProd", simi);
+
+        P.addSimiProd(11, 2.0);
+
+        assertEquals("Similitud producte correcte", P.get_simil_prod(11), 2.0);
+
+    }
+
+    @Test
+    public void TestRemSimiProd() {
+        ArrayList<Double> simi = new ArrayList<>();
+        for (int i = 0; i < 10; ++i) {
+            simi.add(i, 1.0);
+        }
+        Producte P = new Producte(1, "NewProd", simi);
+
+        P.remSimiProd(9);
+
+        assertEquals("Mida nova correcte", P.getSimilituds().size(), 9);
+    }
+
 
 
 }
