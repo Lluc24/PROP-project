@@ -20,7 +20,7 @@ public class TestAlgorismeGreedy {
      */
     @Before
     public void setUp() {
-        algorisme = new AlgorismeGreedy();
+        algorisme = new AlgorismeGreedy(0, 1);
     }
 
     /**
