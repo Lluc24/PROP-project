@@ -5,7 +5,8 @@ import java.util.*;
 public class SolucioModificada extends Solucio {
 
     // Constructor
-    public SolucioModificada(ArrayList<Producte> s, Algorisme a, string n) {
+    public SolucioModificada(ArrayList<Producte> s, Algorisme a, String n) {
+        super(s, a, n);
         this.solucio = s;
         this.algorisme = a;
         this.nom = n;

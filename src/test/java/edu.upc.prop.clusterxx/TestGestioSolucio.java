@@ -1,13 +1,9 @@
 package edu.upc.prop.clusterxx;
 
-import edu.upc.prop.clusterxx.*;
-
 import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
-
-
 
 /**
  * Classe de testeig de Solucio.java
@@ -15,81 +11,118 @@ import static org.junit.Assert.*;
 public class TestGestioSolucio {
     GestioSolucio gs;
     Cataleg c;
-    ArrayList<Double> similituds1, similituds2, similituds3, similituds4;
-    Producte p1, p2, p3, p4;
-    ArrayList<Producte> productes;
-    Algorisme alg;
-    Solucio solucio;
 
     @before
     {
         c = new Cataleg();
         gs = new GestioSolucio(c);
-/*
-        c.afegir_producte("Producte1");
-        c.afegir_producte("Producte1");
-        c.afegir_producte("Producte1");
-        c.afegir_producte("Producte1");
-        c.afegir_similituds(,0)
-
- */
-
     }
 
+    /**
+     * Test dela creadora
+     * Crea una instància de GestioSolucio i comprova que sigui correcte
+     */
+    @Test
+    public void crearGestioSolucioTest() {
+        ArrayList<Solucio> solucions = new ArrayList<Solucio>();
+        Algorisme algorismeAct = new Aproximacio();
+
+        assertEquals("Verificar solucions", solucions, gs.getSolucions());
+        assertEquals("Verificar cataleg", c, gs.getCataleg());
+        assertEquals("Verificar algorismeAct", algorismeAct, gs.getAlgorismeAct());
+    }
+
+    /**
+     * Test de gestioAlgorisme
+     * Valors estudiats: Es crea un nou objecte Aproximacio i es comprova que el algorismeAct sigui el mateix.
+     */
     @Test
     public void testGestioAlgorisme1() {
         Aproximacio aprox = new Aproximacio();
-        ArrayList<Aproximacio> llistaAprox = new ArrayList<Aproximacio>();
-        llistaAprox.add(aprox);
 
         gs.gestioAlgorisme("aproximacio");
 
-        assertEquals("Verificar llista aproximacio", llistaAprox, gs.getAproximacio());
         assertEquals("Verificar algorismeAct", aprox, gs.getAlgorismeAct());
     }
 
+    /**
+     * Test de gestioAlgorisme
+     * Valors estudiats: Es crea un nou objecte AlgorismeGreedy i es comprova que el algorismeAct sigui el mateix.
+     */
     @Test
     public void testGestioAlgorisme2() {
-        Vorac vor = new Vorac();
-        ArrayList<Vorac> llistaVorac = new ArrayList<Vorac>();
-        llistaAprox.add(vor);
+        AlgorismeGreedy vor = new AlgorismeGreedy();
 
-        gs.gestioAlgorisme("vorac");
+        gs.gestioAlgorisme("greedy");
 
-        assertEquals("Verificar llista vorac", llistaVorac, gs.getVorac());
         assertEquals("Verificar algorismeAct", vor, gs.getAlgorismeAct());
     }
 
+    /**
+     * Test de gestioAlgorisme
+     * Valors estudiats: Es crea un nou objecte AlgorismeBT i es comprova que el algorismeAct sigui el mateix.
+     */
     @Test
     public void testGestioAlgorisme3() {
-        ArrayList<Vorac> llistaVorac = new ArrayList<Vorac>();
-        ArrayList<Aproximacio> llistaAprox = new ArrayList<Aproximacio>();
-        Algorsime alg = new Algorisme();
+        AlgorismeBT vor = new AlgorismeBT();
 
-        gs.gestioAlgorisme("noExiste");
+        gs.gestioAlgorisme("algorismeBT");
 
-        assertEquals("Verificar llista aproximacio", llistaAprox, gs.getAproximacio());
-        assertEquals("Verificar llista vorac", llistaVorac, gs.getVorac());
-        assertEquals("Verificar algorismeAct", alg, gs.getAlgorismeAct());
+        assertEquals("Verificar algorismeAct", vor, gs.getAlgorismeAct());
     }
 
+    /**
+     * Test de gestioAlgorisme
+     * Valors estudiats: Es crea un nou objecte Aproximacio i es comprova que el algorismeAct sigui el mateix.
+     */
+    @Test
+    public void testGestioAlgorisme4() {
+        Aproximacio aprox = new Aproximacio();
+
+        gs.gestioAlgorisme("aproximacio");
+        gs.gestioAlgorisme("NoExisteix");
+
+        assertEquals("Verificar algorismeAct", aprox, gs.getAlgorismeAct());
+    }
+
+    /**
+     * Test de crearSolucio
+     * Valors estudiats: Es crea un nou objecte Solucio amb algorismeAct de tipus Aproximacio i s'hagi creat una Solucio igual.
+     */
     @Test
     public void testCrearSolucio1() {
-        c.getCataleg_Productes();
         Algorisme a = new Aproximacio();
-        Solucio sol = new Solucio(c.getCataleg_Productes(), a, "Solucio1");
+        Solucio sol = new Solucio(c.getCataleg(), a, "Solucio1");
         ArrayList<Solucio> llistaSol = new ArrayList<Solucio>();
         llistaSol.add(sol);
-        gs.gestioAlgorisme("Aproximacio");
+        gs.gestioAlgorisme("aproximacio");
         gs.creaSolucio("Solucio1");
         assertEquals("Verificar llista solucions", llistaSol, gs.getSolucions());
     }
 
+    /**
+     * Test de crearSolucio
+     * Valors estudiats: Es crea un nou objecte Solucio amb algorismeAct de tipus AlgorismeGreedy i s'hagi creat una Solucio igual.
+     */
     @Test
     public void testCrearSolucio2() {
-        c.getCataleg_Productes();
+        Algorisme a = new AlgorismeGreedy();
+        Solucio sol = new Solucio(c.getCataleg(), a, "Solucio1");
+        ArrayList<Solucio> llistaSol = new ArrayList<Solucio>();
+        llistaSol.add(sol);
+        gs.gestioAlgorisme("greedy");
+        gs.creaSolucio("Solucio1");
+        assertEquals("Verificar llista solucions", llistaSol, gs.getSolucions());
+
+        /**
+         * Test de crearSolucio
+         * Valors estudiats: Intenta crear dues solucions amb el mateix nom i ha de comprovar que no s'hagi permés.
+         */
+    @Test
+    public void testCrearSolucio3() {
+        c.getCataleg();
         Algorisme a = new Aproximacio();
-        Solucio sol = new Solucio(c.getCataleg_Productes(), a, "Solucio1");
+        Solucio sol = new Solucio(c.getCataleg(), a, "Solucio1");
         ArrayList<Solucio> llistaSol = new ArrayList<Solucio>();
         llistaSol.add(sol);
         gs.gestioAlgorisme("Aproximacio");
@@ -97,13 +130,16 @@ public class TestGestioSolucio {
         gs.creaSolucio("Solucio1");
         assertEquals("Verificar llista solucions", llistaSol, gs.getSolucions());
     }
-
+/**
+ * Test de crearSolucio
+ * Valors estudiats: Intenta crear dues solucions amb diferent nom i ha de comprovar que ho hagi permés.
+ */
     @Test
-    public void testCrearSolucio2() {
-        c.getCataleg_Productes();
+    public void testCrearSolucio4() {
+        c.getCataleg();
         Algorisme a = new Aproximacio();
-        Solucio sol1 = new Solucio(c.getCataleg_Productes(), a, "Solucio1");
-        Solucio sol2 = new Solucio(c.getCataleg_Productes(), a, "Solucio2");
+        Solucio sol1 = new Solucio(c.getCataleg(), a, "Solucio1");
+        Solucio sol2 = new Solucio(c.getCataleg(), a, "Solucio2");
         ArrayList<Solucio> llistaSol = new ArrayList<Solucio>();
         llistaSol.add(sol1);
         llistaSol.add(sol2);
@@ -113,6 +149,10 @@ public class TestGestioSolucio {
         assertEquals("Verificar llista solucions", llistaSol, gs.getSolucions());
     }
 
+        /**
+         * Test de modificarSolucio
+         * Valors estudiats: Crea una solucio i intercanvia els seus productes.
+         */
     @Test
     public void testModificarSolucio1() {
         //crear dos productes
@@ -135,22 +175,25 @@ public class TestGestioSolucio {
         c.afegir_producte("Producte2", llistaSimiCataleg);
 
         //enviar a solucionar
-        gs.gestioAlgorisme("vorac");
+        gs.gestioAlgorisme("greedy");
         gs.creaSolucio("Solucio1");
 
         //mirar quin ordre els ha solucionat
         ArrayList<Solucio> solsAbans = gs.getSolucions();
 
         //intercanviar
-        gs.intercanvia(p1, p2, "Solucio1");
+        gs.modificarSolucio(p1, p2, "Solucio1");
         ArrayList<Solucio> solsDespres = gs.getSolucions();
 
         //comprovar que son el ordre invertit
-        assertEquals("Verificar llista solucions mida", solsDespres.length(), solsAbans.length());
+        assertEquals("Verificar llista solucions mida", solsDespres.size(), solsAbans.size());
         assertEquals("Verificar llista solucions", ((solsDespres.getFirst()).getSolucio()).get(0), ((solsAbans.getFirst()).getSolucio()).get(1));
         assertEquals("Verificar llista solucions", ((solsDespres.getFirst()).getSolucio()).get(1), ((solsAbans.getFirst()).getSolucio()).get(0));
     }
-
+        /**
+         * Test de modificarSolucio
+         * Valors estudiats: Intenta modificar una solucio que no existeix i ha de comprovar que no s'hagi permés.
+         */
     @Test
     public void testModificarSolucio2() {
         //crear dos productes
@@ -173,23 +216,26 @@ public class TestGestioSolucio {
         c.afegir_producte("Producte2", llistaSimiCataleg);
 
         //enviar a solucionar
-        gs.gestioAlgorisme("vorac");
+        gs.gestioAlgorisme("greedy");
         gs.creaSolucio("Solucio1");
 
         //mirar quin ordre els ha solucionat
         ArrayList<Solucio> solsAbans = gs.getSolucions();
 
         //intercanviar
-        gs.intercanvia(p1, p2, "Solucio2");
+        gs.modificarSolucio(p1, p2, "Solucio2");
         ArrayList<Solucio> solsDespres = gs.getSolucions();
 
         //comprovar que ha saltat error i no he fet res
         assertEquals("Verificar llista solucions", solsDespres, solsAbans);
     }
-
+/**
+ * Test de afegirSolucio
+ * Valors estudiats: Afegeix una solucio i ha de comprovar que s'hagi permés.
+ */
     @Test
     public void testAfegeixSolucio1() {
-        ArrayList<Producte> productes = new ArrayList<Productes>();
+        ArrayList<Producte> productes = new ArrayList<Producte>();
 
         Algorisme alg = new Aproximacio();
         Solucio sol =  new Solucio(productes, alg, "Solucio1");
@@ -197,11 +243,9 @@ public class TestGestioSolucio {
         ArrayList<Solucio> llistaSol = new ArrayList<Solucio>();
         llistaSol.add(sol);
 
-        ArrayList<String> llistaString = new ArrayList<String>();
-
         //enviar a solucionar
         gs.gestioAlgorisme("aproximacio");
-        gs.agefeixSolucio(llistaString, alg, "Solucio1");
+        gs.creaSolucio("Solucio1");
 
         //mirar quin ordre els ha solucionat
         ArrayList<Solucio> sols = gs.getSolucions();
@@ -210,9 +254,13 @@ public class TestGestioSolucio {
         assertEquals("Verificar llista solucions", sols, llistaSol);
     }
 
+        /**
+         * Test de eliminarSolucio
+         * Valors estudiats: Afegeix una solucio i la elimina. Ha de comprovar que s'hagi permés.
+         */
     @Test
     public void testEliminarSolucio1() {
-        ArrayList<Producte> productes = new ArrayList<Productes>();
+        ArrayList<Producte> productes = new ArrayList<Producte>();
 
         Algorisme alg = new Aproximacio();
         Solucio sol =  new Solucio(productes, alg, "Solucio1");
@@ -223,7 +271,7 @@ public class TestGestioSolucio {
 
         //enviar a solucionar
         gs.gestioAlgorisme("aproximacio");
-        gs.agefeixSolucio(llistaString, alg, "Solucio1");
+        gs.creaSolucio("Solucio1");
         gs.eliminarSolucio("Solucio1");
         //mirar quin ordre els ha solucionat
         ArrayList<Solucio> sols = gs.getSolucions();
@@ -232,9 +280,13 @@ public class TestGestioSolucio {
         assertEquals("Verificar llista solucions", sols, llistaSol);
     }
 
+/**
+ * Test de eliminarSolucio
+ * Valors estudiats: Intenta eliminar una solucio que no existeix. Ha de comprovar que no hagi fet res.
+ */
     @Test
     public void testEliminarSolucio2() {
-        ArrayList<Producte> productes = new ArrayList<Productes>();
+        ArrayList<Producte> productes = new ArrayList<Producte>();
 
         Algorisme alg = new Aproximacio();
         Solucio sol =  new Solucio(productes, alg, "Solucio1");
@@ -246,26 +298,12 @@ public class TestGestioSolucio {
 
         //enviar a solucionar
         gs.gestioAlgorisme("aproximacio");
-        gs.agefeixSolucio(llistaString, alg, "Solucio1");
+        gs.creaSolucio("Solucio1");
         gs.eliminarSolucio("Solucio2");
         //mirar quin ordre els ha solucionat
         ArrayList<Solucio> sols = gs.getSolucions();
 
         //comprovar que no s'ha eliminat
         assertEquals("Verificar llista solucions", sols, llistaSol);
-    }
-
-    @Test
-    public void crearGestioSolucioTest() {
-        ArrayList<Solucio> solucions = new ArrayList<Solucio>();
-        Algorisme algorismeAct = null;
-        ArrayList<Vorac> vorac = new ArrayList<Vorac>();
-        ArrayList<Aproximacio> aproximacio = new ArrayList<Aproximacio>();
-
-        assertEquals("Verificar solucions", solucions, gs.getSolucions());
-        assertEquals("Verificar cataleg", c, gs.getCataleg());
-        assertEquals("Verificar algorismeAct", algorismeAct, gs.getAlgorismeAct());
-        assertEquals("Verificar vorac", vorac, gs.getVorac());
-        assertEquals("Verificar aproximacio", aproximacio, gs.getAproximacio());
     }
 }

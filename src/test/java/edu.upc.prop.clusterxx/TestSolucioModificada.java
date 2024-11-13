@@ -1,16 +1,10 @@
 package edu.upc.prop.clusterxx;
 
-import edu.upc.prop.clusterxx.Solucio;
-import edu.upc.prop.clusterxx.SolucioModificada;
-import edu.upc.prop.clusterxx.Producte;
-import edu.upc.prop.clusterxx.Algorisme;
-
 import org.junit.Test;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
+
 
 /**
  * Classe de testeig de Solucio.java
@@ -60,7 +54,6 @@ public class TestSolucioModificada {
         productes.add(p3);
         productes.add(p4);
 
-        // Crear la instancia de Algorisme (suponiendo que tiene un constructor simple)
         alg = new Aproximacio();
 
         // Crear la instancia de Solucio
@@ -68,6 +61,10 @@ public class TestSolucioModificada {
 
     }
 
+    /**
+     * Test de constructora
+     * Valors estudiats: Crea una instància de SolucioModificada i comprova que els paràmetres siguin correctes.
+     */
     @Test
     public void testConstructor() {
         assertEquals("Verificar nom", "Solucio1", solucioModificada.getNom());
@@ -75,9 +72,13 @@ public class TestSolucioModificada {
         assertEquals("Verificar productes", productes, solucioModificada.getSolucio());
     }
 
+    /**
+     * Test de intercanvia
+     * Valors estudiats: Intercanvia el primer i el segon producte de la solucio.
+     */
     @Test
     public void testIntercanvia1() {
-        solucioModificada.intercanvia(producte1, producte2);
+        solucioModificada.intercanvia(p1, p2);
 
         ArrayList<Producte> productesIntercanviats = new ArrayList<Producte>();
         productesIntercanviats.add(p2);
@@ -88,9 +89,13 @@ public class TestSolucioModificada {
         assertEquals("Verificar intercanvi", productesIntercanviats, solucioModificada.getSolucio());
     }
 
+    /**
+     * Test de intercanvia
+     * Valors estudiats: Intercanvia el primer i el últim producte de la solucio.
+     */
     @Test
     public void testIntercanvia2() {
-        solucioModificada.intercanvia(producte1, producte4);
+        solucioModificada.intercanvia(p1, p4);
 
         ArrayList<Producte> productesIntercanviats = new ArrayList<Producte>();
         productesIntercanviats.add(p4);
