@@ -1,149 +1,187 @@
-package test;
+package edu.upc.prop.clusterxx;
+import static org.junit.Assert.*;
 
-import main.domain.classes.Cataleg;
-import main.domain.classes.Producte;
-import main.domain.classes.AlgorismeGreedy;
+//import edu.upc.prop.clusterxx.Algorisme;
+//import edu.upc.prop.clusterxx.AlgorismeBT;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.MockitoAnnotations;
-
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 
 /**
  * Classe de testeig de AlgorismeGreedy
+ * @author Efrain Tito Cortés
  */
-public class AlgorismeGreedyTest {
+public class TestAlgorismeGreedy {
 
-    private Cataleg catalegMock;
-    private ArrayList<Producte> productes;
-    private AlgorismeGreedy algorismeGreedy;
+    private AlgorismeGreedy algorisme;
 
+    /**
+     * Inicialitza una instància de la classe AlgorismeGreedy abans de cada test.
+     */
     @Before
     public void setUp() {
-        //Mock de la classe Cataleg
-        catalegMock = mock(Cataleg.class);
+        algorisme = new AlgorismeGreedy();
+    }
 
-        productes = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            Producte prod = mock(Producte.class);
-            when(prod.getIndex()).thenReturn(i);
-            productes.add(prod);
+    /**
+     * Testa el constructor amb valors vàlids.
+     */
+    @Test
+    public void testConstructor() {
+        AlgorismeGreedy alg = new AlgorismeGreedy(1, 5);
+        assertEquals("Constructor correcte (producteInicial)", 1, alg.getProducteInicial());
+        assertEquals("Constructor correcte (numIteracions)", 5, alg.getNumIteracions());
+    }
+
+    /**
+     * Testa el constructor amb un valor invàlid per al producteInicial.
+     */
+    @Test
+    public void testConsInvalidProducteInicial() {
+        try {
+            new AlgorismeGreedy(-1, 5);
+            fail("S'hauria d'haver llançat una excepció");
+        } catch (IllegalArgumentException e) {
+            assertEquals("El missatge d'error és correcte", "L'índex del producte inicial no pot ser negatiu.", e.getMessage());
+        }
+    }
+
+    /**
+     * Testa el constructor amb un valor invàlid per a numIteracions.
+     */
+    @Test
+    public void testConsInvalidNumIteracions() {
+        try {
+            new AlgorismeGreedy(1, -5);
+            fail("S'hauria d'haver llançat una excepció");
+        } catch (IllegalArgumentException e) {
+            assertEquals("El missatge d'error és correcte", "El nombre d'iteracions ha de ser positiu i no zero.", e.getMessage());
         }
 
-        when(catalegMock.consultar_cataleg()).thenReturn(productes);
-        when(catalegMock.num_prod_act()).thenReturn(4);
+        try {
+            new AlgorismeGreedy(1, 0);
+            fail("S'hauria d'haver llançat una excepció");
+        } catch (IllegalArgumentException e) {
+            assertEquals("El missatge d'error és correcte", "El nombre d'iteracions ha de ser positiu i no zero.", e.getMessage());
+        }
     }
 
     /**
-     * Verifica l'algorisme greedy amb una configuració de 4 productes.
+     * Testa el setter per a producteInicial amb un valor vàlid.
      */
     @Test
-    public void testResoldreQuatreProductes() {
-
-        when(catalegMock.consultar_similitud_index(0, 1)).thenReturn(0.8);
-        when(catalegMock.consultar_similitud_index(0, 2)).thenReturn(0.2);
-        when(catalegMock.consultar_similitud_index(0, 3)).thenReturn(0.6);
-
-        when(catalegMock.consultar_similitud_index(1, 0)).thenReturn(0.8);
-        when(catalegMock.consultar_similitud_index(1, 2)).thenReturn(0.5);
-        when(catalegMock.consultar_similitud_index(1, 3)).thenReturn(0.9);
-
-        when(catalegMock.consultar_similitud_index(2, 0)).thenReturn(0.2);
-        when(catalegMock.consultar_similitud_index(2, 1)).thenReturn(0.5);
-        when(catalegMock.consultar_similitud_index(2, 3)).thenReturn(0.3);
-
-        when(catalegMock.consultar_similitud_index(3, 0)).thenReturn(0.6);
-        when(catalegMock.consultar_similitud_index(3, 1)).thenReturn(0.9);
-        when(catalegMock.consultar_similitud_index(3, 2)).thenReturn(0.3);
-
-        algorismeGreedy = new AlgorismeGreedy(0, 1);
-
-        int[] resultat = algorismeGreedy.resoldre(catalegMock);
-        int[] esperat = {0, 1, 3, 2};
-        assertArrayEquals(esperat, resultat);
+    public void testSetProducteInicialValid() {
+        algorisme.setProducteInicial(2);
+        assertEquals("Setter correcte", 2, algorisme.getProducteInicial());
     }
 
     /**
-     * Verifica que el punt d'inici canvia cíclicament a cada iteració.
+     * Testa el setter per a producteInicial amb un valor invàlid.
      */
     @Test
-    public void testResoldreCanviInici() {
-
-        when(catalegMock.consultar_similitud_index(anyInt(), anyInt())).thenReturn(0.5);
-
-        algorismeGreedy = new AlgorismeGreedy(2, 4);  //Prova amb 4 iteracions
-
-        int[] resultat = algorismeGreedy.resoldre(catalegMock);
-        int[] esperat = {0, 1, 2, 3};
-        assertArrayEquals(esperat, resultat);
+    public void testSetProducteInicialInvalid() {
+        try {
+            algorisme.setProducteInicial(-1);
+            fail("S'hauria d'haver llançat una excepció");
+        } catch (IllegalArgumentException e) {
+            assertEquals("El missatge d'error és correcte", "L'índex del producte inicial no pot ser negatiu.", e.getMessage());
+        }
     }
 
     /**
-     * Prova un cas amb un únic producte.
+     * Testa el setter per a numIteracions amb un valor vàlid.
      */
     @Test
-    public void testResoldreUnProducte() {
-
-        when(catalegMock.num_prod_act()).thenReturn(1);
-        Producte prod = mock(Producte.class);
-        when(prod.getIndex()).thenReturn(0);
-        productes.clear();
-        productes.add(prod);
-
-        algorismeGreedy = new AlgorismeGreedy(0, 1);
-        int[] resultat = algorismeGreedy.resoldre(catalegMock);
-        int[] esperat = {0};
-        assertArrayEquals(esperat, resultat);
+    public void testSetNumIteracionsValid() {
+        algorisme.setNumIteracions(3);
+        assertEquals("Setter correcte", 3, algorisme.getNumIteracions());
     }
 
     /**
-     * Prova amb dos productes.
+     * Testa el setter per a numIteracions amb un valor invàlid.
      */
     @Test
-    public void testResoldreDosProductes() {
+    public void testSetNumIteracionsInvalid() {
+        try {
+            algorisme.setNumIteracions(0);
+            fail("S'hauria d'haver llançat una excepció");
+        } catch (IllegalArgumentException e) {
+            assertEquals("El missatge d'error és correcte", "El nombre d'iteracions ha de ser positiu i no zero.", e.getMessage());
+        }
 
-        when(catalegMock.num_prod_act()).thenReturn(2);
-        Producte prod1 = mock(Producte.class);
-        Producte prod2 = mock(Producte.class);
-        when(prod1.getIndex()).thenReturn(0);
-        when(prod2.getIndex()).thenReturn(1);
-
-        productes.clear();
-        productes.add(prod1);
-        productes.add(prod2);
-
-
-        when(catalegMock.consultar_similitud_index(0, 1)).thenReturn(0.7);
-        when(catalegMock.consultar_similitud_index(1, 0)).thenReturn(0.7);
-
-        algorismeGreedy = new AlgorismeGreedy(0, 1);
-        int[] resultat = algorismeGreedy.resoldre(catalegMock);
-        int[] esperat = {0, 1};
-        assertArrayEquals(esperat, resultat);
+        try {
+            algorisme.setNumIteracions(-3);
+            fail("S'hauria d'haver llançat una excepció");
+        } catch (IllegalArgumentException e) {
+            assertEquals("El missatge d'error és correcte", "El nombre d'iteracions ha de ser positiu i no zero.", e.getMessage());
+        }
     }
 
     /**
-     * Prova els getters i setters de producteInicial.
+     * Testa que es llança una excepció quan el producteInicial és invàlid al mètode 'solucionar'.
      */
     @Test
-    public void testGettersSettersProducteInicial() {
-        algorismeGreedy = new AlgorismeGreedy(0, 1);
+    public void testSolucionarInvalidProducteInicial() {
+        double[][] matriuSimilituds = {
+                {0.0, 0.9, 0.8},
+                {0.9, 0.0, 0.85},
+                {0.8, 0.85, 0.0}
+        };
 
-        algorismeGreedy.setProducteInicial(2);
-        assertEquals(2, algorismeGreedy.getProducteInicial());
+        algorisme.setProducteInicial(4);  // Establim un producte inicial invàlid
+
+        try {
+            algorisme.solucionar(matriuSimilituds);
+            fail("S'hauria d'haver llançat una excepció");
+        } catch (IllegalArgumentException e) {
+            assertEquals("El missatge d'error és correcte", "L'índex del producte no pot ser negatiu o superior a la quantitat de productes al catàleg.", e.getMessage());
+        }
     }
 
     /**
-     * Prova els getters i setters de numIteracions.
+     * Test per al mètode 'solucionar' amb una matriu de similituds buida.
      */
     @Test
-    public void testGettersSettersNumIteracions() {
-        algorismeGreedy = new AlgorismeGreedy(0, 1);
-
-        algorismeGreedy.setNumIteracions(3);
-        assertEquals(3, algorismeGreedy.getNumIteracions());
+    public void testSolucionarMatriuBuida() {
+        double[][] matriuSimilituds = new double[0][0];
+        int[] resultat = algorisme.solucionar(matriuSimilituds);
+        assertEquals("Solució correcta", 0, resultat.length); //el resultat ha de ser un array buit
     }
+
+    /**
+     * Test pel mètode 'solucionar' quan hi ha només un producte.
+     * L'algorisme ha de retornar l'únic índex disponible, que és 0.
+     */
+    @Test
+    public void testSolucionarAmbUnProducte() {
+
+        double[][] matriuSimilituds = {
+                {0.0}
+        };
+
+        int[] configuracio = algorisme.solucionar(matriuSimilituds);
+
+        assertArrayEquals("Ordre correcte", new int[] {0}, configuracio);
+    }
+
+    /**
+     * Test pel mètode 'solucionar' que espera que l'algorisme retorni l'ordre dels índexs [0, 2, 1, 3].
+     */
+    @Test
+    public void testSolucionarAmbQuatreProductes() {
+
+        double[][] matriuSimilituds = {
+                {0.0, 0.4, 0.7, 0.4},
+                {0.4, 0.0, 0.8, 0.2},
+                {0.7, 0.8, 0.0, 0.9},
+                {0.4, 0.2, 0.9, 0.0}
+        };
+
+        int[] configuracio = algorisme.solucionar(matriuSimilituds);
+        int[] configuracioEsperada = {0, 2, 1, 3}; //l'ordre correcte segons aquesta matriu
+
+        assertArrayEquals("Ordre correcte", configuracioEsperada, configuracio);
+    }
+
 }
 
