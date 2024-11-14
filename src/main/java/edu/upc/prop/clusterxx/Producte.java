@@ -42,11 +42,34 @@ public class Producte {
         return llista_Similituds.get(index_prod);
     }
 
+    /**
+     * Funcio getter, para el nom del producte
+     * @return String nom del producte
+     */
     public String getNom() {return nom;}
+    /**
+     * Funcio getter, para el index del producte
+     * @return Integer numero del producte
+     */
     public int getIndex() {return index;}
+    /**
+     * Funcio getter, para les similituds del producte
+     * @return ArrayList<Double></Double> del producte
+     */
     public ArrayList<Double> getSimilituds() {return llista_Similituds;}
+    /**
+     * Funcio setter, para el nom del producte
+     */
     public void setNom(String nom) {this.nom = nom;}
+
+    /**
+     * Funcio setter, para el index del producte
+     */
     public void setIndex(int index) {this.index = index;}
+
+    /**
+     * Funcio setter, para les similituds del producte
+     */
     public void setSimilituds(ArrayList<Double> similituds) {this.llista_Similituds = similituds;}
 
     /**
@@ -54,9 +77,7 @@ public class Producte {
      * @param index Index de producte dins de llista_similituds
      * @param simi Similitud nova
      */
-    public void addSimiProd(int index, Double simi) {
-        llista_Similituds.add(index, simi);
-    }
+    public void addSimiProd(int index, Double simi) {llista_Similituds.add(index, simi);}
 
     /**
      *

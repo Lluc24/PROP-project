@@ -8,6 +8,7 @@ import edu.upc.prop.clusterxx.Producte;
 import edu.upc.prop.clusterxx.Cataleg;
 
 import org.junit.Test;
+import org.junit.Before;
 
 import java.util.ArrayList;
 import java.util.Random;

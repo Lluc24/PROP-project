@@ -1,134 +1,71 @@
-package test;
+package edu.upc.prop.clusterxx;
+import static org.junit.Assert.*;
 
-import main.domain.classes.Cataleg;
-import main.domain.classes.Producte;
-import main.domain.classes.AlgorismeBT;
+//import edu.upc.prop.clusterxx.Algorisme;
+//import edu.upc.prop.clusterxx.AlgorismeBT;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.*;
-
-import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
 
 /**
  * Classe de testeig de AlgorismeBT
+ * @author Efrain Tito Cortés
  */
-public class AlgorismeBTTest {
+public class TestAlgorismeBT {
 
-    private Cataleg catalegMock;
-    private ArrayList<Producte> productes;
     private AlgorismeBT algorismeBT;
 
     @Before
     public void setUp() {
-        //Mock de la classe Cataleg
-        catalegMock = mock(Cataleg.class);
-
-        productes = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            Producte prod = mock(Producte.class);
-            when(prod.getIndex()).thenReturn(i);
-            productes.add(prod);
-        }
-
-        when(catalegMock.consultar_cataleg()).thenReturn(productes);
-        when(catalegMock.num_prod_act()).thenReturn(4);
-
+        // Inicialitzem l'algorisme abans de cada test
         algorismeBT = new AlgorismeBT();
     }
 
     /**
-     * Prova l'algorisme de backtracking amb una configuració de 4 productes.
+     * Test per al mètode 'solucionar' amb una matriu de similituds buida.
      */
     @Test
-    public void testResoldreQuatreProductes() {
-
-        when(catalegMock.consultar_similitud_index(0, 1)).thenReturn(0.8);
-        when(catalegMock.consultar_similitud_index(0, 2)).thenReturn(0.3);
-        when(catalegMock.consultar_similitud_index(0, 3)).thenReturn(0.4);
-
-        when(catalegMock.consultar_similitud_index(1, 0)).thenReturn(0.8);
-        when(catalegMock.consultar_similitud_index(1, 2)).thenReturn(0.9);
-        when(catalegMock.consultar_similitud_index(1, 3)).thenReturn(0.2);
-
-        when(catalegMock.consultar_similitud_index(2, 0)).thenReturn(0.3);
-        when(catalegMock.consultar_similitud_index(2, 1)).thenReturn(0.9);
-        when(catalegMock.consultar_similitud_index(2, 3)).thenReturn(0.5);
-
-        when(catalegMock.consultar_similitud_index(3, 0)).thenReturn(0.4);
-        when(catalegMock.consultar_similitud_index(3, 1)).thenReturn(0.2);
-        when(catalegMock.consultar_similitud_index(3, 2)).thenReturn(0.5);
-
-        int[] resultat = algorismeBT.resoldre(catalegMock);
-        int[] esperat = {0, 1, 2, 3};
-        assertArrayEquals(esperat, resultat);
+    public void testSolucionarMatriuBuida() {
+        double[][] matriuSimilituds = new double[0][0];
+        int[] resultat = algorismeBT.solucionar(matriuSimilituds);
+        assertEquals("Solució correcta", 0, resultat.length); //el resultat ha de ser un array buit
     }
 
     /**
-     * Prova amb un sol producte en el catàleg.
+     * Test pel mètode 'solucionar' quan hi ha només un producte.
+     * L'algorisme ha de retornar l'únic índex disponible, que és 0.
      */
     @Test
-    public void testResoldreUnProducte() {
-        when(catalegMock.num_prod_act()).thenReturn(1);
-        Producte prod = mock(Producte.class);
-        when(prod.getIndex()).thenReturn(0);
-        productes.clear();
-        productes.add(prod);
+    public void testSolucionarAmbUnProducte() {
 
-        int[] resultat = algorismeBT.resoldre(catalegMock);
-        int[] esperat = {0};
-        assertArrayEquals(esperat, resultat);
+        double[][] matriuSimilituds = {
+                {0.0}
+        };
+
+        int[] configuracio = algorismeBT.solucionar(matriuSimilituds);
+
+        assertArrayEquals("Ordre correcte", new int[] {0}, configuracio);
     }
 
     /**
-     * Prova amb dos productes en el catàleg.
+     * Test pel mètode 'solucionar' que espera que l'algorisme retorni l'ordre dels índexs [0, 2, 1, 3].
      */
     @Test
-    public void testResoldreDosProductes() {
-        when(catalegMock.num_prod_act()).thenReturn(2);
-        Producte prod1 = mock(Producte.class);
-        Producte prod2 = mock(Producte.class);
-        when(prod1.getIndex()).thenReturn(0);
-        when(prod2.getIndex()).thenReturn(1);
-        productes.clear();
-        productes.add(prod1);
-        productes.add(prod2);
+    public void testSolucionarAmbQuatreProductes() {
 
+        double[][] matriuSimilituds = {
+                {0.0, 0.4, 0.7, 0.4},
+                {0.4, 0.0, 0.8, 0.2},
+                {0.7, 0.8, 0.0, 0.9},
+                {0.4, 0.2, 0.9, 0.0}
+        };
 
-        when(catalegMock.consultar_similitud_index(0, 1)).thenReturn(0.7);
-        when(catalegMock.consultar_similitud_index(1, 0)).thenReturn(0.7);
+        int[] configuracio = algorismeBT.solucionar(matriuSimilituds);
+        int[] configuracioEsperada = {0, 2, 1, 3}; //l'ordre correcte segons aquesta matriu
 
-        int[] resultat = algorismeBT.resoldre(catalegMock);
-        int[] esperat = {0, 1};
-        assertArrayEquals(esperat, resultat);
+        assertArrayEquals("Ordre correcte", configuracioEsperada, configuracio);
     }
 
-    /**
-     * Prova amb similituds zero entre tots els productes.
-     */
-    @Test
-    public void testResoldreSimilitudZero() {
-
-        when(catalegMock.consultar_similitud_index(anyInt(), anyInt())).thenReturn(0.0);
-
-        int[] resultat = algorismeBT.resoldre(catalegMock);
-        int[] esperat = {0, 1, 2, 3};
-        assertArrayEquals(esperat, resultat);
-    }
-
-    /**
-     * Prova amb similituds idèntiques entre tots els productes.
-     */
-    @Test
-    public void testResoldreSimilitudUniforme() {
-
-        when(catalegMock.consultar_similitud_index(anyInt(), anyInt())).thenReturn(0.5);
-
-        int[] resultat = algorismeBT.resoldre(catalegMock);
-        int[] esperat = {0, 1, 2, 3};
-        assertArrayEquals(esperat, resultat);
-    }
 }
 
 
