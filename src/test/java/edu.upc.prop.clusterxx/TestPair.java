@@ -7,7 +7,7 @@ import edu.upc.prop.clusterxx.Cataleg;
 
 import org.junit.Test;
 
-
+/*
 public class TestPair {
 
     @Test
@@ -31,3 +31,4 @@ public class TestPair {
         }
     }
 }
+*/

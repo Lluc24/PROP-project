@@ -1,9 +1,13 @@
 package edu.upc.prop.clusterxx;
 
+import org.junit.Before;
 import org.junit.Test;
+
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Classe de testeig de Solucio.java
@@ -12,20 +16,20 @@ public class TestGestioSolucio {
     GestioSolucio gs;
     Cataleg c;
 
-    @before
-    {
-        c = new Cataleg();
+    @Before
+   public void Inicialitza() {
+        c = mock(Cataleg.class);
         gs = new GestioSolucio(c);
     }
 
     /**
-     * Test dela creadora
+     * Test de la creadora
      * Crea una instància de GestioSolucio i comprova que sigui correcte
      */
     @Test
     public void crearGestioSolucioTest() {
         ArrayList<Solucio> solucions = new ArrayList<Solucio>();
-        Algorisme algorismeAct = new Aproximacio();
+        Algorisme algorismeAct = mock(Aproximacio.class);
 
         assertEquals("Verificar solucions", solucions, gs.getSolucions());
         assertEquals("Verificar cataleg", c, gs.getCataleg());
@@ -38,7 +42,7 @@ public class TestGestioSolucio {
      */
     @Test
     public void testGestioAlgorisme1() {
-        Aproximacio aprox = new Aproximacio();
+        Aproximacio aprox = mock(Aproximacio.class);
 
         gs.gestioAlgorisme("aproximacio");
 
@@ -51,7 +55,7 @@ public class TestGestioSolucio {
      */
     @Test
     public void testGestioAlgorisme2() {
-        AlgorismeGreedy vor = new AlgorismeGreedy();
+        AlgorismeGreedy vor = mock(AlgorismeGreedy.class);
 
         gs.gestioAlgorisme("greedy");
 
@@ -64,7 +68,7 @@ public class TestGestioSolucio {
      */
     @Test
     public void testGestioAlgorisme3() {
-        AlgorismeBT vor = new AlgorismeBT();
+        AlgorismeBT vor = mock(AlgorismeBT.class);
 
         gs.gestioAlgorisme("algorismeBT");
 
@@ -77,7 +81,7 @@ public class TestGestioSolucio {
      */
     @Test
     public void testGestioAlgorisme4() {
-        Aproximacio aprox = new Aproximacio();
+        Aproximacio aprox = mock(Aproximacio.class);
 
         gs.gestioAlgorisme("aproximacio");
         gs.gestioAlgorisme("NoExisteix");
@@ -91,8 +95,12 @@ public class TestGestioSolucio {
      */
     @Test
     public void testCrearSolucio1() {
-        Algorisme a = new Aproximacio();
-        Solucio sol = new Solucio(c.getCataleg(), a, "Solucio1");
+        Algorisme a = mock(Aproximacio.class);
+        Solucio sol = mock(Solucio.class);
+        when(sol.getNom()).thenReturn("Solucio1");
+        when(sol.getSolucio()).thenReturn(c.getCataleg());
+        when(sol.getAlgorisme()).thenReturn(a);
+
         ArrayList<Solucio> llistaSol = new ArrayList<Solucio>();
         llistaSol.add(sol);
         gs.gestioAlgorisme("aproximacio");
@@ -106,13 +114,18 @@ public class TestGestioSolucio {
      */
     @Test
     public void testCrearSolucio2() {
-        Algorisme a = new AlgorismeGreedy();
-        Solucio sol = new Solucio(c.getCataleg(), a, "Solucio1");
+        Algorisme a = mock(AlgorismeGreedy.class);
+        Solucio sol = mock(Solucio.class);
+        when(sol.getNom()).thenReturn("Solucio1");
+        when(sol.getSolucio()).thenReturn(c.getCataleg());
+        when(sol.getAlgorisme()).thenReturn(a);
+
         ArrayList<Solucio> llistaSol = new ArrayList<Solucio>();
         llistaSol.add(sol);
         gs.gestioAlgorisme("greedy");
         gs.creaSolucio("Solucio1");
         assertEquals("Verificar llista solucions", llistaSol, gs.getSolucions());
+    }
 
         /**
          * Test de crearSolucio
@@ -120,14 +133,18 @@ public class TestGestioSolucio {
          */
     @Test
     public void testCrearSolucio3() {
-        c.getCataleg();
-        Algorisme a = new Aproximacio();
-        Solucio sol = new Solucio(c.getCataleg(), a, "Solucio1");
+        Algorisme a = mock(AlgorismeGreedy.class);
+        Solucio sol1 = mock(Solucio.class);
+        when(sol1.getNom()).thenReturn("Solucio1");
+        when(sol1.getSolucio()).thenReturn(c.getCataleg());
+        when(sol1.getAlgorisme()).thenReturn(a);
+
         ArrayList<Solucio> llistaSol = new ArrayList<Solucio>();
-        llistaSol.add(sol);
-        gs.gestioAlgorisme("Aproximacio");
+        llistaSol.add(sol1);
+        gs.gestioAlgorisme("greedy");
         gs.creaSolucio("Solucio1");
         gs.creaSolucio("Solucio1");
+
         assertEquals("Verificar llista solucions", llistaSol, gs.getSolucions());
     }
 /**
@@ -136,16 +153,24 @@ public class TestGestioSolucio {
  */
     @Test
     public void testCrearSolucio4() {
-        c.getCataleg();
-        Algorisme a = new Aproximacio();
-        Solucio sol1 = new Solucio(c.getCataleg(), a, "Solucio1");
-        Solucio sol2 = new Solucio(c.getCataleg(), a, "Solucio2");
+        Algorisme a = mock(AlgorismeGreedy.class);
+        Solucio sol1 = mock(Solucio.class);
+        when(sol1.getNom()).thenReturn("Solucio1");
+        when(sol1.getSolucio()).thenReturn(c.getCataleg());
+        when(sol1.getAlgorisme()).thenReturn(a);
+
         ArrayList<Solucio> llistaSol = new ArrayList<Solucio>();
         llistaSol.add(sol1);
-        llistaSol.add(sol2);
-        gs.gestioAlgorisme("Aproximacio");
+
+        Solucio sol2 = mock(Solucio.class);
+        when(sol2.getNom()).thenReturn("Solucio2");
+        when(sol2.getSolucio()).thenReturn(c.getCataleg());
+        when(sol2.getAlgorisme()).thenReturn(a);
+
+        gs.gestioAlgorisme("greedy");
         gs.creaSolucio("Solucio1");
         gs.creaSolucio("Solucio2");
+
         assertEquals("Verificar llista solucions", llistaSol, gs.getSolucions());
     }
 
@@ -156,23 +181,15 @@ public class TestGestioSolucio {
     @Test
     public void testModificarSolucio1() {
         //crear dos productes
-        ArrayList<double> similituds1 = new ArrayList<double>();
-        similituds1.add(0.0);
-        similituds1.add(0.7);
-
-        ArrayList<double> similituds2 = new ArrayList<double>();
-        similituds2.add(0.7);
-        similituds2.add(0.0);
-
-        Producte p1 = new Producte(0, "Producte1", similituds1); //preguntar al alejandro com assigna els índexs si falla
-        Producte p2 = new Producte(1, "Producte2", similituds2);
-
-        //afegir 2 prod al cataleg
-        ArrayList<Pair> llistaSimiCataleg = new ArrayList<Pair>(); //preguntar al alejandro si aqui va llista buida o llista amb pair2 = new Pair("Producte2", 0.7);
-        c.afegir_producte("Producte1", llistaSimiCataleg);
-        Pair pair1 = new Pair("Producte1", 0.7);
-        llistaSimiCataleg.add(pair1);
-        c.afegir_producte("Producte2", llistaSimiCataleg);
+        ArrayList<Producte> productes = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            Producte producteMock = mock(Producte.class);
+            when(producteMock.getIndex()).thenReturn(i);
+            when(producteMock.getNom()).thenReturn("p"+i);
+            productes.add(producteMock);
+        }
+        when(c.getCataleg()).thenReturn(productes);
+        when(c.num_prod_act()).thenReturn(3);
 
         //enviar a solucionar
         gs.gestioAlgorisme("greedy");
@@ -182,7 +199,7 @@ public class TestGestioSolucio {
         ArrayList<Solucio> solsAbans = gs.getSolucions();
 
         //intercanviar
-        gs.modificarSolucio(p1, p2, "Solucio1");
+        gs.modificarSolucio(productes.get(0), productes.get(1), "Solucio1");
         ArrayList<Solucio> solsDespres = gs.getSolucions();
 
         //comprovar que son el ordre invertit
@@ -197,23 +214,46 @@ public class TestGestioSolucio {
     @Test
     public void testModificarSolucio2() {
         //crear dos productes
-        ArrayList<double> similituds1 = new ArrayList<double>();
-        similituds1.add(0.0);
-        similituds1.add(0.7);
+        ArrayList<Producte> productes = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            Producte producteMock = mock(Producte.class);
+            when(producteMock.getIndex()).thenReturn(i);
+            when(producteMock.getNom()).thenReturn("p"+i);
+            productes.add(producteMock);
+        }
+        when(c.getCataleg()).thenReturn(productes);
+        when(c.num_prod_act()).thenReturn(3);
 
-        ArrayList<double> similituds2 = new ArrayList<double>();
-        similituds2.add(0.7);
-        similituds2.add(0.0);
+        //enviar a solucionar
+        gs.gestioAlgorisme("greedy");
+        gs.creaSolucio("Solucio1");
 
-        Producte p1 = new Producte(0, "Producte1", similituds1); //preguntar al alejandro com assigna els índexs si falla
-        Producte p2 = new Producte(1, "Producte2", similituds2);
+        //mirar quin ordre els ha solucionat
+        ArrayList<Solucio> solsAbans = gs.getSolucions();
 
-        //afegir 2 prod al cataleg
-        ArrayList<Pair> llistaSimiCataleg = new ArrayList<Pair>(); //preguntar al alejandro si aqui va llista buida o llista amb pair2 = new Pair("Producte2", 0.7);
-        c.afegir_producte("Producte1", llistaSimiCataleg);
-        Pair pair1 = new Pair("Producte1", 0.7);
-        llistaSimiCataleg.add(pair1);
-        c.afegir_producte("Producte2", llistaSimiCataleg);
+        //intercanviarproducte
+        gs.modificarSolucio(productes.get(0), productes.get(1), "Solucio2");
+        ArrayList<Solucio> solsDespres = gs.getSolucions();
+
+        //comprovar que ha saltat error i no he fet res
+        assertEquals("Verificar llista solucions", solsDespres, solsAbans);
+    }
+/**
+ * Test de afegirSolucio
+ * Valors estudiats: Afegeix una solucio i ha de comprovar que s'hagi permés.
+
+    @Test
+    public void testAfegeixSolucio1() {
+        //crear dos productes
+        ArrayList<Producte> productes = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            Producte producteMock = mock(Producte.class);
+            when(producteMock.getIndex()).thenReturn(i);
+            when(producteMock.getNom()).thenReturn("p"+i);
+            productes.add(producteMock);
+        }
+        when(c.consultar_cataleg()).thenReturn(productes);
+        when(c.num_prod_act()).thenReturn(3);
 
         //enviar a solucionar
         gs.gestioAlgorisme("greedy");
@@ -223,18 +263,9 @@ public class TestGestioSolucio {
         ArrayList<Solucio> solsAbans = gs.getSolucions();
 
         //intercanviar
-        gs.modificarSolucio(p1, p2, "Solucio2");
+        gs.modificarSolucio(p1, p2, "Solucio1");
         ArrayList<Solucio> solsDespres = gs.getSolucions();
 
-        //comprovar que ha saltat error i no he fet res
-        assertEquals("Verificar llista solucions", solsDespres, solsAbans);
-    }
-/**
- * Test de afegirSolucio
- * Valors estudiats: Afegeix una solucio i ha de comprovar que s'hagi permés.
- */
-    @Test
-    public void testAfegeixSolucio1() {
         ArrayList<Producte> productes = new ArrayList<Producte>();
 
         Algorisme alg = new Aproximacio();
@@ -262,12 +293,13 @@ public class TestGestioSolucio {
     public void testEliminarSolucio1() {
         ArrayList<Producte> productes = new ArrayList<Producte>();
 
-        Algorisme alg = new Aproximacio();
-        Solucio sol =  new Solucio(productes, alg, "Solucio1");
+        Algorisme alg = mock(Aproximacio.class);
+        Solucio sol = mock(Solucio.class);
+        when(sol.getNom()).thenReturn("Solucio1");
+        when(sol.getSolucio()).thenReturn(c.getCataleg());
+        when(sol.getAlgorisme()).thenReturn(alg);
 
-        ArrayList<Solucio> llistaSol = new ArrayList<Solucio>();
-
-        ArrayList<String> llistaString = new ArrayList<String>();
+        ArrayList<Solucio> llistaSol = new ArrayList<>();
 
         //enviar a solucionar
         gs.gestioAlgorisme("aproximacio");
@@ -288,8 +320,11 @@ public class TestGestioSolucio {
     public void testEliminarSolucio2() {
         ArrayList<Producte> productes = new ArrayList<Producte>();
 
-        Algorisme alg = new Aproximacio();
-        Solucio sol =  new Solucio(productes, alg, "Solucio1");
+        Algorisme alg = mock(Aproximacio.class);
+        Solucio sol = mock(Solucio.class);
+        when(sol.getNom()).thenReturn("Solucio1");
+        when(sol.getSolucio()).thenReturn(c.getCataleg());
+        when(sol.getAlgorisme()).thenReturn(alg);
 
         ArrayList<Solucio> llistaSol = new ArrayList<Solucio>();
         llistaSol.add(sol);

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import edu.upc.prop.clusterxx.Main;
 
+
 public class TestDivisionShould {
   @Test
   public void divideGettingCorrectResult() {
@@ -21,3 +22,4 @@ public class TestDivisionShould {
 
   }
 }
+

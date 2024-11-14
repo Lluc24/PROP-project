@@ -57,7 +57,7 @@ public class GestioSolucio {
             if (s.getNom().equals(nomSolucio)) System.out.println("GestioSolucions: error ja existeix una solucio amb aquest nom");
         }
         double[][] similituds = cataleg.getMatriuSimilituds();
-        int[] solucio = algorismeAct.resoldre(similituds);
+        int[] solucio = algorismeAct.solucionar(similituds);
 
         ArrayList<Producte> llistaProd = new ArrayList<Producte>();
         for (int i: solucio){

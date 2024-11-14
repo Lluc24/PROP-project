@@ -1,6 +1,7 @@
 
 import edu.upc.prop.clusterxx.*;
 import static org.junit.Assert.*;
+import org.junit.Before;
 
 import edu.upc.prop.clusterxx.pair;
 import edu.upc.prop.clusterxx.Producte;
@@ -142,8 +143,8 @@ public class TestCataleg {
 
             CatalegTest.editar_similitud(noms_editats[0], noms_editats[1], 99.99);
 
-        asserEquals("Similitud producte editat", CatalegTest.getProd_index(index1).get_simil_prod(index2), 99.99);
-        asserEquals("Similitud producte editat", CatalegTest.getProd_index(index2).get_simil_prod(index1), 99.99);
+        assertEquals("Similitud producte editat", CatalegTest.getProd_index(index1).get_simil_prod(index2), 99.99);
+        assertEquals("Similitud producte editat", CatalegTest.getProd_index(index2).get_simil_prod(index1), 99.99);
 
     }
 
@@ -204,7 +205,7 @@ public class TestCataleg {
 
     @Test
     public void TestNum_prod_act() {
-        assertEqual("Mida correcte", 10, CatalegTest.num_prod_act());
+        assertEquals("Mida correcte", 10, CatalegTest.num_prod_act());
     }
 
     @Test
