@@ -3,23 +3,30 @@ package edu.upc.prop.clusterxx;
 import org.junit.Before;
 import org.junit.Test;
 
+
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 /**
  * Classe de testeig de Solucio.java
  */
 public class TestGestioSolucio {
-    GestioSolucio gs;
-    Cataleg c;
+    private GestioSolucio gs;
+    private Cataleg c;
+    private ArrayList<Double> similituds0 = new ArrayList<>();
+    private ArrayList<Double> similituds1 = new ArrayList<>();
+    private ArrayList<Producte> productes = new ArrayList<Producte>();
+    private double[][] matriuSim = {{0.0, 0.5},{0.5, 0.0}};
 
     @Before
    public void Inicialitza() {
         c = mock(Cataleg.class);
         gs = new GestioSolucio(c);
+        similituds0.add(0.0);
+        similituds1.add(0.5);
+        similituds1.add(0.0);
     }
 
     /**
@@ -29,11 +36,10 @@ public class TestGestioSolucio {
     @Test
     public void crearGestioSolucioTest() {
         ArrayList<Solucio> solucions = new ArrayList<Solucio>();
-        Algorisme algorismeAct = mock(Aproximacio.class);
 
         assertEquals("Verificar solucions", solucions, gs.getSolucions());
         assertEquals("Verificar cataleg", c, gs.getCataleg());
-        assertEquals("Verificar algorismeAct", algorismeAct, gs.getAlgorismeAct());
+        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof Aproximacio);
     }
 
     /**
@@ -42,11 +48,9 @@ public class TestGestioSolucio {
      */
     @Test
     public void testGestioAlgorisme1() {
-        Aproximacio aprox = mock(Aproximacio.class);
-
         gs.gestioAlgorisme("aproximacio");
 
-        assertEquals("Verificar algorismeAct", aprox, gs.getAlgorismeAct());
+        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof Aproximacio);
     }
 
     /**
@@ -55,11 +59,10 @@ public class TestGestioSolucio {
      */
     @Test
     public void testGestioAlgorisme2() {
-        AlgorismeGreedy vor = mock(AlgorismeGreedy.class);
 
         gs.gestioAlgorisme("greedy");
 
-        assertEquals("Verificar algorismeAct", vor, gs.getAlgorismeAct());
+        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof AlgorismeGreedy);
     }
 
     /**
@@ -72,7 +75,7 @@ public class TestGestioSolucio {
 
         gs.gestioAlgorisme("algorismeBT");
 
-        assertEquals("Verificar algorismeAct", vor, gs.getAlgorismeAct());
+        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof AlgorismeBT);
     }
 
     /**
@@ -81,12 +84,10 @@ public class TestGestioSolucio {
      */
     @Test
     public void testGestioAlgorisme4() {
-        Aproximacio aprox = mock(Aproximacio.class);
 
-        gs.gestioAlgorisme("aproximacio");
         gs.gestioAlgorisme("NoExisteix");
 
-        assertEquals("Verificar algorismeAct", aprox, gs.getAlgorismeAct());
+        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof Aproximacio);
     }
 
     /**
@@ -95,17 +96,20 @@ public class TestGestioSolucio {
      */
     @Test
     public void testCrearSolucio1() {
-        Algorisme a = mock(Aproximacio.class);
-        Solucio sol = mock(Solucio.class);
-        when(sol.getNom()).thenReturn("Solucio1");
-        when(sol.getSolucio()).thenReturn(c.getCataleg());
-        when(sol.getAlgorisme()).thenReturn(a);
+        for (int i = 0; i < 2; i++) {
+            Producte producteMock = mock(Producte.class);
+            when(producteMock.getIndex()).thenReturn(i);
+            if (i == 0) when(producteMock.getSimilituds()).thenReturn(similituds0);
+            if (i == 1) when(producteMock.getSimilituds()).thenReturn(similituds1);
+            when(producteMock.getNom()).thenReturn("p" + i);
+            productes.add(producteMock);
+        }
+        when(c.getCataleg()).thenReturn(productes);
 
-        ArrayList<Solucio> llistaSol = new ArrayList<Solucio>();
-        llistaSol.add(sol);
-        gs.gestioAlgorisme("aproximacio");
+        when(c.getMatriuSimilituds()).thenReturn(matriuSim);
+
         gs.creaSolucio("Solucio1");
-        assertEquals("Verificar llista solucions", llistaSol, gs.getSolucions());
+       assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
     }
 
     /**
@@ -180,12 +184,15 @@ public class TestGestioSolucio {
          */
     @Test
     public void testModificarSolucio1() {
+      //  ArrayList<Double> sim = new ArrayList<>(){0.0, 0.0};
+
         //crear dos productes
         ArrayList<Producte> productes = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
             Producte producteMock = mock(Producte.class);
             when(producteMock.getIndex()).thenReturn(i);
             when(producteMock.getNom()).thenReturn("p"+i);
+           // when(producteMock.getSimilituds()).thenReturn(sim);
             productes.add(producteMock);
         }
         when(c.getCataleg()).thenReturn(productes);
