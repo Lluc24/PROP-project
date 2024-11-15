@@ -335,5 +335,11 @@ public class TestCataleg {
         CatalegTest.mostrarCataleg();
     }
 
+    @Ignore
+    @Test
+    public void TestMostraProducte() {
+        CatalegTest.mostrarProducte(0);
+    }
+
 
 }

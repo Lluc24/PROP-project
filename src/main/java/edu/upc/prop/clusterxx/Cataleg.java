@@ -398,6 +398,41 @@ public class Cataleg {
          }
      }
 
+    /**
+     * Mostra tots el valors de producte, nom i les seves similituds
+     * @param index Index del producte a mostrar
+     *
+     */
+    public void mostrarProducte(int index) {
+        if (!valida_index(index)) {
+            System.err.println("mostrarProducte: Index no es valid");
+        }
+
+        Producte prod = Cataleg_Productes.get(index);
+         System.out.print("Producte " +index+ ": "+prod.getNom()+" Amb similituds: ");
+         ArrayList<Double>  Simi = prod.getSimilituds();
+         for (int j = 0; j < Simi.size(); ++j) {
+             if (j < Simi.size()-1) {
+                 System.out.print(getNomProd_index(j) +" -> "+ Simi.get(j)+" , ");
+             } else System.out.print(getNomProd_index(j) +" -> "+ Simi.get(j)+" ");
+         }
+         System.out.println(" ");
+     }
+
+    /**
+     * Mostra el valors del productes, nom i les seves similituds
+     * @param nom Nom del producte a mostrar
+     */
+     public void mostrarProducte(String nom) {
+        int index = get_index_prod(nom);
+        if (index == -1) {
+            System.err.println("mostrarProducte: El producte no existeix");
+            return;
+        }
+        mostrarProducte(index);
+
+    }
+
 
 
 
