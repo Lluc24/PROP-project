@@ -1,8 +1,9 @@
 package edu.upc.prop.clusterxx;
 
+import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
-
+import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
 
@@ -10,55 +11,22 @@ import static org.junit.Assert.*;
  * Classe de testeig de Solucio.java
  */
 public class TestSolucioModificada {
-    ArrayList<Double> similituds1, similituds2, similituds3, similituds4;
-    Producte p1, p2, p3, p4;
-    ArrayList<Producte> productes;
+    ArrayList<Producte> productes = new ArrayList<Producte>();
     Algorisme alg;
     SolucioModificada solucioModificada;
 
-    @before
-    {
-        similituds1 = new ArrayList<double>();
-        similituds1.add(0.0);
-        similituds1.add(0.7);
-        similituds1.add(0.8);
-        similituds1.add(0.1);
-
-        similituds2 = new ArrayList<double>();
-        similituds2.add(0.7);
-        similituds2.add(0.0);
-        similituds2.add(0.9);
-        similituds2.add(0.3);
-
-        similituds3 = new ArrayList<double>();
-        similituds3.add(0.8);
-        similituds3.add(0.9);
-        similituds3.add(0.0);
-        similituds3.add(0.4);
-
-        similituds4 = new ArrayList<double>();
-        similituds4.add(0.1);
-        similituds4.add(0.3);
-        similituds4.add(0.4);
-        similituds4.add(0.0);
-
-        // Crear instancias de Producte
-        p1 = new Producte(0, "Producte1", similituds1);
-        p2 = new Producte(1, "Producte2", similituds2);
-        p3 = new Producte(2, "Producte3", similituds3);
-        p4 = new Producte(3, "Producte4", similituds4);
-
-        productes = new ArrayList<Producte>();
-        productes.add(p1);
-        productes.add(p2);
-        productes.add(p3);
-        productes.add(p4);
-
-        alg = new Aproximacio();
+    @Before
+    public void Inicialitza(){
+        for (int i = 0; i < 4; i++) {
+            Producte producteMock = mock(Producte.class);
+            when(producteMock.getIndex()).thenReturn(i);
+            when(producteMock.getNom()).thenReturn("p"+i);
+            productes.add(producteMock);
+        }
+        alg = mock(Algorisme.class);
 
         // Crear la instancia de Solucio
         solucioModificada = new SolucioModificada(productes, alg, "Solucio1");
-
     }
 
     /**
@@ -78,13 +46,11 @@ public class TestSolucioModificada {
      */
     @Test
     public void testIntercanvia1() {
-        solucioModificada.intercanvia(p1, p2);
+        solucioModificada.intercanvia(productes.get(0).getNom(), productes.get(1).getNom());
 
-        ArrayList<Producte> productesIntercanviats = new ArrayList<Producte>();
-        productesIntercanviats.add(p2);
-        productesIntercanviats.add(p1);
-        productesIntercanviats.add(p3);
-        productesIntercanviats.add(p4);
+        ArrayList<Producte> productesIntercanviats = productes;
+        productesIntercanviats.add(0, productes.get(1));
+        productesIntercanviats.add(1, productes.get(0));
 
         assertEquals("Verificar intercanvi", productesIntercanviats, solucioModificada.getSolucio());
     }
@@ -95,15 +61,23 @@ public class TestSolucioModificada {
      */
     @Test
     public void testIntercanvia2() {
-        solucioModificada.intercanvia(p1, p4);
+        solucioModificada.intercanvia(productes.get(0).getNom(), productes.get(3).getNom());
 
-        ArrayList<Producte> productesIntercanviats = new ArrayList<Producte>();
-        productesIntercanviats.add(p4);
-        productesIntercanviats.add(p2);
-        productesIntercanviats.add(p3);
-        productesIntercanviats.add(p1);
+        ArrayList<Producte> productesIntercanviats = productes;
+        productesIntercanviats.add(0, productes.get(3));
+        productesIntercanviats.add(3, productes.get(0));
 
         assertEquals("Verificar intercanvi", productesIntercanviats, solucioModificada.getSolucio());
+    }
+
+    /**
+     * Test de intercanvia
+     * Valors estudiats: Intenta intercanviar el mateix producte amb ell mateix i no ha d'afectar a la solució.
+     */
+    @Test
+    public void testIntercanvia3() {
+        solucioModificada.intercanvia(productes.getFirst().getNom(), productes.getFirst().getNom());
+        assertEquals("Verificar intercanvi", productes, solucioModificada.getSolucio());
     }
 
     }
