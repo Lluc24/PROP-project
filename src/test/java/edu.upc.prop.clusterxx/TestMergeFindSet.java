@@ -2,34 +2,18 @@ package edu.upc.prop.clusterxx;
 
 
 import org.junit.*;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
-import java.util.ArrayList;
-
 import static org.junit.Assert.*;
 
-@RunWith(value=Parameterized.class)
 public class TestMergeFindSet {
 
     @BeforeClass
     public static void beforeClass() {
-
+        System.out.println("Inici test unitari MergeFindSet");
     }
 
     @AfterClass
     public static void afterClass() {
-
-    }
-
-    @Before
-    public void before() {
-        System.out.println("Inici test unitari en MergeFindSet");
-    }
-
-    @After
-    public void after() {
-        System.out.println("Fi test unitari en MergeFindSet");
+        System.out.println("Fi test unitari MergeFindSet");
     }
 
     @Test

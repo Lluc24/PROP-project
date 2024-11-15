@@ -9,6 +9,7 @@ public class Aproximacio extends Algorisme {
     @Override
     public int[] solucionar(double[][] matriuSimilituds) {
         n = matriuSimilituds.length;
+        if (n == 0) return new int[0];
         m = n * (n - 1) / 2;
         similituds = matriuSimilituds;
         ParellInt[] arestesOrdenades = new ParellInt[m];

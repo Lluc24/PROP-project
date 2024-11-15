@@ -1,17 +1,8 @@
 package edu.upc.prop.clusterxx;
 
-import edu.upc.prop.clusterxx.Aproximacio;
-
-
 import org.junit.*;
-import org.junit.runner.JUnitCore;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-
-@RunWith(value=Parameterized.class)
 public class TestAproximacio {
     static final double[][] mat1 = {
             {0, 10, 15, 20},
@@ -26,28 +17,32 @@ public class TestAproximacio {
             {10, 0, 0, 10,}
     };*/
 
-    private int[] esperat;
-    private double[][] matriuAdjacencia;
+    Algorisme algorisme;
 
     @BeforeClass
     public static void beforeClass() {
-
+        System.out.println("Inici test unitari algorisme aproximacio");
     }
 
     @AfterClass
     public static void afterClass() {
-
+        System.out.println("Fi test unitari algorisme aproximacio");
     }
 
     @Before
     public void before() {
-        System.out.println("Inici test unitari en Aproximacio");
+        algorisme = new Aproximacio();
     }
 
     @After
     public void after() {
-        System.out.println("Fi test unitari en Aproximacio");
+
     }
 
+    @Test
+    public void testMatriuSimilitudsBuida() {
+        double[][] matriu = new double[0][0];
+        assertEquals("Test: Solucionar amb una matriu buida", algorisme.solucionar(matriu), new int[0]);
+    }
 
 }
