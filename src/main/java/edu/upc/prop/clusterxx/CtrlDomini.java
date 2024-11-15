@@ -42,7 +42,28 @@ public class CtrlDomini{
         cataleg.eliminar_producte_nom(nom);
     }
 
-    //editar similituds
+
+    /**
+     * mostrar cataleg actual
+     */
+    public void mostrarCataleg(){
+        cataleg.mostrarCataleg();
+    }
+
+    /**
+     * editar similitud de dos productes del cataleg
+     */
+    public void editarSimilitud(String prod1, String prod2, Double sim){
+        cataleg.editar_similitud(prod1,prod2,sim);
+    }
+
+    /**
+     * mostrar un producte amb nom nomProd
+     */
+    public void mostrarProducte(String nomProd){
+        cataleg.mostrarProducte(nomProd);
+    }
+
     /**
      * mostren totes les solucions del moment
      */
@@ -60,14 +81,14 @@ public class CtrlDomini{
     /**
      * crea una nova solucio amb tots els productes de cataleg en aquell moment i e
      */
-    public void creaSolucio(String nomSol){
+    public void crearSolucio(String nomSol){
         gs.creaSolucio(nomSol);
     }
 
     /**
      * elimina la solucio amb nomSol
      */
-   public void eliminaSolucio(String nomSol){
+   public void eliminarSolucio(String nomSol){
         gs.eliminarSolucio(nomSol);
    }
 
@@ -81,10 +102,7 @@ public class CtrlDomini{
     /**
      * estableix el algorisme amb nom nomAlg el algorisme per solucionar
      */
-    /*
-    public void gestioAlgorisme(String nomAlg){
+    public void canviarAlgorisme(String nomAlg){
         gs.gestioAlgorisme(nomAlg);
     }
-    */
-
 }
