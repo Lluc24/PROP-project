@@ -76,7 +76,9 @@ public class Driver {
                 ctrlDomini.mostrarSolucio(nomSolucio);
             }
             else if (accio == 3) {
-                ctrlDomini.crearSolucio();
+                System.out.println("Entra el nom de la solucio");
+                String nomSolucio = scanner.nextLine();
+                ctrlDomini.crearSolucio(nomSolucio);
             }
             else if (accio == 4) {
                 System.out.println("Entra el nom de la solucio");
