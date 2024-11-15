@@ -1,10 +1,8 @@
 
-import edu.upc.prop.clusterxx.*;
 import static org.junit.Assert.*;
 import org.junit.Before;
 
-import edu.upc.prop.clusterxx.pair;
-import edu.upc.prop.clusterxx.Producte;
+import edu.upc.prop.clusterxx.Pair;
 import edu.upc.prop.clusterxx.Cataleg;
 
 import org.junit.Test;
@@ -31,12 +29,12 @@ public class TestCataleg {
 
         for (int index_prod = 0; index_prod < 10; ++index_prod) {
             String nom_prod = "Prod_"+index_prod;
-            pair<String, Double>[] llista_simi = new pair[index_prod];
+            Pair<String, Double>[] llista_simi = new Pair[index_prod];
             for (int p = 0; p < index_prod; ++p) {
 
                 String simi_prod = "Prod_" + p;
                 double simi = index_prod;
-                pair<String, Double> pair_simi = new pair<>(simi_prod, simi);
+                Pair<String, Double> pair_simi = new Pair<>(simi_prod, simi);
                 llista_simi[p] = pair_simi;
             }
             aux_cat.afegir_producte(nom_prod, llista_simi);
@@ -61,9 +59,9 @@ public class TestCataleg {
 
         //Afegim un nou producte
         String new_prod = "Nou Producte";
-        pair<String,Double>[] simi = new pair[size_ini];
+        Pair<String,Double>[] simi = new Pair[size_ini];
         for (int i = 0; i < simi.length; ++i) {
-            pair<String, Double> p = new pair<>(new_prod, 99.0);
+            Pair<String, Double> p = new Pair<>(new_prod, 99.0);
             simi[i] = p;
         }
         CatalegTest.afegir_producte(new_prod, simi);
