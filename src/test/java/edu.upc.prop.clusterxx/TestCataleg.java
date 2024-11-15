@@ -173,6 +173,22 @@ public class TestCataleg {
         }
     }
 
+    @Test
+    public void TestAfegir_producte_similitudsBuides() {
+        Cataleg aux = new Cataleg();
+        String prod = "Primer";
+        Pair<String, Double> pair = new Pair<>("Nada", 99.99);
+        Pair<String, Double>[] simi = new Pair[1];
+        simi[0] = pair;
+        aux.afegir_producte(prod, simi);
+
+        assertEquals("La mida es correcta", 1, aux.num_prod_act());
+        assertEquals("Nom es correcte", "Primer", aux.getNomProd_index(0));
+        ArrayList<Double> simis = new ArrayList<>();
+        simis.add(0.0);
+        assertEquals("Similituds correctes", simis, aux.getAllSimilitudsProd_nom("Primer"));
+    }
+
 
     @Test
     public void TestEliminarProducte() {
