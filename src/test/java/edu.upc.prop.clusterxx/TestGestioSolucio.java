@@ -109,7 +109,10 @@ public class TestGestioSolucio {
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
 
         gs.creaSolucio("Solucio1");
-       assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
+        assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
+         assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
+         assertTrue("Verificar algorisme", gs.getSolucions().getFirst().getAlgorisme() instanceof Aproximacio);
     }
 
     /**
@@ -118,17 +121,24 @@ public class TestGestioSolucio {
      */
     @Test
     public void testCrearSolucio2() {
-        Algorisme a = mock(AlgorismeGreedy.class);
-        Solucio sol = mock(Solucio.class);
-        when(sol.getNom()).thenReturn("Solucio1");
-        when(sol.getSolucio()).thenReturn(c.getCataleg());
-        when(sol.getAlgorisme()).thenReturn(a);
+        for (int i = 0; i < 2; i++) {
+            Producte producteMock = mock(Producte.class);
+            when(producteMock.getIndex()).thenReturn(i);
+            if (i == 0) when(producteMock.getSimilituds()).thenReturn(similituds0);
+            if (i == 1) when(producteMock.getSimilituds()).thenReturn(similituds1);
+            when(producteMock.getNom()).thenReturn("p" + i);
+            productes.add(producteMock);
+        }
+        when(c.getCataleg()).thenReturn(productes);
 
-        ArrayList<Solucio> llistaSol = new ArrayList<Solucio>();
-        llistaSol.add(sol);
+        when(c.getMatriuSimilituds()).thenReturn(matriuSim);
+
         gs.gestioAlgorisme("greedy");
         gs.creaSolucio("Solucio1");
-        assertEquals("Verificar llista solucions", llistaSol, gs.getSolucions());
+        assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
+        assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
+        assertTrue("Verificar algorisme", gs.getSolucions().getFirst().getAlgorisme() instanceof AlgorismeGreedy);
     }
 
         /**
@@ -137,19 +147,24 @@ public class TestGestioSolucio {
          */
     @Test
     public void testCrearSolucio3() {
-        Algorisme a = mock(AlgorismeGreedy.class);
-        Solucio sol1 = mock(Solucio.class);
-        when(sol1.getNom()).thenReturn("Solucio1");
-        when(sol1.getSolucio()).thenReturn(c.getCataleg());
-        when(sol1.getAlgorisme()).thenReturn(a);
+        for (int i = 0; i < 2; i++) {
+            Producte producteMock = mock(Producte.class);
+            when(producteMock.getIndex()).thenReturn(i);
+            if (i == 0) when(producteMock.getSimilituds()).thenReturn(similituds0);
+            if (i == 1) when(producteMock.getSimilituds()).thenReturn(similituds1);
+            when(producteMock.getNom()).thenReturn("p" + i);
+            productes.add(producteMock);
+        }
+        when(c.getCataleg()).thenReturn(productes);
 
-        ArrayList<Solucio> llistaSol = new ArrayList<Solucio>();
-        llistaSol.add(sol1);
-        gs.gestioAlgorisme("greedy");
+        when(c.getMatriuSimilituds()).thenReturn(matriuSim);
+
         gs.creaSolucio("Solucio1");
         gs.creaSolucio("Solucio1");
-
-        assertEquals("Verificar llista solucions", llistaSol, gs.getSolucions());
+        assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
+        assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
+        assertTrue("Verificar algorisme", gs.getSolucions().getFirst().getAlgorisme() instanceof Aproximacio);
     }
 /**
  * Test de crearSolucio
@@ -157,25 +172,33 @@ public class TestGestioSolucio {
  */
     @Test
     public void testCrearSolucio4() {
-        Algorisme a = mock(AlgorismeGreedy.class);
-        Solucio sol1 = mock(Solucio.class);
-        when(sol1.getNom()).thenReturn("Solucio1");
-        when(sol1.getSolucio()).thenReturn(c.getCataleg());
-        when(sol1.getAlgorisme()).thenReturn(a);
+        for (int i = 0; i < 2; i++) {
+            Producte producteMock = mock(Producte.class);
+            when(producteMock.getIndex()).thenReturn(i);
+            if (i == 0) when(producteMock.getSimilituds()).thenReturn(similituds0);
+            if (i == 1) when(producteMock.getSimilituds()).thenReturn(similituds1);
+            when(producteMock.getNom()).thenReturn("p" + i);
+            productes.add(producteMock);
+        }
+        when(c.getCataleg()).thenReturn(productes);
 
-        ArrayList<Solucio> llistaSol = new ArrayList<Solucio>();
-        llistaSol.add(sol1);
+        when(c.getMatriuSimilituds()).thenReturn(matriuSim);
 
-        Solucio sol2 = mock(Solucio.class);
-        when(sol2.getNom()).thenReturn("Solucio2");
-        when(sol2.getSolucio()).thenReturn(c.getCataleg());
-        when(sol2.getAlgorisme()).thenReturn(a);
 
-        gs.gestioAlgorisme("greedy");
+        when(c.getProd_index(0)).thenReturn(productes.get(0));
+        when(c.getProd_index(1)).thenReturn(productes.get(1));
+
         gs.creaSolucio("Solucio1");
         gs.creaSolucio("Solucio2");
 
-        assertEquals("Verificar llista solucions", llistaSol, gs.getSolucions());
+        assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
+        assertEquals("Verificar nom","Solucio2", gs.getSolucions().get(1).getNom());
+        assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar mida Solucio","p0", gs.getSolucions().getFirst().getSolucio().getFirst().getNom());
+        assertEquals("Verificar mida Solucio",2, gs.getSolucions().get(1).getSolucio().size());
+        assertEquals("Verificar mida solucions",2, gs.getSolucions().size());
+        assertTrue("Verificar algorisme", gs.getSolucions().getFirst().getAlgorisme() instanceof Aproximacio);
+        assertTrue("Verificar algorisme", gs.getSolucions().get(1).getAlgorisme() instanceof Aproximacio);
     }
 
         /**
@@ -184,35 +207,32 @@ public class TestGestioSolucio {
          */
     @Test
     public void testModificarSolucio1() {
-      //  ArrayList<Double> sim = new ArrayList<>(){0.0, 0.0};
-
-        //crear dos productes
-        ArrayList<Producte> productes = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
             Producte producteMock = mock(Producte.class);
             when(producteMock.getIndex()).thenReturn(i);
-            when(producteMock.getNom()).thenReturn("p"+i);
-           // when(producteMock.getSimilituds()).thenReturn(sim);
+            if (i == 0) when(producteMock.getSimilituds()).thenReturn(similituds0);
+            if (i == 1) when(producteMock.getSimilituds()).thenReturn(similituds1);
+            when(producteMock.getNom()).thenReturn("p" + i);
             productes.add(producteMock);
         }
         when(c.getCataleg()).thenReturn(productes);
-        when(c.num_prod_act()).thenReturn(3);
+        when(c.getMatriuSimilituds()).thenReturn(matriuSim);
 
-        //enviar a solucionar
-        gs.gestioAlgorisme("greedy");
+        when(c.getProd_index(0)).thenReturn(productes.get(0));
+        when(c.getProd_index(1)).thenReturn(productes.get(1));
+
         gs.creaSolucio("Solucio1");
 
-        //mirar quin ordre els ha solucionat
-        ArrayList<Solucio> solsAbans = gs.getSolucions();
+        gs.modificarSolucio(productes.get(0).getNom(),productes.get(1).getNom(),"Solucio1");
+        Solucio solFi = gs.getSolucions().getFirst();
 
-        //intercanviar
-        gs.modificarSolucio(productes.get(0), productes.get(1), "Solucio1");
-        ArrayList<Solucio> solsDespres = gs.getSolucions();
+        assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
+        assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
+        assertTrue("Verificar algorisme", gs.getSolucions().getFirst().getAlgorisme() instanceof Aproximacio);
+        assertEquals("Verificar primer intercanvi", "p1", solFi.getSolucio().get(0).getNom());
+        assertEquals("Verificar segon intercanvi", "p0", solFi.getSolucio().get(1).getNom());
 
-        //comprovar que son el ordre invertit
-        assertEquals("Verificar llista solucions mida", solsDespres.size(), solsAbans.size());
-        assertEquals("Verificar llista solucions", ((solsDespres.getFirst()).getSolucio()).get(0), ((solsAbans.getFirst()).getSolucio()).get(1));
-        assertEquals("Verificar llista solucions", ((solsDespres.getFirst()).getSolucio()).get(1), ((solsAbans.getFirst()).getSolucio()).get(0));
     }
         /**
          * Test de modificarSolucio
@@ -220,76 +240,31 @@ public class TestGestioSolucio {
          */
     @Test
     public void testModificarSolucio2() {
-        //crear dos productes
-        ArrayList<Producte> productes = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
             Producte producteMock = mock(Producte.class);
             when(producteMock.getIndex()).thenReturn(i);
-            when(producteMock.getNom()).thenReturn("p"+i);
+            if (i == 0) when(producteMock.getSimilituds()).thenReturn(similituds0);
+            if (i == 1) when(producteMock.getSimilituds()).thenReturn(similituds1);
+            when(producteMock.getNom()).thenReturn("p" + i);
             productes.add(producteMock);
         }
         when(c.getCataleg()).thenReturn(productes);
-        when(c.num_prod_act()).thenReturn(3);
+        when(c.getMatriuSimilituds()).thenReturn(matriuSim);
 
-        //enviar a solucionar
-        gs.gestioAlgorisme("greedy");
+        when(c.getProd_index(0)).thenReturn(productes.get(0));
+        when(c.getProd_index(1)).thenReturn(productes.get(1));
+
         gs.creaSolucio("Solucio1");
 
-        //mirar quin ordre els ha solucionat
-        ArrayList<Solucio> solsAbans = gs.getSolucions();
+        gs.modificarSolucio(productes.get(0).getNom(),productes.get(1).getNom(),"SolucioNoExisteix");
+        Solucio solFi = gs.getSolucions().getFirst();
 
-        //intercanviarproducte
-        gs.modificarSolucio(productes.get(0), productes.get(1), "Solucio2");
-        ArrayList<Solucio> solsDespres = gs.getSolucions();
-
-        //comprovar que ha saltat error i no he fet res
-        assertEquals("Verificar llista solucions", solsDespres, solsAbans);
-    }
-/**
- * Test de afegirSolucio
- * Valors estudiats: Afegeix una solucio i ha de comprovar que s'hagi permés.
-
-    @Test
-    public void testAfegeixSolucio1() {
-        //crear dos productes
-        ArrayList<Producte> productes = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            Producte producteMock = mock(Producte.class);
-            when(producteMock.getIndex()).thenReturn(i);
-            when(producteMock.getNom()).thenReturn("p"+i);
-            productes.add(producteMock);
-        }
-        when(c.consultar_cataleg()).thenReturn(productes);
-        when(c.num_prod_act()).thenReturn(3);
-
-        //enviar a solucionar
-        gs.gestioAlgorisme("greedy");
-        gs.creaSolucio("Solucio1");
-
-        //mirar quin ordre els ha solucionat
-        ArrayList<Solucio> solsAbans = gs.getSolucions();
-
-        //intercanviar
-        gs.modificarSolucio(p1, p2, "Solucio1");
-        ArrayList<Solucio> solsDespres = gs.getSolucions();
-
-        ArrayList<Producte> productes = new ArrayList<Producte>();
-
-        Algorisme alg = new Aproximacio();
-        Solucio sol =  new Solucio(productes, alg, "Solucio1");
-
-        ArrayList<Solucio> llistaSol = new ArrayList<Solucio>();
-        llistaSol.add(sol);
-
-        //enviar a solucionar
-        gs.gestioAlgorisme("aproximacio");
-        gs.creaSolucio("Solucio1");
-
-        //mirar quin ordre els ha solucionat
-        ArrayList<Solucio> sols = gs.getSolucions();
-
-        //comprovar que s'ha afegit
-        assertEquals("Verificar llista solucions", sols, llistaSol);
+        assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
+        assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
+        assertTrue("Verificar algorisme", gs.getSolucions().getFirst().getAlgorisme() instanceof Aproximacio);
+        assertEquals("Verificar primer intercanvi", "p0", solFi.getSolucio().get(0).getNom());
+        assertEquals("Verificar segon intercanvi", "p1", solFi.getSolucio().get(1).getNom());
     }
 
         /**
@@ -298,25 +273,21 @@ public class TestGestioSolucio {
          */
     @Test
     public void testEliminarSolucio1() {
-        ArrayList<Producte> productes = new ArrayList<Producte>();
+        for (int i = 0; i < 2; i++) {
+            Producte producteMock = mock(Producte.class);
+            when(producteMock.getIndex()).thenReturn(i);
+            if (i == 0) when(producteMock.getSimilituds()).thenReturn(similituds0);
+            if (i == 1) when(producteMock.getSimilituds()).thenReturn(similituds1);
+            when(producteMock.getNom()).thenReturn("p" + i);
+            productes.add(producteMock);
+        }
+        when(c.getCataleg()).thenReturn(productes);
 
-        Algorisme alg = mock(Aproximacio.class);
-        Solucio sol = mock(Solucio.class);
-        when(sol.getNom()).thenReturn("Solucio1");
-        when(sol.getSolucio()).thenReturn(c.getCataleg());
-        when(sol.getAlgorisme()).thenReturn(alg);
+        when(c.getMatriuSimilituds()).thenReturn(matriuSim);
 
-        ArrayList<Solucio> llistaSol = new ArrayList<>();
-
-        //enviar a solucionar
-        gs.gestioAlgorisme("aproximacio");
         gs.creaSolucio("Solucio1");
         gs.eliminarSolucio("Solucio1");
-        //mirar quin ordre els ha solucionat
-        ArrayList<Solucio> sols = gs.getSolucions();
-
-        //comprovar que s'ha eliminat
-        assertEquals("Verificar llista solucions", sols, llistaSol);
+        assertTrue("Verificar que s'ha eliminat", gs.getSolucions().isEmpty());
     }
 
 /**
@@ -325,27 +296,24 @@ public class TestGestioSolucio {
  */
     @Test
     public void testEliminarSolucio2() {
-        ArrayList<Producte> productes = new ArrayList<Producte>();
+        for (int i = 0; i < 2; i++) {
+            Producte producteMock = mock(Producte.class);
+            when(producteMock.getIndex()).thenReturn(i);
+            if (i == 0) when(producteMock.getSimilituds()).thenReturn(similituds0);
+            if (i == 1) when(producteMock.getSimilituds()).thenReturn(similituds1);
+            when(producteMock.getNom()).thenReturn("p" + i);
+            productes.add(producteMock);
+        }
+        when(c.getCataleg()).thenReturn(productes);
 
-        Algorisme alg = mock(Aproximacio.class);
-        Solucio sol = mock(Solucio.class);
-        when(sol.getNom()).thenReturn("Solucio1");
-        when(sol.getSolucio()).thenReturn(c.getCataleg());
-        when(sol.getAlgorisme()).thenReturn(alg);
+        when(c.getMatriuSimilituds()).thenReturn(matriuSim);
 
-        ArrayList<Solucio> llistaSol = new ArrayList<Solucio>();
-        llistaSol.add(sol);
-
-        ArrayList<String> llistaString = new ArrayList<String>();
-
-        //enviar a solucionar
-        gs.gestioAlgorisme("aproximacio");
         gs.creaSolucio("Solucio1");
-        gs.eliminarSolucio("Solucio2");
-        //mirar quin ordre els ha solucionat
-        ArrayList<Solucio> sols = gs.getSolucions();
+        gs.eliminarSolucio("SolucioNoExisteix");
+        assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
+        assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
+        assertTrue("Verificar algorisme", gs.getSolucions().getFirst().getAlgorisme() instanceof Aproximacio);
 
-        //comprovar que no s'ha eliminat
-        assertEquals("Verificar llista solucions", sols, llistaSol);
     }
 }

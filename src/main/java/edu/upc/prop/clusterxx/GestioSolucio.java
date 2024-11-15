@@ -9,7 +9,6 @@ public class GestioSolucio {
     private Cataleg cataleg;// relació amb el catàleg
     private Algorisme algorismeAct; //algorisme de la solució que esta tractant
 
-
     // Constructora
     public GestioSolucio(Cataleg c){
         this.solucions = new ArrayList<Solucio>();
@@ -54,7 +53,10 @@ public class GestioSolucio {
      */
     public void creaSolucio(String nomSolucio){
         for (Solucio s: solucions){
-            if (s.getNom().equals(nomSolucio)) System.out.println("GestioSolucions: error ja existeix una solucio amb aquest nom");
+            if (s.getNom().equals(nomSolucio)) {
+                System.out.println("GestioSolucions: error ja existeix una solucio amb aquest nom");
+                return;
+            }
         }
         double[][] similituds = cataleg.getMatriuSimilituds();
         int[] solucio = algorismeAct.solucionar(similituds);
@@ -73,24 +75,32 @@ public class GestioSolucio {
      * @param prod2
      * @param nomSolucio
      */
-    public void modificarSolucio (Producte prod1, Producte prod2, String nomSolucio){
+    public void modificarSolucio (String prod1, String prod2, String nomSolucio){
         boolean trobat = false;
+        //ArrayList<Solucio> solucionsTemp = new ArrayList<>(solucions);
         Iterator<Solucio> iterator = solucions.iterator();
+        SolucioModificada solMod = null;
         while (iterator.hasNext()){
             Solucio s = iterator.next();
             if (s.getNom().equals(nomSolucio)){
                 trobat = true;
-                if (s.trobarProducte(prod1.getNom()) && s.trobarProducte(prod2.getNom())) {
-                    SolucioModificada solMod = new SolucioModificada(s.getSolucio(), s.getAlgorisme(), nomSolucio);
-                    iterator.remove();
-                    solucions.add(solMod);
+                if (s.trobarProducte(prod1) && s.trobarProducte(prod2)) {
+                    solMod = new SolucioModificada(s.getSolucio(), s.getAlgorisme(), nomSolucio);
                     solMod.intercanvia(prod1, prod2);
+                    iterator.remove();
+                    break;
                 }
-                else System.out.println("GestioSolucions: error no existeix algun dels productes en la solucio");
-                break;
+                else {
+                    System.out.println("GestioSolucions: error no existeix algun dels productes en la solucio");
+                    return;
+                }
+
             }
         }
         if (!trobat)System.out.println("GestioSolucions: error no existeix una solucio amb aquest nom");
+        else {
+            solucions.add(solMod);
+        }
     }
 
     // Eliminar una solució

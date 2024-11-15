@@ -46,7 +46,7 @@ public class TestSolucioModificada {
      */
     @Test
     public void testIntercanvia1() {
-        solucioModificada.intercanvia(productes.get(0), productes.get(1));
+        solucioModificada.intercanvia(productes.get(0).getNom(), productes.get(1).getNom());
 
         ArrayList<Producte> productesIntercanviats = productes;
         productesIntercanviats.add(0, productes.get(1));
@@ -61,7 +61,7 @@ public class TestSolucioModificada {
      */
     @Test
     public void testIntercanvia2() {
-        solucioModificada.intercanvia(productes.get(0), productes.get(3));
+        solucioModificada.intercanvia(productes.get(0).getNom(), productes.get(3).getNom());
 
         ArrayList<Producte> productesIntercanviats = productes;
         productesIntercanviats.add(0, productes.get(3));
@@ -76,7 +76,7 @@ public class TestSolucioModificada {
      */
     @Test
     public void testIntercanvia3() {
-        solucioModificada.intercanvia(productes.getFirst(), productes.getFirst());
+        solucioModificada.intercanvia(productes.getFirst().getNom(), productes.getFirst().getNom());
         assertEquals("Verificar intercanvi", productes, solucioModificada.getSolucio());
     }
 
