@@ -2,6 +2,8 @@
 import edu.upc.prop.clusterxx.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.Before;
 
@@ -123,6 +125,43 @@ public class TestCataleg {
         assertEquals("Mida correcte", size_ini+1, size2);
         int new_index = CatalegTest.get_index_prod(new_prod);
         assertEquals("Index correcte", new_index, size_ini);
+
+        for (int i = 0; i < size2; ++i) {
+            assertEquals("Producte existeix", "Prod_"+i, CatalegTest.getProd_index(i).getNom());
+            for (int j = 0; j < size2; ++j) {
+                if (i == j) assertEquals("Similituds(i==j) correcte", CatalegTest.getSimilitud_index(i, j), 0.0, 0.0);
+                else if (j < i) assertEquals("Similituds(j<i) correcte", CatalegTest.getSimilitud_index(i, j), i, 0.0);
+                else if (j > i) assertEquals("Similituds(j>i) correcte", CatalegTest.getSimilitud_index(i, j), j, 0.0);
+            }
+        }
+    }
+
+    /**
+     * Test del metode Afegir_productes, per vuere si al no trobar cert producte per afegir la similitud
+     * El cataleg de productes no queda modificat.
+     */
+    @Test
+    public void TestAfegir_Producte_Incorrecte() {
+        Producte producteMock = mock(Producte.class);
+        for (int i = 0; i < 11; ++i) {
+            when(producteMock.getNom()).thenReturn("Prod_" + i);
+        }
+        //Afegim un nou producte
+        int size_ini = CatalegTest.num_prod_act();
+        String new_prod = "Prod_"+size_ini;
+        Pair<String,Double>[] simi = new Pair[size_ini];
+        for (int i = 0; i < simi.length; ++i) {
+            double d_simi = size_ini*1.0;
+            Pair<String, Double> p;
+            if (i == 5) p = new Pair<>("Aborta", d_simi);
+            else p = new Pair<>("Prod_"+i, d_simi);
+            simi[i] = p;
+        }
+        CatalegTest.afegir_producte(new_prod, simi);
+
+        //Comprovació si ha funcionat correctament
+        int size2 = CatalegTest.num_prod_act();
+        assertEquals("Mida correcte", size_ini, size2);
 
         for (int i = 0; i < size2; ++i) {
             assertEquals("Producte existeix", "Prod_"+i, CatalegTest.getProd_index(i).getNom());
@@ -288,6 +327,12 @@ public class TestCataleg {
                 else if (j > i) assertEquals("Similituds correcte", mat[i][j], j, 0.0);
             }
         }
+    }
+
+    @Ignore
+    @Test
+    public void TestMostratCataleg() {
+        CatalegTest.mostrarCataleg();
     }
 
 
