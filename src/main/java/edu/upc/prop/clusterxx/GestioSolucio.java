@@ -120,8 +120,14 @@ public class GestioSolucio {
 
     // Obtenir totes les solucions
     public void mostrarSolucions() {
+        if (solucions.isEmpty()) {
+            System.out.println("No hi ha solucions a mostrar");
+        }
         //per cada Solucio de la llista solucions, s'ha de cridar a la seva funcio publica mostrarSolucio()
-        for (Solucio s: solucions) s.mostrarSolucio();
+        else {
+            for (Solucio s: solucions) s.mostrarSolucio();
+        }
+
     }
 
     // Obtenir una solucio especifica

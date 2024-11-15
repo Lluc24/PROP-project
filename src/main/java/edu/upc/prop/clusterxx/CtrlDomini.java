@@ -22,6 +22,13 @@ public class CtrlDomini{
     }
 
     /**
+     * afegeix el primer producte de cataleg
+     */
+    public void afegirProducte(String nom){
+        cataleg.afegir_producte(nom);
+    }
+
+    /**
      * afegeix un producte amb el nom i les similituds especificades
      */
     public void afegirProducte(String nom, Pair<String, Double>[] simi){
@@ -41,7 +48,6 @@ public class CtrlDomini{
     public void eliminarProducte(String nom){
         cataleg.eliminar_producte_nom(nom);
     }
-
 
     /**
      * mostrar cataleg actual
