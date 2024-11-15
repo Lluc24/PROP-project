@@ -1,6 +1,4 @@
 package edu.upc.prop.clusterxx;
-import edu.upc.prop.clusterxx.Producte;
-import edu.upc.prop.clusterxx.pair;
 import java.util.ArrayList;
 /**
  * @Class Cataleg
@@ -49,11 +47,14 @@ public class Cataleg {
      * @param new_nom Nom del producte a afegir
      * @param llista_simi Similituds dels productes, < Nom_Productes, Similitud>
      */
-    public void afegir_producte(String new_nom, pair<String, Double>[] llista_simi) {
+    public void afegir_producte(String new_nom, Pair<String, Double>[] llista_simi) {
         //Existe producto con new_nom
-        if (find_prod(new_nom)) return; //Error
+        if (find_prod(new_nom)) {
+            System.out.println("Producte ja es troba a cataleg");
+            return;
+        }
 
-        //Nova instancia producta
+        //Nova instancia producte
         int new_index = Cataleg_Productes.size();
         ArrayList<Double> new_simi = new ArrayList<>();
 
@@ -61,12 +62,28 @@ public class Cataleg {
         for (int i = 0; i < llista_simi.length; ++i) {
             int index_in = get_index_prod(llista_simi[i].first);
             if (valida_index(index_in)) {
-                new_simi.add(index_in, llista_simi[i].second); //Afegim a la nova llista de similituds
+                //Condicional, per asegurar el funcionament si el valors de simi no estan ordenats amb ordre de cataleg
+                if (new_simi.size() < index_in) {
+                    //Afegim els espais necesaris fins arribar a index_in
+                    for (int x = new_simi.size(); x <= index_in; ++x) {
+                        double simi_value = -1.0;
+                        if (x == index_in) simi_value = llista_simi[i].second;
+                        else simi_value = -1.0;
+                        new_simi.add(x, simi_value);
+                    }
+                } else if (new_simi.size() == index_in) {
+                    new_simi.add(index_in, llista_simi[i].second);
+                } else if (new_simi.size() > index_in) {
+                    new_simi.set(index_in, llista_simi[i].second);
+                }
                 Cataleg_Productes.get(index_in).addSimiProd(new_index, llista_simi[i].second); //La similitud del producte preexisten amb el nou
+            } else {
+                System.out.println("Index de llista similituds no valid, abortant");
+                return;
             }
         }
 
-        new_simi.add(new_index, 0.0);
+        new_simi.add(new_index,0.0);
         Producte new_prod = new Producte(new_index, new_nom, new_simi);
         Cataleg_Productes.add(new_index, new_prod);
 
@@ -80,7 +97,10 @@ public class Cataleg {
       * @param index_out Index del producte a eliminar
       */
      public void eliminar_producte_index(int index_out) {
-         if (!valida_index(index_out)) return; //Error;
+         if (!valida_index(index_out)) {
+             System.out.println("Eliminar producte: Index de producte no valid");
+             return; //Error;
+         }
 
          Cataleg_Productes.remove(index_out);
 
@@ -106,7 +126,10 @@ public class Cataleg {
           int index_out = get_index_prod(nom_out);
           
           //Si no es troba el producte a cataleg es llença error
-          if (index_out == -1) return; //error
+          if (index_out == -1) {
+              System.out.println("Eliminar producte: Producte amb nom" + nom_out +" no es troba al cataleg");
+              return; //error
+          }
 
           eliminar_producte_index((index_out));
      }
@@ -119,11 +142,18 @@ public class Cataleg {
       * @param new_simi Nova similitud
       */
      public void editar_similitud_index(int index_prod1, int index_prod2, double new_simi) {
+         if (index_prod1 == index_prod2) {
+             System.out.println("Editar similitud: Els dos indexos son iguals");
+             return;
+         }
+
          if (valida_index(index_prod1) && valida_index(index_prod2)) {
              //Modifiquem les similituds
              Cataleg_Productes.get(index_prod1).setSimiProd(index_prod2,new_simi);
              Cataleg_Productes.get(index_prod2).setSimiProd(index_prod1, new_simi);
-         }  //error
+         } else {
+             System.out.println("Editar Similitud: Indexes no valids");
+         }
      }
 
      /**
@@ -134,12 +164,23 @@ public class Cataleg {
       * @param new_simi Nova similitud entre el dos productes
       */
      public void editar_similitud(String nom_prod1, String nom_prod2, double new_simi) {
-          int index1 = get_index_prod(nom_prod1);
-          if (index1 == -1) return; //error
 
+         if (nom_prod1 == nom_prod2) {
+             System.out.println("Editar similitud: Els dos noms son iguals");
+             return;
+         }
+
+         int index1 = get_index_prod(nom_prod1);
+          if (index1 == -1) {
+              System.out.println("Editar similitud: Primer nom no es valid");
+              return; //error
+          }
 
           int index2 = get_index_prod(nom_prod2);
-          if (index2 == -1) return; //error
+          if (index2 == -1) {
+              System.out.println("Editar similitud: Segon nom no es valid");
+              return; //error
+          }
 
          editar_similitud_index(index1, index2, new_simi);
      }
@@ -151,7 +192,8 @@ public class Cataleg {
       * @return True si es troba dins del cataleg, si no FALSE
       */
      public boolean find_prod(String nom_in){
-          for (int i = 0; i < Cataleg_Productes.size(); ++i) {
+
+         for (int i = 0; i < Cataleg_Productes.size(); ++i) {
                if (Cataleg_Productes.get(i).getNom().equals(nom_in)) return true;
           }
           return false;
@@ -160,6 +202,8 @@ public class Cataleg {
 
      /**
       * Valida si el index rebut es valid, i per tant es pot fer servir per accedir al cataleg
+      * Aixo es basa en la propietat de remove de ArrayList, la cual no deixa espai lliures en la eliminacio
+      * per tant si estan dins del interval de mida del cataleg es podran fer servir els indexes.
       * @param index_in Index a validar
       * @return TRUE si es valid, FALSE si no
       */
@@ -191,7 +235,7 @@ public class Cataleg {
 
     /**
      *
-     * @param index_in Index del prodcucte a retornar
+     * @param index_in Index del producte a retornar
      * @return Producte amb index = index_in
      */
      public Producte getProd_index(int index_in) {

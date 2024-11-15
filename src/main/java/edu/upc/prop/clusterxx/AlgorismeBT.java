@@ -55,6 +55,9 @@ public class AlgorismeBT extends Algorisme {
     private double backtrack(double[][] matriuSimilituds, ArrayList<Integer> configuracioActual, boolean[] visitats, double similitudAcumulada, int[] millorConfiguracio, double maxSimilitud) {
         int numProd = matriuSimilituds.length;
 
+        if (numProd <= 0) {
+            throw new IllegalArgumentException("No hi ha productes: La matriu de similituds és buida.");
+        }
         //comprovem si la configuració actual està completa
         if (configuracioActual.size() == numProd) {
             //sumem la similitud entre el primer i l'últim producte

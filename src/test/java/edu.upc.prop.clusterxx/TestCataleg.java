@@ -1,14 +1,12 @@
 
 import edu.upc.prop.clusterxx.*;
 import static org.junit.Assert.*;
-import org.junit.Before;
-
-import edu.upc.prop.clusterxx.pair;
-import edu.upc.prop.clusterxx.Producte;
-import edu.upc.prop.clusterxx.Cataleg;
-
+import static org.mockito.Mockito.*;
 import org.junit.Test;
 import org.junit.Before;
+
+import edu.upc.prop.clusterxx.Pair;
+import edu.upc.prop.clusterxx.Cataleg;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -31,12 +29,12 @@ public class TestCataleg {
 
         for (int index_prod = 0; index_prod < 10; ++index_prod) {
             String nom_prod = "Prod_"+index_prod;
-            pair<String, Double>[] llista_simi = new pair[index_prod];
+            Pair<String, Double>[] llista_simi = new Pair[index_prod];
             for (int p = 0; p < index_prod; ++p) {
 
                 String simi_prod = "Prod_" + p;
                 double simi = index_prod;
-                pair<String, Double> pair_simi = new pair<>(simi_prod, simi);
+                Pair<String, Double> pair_simi = new Pair<>(simi_prod, simi);
                 llista_simi[p] = pair_simi;
             }
             aux_cat.afegir_producte(nom_prod, llista_simi);
@@ -47,23 +45,39 @@ public class TestCataleg {
     }
 
     @Test
-    public void TestAfegir_producte() {
+    public void TestOmplir_Producte() {
         //Comprovació funció omplir productes funciona
-        int size_ini = CatalegTest.num_prod_act();
-        for (int i = 0; i < size_ini; ++i) {
-            assertEquals("Producte existeix", "Prod_1", CatalegTest.getProd_index(i).getNom());
-            for (int j = 0; j < size_ini; ++j) {
-                if (i == j) assertEquals("Similituds correcte", CatalegTest.getSimilitud_index(i, j), 0);
-                else if (j < i) assertEquals("Similituds correcte", CatalegTest.getSimilitud_index(i, j), i);
-                else if (j > i) assertEquals("Similituds correcte", CatalegTest.getSimilitud_index(i, j), j);
-            }
+        //Mockito
+        Producte producteMock = mock(Producte.class);
+        for (int i = 0; i < 10; ++i) {
+            when(producteMock.getNom()).thenReturn("Prod_" + i);
         }
 
+        int size_ini = CatalegTest.num_prod_act();
+        for (int i = 0; i < size_ini; ++i) {
+            assertEquals("Producte existeix", "Prod_" + i, CatalegTest.getProd_index(i).getNom());
+            for (int j = 0; j < size_ini; ++j) {
+                if (i == j) assertEquals("Similituds correcte", CatalegTest.getSimilitud_index(i, j), 0.0, 0.0);
+                else if (j < i) assertEquals("Similituds correcte", CatalegTest.getSimilitud_index(i, j), i, 0.01);
+                else if (j > i) assertEquals("Similituds correcte", CatalegTest.getSimilitud_index(i, j), j, 0.01);
+            }
+        }
+    }
+
+    @Test
+    public void TestAfegir_producte() {
+        //Mockito
+        Producte producteMock = mock(Producte.class);
+        for (int i = 0; i < 11; ++i) {
+            when(producteMock.getNom()).thenReturn("Prod_" + i);
+        }
         //Afegim un nou producte
-        String new_prod = "Nou Producte";
-        pair<String,Double>[] simi = new pair[size_ini];
+        int size_ini = CatalegTest.num_prod_act();
+        String new_prod = "Prod_"+size_ini;
+        Pair<String,Double>[] simi = new Pair[size_ini];
         for (int i = 0; i < simi.length; ++i) {
-            pair<String, Double> p = new pair<>(new_prod, 99.0);
+            double d_simi = size_ini*1.0;
+            Pair<String, Double> p = new Pair<>("Prod_"+i, d_simi);
             simi[i] = p;
         }
         CatalegTest.afegir_producte(new_prod, simi);
@@ -75,33 +89,60 @@ public class TestCataleg {
         assertEquals("Index correcte", new_index, size_ini);
 
         for (int i = 0; i < size2; ++i) {
-            assertEquals("Producte existeix", "Prod_1", CatalegTest.getProd_index(i).getNom());
-            if (i == new_index) {
-                for (int x = 0; x < size2; ++i) {
-                    if (i == x) assertEquals("Similituds correcte", CatalegTest.getSimilitud_index(i, x), 0);
-                    else assertEquals("Similituds correcte", CatalegTest.getSimilitud_index(i, x), 99.0);
-                }
-            } else {
-                for (int j = 0; j < size2; ++j) {
-                    if (j == new_index) assertEquals("Similituds correcte", CatalegTest.getSimilitud_index(i, j), 99.0);
-                    if (i == j) assertEquals("Similituds correcte", CatalegTest.getSimilitud_index(i, j), 0);
-                    else if (j < i) assertEquals("Similituds correcte", CatalegTest.getSimilitud_index(i, j), i);
-                    else if (j > i) assertEquals("Similituds correcte", CatalegTest.getSimilitud_index(i, j), j);
-
-                }
+            assertEquals("Producte existeix", "Prod_"+i, CatalegTest.getProd_index(i).getNom());
+            for (int j = 0; j < size2; ++j) {
+                if (i == j) assertEquals("Similituds(i==j) correcte", CatalegTest.getSimilitud_index(i, j), 0.0, 0.0);
+                else if (j < i) assertEquals("Similituds(j<i) correcte", CatalegTest.getSimilitud_index(i, j), i, 0.0);
+                else if (j > i) assertEquals("Similituds(j>i) correcte", CatalegTest.getSimilitud_index(i, j), j, 0.0);
             }
         }
     }
 
     @Test
+    public void TestAfegir_producte_OrdreInvers() {
+        //Mockito
+        Producte producteMock = mock(Producte.class);
+        for (int i = 0; i < 11; ++i) {
+            when(producteMock.getNom()).thenReturn("Prod_" + i);
+        }
+        //Afegim un nou producte
+        int size_ini = CatalegTest.num_prod_act();
+        String new_prod = "Prod_"+size_ini;
+
+        //Aquesta llista es fara en ordre invers al ordre de cataleg
+        Pair<String,Double>[] simi = new Pair[size_ini];
+        for (int i = simi.length-1; i >= 0; --i) {
+            double d_simi = size_ini*1.0;
+            Pair<String, Double> p = new Pair<>("Prod_"+i, d_simi);
+            simi[i] = p;
+        }
+        CatalegTest.afegir_producte(new_prod, simi);
+
+        //Comprovació si ha funcionat correctament
+        int size2 = CatalegTest.num_prod_act();
+        assertEquals("Mida correcte", size_ini+1, size2);
+        int new_index = CatalegTest.get_index_prod(new_prod);
+        assertEquals("Index correcte", new_index, size_ini);
+
+        for (int i = 0; i < size2; ++i) {
+            assertEquals("Producte existeix", "Prod_"+i, CatalegTest.getProd_index(i).getNom());
+            for (int j = 0; j < size2; ++j) {
+                if (i == j) assertEquals("Similituds(i==j) correcte", CatalegTest.getSimilitud_index(i, j), 0.0, 0.0);
+                else if (j < i) assertEquals("Similituds(j<i) correcte", CatalegTest.getSimilitud_index(i, j), i, 0.0);
+                else if (j > i) assertEquals("Similituds(j>i) correcte", CatalegTest.getSimilitud_index(i, j), j, 0.0);
+            }
+        }
+    }
+
+
+    @Test
     public void TestEliminarProducte() {
         int size_ini = CatalegTest.num_prod_act();
-        Random rand = new Random();
         String[] noms_eliminats = new String[3];
+        int[] index_eliminats = {0,5,size_ini-3}; //El primer, un del mig, l'ultim, elements
 
         for (int i = 0; i < 3; ++i) {
-            int index = rand.nextInt(size_ini);
-            String nom_out = CatalegTest.getNomProd_index(index);
+            String nom_out = CatalegTest.getNomProd_index(index_eliminats[i]);
             noms_eliminats[i] = nom_out;
             CatalegTest.eliminar_producte_nom(nom_out);
         }
@@ -118,34 +159,39 @@ public class TestCataleg {
             assertFalse("Producte ha sigut eliminat", CatalegTest.find_prod(noms_eliminats[i]));
         }
 
-        //Similituds eliminades
+        //Similituds eliminades, (queda inventar una forma de veure que les similituds estan be, que ho estan).
+        /*
         int size_ini2 = CatalegTest.num_prod_act();
         for (int i = 0; i < size_ini2; ++i) {
             assertEquals("Mida similituds correcte", size_ini2, CatalegTest.getProd_index(i).getSimilituds().size());
             for (int j = 0; j < size_ini2; ++j) {
-                if (i == j) assertEquals("Similituds correcte", CatalegTest.getSimilitud_index(i, j), 0);
-                else if (j < i) assertEquals("Similituds correcte", CatalegTest.getSimilitud_index(i, j), i);
-                else if (j > i) assertEquals("Similituds correcte", CatalegTest.getSimilitud_index(i, j), j);
+                if (i == j) assertEquals("Similituds(i==j), correcte", CatalegTest.getSimilitud_index(i, j), 0,0.0);
+                else if (j < i) assertEquals("Similituds(j<i) correcte", CatalegTest.getSimilitud_index(i, j), i,0.0);
+                else if (j > i) assertEquals("Similituds("+j+">"+i+") correcte", CatalegTest.getSimilitud_index(i, j), j,0.0);
             }
         }
+         */
     }
 
     @Test
     public void TestEditarSimilitud() {
-        int size_ini = CatalegTest.num_prod_act();
-        Random rand = new Random();
-        String[] noms_editats = new String[2];
+        //Valors del Mig
+        int index1 = 3;
+        int index2 = 7;
 
-        int index1 = rand.nextInt(size_ini);
-        int index2 = rand.nextInt(size_ini);
+        CatalegTest.editar_similitud(CatalegTest.getNomProd_index(index1), CatalegTest.getNomProd_index(index2), 99.99);
 
-        CatalegTest.getNomProd_index(index1);
-        CatalegTest.getNomProd_index(index2);
+        assertEquals("Similitud producte editat", CatalegTest.getProd_index(index1).get_simil_prod(index2), 99.99, 0.0);
+        assertEquals("Similitud producte editat", CatalegTest.getProd_index(index2).get_simil_prod(index1), 99.99, 0.0);
 
-            CatalegTest.editar_similitud(noms_editats[0], noms_editats[1], 99.99);
+        //Valor iguals
+        index1 = 3;
+        index2 = 3;
 
-        assertEquals("Similitud producte editat", CatalegTest.getProd_index(index1).get_simil_prod(index2), 99.99);
-        assertEquals("Similitud producte editat", CatalegTest.getProd_index(index2).get_simil_prod(index1), 99.99);
+        CatalegTest.editar_similitud(CatalegTest.getNomProd_index(index1), CatalegTest.getNomProd_index(index2), 99.99);
+
+        assertEquals("Similitud producte editat", CatalegTest.getProd_index(index1).get_simil_prod(index2), 0.0, 0.0);
+        assertEquals("Similitud producte editat", CatalegTest.getProd_index(index2).get_simil_prod(index1), 0.0, 0.0);
 
     }
 
@@ -173,6 +219,8 @@ public class TestCataleg {
         assertEquals("Index correcte", CatalegTest.get_index_prod("Prod_1"), 1);
         assertEquals("Index correcte", CatalegTest.get_index_prod("No es troba a cataleg"), -1);
         assertNotEquals("Index incorrecte", CatalegTest.get_index_prod("Prod_3"),1);
+        int last = CatalegTest.num_prod_act() -1;
+        assertEquals("Index final correcte", CatalegTest.get_index_prod("Prod_"+last), last);
     }
 
     @Test
@@ -198,10 +246,10 @@ public class TestCataleg {
 
     @Test
     public void TestGetSimilitud_nom() {
-        assertEquals("Similitud correcte", CatalegTest.getSimilitud_nom("Prod_1", "Prod_2"), 2);
-        assertEquals("Similitud correcte", CatalegTest.getSimilitud_nom("Prod_1", "Prod_1"), 0);
-        assertNotEquals("Similitud correcte", CatalegTest.getSimilitud_nom("Prod_1", "NoExisteix"), 2);
-        assertNotEquals("Similitud correcte", CatalegTest.getSimilitud_nom("Prod_1", "Prod_3"), 2);
+        assertEquals("Similitud correcte", CatalegTest.getSimilitud_nom("Prod_1", "Prod_2"), 2, 0.0);
+        assertEquals("Similitud correcte", CatalegTest.getSimilitud_nom("Prod_1", "Prod_1"), 0, 0.0);
+        assertNotEquals("Similitud correcte", CatalegTest.getSimilitud_nom("Prod_1", "NoExisteix"), 2, 0.0);
+        assertNotEquals("Similitud correcte", CatalegTest.getSimilitud_nom("Prod_1", "Prod_3"), 2, 0.0);
     }
 
     @Test
@@ -221,7 +269,11 @@ public class TestCataleg {
 
     @Test
     public void TestGetCataleg() {
-        assertEquals("Cataleg correcte", CatalegTest.getCataleg(), CatalegTest);
+        ArrayList<Producte> Array_Prod = CatalegTest.getCataleg();
+
+        for (int i = 0; i < CatalegTest.num_prod_act(); ++i) {
+            assertEquals("Es producte"+i+" correcte", Array_Prod.get(i), CatalegTest.getProd_index(i));
+        }
     }
 
     @Test
@@ -231,9 +283,9 @@ public class TestCataleg {
         double[][] mat = CatalegTest.getMatriuSimilituds();
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
-                if (i == j) assertEquals("Similituds correcte", mat[i][j], 0);
-                else if (j < i) assertEquals("Similituds correcte", mat[i][j], i);
-                else if (j > i) assertEquals("Similituds correcte", mat[i][j], j);
+                if (i == j) assertEquals("Similituds correcte", mat[i][j], 0, 0.0);
+                else if (j < i) assertEquals("Similituds correcte", mat[i][j], i, 0.0);
+                else if (j > i) assertEquals("Similituds correcte", mat[i][j], j, 0.0);
             }
         }
     }

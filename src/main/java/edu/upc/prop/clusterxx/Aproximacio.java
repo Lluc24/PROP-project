@@ -15,8 +15,7 @@ public class Aproximacio extends Algorisme {
         int k = 0;
         for (int i = 0; i < n; ++i) {
             for (int j = i + 1; j < n; ++j) {
-                ParellInt parellInt = new ParellInt(i, j);
-                arestesOrdenades[k] = parellInt;
+                arestesOrdenades[k] = new ParellInt(i, j);
                 ++k;
             }
         }

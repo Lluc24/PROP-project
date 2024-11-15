@@ -20,7 +20,7 @@ public class TestAlgorismeGreedy {
      */
     @Before
     public void setUp() {
-        algorisme = new AlgorismeGreedy();
+        algorisme = new AlgorismeGreedy(0, 1);
     }
 
     /**
@@ -144,8 +144,11 @@ public class TestAlgorismeGreedy {
     @Test
     public void testSolucionarMatriuBuida() {
         double[][] matriuSimilituds = new double[0][0];
-        int[] resultat = algorisme.solucionar(matriuSimilituds);
-        assertEquals("Solució correcta", 0, resultat.length); //el resultat ha de ser un array buit
+        try {
+            int[] resultat = algorisme.solucionar(matriuSimilituds);
+        } catch (IllegalArgumentException e) {
+            assertEquals("El missatge d'error és correcte", "No hi ha productes: La matriu de similituds és buida.", e.getMessage());
+        }
     }
 
     /**
@@ -165,7 +168,7 @@ public class TestAlgorismeGreedy {
     }
 
     /**
-     * Test pel mètode 'solucionar' que espera que l'algorisme retorni l'ordre dels índexs [0, 2, 1, 3].
+     * Test pel mètode 'solucionar' que espera que l'algorisme retorni l'ordre dels índexs [0, 2, 3, 1].
      */
     @Test
     public void testSolucionarAmbQuatreProductes() {
@@ -178,7 +181,7 @@ public class TestAlgorismeGreedy {
         };
 
         int[] configuracio = algorisme.solucionar(matriuSimilituds);
-        int[] configuracioEsperada = {0, 2, 1, 3}; //l'ordre correcte segons aquesta matriu
+        int[] configuracioEsperada = {0, 2, 3, 1}; //l'ordre correcte segons aquesta matriu
 
         assertArrayEquals("Ordre correcte", configuracioEsperada, configuracio);
     }

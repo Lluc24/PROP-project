@@ -101,6 +101,10 @@ public class AlgorismeGreedy extends Algorisme {
 
         int numProd = matriuSimilituds.length;
 
+        if (numProd <= 0) {
+            throw new IllegalArgumentException("No hi ha productes: La matriu de similituds és buida.");
+        }
+
         if (producteInicial < 0 || producteInicial >= numProd) {
             throw new IllegalArgumentException("L'índex del producte no pot ser negatiu o superior a la quantitat de productes al catàleg.");
         }
