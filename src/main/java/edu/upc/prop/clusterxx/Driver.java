@@ -7,7 +7,7 @@ public class Driver {
     private CtrlDomini ctrlDomini;
 
     Driver() {
-        ctrlDomini = new CtrlDomini();
+        ctrlDomini = CtrlDomini.getCtrlDomini();
     }
 
     public void executar() {
@@ -64,6 +64,7 @@ public class Driver {
             System.out.println("[3] Calcular una distribucio per la prestatgeria actual");
             System.out.println("[4] Eliminar una distribucio");
             System.out.println("[5] Editar una distribucio");
+            System.out.println("[6] Triar tipus d'Algorisme per resoldre");
 
             int accio = scanner.nextInt();
             if (accio == 1) {
@@ -75,7 +76,9 @@ public class Driver {
                 ctrlDomini.mostrarSolucio(nomSolucio);
             }
             else if (accio == 3) {
-                ctrlDomini.crearSolucio();
+                System.out.println("Entra el nom de la solucio");
+                String nomSolucio = scanner.nextLine();
+                ctrlDomini.crearSolucio(nomSolucio);
             }
             else if (accio == 4) {
                 System.out.println("Entra el nom de la solucio");
@@ -86,6 +89,11 @@ public class Driver {
                 System.out.println("Entra el nom de la solucio seguit dels dos productes a intercambiar en la solucio");
                 String[] data = scanner.nextLine().split(" ");
                 ctrlDomini.modificarSolucio(data[0], data[1], data[2]);
+            }
+            else if (accio == 6) {
+                System.out.println("Entra el nom del algorisme: greedy, aproximacio, algorismeBT");
+                String nomAlgorisme = scanner.nextLine();
+                ctrlDomini.canviarAlgorisme(nomAlgorisme);
             }
         }
     }

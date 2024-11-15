@@ -123,4 +123,18 @@ public class GestioSolucio {
         //per cada Solucio de la llista solucions, s'ha de cridar a la seva funcio publica mostrarSolucio()
         for (Solucio s: solucions) s.mostrarSolucio();
     }
+
+    // Obtenir una solucio especifica
+    public void mostrarSolucio(String nomSol) {
+        //per cada Solucio de la llista solucions, s'ha de cridar a la seva funcio publica mostrarSolucio()
+        boolean trobat = false;
+        for (Solucio s: solucions){
+            if (s.getNom().equals(nomSol)) {
+                s.mostrarSolucio();
+                trobat = true;
+                return;
+            }
+        }
+        if (!trobat) System.err.println("No exiteix cap solucio amb aquest nom");
+    }
 }
