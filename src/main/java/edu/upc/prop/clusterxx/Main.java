@@ -1,5 +1,7 @@
 package edu.upc.prop.clusterxx;
 
+import java.util.Scanner;
+
 public class Main {
   public static void main(String[] args) {
       double[][] similituds = new double[4][4];
@@ -24,5 +26,65 @@ public class Main {
 
       Algorisme a = new Aproximacio();
       a.solucionar(similituds2);
+
+      CtrlDomini ctrlDomini = CtrlDomini.getCtrlDomini();
+      Scanner scanner = new Scanner(System.in);
+      boolean sortir = false;
+
+      while (!sortir) {
+          System.out.println("\n===== MENU PRINCIPAL =====");
+          System.out.println("1. Crear un nou cataleg i afegir productes");
+          System.out.println("2. Eliminar un producte del cataleg");
+          System.out.println("3. Editar similituds");
+          System.out.println("4. Crear una nova solució (gestio d'algorismes)");
+          System.out.println("5. Gestionar solucions (mostrar i modificar)");
+          System.out.println("6. Sortir");
+
+          int opcio = scanner.nextInt();
+          scanner.nextLine(); // Consumir el salt de línea
+
+          switch (opcio) {
+              case 1:
+                  /*
+                  System.out.println("Introdueix el nom del producte que vols afegir:");
+                  String nomProducte = scanner.nextLine();
+                  ctrlDomini.afegirProducte(nomProducte);
+
+                   */
+                  System.out.println("Aquesta funcionalitat encara no està implementada.");
+                  break;
+
+              case 2:
+                  /*
+                  System.out.println("Introdueix el nom del producte que vols eliminar:");
+                  String nomEliminar = scanner.nextLine();
+                  ctrlDomini.eliminarProducte(nomEliminar);
+
+                   */
+                  System.out.println("Aquesta funcionalitat encara no està implementada.");
+                  break;
+
+              case 3:
+                  System.out.println("Aquesta funcionalitat encara no està implementada.");
+                  break;
+
+              case 4:
+                  ctrlDomini.gestioAlgorisme();
+                  break;
+
+              case 5:
+                  ctrlDomini.gestioSolucions();
+                  break;
+
+              case 6:
+                  System.out.println("Sortint del programa...");
+                  sortir = true;
+                  break;
+
+              default:
+                  System.err.println("Opció no vàlida. Torna-ho a intentar.");
+          }
+      }
+      scanner.close();
   }
 }
