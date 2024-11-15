@@ -63,6 +63,13 @@ public class Cataleg {
         int new_index = Cataleg_Productes.size();
         ArrayList<Double> new_simi = new ArrayList<>();
 
+        if (num_prod_act()==0) {
+            new_simi.add(new_index,0.0);
+            Producte new_prod = new Producte(new_index, new_nom, new_simi);
+            Cataleg_Productes.add(new_index, new_prod);
+            return;
+        }
+
         //Afegim les similituds a la llista
         for (int i = 0; i < llista_simi.length; ++i) {
             int index_in = get_index_prod(llista_simi[i].first);
