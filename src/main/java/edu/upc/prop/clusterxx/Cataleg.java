@@ -55,7 +55,7 @@ public class Cataleg {
 
         //Existe producto con new_nom
         if (find_prod(new_nom)) {
-            System.err.println("Producte ja es troba a cataleg");
+            System.err.println("Afegir_producte: Producte ja es troba a cataleg");
             return;
         }
 
@@ -90,7 +90,7 @@ public class Cataleg {
                 }
                 Cataleg_Productes.get(index_in).addSimiProd(new_index, llista_simi[i].second); //La similitud del producte preexisten amb el nou
             } else {
-                System.err.println("Index de llista similituds no valid, abortant");
+                System.err.println("Afegir_Producte: Index de llista similituds no valid, abortant");
                 this.Cataleg_Productes = copia_auxiliar;
                 return;
             }
@@ -100,6 +100,32 @@ public class Cataleg {
         Producte new_prod = new Producte(new_index, new_nom, new_simi);
         Cataleg_Productes.add(new_index, new_prod);
 
+    }
+
+    /**
+     * @see afegir_producte(String new_nom, Pair<String, Double>[] llista_simi)
+     * Afegeix un producte a un cataleg buit, nomes necesita el nom
+     * @param new_nom El nom del nou producte
+     */
+    public void afegir_producte(String new_nom) {
+        //Existe producto con new_nom
+        if (find_prod(new_nom)) {
+            System.err.println("Afegir_producte: Producte ja es troba a cataleg");
+            return;
+        }
+
+        if (num_prod_act() != 0) {
+            System.err.println("Afegir_producte: Cataleg ja te productes");
+            return;
+        }
+
+        //Nova instancia producte
+        int new_index = Cataleg_Productes.size();
+        ArrayList<Double> new_simi = new ArrayList<>();
+
+        new_simi.add(new_index,0.0);
+        Producte new_prod = new Producte(new_index, new_nom, new_simi);
+        Cataleg_Productes.add(new_index, new_prod);
     }
 
 
