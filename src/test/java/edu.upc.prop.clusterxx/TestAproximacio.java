@@ -42,7 +42,7 @@ public class TestAproximacio {
     @Test
     public void testMatriuSimilitudsBuida() {
         double[][] matriu = new double[0][0];
-        assertEquals("Test: Solucionar amb una matriu buida", algorisme.solucionar(matriu), new int[0]);
+        assertEquals("Test: Solucionar amb una matriu buida", 0, algorisme.solucionar(matriu).length);
     }
 
 }

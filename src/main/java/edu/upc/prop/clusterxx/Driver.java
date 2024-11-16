@@ -43,9 +43,7 @@ public class Driver {
                         System.out.println("Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte " + nomProducte);
                         Pair<String, Double>[] similituds = new Pair[midaCataleg];
                         for (int i = 0; i < midaCataleg; ++i) {
-                            String[] data = scanner.nextLine().split(" ");
-                            similituds[i].first = data[0];
-                            similituds[i].second = Double.parseDouble(data[0]);
+                            similituds[i] = new Pair<>(scanner.next(), Double.parseDouble(scanner.next()));
                         }
                         ctrlDomini.afegirProducte(nomProducte, similituds);
                     }
@@ -58,8 +56,7 @@ public class Driver {
                     ctrlDomini.eliminarProducte(nomProducte);
                 } else if (accio == 5) {
                     System.out.println("Entra el nom dels dos productes a modificar la similitud seguit del nou grau de similitud");
-                    String[] data = scanner.next().split(" ");
-                    ctrlDomini.editarSimilitud(data[0], data[1], Double.parseDouble(data[2]));
+                    ctrlDomini.editarSimilitud(scanner.next(), scanner.next(), Double.parseDouble(scanner.next()));
                 }
             } else if (gestio == 2) {
                 System.out.println("[1] Visualitzar totes les distribucions existents");
@@ -86,8 +83,7 @@ public class Driver {
                     ctrlDomini.eliminarSolucio(nomSolucio);
                 } else if (accio == 5) {
                     System.out.println("Entra el nom de la solucio seguit dels dos productes a intercambiar en la solucio");
-                    String[] data = scanner.next().split(" ");
-                    ctrlDomini.modificarSolucio(data[0], data[1], data[2]);
+                    ctrlDomini.modificarSolucio(scanner.next(), scanner.next(), scanner.next());
                 } else if (accio == 6) {
                     System.out.println("Entra el nom del algorisme: greedy, aproximacio, algorismeBT");
                     String nomAlgorisme = scanner.next();
