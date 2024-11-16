@@ -127,7 +127,6 @@ public class GestioSolucio {
         else {
             for (Solucio s: solucions) s.mostrarSolucio();
         }
-
     }
 
     // Obtenir una solucio especifica

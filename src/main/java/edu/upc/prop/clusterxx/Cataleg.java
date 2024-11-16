@@ -442,12 +442,14 @@ public class Cataleg {
         }
 
         Producte prod = Cataleg_Productes.get(index);
-         System.out.print("Producte " +index+ ": "+prod.getNom()+" Amb similituds: ");
+         System.out.print("Producte " +index+ ": "+prod.getNom()+". Les seves similituds son: ");
          ArrayList<Double>  Simi = prod.getSimilituds();
          for (int j = 0; j < Simi.size(); ++j) {
-             if (j < Simi.size()-1) {
-                 System.out.print(getNomProd_index(j) +" -> "+ Simi.get(j)+" , ");
-             } else System.out.print(getNomProd_index(j) +" -> "+ Simi.get(j)+" ");
+             if (j !=  index) {
+                 if (j < Simi.size() - 1) {
+                     System.out.print(getNomProd_index(j) + " -> " + Simi.get(j) + " , ");
+                 } else System.out.print(getNomProd_index(j) + " -> " + Simi.get(j) + " ");
+             }
          }
          System.out.println(" ");
      }
@@ -459,7 +461,7 @@ public class Cataleg {
      public void mostrarProducte(String nom) {
         int index = get_index_prod(nom);
         if (index == -1) {
-            System.err.println("mostrarProducte: El producte no existeix");
+            System.err.println("El producte " + nom + "no existeix");
             return;
         }
         mostrarProducte(index);
