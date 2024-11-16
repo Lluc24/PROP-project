@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @version 2.2
  *
  * @Information
- * Tots el productes estan dins de un Arraylist. 
+ * Tots els productes estan dins de un Arraylist.
  * Es poden identificar tant per nom o per index.
  * Basat en el funcionament de ArrayList no hi ha espais buits entre productes.
  * Tots el index gerenats per aquesta classe son valits sempre que no s'elimini nigun element de la llista, 
@@ -50,6 +50,8 @@ public class Cataleg {
      * Aquests metode se ha de fer servir per la creacio i de productes dins del sistema.
      * @param new_nom Nom del producte a afegir
      * @param llista_simi Similituds dels productes, < Nom_Productes, Similitud>
+     * @exception ProducteNoValid
+     * @exception FormatInputNoValid
      */
     public void afegir_producte(String new_nom, Pair<String, Double>[] llista_simi) throws ProducteNoValid, FormatInputNoValid {
 
