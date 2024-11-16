@@ -1,0 +1,21 @@
+La finalitat d'aquest joc de prova es portar al limit els algorismes que calculen la distribucio de la prestatgeria.
+Es probara amb quinze productes, que te una combinatoria de possibilitats de l'orde de 10E12.
+Els passos del joc de proves son:
+Afegeix 15 productes al cataleg
+Crea una solucio (per defecte amb l'algorisme d'aproximacio)
+Mostra aquesta solucio
+Canvia l'algorisme a backtracking
+Crea una solucio
+Mostra aquesta solucio
+Canvia l'algorisme a greedy amb parametres (producteInicial = 0, numIteracions = 1)
+Crea una solucio
+Mostra aquesta solucio
+Canvia l'algorisme a greedy amb parametres (producteInicial = 5, numIteracions = 1)
+Crea una solucio
+Mostra aquesta solucio
+Canvia l'algorisme a greedy amb parametres (producteInicial = 6, numIteracions = 15)
+Crea una solucio
+Mostra aquesta solucio
+Canvia l'algorisme a greedy amb parametres (producteInicial = 6, numIteracions = 200)
+Crea una solucio
+Mostra aquesta solucio

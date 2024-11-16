@@ -110,4 +110,6 @@ public class TestAproximacio {
         int[] obtingut = algorisme.solucionar(matriu);
         assertArrayEquals("Test: Solucionar amb una matriu de quinze elements", esperat, obtingut);
     }
+
+    static String[] productes = {/*0*/"Fairy", /*1*/"Cocacola", /*2*/"Lays_onduladas", /*3*/"Ruffles_jamom", /*4*/"Pelotazos_Cheetos", /*5*/"Champu_HS", /*6*/"Pepsi", /*7*/"Toallitas_Dodot", /*8*/"Cuchilla_Guillette", /*9*/"Pastillas_Ariel", /*10*/"Pasta_dientes_OralB", /*11*/"Powerade", /*12*/"Agua_Evian", /*13*/"Mtn_dew", /*14*/"Gatorade"};
 }
