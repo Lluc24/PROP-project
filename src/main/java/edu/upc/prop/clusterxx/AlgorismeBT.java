@@ -74,6 +74,13 @@ public class AlgorismeBT extends Algorisme {
             return maxSimilitud;
         }
 
+        //Poda per optimalitat: calculem el màxim possible des del punt actual
+        int productesRestants = numProd - configuracioActual.size();
+        double maxPossible = similitudAcumulada + productesRestants * 100.0;
+        if (maxPossible <= maxSimilitud) {
+            return maxSimilitud; //podem descartar aquesta branca
+        }
+
         for (int i = 0; i < numProd; i++) {
             if (!visitats[i]) {
                 visitats[i] = true;
