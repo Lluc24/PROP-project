@@ -124,7 +124,11 @@ public class AlgorismeGreedy extends Algorisme {
 
             //bucle per executar l'algorisme voraç i seleccionar el següent producte
             int actual = indexInicial;
-            for (int i = 1; i < numProd; i++) {
+            boolean continuar = true;
+            int i = 1;
+
+            while (i < numProd && continuar) {
+
                 double maxSimilitud = -1.0;
                 int proper = -1;
 
@@ -144,12 +148,22 @@ public class AlgorismeGreedy extends Algorisme {
                     similitudTotal += maxSimilitud;
                     actual = proper;
                 }
+
+                i++;
+                //càlcul del valor màxim possible a partir del punt actual
+                int productesRestants = numProd - configuracioActual.size();
+                double maxPossible = similitudTotal + (productesRestants + 1) * 100.0;
+
+                //Poda: si el màxim possible no supera la millor similitud trobada, deixem d'executar el cos
+                if (maxPossible <= maxSimilitudTotal) {
+                    continuar = false;
+                }
             }
 
             if (similitudTotal > maxSimilitudTotal) {
                 maxSimilitudTotal = similitudTotal;
-                for (int i = 0; i < configuracioActual.size(); i++) {
-                    millorConfiguracio[i] = configuracioActual.get(i);
+                for (int j = 0; j < configuracioActual.size(); j++) {
+                    millorConfiguracio[j] = configuracioActual.get(j);
                 }
             }
 
