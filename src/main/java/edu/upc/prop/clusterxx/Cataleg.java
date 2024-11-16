@@ -211,13 +211,13 @@ public class Cataleg {
 
          int index1 = get_index_prod(nom_prod1);
           if (index1 == -1) {
-              System.err.println("Editar similitud: Primer nom no es valid");
+              System.err.println("Editar similitud: Producte no trobat ");
               return; //error
           }
 
           int index2 = get_index_prod(nom_prod2);
           if (index2 == -1) {
-              System.err.println("Editar similitud: Segon nom no es valid");
+              System.err.println("Editar similitud: Producte no trobat ");
               return; //error
           }
 
@@ -418,16 +418,10 @@ public class Cataleg {
      * Funcio que imprimeix, en terminal toto el cataleg, per cada producte el seu nom i similituds.
      */
     public void mostrarCataleg() {
-         for (int i = 0; i < num_prod_act(); ++i) {
-             Producte prod = Cataleg_Productes.get(i);
-             System.out.print("Producte " +i+ ": "+prod.getNom()+" Amb similituds: ");
-             ArrayList<Double>  Simi = prod.getSimilituds();
-             for (int j = 0; j < Simi.size(); ++j) {
-                 if (j < Simi.size()-1) {
-                     System.out.print(getNomProd_index(j) +" -> "+ Simi.get(j)+" , ");
-                 } else System.out.print(getNomProd_index(j) +" -> "+ Simi.get(j)+" ");
-             }
-             System.out.println(" ");
+
+
+        for (int i = 0; i < num_prod_act(); ++i) {
+             mostrarProducte(i);
          }
      }
 
