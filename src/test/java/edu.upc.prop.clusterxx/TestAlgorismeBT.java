@@ -1,5 +1,6 @@
 package edu.upc.prop.clusterxx;
 import static org.junit.Assert.*;
+import edu.upc.prop.clusterxx.Excepcions.*;
 
 //import edu.upc.prop.clusterxx.Algorisme;
 //import edu.upc.prop.clusterxx.AlgorismeBT;
@@ -27,9 +28,10 @@ public class TestAlgorismeBT {
     @Test
     public void testSolucionarMatriuBuida() {
         double[][] matriuSimilituds = new double[0][0];
+
         try {
-            int[] resultat = algorismeBT.solucionar(matriuSimilituds);
-        } catch (IllegalArgumentException e) {
+            algorismeBT.solucionar(matriuSimilituds);
+        } catch (FormatInputNoValid e) {
             assertEquals("El missatge d'error és correcte", "No hi ha productes: La matriu de similituds és buida.", e.getMessage());
         }
     }
@@ -45,7 +47,13 @@ public class TestAlgorismeBT {
                 {0.0}
         };
 
-        int[] configuracio = algorismeBT.solucionar(matriuSimilituds);
+        int[] configuracio = null;
+        try {
+            configuracio = algorismeBT.solucionar(matriuSimilituds);
+
+        } catch (FormatInputNoValid e) {
+            fail("Excepció de FormatInputNoValid inesperada.");
+        }
 
         assertArrayEquals("Ordre correcte", new int[] {0}, configuracio);
     }
@@ -63,9 +71,14 @@ public class TestAlgorismeBT {
                 {0.4, 0.2, 0.9, 0.0}
         };
 
-        int[] configuracio = algorismeBT.solucionar(matriuSimilituds);
-        int[] configuracioEsperada = {0, 1, 2, 3}; //l'ordre correcte segons aquesta matriu
+        int[] configuracio = null;
+        int[] configuracioEsperada = {0, 1, 2, 3};
 
+        try {
+            configuracio = algorismeBT.solucionar(matriuSimilituds);
+        } catch (FormatInputNoValid e) {
+            fail("Excepció de FormatInputNoValid inesperada.");
+        }
         assertArrayEquals("Ordre correcte", configuracioEsperada, configuracio);
     }
 

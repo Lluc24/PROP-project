@@ -1,5 +1,6 @@
 package edu.upc.prop.clusterxx;
 import static org.junit.Assert.*;
+import edu.upc.prop.clusterxx.Excepcions.*;
 
 //import edu.upc.prop.clusterxx.Algorisme;
 //import edu.upc.prop.clusterxx.AlgorismeBT;
@@ -20,7 +21,11 @@ public class TestAlgorismeGreedy {
      */
     @Before
     public void setUp() {
-        algorisme = new AlgorismeGreedy(0, 1);
+        try {
+            algorisme = new AlgorismeGreedy(0, 1);
+        } catch (FormatInputNoValid e) {
+            fail("Excepció de FormatInputNoValid inesperada.");
+        }
     }
 
     /**
@@ -28,7 +33,14 @@ public class TestAlgorismeGreedy {
      */
     @Test
     public void testConstructor() {
-        AlgorismeGreedy alg = new AlgorismeGreedy(1, 5);
+
+        AlgorismeGreedy alg = null;
+
+        try {
+            new AlgorismeGreedy(1, 5);
+        } catch (FormatInputNoValid e) {
+            fail("Excepció de FormatInputNoValid inesperada.");
+        }
         assertEquals("Constructor correcte (producteInicial)", 1, alg.getProducteInicial());
         assertEquals("Constructor correcte (numIteracions)", 5, alg.getNumIteracions());
     }
@@ -41,7 +53,7 @@ public class TestAlgorismeGreedy {
         try {
             new AlgorismeGreedy(-1, 5);
             fail("S'hauria d'haver llançat una excepció");
-        } catch (IllegalArgumentException e) {
+        } catch (FormatInputNoValid e) {
             assertEquals("El missatge d'error és correcte", "L'índex del producte inicial no pot ser negatiu.", e.getMessage());
         }
     }
@@ -54,14 +66,14 @@ public class TestAlgorismeGreedy {
         try {
             new AlgorismeGreedy(1, -5);
             fail("S'hauria d'haver llançat una excepció");
-        } catch (IllegalArgumentException e) {
+        } catch (FormatInputNoValid e) {
             assertEquals("El missatge d'error és correcte", "El nombre d'iteracions ha de ser positiu i no zero.", e.getMessage());
         }
 
         try {
             new AlgorismeGreedy(1, 0);
             fail("S'hauria d'haver llançat una excepció");
-        } catch (IllegalArgumentException e) {
+        } catch (FormatInputNoValid e) {
             assertEquals("El missatge d'error és correcte", "El nombre d'iteracions ha de ser positiu i no zero.", e.getMessage());
         }
     }
@@ -71,7 +83,12 @@ public class TestAlgorismeGreedy {
      */
     @Test
     public void testSetProducteInicialValid() {
-        algorisme.setProducteInicial(2);
+
+        try {
+            algorisme.setProducteInicial(2);
+        } catch (FormatInputNoValid e) {
+            fail("Excepció de FormatInputNoValid inesperada.");
+        }
         assertEquals("Setter correcte", 2, algorisme.getProducteInicial());
     }
 
@@ -83,7 +100,7 @@ public class TestAlgorismeGreedy {
         try {
             algorisme.setProducteInicial(-1);
             fail("S'hauria d'haver llançat una excepció");
-        } catch (IllegalArgumentException e) {
+        } catch (FormatInputNoValid e) {
             assertEquals("El missatge d'error és correcte", "L'índex del producte inicial no pot ser negatiu.", e.getMessage());
         }
     }
@@ -93,7 +110,12 @@ public class TestAlgorismeGreedy {
      */
     @Test
     public void testSetNumIteracionsValid() {
-        algorisme.setNumIteracions(3);
+
+        try {
+            algorisme.setNumIteracions(3);
+        } catch (FormatInputNoValid e) {
+            fail("Excepció de FormatInputNoValid inesperada.");
+        }
         assertEquals("Setter correcte", 3, algorisme.getNumIteracions());
     }
 
@@ -105,14 +127,14 @@ public class TestAlgorismeGreedy {
         try {
             algorisme.setNumIteracions(0);
             fail("S'hauria d'haver llançat una excepció");
-        } catch (IllegalArgumentException e) {
+        } catch (FormatInputNoValid e) {
             assertEquals("El missatge d'error és correcte", "El nombre d'iteracions ha de ser positiu i no zero.", e.getMessage());
         }
 
         try {
             algorisme.setNumIteracions(-3);
             fail("S'hauria d'haver llançat una excepció");
-        } catch (IllegalArgumentException e) {
+        } catch (FormatInputNoValid e) {
             assertEquals("El missatge d'error és correcte", "El nombre d'iteracions ha de ser positiu i no zero.", e.getMessage());
         }
     }
@@ -128,12 +150,15 @@ public class TestAlgorismeGreedy {
                 {0.8, 0.85, 0.0}
         };
 
-        algorisme.setProducteInicial(4);  // Establim un producte inicial invàlid
-
+        try {
+            algorisme.setProducteInicial(4);  // Establim un producte inicial invàlid
+        } catch (FormatInputNoValid e) {
+            fail("Excepció de FormatInputNoValid inesperada.");
+        }
         try {
             algorisme.solucionar(matriuSimilituds);
             fail("S'hauria d'haver llançat una excepció");
-        } catch (IllegalArgumentException e) {
+        } catch (FormatInputNoValid e) {
             assertEquals("El missatge d'error és correcte", "L'índex del producte no pot ser negatiu o superior a la quantitat de productes al catàleg.", e.getMessage());
         }
     }
@@ -146,7 +171,7 @@ public class TestAlgorismeGreedy {
         double[][] matriuSimilituds = new double[0][0];
         try {
             int[] resultat = algorisme.solucionar(matriuSimilituds);
-        } catch (IllegalArgumentException e) {
+        } catch (FormatInputNoValid e) {
             assertEquals("El missatge d'error és correcte", "No hi ha productes: La matriu de similituds és buida.", e.getMessage());
         }
     }
@@ -162,7 +187,13 @@ public class TestAlgorismeGreedy {
                 {0.0}
         };
 
-        int[] configuracio = algorisme.solucionar(matriuSimilituds);
+        int[] configuracio = null;
+
+        try {
+            algorisme.solucionar(matriuSimilituds);
+        } catch (FormatInputNoValid e) {
+            fail("Excepció de FormatInputNoValid inesperada.");
+        }
 
         assertArrayEquals("Ordre correcte", new int[] {0}, configuracio);
     }
@@ -180,7 +211,13 @@ public class TestAlgorismeGreedy {
                 {0.4, 0.2, 0.9, 0.0}
         };
 
-        int[] configuracio = algorisme.solucionar(matriuSimilituds);
+        int[] configuracio = null;
+
+        try {
+            algorisme.solucionar(matriuSimilituds);
+        } catch (FormatInputNoValid e) {
+            fail("Excepció de FormatInputNoValid inesperada.");
+        }
         int[] configuracioEsperada = {0, 2, 3, 1}; //l'ordre correcte segons aquesta matriu
 
         assertArrayEquals("Ordre correcte", configuracioEsperada, configuracio);

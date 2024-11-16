@@ -1,5 +1,6 @@
 package edu.upc.prop.clusterxx;
 import java.util.ArrayList;
+import edu.upc.prop.clusterxx.Excepcions.*;
 
 /**
  * Classe 'AlgorismeGreedy'
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * @see Algorisme
  *
  * @author Efrain Tito Cortés
- * @version 2,0
+ * @version 2,2
  *
  * <p><b>Informació:</b></p>
  * Per al mètode 'solucionar', cal passar com a paràmetre una matriu de similituds, on l'element [i][j]
@@ -32,12 +33,12 @@ public class AlgorismeGreedy extends Algorisme {
      * @param producteInicial L'índex del producte amb el qual comença l'algorisme. No pot ser negatiu, o superior a la quantitat de productes al catàleg, com a precondició.
      * @param numIteracions El nombre d'iteracions que realitzarà l'algorisme. No pot ser negatiu o 0, com a precondició.
      */
-    public AlgorismeGreedy(int producteInicial, int numIteracions) {
+    public AlgorismeGreedy(int producteInicial, int numIteracions) throws FormatInputNoValid {
         if (producteInicial < 0) {
-            throw new IllegalArgumentException("L'índex del producte inicial no pot ser negatiu.");
+            throw new FormatInputNoValid("L'índex del producte inicial no pot ser negatiu.");
         }
         if (numIteracions <= 0) {
-            throw new IllegalArgumentException("El nombre d'iteracions ha de ser positiu i no zero.");
+            throw new FormatInputNoValid("El nombre d'iteracions ha de ser positiu i no zero.");
         }
         this.producteInicial = producteInicial;
         this.numIteracions = numIteracions;
@@ -63,10 +64,10 @@ public class AlgorismeGreedy extends Algorisme {
      * Estableix l'índex del producte inicial amb el qual comença l'algorisme.
      * @param producteInicial L'índex del producte inicial que no pot ser negatiu ni superior a la quantitat de productes al catàleg. Aquesta és una precondició.
      */
-    public void setProducteInicial(int producteInicial) {
+    public void setProducteInicial(int producteInicial) throws FormatInputNoValid {
 
         if (producteInicial < 0) {
-            throw new IllegalArgumentException("L'índex del producte inicial no pot ser negatiu.");
+            throw new FormatInputNoValid("L'índex del producte inicial no pot ser negatiu.");
         }
         this.producteInicial = producteInicial;
     }
@@ -83,10 +84,10 @@ public class AlgorismeGreedy extends Algorisme {
      * Estableix el nombre d'iteracions que l'algorisme ha de realitzar.
      * @param numIteracions El nombre d'iteracions que ha de ser un valor positiu no zero. Aquesta és una precondició.
      */
-    public void setNumIteracions(int numIteracions) {
+    public void setNumIteracions(int numIteracions) throws FormatInputNoValid {
 
         if (numIteracions <= 0) {
-            throw new IllegalArgumentException("El nombre d'iteracions ha de ser positiu i no zero.");
+            throw new FormatInputNoValid("El nombre d'iteracions ha de ser positiu i no zero.");
         }
         this.numIteracions = numIteracions;
     }
@@ -97,16 +98,16 @@ public class AlgorismeGreedy extends Algorisme {
      * @return Un vector d'índexs de productes al catàleg que representa la millor configuració trobada.
      */
     @Override
-    public int[] solucionar(double[][] matriuSimilituds) {
+    public int[] solucionar(double[][] matriuSimilituds) throws FormatInputNoValid {
 
         int numProd = matriuSimilituds.length;
 
         if (numProd <= 0) {
-            throw new IllegalArgumentException("No hi ha productes: La matriu de similituds és buida.");
+            throw new FormatInputNoValid("No hi ha productes: La matriu de similituds és buida.");
         }
 
         if (producteInicial < 0 || producteInicial >= numProd) {
-            throw new IllegalArgumentException("L'índex del producte no pot ser negatiu o superior a la quantitat de productes al catàleg.");
+            throw new FormatInputNoValid("L'índex del producte no pot ser negatiu o superior a la quantitat de productes al catàleg.");
         }
 
         int[] millorConfiguracio = new int[numProd];

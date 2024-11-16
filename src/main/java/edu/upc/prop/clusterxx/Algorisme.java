@@ -1,11 +1,11 @@
 package edu.upc.prop.clusterxx;
 
-public class Algorisme {
+import edu.upc.prop.clusterxx.Excepcions.FormatInputNoValid;
+
+public abstract class Algorisme {
     Algorisme() {
 
     }
 
-    public int[] solucionar(double[][] matriuSimilituds) {
-        return null;
-    }
+    public abstract int[] solucionar(double[][] matriuSimilituds) throws FormatInputNoValid;
 }

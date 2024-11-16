@@ -1,5 +1,6 @@
 package edu.upc.prop.clusterxx;
 import java.util.ArrayList;
+import edu.upc.prop.clusterxx.Excepcions.*;
 
 /**
  * Classe 'AlgorismeBT'
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  * @see Algorisme
  *
  * @author Efrain Tito Cortés
- * @version 2,0
+ * @version 2,2
  *
  * <p><b>Informació:</b></p>
  * Per al mètode 'solucionar', cal passar com a paràmetre una matriu de similituds, on l'element
@@ -31,7 +32,11 @@ public class AlgorismeBT extends Algorisme {
      * @return Un vector d'índexs de productes al catàleg que representa la millor configuració trobada.
      */
     @Override
-    public int[] solucionar(double[][] matriuSimilituds) {
+    public int[] solucionar(double[][] matriuSimilituds) throws FormatInputNoValid {
+
+        if (matriuSimilituds.length <= 0) {
+            throw new FormatInputNoValid("No hi ha productes: La matriu de similituds és buida.");
+        }
 
         ArrayList<Integer> configuracioActual = new ArrayList<>();
         boolean[] visitats = new boolean[matriuSimilituds.length];
@@ -55,9 +60,6 @@ public class AlgorismeBT extends Algorisme {
     private double backtrack(double[][] matriuSimilituds, ArrayList<Integer> configuracioActual, boolean[] visitats, double similitudAcumulada, int[] millorConfiguracio, double maxSimilitud) {
         int numProd = matriuSimilituds.length;
 
-        if (numProd <= 0) {
-            throw new IllegalArgumentException("No hi ha productes: La matriu de similituds és buida.");
-        }
         //comprovem si la configuració actual està completa
         if (configuracioActual.size() == numProd) {
             //sumem la similitud entre el primer i l'últim producte
