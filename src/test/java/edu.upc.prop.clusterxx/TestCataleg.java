@@ -1,4 +1,4 @@
-
+package edu.upc.prop.clusterxx;
 import edu.upc.prop.clusterxx.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
