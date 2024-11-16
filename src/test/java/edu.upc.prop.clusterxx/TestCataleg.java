@@ -3,7 +3,7 @@ import edu.upc.prop.clusterxx.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import edu.upc.prop.clusterxx.Excepcions.ProducteNoValid;
+import edu.upc.prop.clusterxx.Excepcions.*;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.Before;
@@ -11,6 +11,7 @@ import org.junit.Before;
 import edu.upc.prop.clusterxx.Pair;
 import edu.upc.prop.clusterxx.Cataleg;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -43,6 +44,8 @@ public class TestCataleg {
             try {
                 aux_cat.afegir_producte(nom_prod, llista_simi);
             } catch (ProducteNoValid e) {
+                System.out.println(e.getMessage());
+            } catch (FormatInputNoValid e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -91,6 +94,8 @@ public class TestCataleg {
             CatalegTest.afegir_producte(new_prod, simi);
         } catch (ProducteNoValid e) {
             System.out.println(e.getMessage());
+        } catch (FormatInputNoValid e) {
+            System.out.println(e.getMessage());
         }
         //Comprovació si ha funcionat correctament
         int size2 = CatalegTest.num_prod_act();
@@ -129,6 +134,8 @@ public class TestCataleg {
         try {
             CatalegTest.afegir_producte(new_prod, simi);
         } catch (ProducteNoValid e) {
+            System.out.println(e.getMessage());
+        } catch (FormatInputNoValid e) {
             System.out.println(e.getMessage());
         }
         //Comprovació si ha funcionat correctament
@@ -171,6 +178,8 @@ public class TestCataleg {
         try {
             CatalegTest.afegir_producte(new_prod, simi);
         } catch (ProducteNoValid e){
+            System.out.println(e.getMessage());
+        } catch (FormatInputNoValid e) {
             System.out.println(e.getMessage());
         }
         //Comprovació si ha funcionat correctament
@@ -255,6 +264,8 @@ public class TestCataleg {
             CatalegTest.editar_similitud(CatalegTest.getNomProd_index(index1), CatalegTest.getNomProd_index(index2), 99.99);
         } catch (ProducteNoValid e) {
             System.out.println(e.getMessage());
+        } catch (FormatInputNoValid e) {
+            System.out.println(e.getMessage());
         }
         assertEquals("Similitud producte editat", CatalegTest.getProd_index(index1).get_simil_prod(index2), 99.99, 0.0);
         assertEquals("Similitud producte editat", CatalegTest.getProd_index(index2).get_simil_prod(index1), 99.99, 0.0);
@@ -265,6 +276,9 @@ public class TestCataleg {
         try {
             CatalegTest.editar_similitud(CatalegTest.getNomProd_index(index1), CatalegTest.getNomProd_index(index2), 99.99);
         } catch (ProducteNoValid e) {
+            System.out.println(e.getMessage());
+        }
+        catch (FormatInputNoValid e) {
             System.out.println(e.getMessage());
         }
         assertEquals("Similitud producte editat", CatalegTest.getProd_index(index1).get_simil_prod(index2), 0.0, 0.0);
