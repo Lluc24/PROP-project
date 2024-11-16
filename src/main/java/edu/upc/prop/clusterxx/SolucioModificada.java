@@ -1,5 +1,8 @@
 package edu.upc.prop.clusterxx;
 
+import edu.upc.prop.clusterxx.Excepcions.IntercanviNoValid;
+import edu.upc.prop.clusterxx.Excepcions.NomSolucioNoValid;
+
 import java.util.*;
 
 public class SolucioModificada extends Solucio {
@@ -20,10 +23,10 @@ public class SolucioModificada extends Solucio {
      * @param prod2
      * @author Eulalia Peiret Santacana
      */
-    public void intercanvia(String prod1, String prod2){
+    public void intercanvia (String prod1, String prod2) throws IntercanviNoValid{
         if (prod1.equals(prod2)) {
-            System.out.println("SolucioModificada: error no pots intercanviar dos productes iguals");
-            return;
+            String missatge = "Error no pots intercanviar dos productes iguals";
+            throw new IntercanviNoValid(missatge);
         }
         int index1 = -1;
         int index2 = -1;
@@ -42,6 +45,9 @@ public class SolucioModificada extends Solucio {
             solucio.set(index1, solucio.get(index2));
             solucio.set(index2, aux);
         }
-        else System.out.println("SolucioModificada: error no existeix algun dels dos productes");
+        else {
+            String missatge = "No existeix algun dels dos productes en la solucio";
+            throw new IntercanviNoValid(missatge);
+        }
     }
 }
