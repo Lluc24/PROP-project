@@ -21,8 +21,8 @@ public class Driver {
            // Scanner scanner = new Scanner(System.in);
             int gestio = scanner.nextInt();
 
-            System.out.println("Selecciona l'accio:");
             if (gestio == 1) {
+                System.out.println("Selecciona l'accio:");
                 System.out.println("[1] Visualitzar tots els productes");
                 System.out.println("[2] Visualitzar un producte especific pel seu id");
                 System.out.println("[3] Crear un nou producte");
@@ -60,6 +60,7 @@ public class Driver {
                     ctrlDomini.editarSimilitud(scanner.next(), scanner.next(), Double.parseDouble(scanner.next()));
                 }
             } else if (gestio == 2) {
+                System.out.println("Selecciona l'accio:");
                 System.out.println("[1] Visualitzar totes les distribucions existents");
                 System.out.println("[2] Visualitzar una distribucio especifica");
                 System.out.println("[3] Calcular una distribucio per la prestatgeria actual");
@@ -89,7 +90,14 @@ public class Driver {
                     System.out.println("Entra el nom del algorisme: greedy, aproximacio, algorismeBT");
                     String nomAlgorisme = scanner.next();
 
-                    ctrlDomini.canviarAlgorisme(nomAlgorisme);
+                    if (nomAlgorisme.equals("greedy")) {
+                        System.out.println("Entra el valor del parametre producteInicial: ");
+                        int producteIncial = scanner.nextInt();
+                        System.out.println("Entra el valor del parametre numIteracions: ");
+                        int numIteracions = scanner.nextInt();
+                        ctrlDomini.canviarAlgorisme(nomAlgorisme, producteIncial, numIteracions);
+                    }
+                    else ctrlDomini.canviarAlgorisme(nomAlgorisme);
                 }
             }
             else if (gestio == 3) {

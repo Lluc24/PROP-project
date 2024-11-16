@@ -1,0 +1,457 @@
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte Cocacola
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte Lays_onduladas
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte Ruffles_jamom
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte Pelotazos_Cheetos
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte Champu_HS
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte Pepsi
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte Toallitas_Dodot
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte Cuchilla_Guillette
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte Pastillas_Ariel
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte Pasta_dientes_OralB
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte Powerade
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte Agua_Evian
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte Mtn_dew
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte Gatorade
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+SolucioAproximacio: Fairy, Lays_onduladas, Cocacola, Pasta_dientes_OralB, Pelotazos_Cheetos, Ruffles_jamom, Cuchilla_Guillette, Gatorade, Champu_HS, Toallitas_Dodot, Pepsi, Agua_Evian, Pastillas_Ariel, Powerade, Mtn_dew
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Entra el valor del parametre producteInicial: 
+Entra el valor del parametre numIteracions: 
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+SolucioGreedy01: Fairy, Lays_onduladas, Pasta_dientes_OralB, Pelotazos_Cheetos, Ruffles_jamom, Pepsi, Champu_HS, Gatorade, Mtn_dew, Agua_Evian, Powerade, Cocacola, Pastillas_Ariel, Cuchilla_Guillette, Toallitas_Dodot
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Entra el valor del parametre producteInicial: 
+Entra el valor del parametre numIteracions: 
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+SolucioGreedy51: Fairy, Lays_onduladas, Pasta_dientes_OralB, Pelotazos_Cheetos, Ruffles_jamom, Pepsi, Champu_HS, Gatorade, Mtn_dew, Agua_Evian, Powerade, Cocacola, Pastillas_Ariel, Cuchilla_Guillette, Toallitas_Dodot
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Entra el valor del parametre producteInicial: 
+Entra el valor del parametre numIteracions: 
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+SolucioGreedy6-15: Fairy, Lays_onduladas, Pasta_dientes_OralB, Pelotazos_Cheetos, Ruffles_jamom, Pepsi, Champu_HS, Gatorade, Mtn_dew, Agua_Evian, Powerade, Cocacola, Pastillas_Ariel, Cuchilla_Guillette, Toallitas_Dodot
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Entra el valor del parametre producteInicial: 
+Entra el valor del parametre numIteracions: 
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+SolucioGreedy6-200: Fairy, Lays_onduladas, Pasta_dientes_OralB, Pelotazos_Cheetos, Ruffles_jamom, Pepsi, Champu_HS, Gatorade, Mtn_dew, Agua_Evian, Powerade, Cocacola, Pastillas_Ariel, Cuchilla_Guillette, Toallitas_Dodot
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+solucioBacktracking: Fairy, Pepsi, Ruffles_jamom, Pelotazos_Cheetos, Champu_HS, Cuchilla_Guillette, Toallitas_Dodot, Lays_onduladas, Cocacola, Pastillas_Ariel
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Fins la proxima!
