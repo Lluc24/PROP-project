@@ -1,5 +1,8 @@
 package edu.upc.prop.clusterxx;
 
+import edu.upc.prop.clusterxx.Excepcions.IntercanviNoValid;
+import edu.upc.prop.clusterxx.Excepcions.NomSolucioNoValid;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -31,7 +34,7 @@ public class GestioSolucio {
      * post: S'ha creat una instància d'Algorisme amb els paràmetres indicats
      * @param tipusAlgorisme
      */
-    public void gestioAlgorisme(String tipusAlgorisme) {
+    public void gestioAlgorisme(String tipusAlgorisme){
 
         if (tipusAlgorisme.equals("greedy")){
             algorismeAct =  new AlgorismeGreedy();
@@ -43,7 +46,8 @@ public class GestioSolucio {
             algorismeAct = new AlgorismeBT();;
         }
         else {
-            System.out.println("GestioSolucio: error al especificar el tipus d'algorisme");
+            String missatge = "Error al especificar el tipus d'algorisme";
+            throw new FormatInputNoValid(missatge);
         }
     }
     /**
@@ -51,11 +55,11 @@ public class GestioSolucio {
      * post: s'ha creat una nova instància de solucio resolta amb algorismeAct
      * @param nomSolucio : nom de la nova solucio que es vol crear
      */
-    public void creaSolucio(String nomSolucio){
+    public void creaSolucio(String nomSolucio) throws NomSolucioNoValid {
         for (Solucio s: solucions){
             if (s.getNom().equals(nomSolucio)) {
-                System.out.println("GestioSolucions: error ja existeix una solucio amb aquest nom");
-                return;
+                String missatge = "Ja existeix una solucio amb aquest nom";
+                throw new NomSolucioNoValid(missatge);
             }
         }
         double[][] similituds = cataleg.getMatriuSimilituds();
@@ -75,7 +79,7 @@ public class GestioSolucio {
      * @param prod2
      * @param nomSolucio
      */
-    public void modificarSolucio (String prod1, String prod2, String nomSolucio){
+    public void modificarSolucio (String prod1, String prod2, String nomSolucio) throws IntercanviNoValid, NomSolucioNoValid {
         boolean trobat = false;
         //ArrayList<Solucio> solucionsTemp = new ArrayList<>(solucions);
         Iterator<Solucio> iterator = solucions.iterator();
@@ -91,13 +95,16 @@ public class GestioSolucio {
                     break;
                 }
                 else {
-                    System.out.println("GestioSolucions: error no existeix algun dels productes en la solucio");
-                    return;
+                    String missatge = "Error no existeix algun dels productes en la solucio";
+                    throw new NomSolucioNoValid(missatge);
                 }
 
             }
         }
-        if (!trobat)System.out.println("GestioSolucions: error no existeix una solucio amb aquest nom");
+        if (!trobat){
+            String missatge = "No existeix una solucio amb aquest nom";
+            throw new NomSolucioNoValid(missatge);
+        }
         else {
             solucions.add(solMod);
         }
@@ -115,7 +122,10 @@ public class GestioSolucio {
                 break;
             }
         }
-        if (!trobat)System.out.println("GestioSolucions: error no existeix una solucio amb aquest nom");
+        if (!trobat){
+            String missatge = "No existeix una solucio amb aquest nom";
+            throw new NomSolucioNoValid(missatge);
+        }
     }
 
     // Obtenir totes les solucions
@@ -140,6 +150,9 @@ public class GestioSolucio {
                 return;
             }
         }
-        if (!trobat) System.err.println("No exiteix cap solucio amb aquest nom");
+        if (!trobat) {
+            String missatge = "No existeix una solucio amb aquest nom";
+            throw new NomSolucioNoValid(missatge);
+        }
     }
 }

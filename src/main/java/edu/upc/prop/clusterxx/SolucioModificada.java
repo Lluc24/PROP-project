@@ -1,5 +1,8 @@
 package edu.upc.prop.clusterxx;
 
+import edu.upc.prop.clusterxx.Excepcions.IntercanviNoValid;
+import edu.upc.prop.clusterxx.Excepcions.NomSolucioNoValid;
+
 import java.util.*;
 
 public class SolucioModificada extends Solucio {
@@ -22,8 +25,8 @@ public class SolucioModificada extends Solucio {
      */
     public void intercanvia(String prod1, String prod2){
         if (prod1.equals(prod2)) {
-            System.out.println("SolucioModificada: error no pots intercanviar dos productes iguals");
-            return;
+            String missatge = "Error no pots intercanviar dos productes iguals";
+            throw new IntercanviNoValid(missatge);
         }
         int index1 = -1;
         int index2 = -1;

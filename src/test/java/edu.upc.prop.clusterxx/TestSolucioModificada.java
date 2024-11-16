@@ -1,5 +1,6 @@
 package edu.upc.prop.clusterxx;
 
+import edu.upc.prop.clusterxx.Excepcions.IntercanviNoValid;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
@@ -25,7 +26,6 @@ public class TestSolucioModificada {
         }
         alg = mock(Algorisme.class);
 
-        // Crear la instancia de Solucio
         solucioModificada = new SolucioModificada(productes, alg, "Solucio1");
     }
 
@@ -46,7 +46,11 @@ public class TestSolucioModificada {
      */
     @Test
     public void testIntercanvia1() {
-        solucioModificada.intercanvia(productes.get(0).getNom(), productes.get(1).getNom());
+        try {
+            solucioModificada.intercanvia(productes.get(0).getNom(), productes.get(1).getNom());
+        }catch (IntercanviNoValid e){
+            System.out.println(e.getMessage());
+        }
 
         ArrayList<Producte> productesIntercanviats = productes;
         productesIntercanviats.add(0, productes.get(1));
@@ -61,7 +65,11 @@ public class TestSolucioModificada {
      */
     @Test
     public void testIntercanvia2() {
-        solucioModificada.intercanvia(productes.get(0).getNom(), productes.get(3).getNom());
+        try {
+            solucioModificada.intercanvia(productes.get(0).getNom(), productes.get(3).getNom());
+        }catch (IntercanviNoValid e){
+            System.out.println(e.getMessage());
+        }
 
         ArrayList<Producte> productesIntercanviats = productes;
         productesIntercanviats.add(0, productes.get(3));
@@ -76,7 +84,12 @@ public class TestSolucioModificada {
      */
     @Test
     public void testIntercanvia3() {
-        solucioModificada.intercanvia(productes.getFirst().getNom(), productes.getFirst().getNom());
+        try {
+            solucioModificada.intercanvia(productes.getFirst().getNom(), productes.getFirst().getNom());
+        }catch (IntercanviNoValid e){
+        System.out.println(e.getMessage());
+        }
+
         assertEquals("Verificar intercanvi", productes, solucioModificada.getSolucio());
     }
 
