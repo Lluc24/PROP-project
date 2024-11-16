@@ -278,6 +278,9 @@ public class TestCataleg {
         } catch (ProducteNoValid e) {
             System.out.println(e.getMessage());
         }
+        catch (FormatInputNoValid e) {
+            System.out.println(e.getMessage());
+        }
         assertEquals("Similitud producte editat", CatalegTest.getProd_index(index1).get_simil_prod(index2), 0.0, 0.0);
         assertEquals("Similitud producte editat", CatalegTest.getProd_index(index2).get_simil_prod(index1), 0.0, 0.0);
 
