@@ -37,3 +37,7 @@ dependencies {
 
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.14.2'
 }
+
+run {
+    standardInput = System.in
+}

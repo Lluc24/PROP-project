@@ -1,0 +1,43 @@
+1
+3
+galetes
+1
+3
+llet
+galetes 0.5
+1
+3
+cereals
+llet 0.9 galetes 0.9
+1
+3
+poma
+llet 0.1 galetes 0.1 cereals 0.1
+2
+3
+Solucio1
+2
+1
+2
+5
+Solucio1 poma cereals
+2
+2
+Solucio1
+2
+4
+Solucio1
+2
+1
+2
+3
+Solucio1
+1
+4
+poma
+2
+3
+Solucio2
+2
+1
+3

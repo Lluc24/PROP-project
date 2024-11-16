@@ -1,0 +1,12 @@
+Afegeix 4 productes al cataleg
+Crea una solucio
+Canvia l'algorisme per resoldre
+Crea una solucio
+Canvia l'algorisme per resoldre
+Crea una solucio
+Mostra totes les solucions
+Afegeix un producte al cataleg
+Crea una solucio
+Elimina tres solucions inicials
+Mostra totes les solucions
+Acaba
