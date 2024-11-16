@@ -1,0 +1,162 @@
+1
+3
+Fairy
+1
+3
+Cocacola
+Fairy 29.0
+1
+3
+Lays_onduladas
+Fairy 82.0
+Cocacola 55.0
+1
+3
+Ruffles_jamom
+Fairy 46.0
+Cocacola 46.0
+Lays_onduladas 68.0
+1
+3
+Pelotazos_Cheetos
+Fairy 68.0
+Cocacola 42.0
+Lays_onduladas 46.0
+Ruffles_jamom 82.0
+1
+3
+Champu_HS
+Fairy 52.0
+Cocacola 43.0
+Lays_onduladas 55.0
+Ruffles_jamom 15.0
+Pelotazos_Cheetos 74.0
+1
+3
+Pepsi
+Fairy 72.0
+Cocacola 43.0
+Lays_onduladas 23.0
+Ruffles_jamom 72.0
+Pelotazos_Cheetos 23.0
+Champu_HS 61.0
+1
+3
+Toallitas_Dodot
+Fairy 42.0
+Cocacola 23.0
+Lays_onduladas 43.0
+Ruffles_jamom 31.0
+Pelotazos_Cheetos 52.0
+Champu_HS 23.0
+Pepsi 42.0
+1
+3
+Cuchilla_Guillette
+Fairy 51.0
+Cocacola 23.0
+Lays_onduladas 41.0
+Ruffles_jamom 62.0
+Pelotazos_Cheetos 21.0
+Champu_HS 55.0
+Pepsi 23.0
+Toallitas_Dodot 33.0
+1
+3
+Pastillas_Ariel
+Fairy 55.0
+Cocacola 31.0
+Lays_onduladas 29.0
+Ruffles_jamom 42.0
+Pelotazos_Cheetos 46.0
+Champu_HS 31.0
+Pepsi 31.0
+Toallitas_Dodot 15.0
+Cuchilla_Guillette 29.0
+1
+3
+Pasta_dientes_OralB
+Fairy 29.0
+Cocacola 41.0
+Lays_onduladas 79.0
+Ruffles_jamom 21.0
+Pelotazos_Cheetos 82.0
+Champu_HS 33.0
+Pepsi 77.0
+Toallitas_Dodot 37.0
+Cuchilla_Guillette 62.0
+Pastillas_Ariel 51.0
+1
+3
+Powerade
+Fairy 74.0
+Cocacola 51.0
+Lays_onduladas 21.0
+Ruffles_jamom 51.0
+Pelotazos_Cheetos 58.0
+Champu_HS 37.0
+Pepsi 37.0
+Toallitas_Dodot 33.0
+Cuchilla_Guillette 46.0
+Pastillas_Ariel 21.0
+Pasta_dientes_OralB 65.0
+1
+3
+Agua_Evian
+Fairy 23.0
+Cocacola 11.0
+Lays_onduladas 64.0
+Ruffles_jamom 51.0
+Pelotazos_Cheetos 46.0
+Champu_HS 51.0
+Pepsi 51.0
+Toallitas_Dodot 33.0
+Cuchilla_Guillette 29.0
+Pastillas_Ariel 41.0
+Pasta_dientes_OralB 42.0
+Powerade 61.0
+1
+3
+Mtn_dew
+Fairy 72.0
+Cocacola 52.0
+Lays_onduladas 31.0
+Ruffles_jamom 43.0
+Pelotazos_Cheetos 65.0
+Champu_HS 29.0
+Pepsi 46.0
+Toallitas_Dodot 31.0
+Cuchilla_Guillette 51.0
+Pastillas_Ariel 23.0
+Pasta_dientes_OralB 59.0
+Powerade 11.0
+Agua_Evian 62.0
+1
+3
+Gatorade
+Fairy 46.0
+Cocacola 21.0
+Lays_onduladas 51.0
+Ruffles_jamom 64.0
+Pelotazos_Cheetos 23.0
+Champu_HS 59.0
+Pepsi 33.0
+Toallitas_Dodot 37.0
+Cuchilla_Guillette 11.0
+Pastillas_Ariel 37.0
+Pasta_dientes_OralB 61.0
+Powerade 55.0
+Agua_Evian 23.0
+Mtn_dew 59.0
+2
+3
+SolucioAproximacio
+2
+2
+SolucioAproximacio
+2
+6
+greedy
+2
+3
+SolucioGreedy01
