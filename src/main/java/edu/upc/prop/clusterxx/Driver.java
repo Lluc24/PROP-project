@@ -21,7 +21,7 @@ public class Driver {
            // Scanner scanner = new Scanner(System.in);
             int gestio = scanner.nextInt();
 
-            System.out.println("Selecciona la accio:");
+            System.out.println("Selecciona l'accio:");
             if (gestio == 1) {
                 System.out.println("[1] Visualitzar tots els productes");
                 System.out.println("[2] Visualitzar un producte especific pel seu id");
