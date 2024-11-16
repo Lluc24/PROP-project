@@ -36,9 +36,10 @@ public class Solucio {
      * @author Eulalia Peiret Santacana
      */
     public void mostrarSolucio() {
+        System.out.print(nom+": ");
         for (int i = 0; i < solucio.size(); i++) {
             Producte p = solucio.get(i);  // Obtener el producto en la posición i
-            System.out.print(p.getNom()+": ");
+            System.out.print(p.getNom());
 
             if (i != solucio.size() - 1) {
                 System.out.print(", ");

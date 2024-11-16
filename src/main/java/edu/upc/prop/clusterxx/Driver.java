@@ -12,12 +12,13 @@ public class Driver {
 
     public void executar() {
         boolean finalitzat = false;
+        Scanner scanner = new Scanner(System.in);
         while (!finalitzat) {
             System.out.println("Quina gestio vols realitzar?");
             System.out.println("[1] Gestionar els productes i similituds de la prestatgeria");
             System.out.println("[2] Gestionar les distribucions existents i calcular una nova");
             System.out.println("[3] Sortir");
-            Scanner scanner = new Scanner(System.in);
+           // Scanner scanner = new Scanner(System.in);
             int gestio = scanner.nextInt();
 
             System.out.println("Selecciona la accio:");
@@ -32,8 +33,8 @@ public class Driver {
                 if (accio == 1) {
                     ctrlDomini.mostrarCataleg();
                 } else if (accio == 2) {
-                    String idProducte = scanner.next();
                     System.out.println("Entra el id del producte");
+                    String idProducte = scanner.next();
                     ctrlDomini.mostrarProducte(idProducte);
                 } else if (accio == 3) {
                     System.out.println("Entra el nom del producte");
@@ -87,6 +88,7 @@ public class Driver {
                 } else if (accio == 6) {
                     System.out.println("Entra el nom del algorisme: greedy, aproximacio, algorismeBT");
                     String nomAlgorisme = scanner.next();
+
                     ctrlDomini.canviarAlgorisme(nomAlgorisme);
                 }
             }

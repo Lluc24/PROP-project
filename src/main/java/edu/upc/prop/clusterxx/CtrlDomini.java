@@ -101,7 +101,7 @@ public class CtrlDomini{
     /**
      * modifca la solucio nomSol i intercanvia prod1 i prod2
      */
-   public void modificarSolucio(String prod1, String prod2, String nomSol){
+   public void modificarSolucio(String nomSol, String prod1, String prod2){
         gs.modificarSolucio(prod1,prod2,nomSol);
     }
 
