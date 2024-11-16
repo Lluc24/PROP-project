@@ -1,5 +1,7 @@
 package edu.upc.prop.clusterxx;
 
+import edu.upc.prop.clusterxx.Excepcions.FormatInputNoValid;
+
 import java.util.*;
 
 public class Aproximacio extends Algorisme {
@@ -7,7 +9,7 @@ public class Aproximacio extends Algorisme {
     private int n, m;
 
     @Override
-    public int[] solucionar(double[][] matriuSimilituds) {
+    public int[] solucionar(double[][] matriuSimilituds) throws FormatInputNoValid {
         n = matriuSimilituds.length;
         m = n * (n - 1) / 2;
         similituds = matriuSimilituds;
