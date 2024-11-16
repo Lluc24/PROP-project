@@ -1,7 +1,6 @@
 package edu.upc.prop.clusterxx;
 
-import edu.upc.prop.clusterxx.Excepcions.IntercanviNoValid;
-import edu.upc.prop.clusterxx.Excepcions.NomSolucioNoValid;
+import edu.upc.prop.clusterxx.Excepcions.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -32,6 +31,8 @@ public class CtrlDomini{
             cataleg.afegir_producte(nom);
         } catch (ProducteNoValid e){
             System.out.println(e.getMessage());
+        }catch (FormatInputNoValid e){
+            System.out.println(e.getMessage());
         }
     }
 
@@ -42,6 +43,8 @@ public class CtrlDomini{
         try {
             cataleg.afegir_producte(nom, simi);
         }catch (ProducteNoValid e){
+            System.out.println(e.getMessage());
+        }catch (FormatInputNoValid e){
             System.out.println(e.getMessage());
         }
     }
@@ -61,6 +64,8 @@ public class CtrlDomini{
             cataleg.eliminar_producte_nom(nom);
         }catch (ProducteNoValid e){
             System.out.println(e.getMessage());
+        }catch (FormatInputNoValid e){
+            System.out.println(e.getMessage());
         }
     }
 
@@ -78,6 +83,8 @@ public class CtrlDomini{
         try {
             cataleg.editar_similitud(prod1, prod2, sim);
         }catch (ProducteNoValid e){
+            System.out.println(e.getMessage());
+        }catch (FormatInputNoValid e){
             System.out.println(e.getMessage());
         }
     }
@@ -156,6 +163,22 @@ public class CtrlDomini{
     public void canviarAlgorisme(String nomAlg){
         try {
             gs.gestioAlgorisme(nomAlg);
+        }catch (FormatInputNoValid e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * estableix el algorisme amb nom nomAlg el algorisme per solucionar
+     */
+    public void canviarAlgorisme(String nomAlg, int param1, int param2){
+        try {
+            gs.gestioAlgorisme(nomAlg);
+        }catch (FormatInputNoValid e){
+            System.out.println(e.getMessage());
+        }
+        try {
+            gs.setParametres(param1, param2);
         }catch (FormatInputNoValid e){
             System.out.println(e.getMessage());
         }

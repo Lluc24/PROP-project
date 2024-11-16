@@ -1,5 +1,6 @@
 package edu.upc.prop.clusterxx;
 
+import edu.upc.prop.clusterxx.Excepcions.FormatInputNoValid;
 import edu.upc.prop.clusterxx.Excepcions.IntercanviNoValid;
 import edu.upc.prop.clusterxx.Excepcions.NomSolucioNoValid;
 
@@ -27,6 +28,9 @@ public class GestioSolucio {
 
     public Algorisme getAlgorismeAct(){ return algorismeAct;}
 
+    public void setParametres(int param1, int param2) throws IllegalArgumentException{
+        algorismeAct = new AlgorismeGreedy(param1, param2);
+    }
 
     //Mètodes addicionals
     /**
@@ -34,7 +38,7 @@ public class GestioSolucio {
      * post: S'ha creat una instància d'Algorisme amb els paràmetres indicats
      * @param tipusAlgorisme
      */
-    public void gestioAlgorisme(String tipusAlgorisme){
+    public void gestioAlgorisme(String tipusAlgorisme) throws FormatInputNoValid {
 
         if (tipusAlgorisme.equals("greedy")){
             algorismeAct =  new AlgorismeGreedy();
@@ -111,7 +115,7 @@ public class GestioSolucio {
     }
 
     // Eliminar una solució
-    public void eliminarSolucio(String nomSolucio) {
+    public void eliminarSolucio(String nomSolucio) throws NomSolucioNoValid {
         boolean trobat = false;
         Iterator<Solucio> iterator = solucions.iterator();
         while (iterator.hasNext()){
@@ -140,7 +144,7 @@ public class GestioSolucio {
     }
 
     // Obtenir una solucio especifica
-    public void mostrarSolucio(String nomSol) {
+    public void mostrarSolucio(String nomSol) throws NomSolucioNoValid {
         //per cada Solucio de la llista solucions, s'ha de cridar a la seva funcio publica mostrarSolucio()
         boolean trobat = false;
         for (Solucio s: solucions){
