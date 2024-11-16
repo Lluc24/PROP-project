@@ -122,6 +122,8 @@ public class CtrlDomini{
            gs.creaSolucio(nomSol);
        }catch (NomSolucioNoValid e) {
            System.out.println(e.getMessage());
+       }catch (FormatInputNoValid e) {
+           System.out.println(e.getMessage());
        }
     }
 
@@ -169,13 +171,12 @@ public class CtrlDomini{
         }catch (FormatInputNoValid e){
             System.out.println(e.getMessage());
         }
-        /*
+
         try {
             gs.setParametres(param1, param2);
         }catch (FormatInputNoValid e){
             System.out.println(e.getMessage());
         }
 
-         */
     }
 }

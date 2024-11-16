@@ -4,6 +4,7 @@ import edu.upc.prop.clusterxx.Excepcions.FormatInputNoValid;
 import edu.upc.prop.clusterxx.Excepcions.IntercanviNoValid;
 import edu.upc.prop.clusterxx.Excepcions.NomSolucioNoValid;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -28,7 +29,7 @@ public class GestioSolucio {
 
     public Algorisme getAlgorismeAct(){ return algorismeAct;}
 
-    public void setParametres(int param1, int param2) throws IllegalArgumentException{
+    public void setParametres(int param1, int param2) throws FormatInputNoValid{
         algorismeAct = new AlgorismeGreedy(param1, param2);
     }
 
@@ -59,7 +60,7 @@ public class GestioSolucio {
      * post: s'ha creat una nova instància de solucio resolta amb algorismeAct
      * @param nomSolucio : nom de la nova solucio que es vol crear
      */
-    public void creaSolucio(String nomSolucio) throws NomSolucioNoValid {
+    public void creaSolucio(String nomSolucio) throws NomSolucioNoValid, FormatInputNoValid {
         for (Solucio s: solucions){
             if (s.getNom().equals(nomSolucio)) {
                 String missatge = "Ja existeix una solucio amb aquest nom";

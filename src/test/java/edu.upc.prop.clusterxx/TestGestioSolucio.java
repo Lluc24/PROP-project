@@ -31,6 +31,52 @@ public class TestGestioSolucio {
     }
 
     /**
+     * Test de getAlgorismeAct
+     * Comprova que retorni el algorisme corresponent
+     */
+    @Test
+    public void getAlgorismeActTest() {
+        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof Aproximacio);
+    }
+
+    /**
+     * Test de getSolucions
+     * Comprova que retorni el vector de solucions
+     */
+    @Test
+    public void getSolucionsTest() {
+        ArrayList<Solucio> solucions = new ArrayList<Solucio>();
+        assertEquals("Verificar solucions", solucions, gs.getSolucions());
+    }
+
+    /**
+     * Test de getCatalegAct
+     * Comprova que retorni el cataleg corresponent
+     */
+    @Test
+    public void getCatalegTest() {
+        assertEquals("Verificar cataleg", c, gs.getCataleg());
+    }
+
+    /**
+     * Test de setParametres
+     * Comprova que s'hagi creat un algorisme Greedy amb els parametres corresponents
+     */
+    @Test
+    public void setParametresTest() {
+        /*
+        try {
+            gs.setParametres(3, 4);
+        }catch (FormatInputNoValid e){
+            System.out.println(e.getMessage());
+        }
+
+        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof AlgorismeGreedy);
+
+         */
+    }
+
+    /**
      * Test de la creadora
      * Crea una instància de GestioSolucio i comprova que sigui correcte
      */
