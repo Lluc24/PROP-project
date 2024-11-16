@@ -1,5 +1,6 @@
 package edu.upc.prop.clusterxx;
 
+import edu.upc.prop.clusterxx.Excepcions.FormatInputNoValid;
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.util.Arrays;
@@ -28,10 +29,26 @@ public class TestAproximacio {
     }
 
     @Test
+    public void testSolucionarMatriuBuida() {
+        double[][] matriuSimilituds = new double[0][0];
+
+        try {
+            algorisme.solucionar(matriuSimilituds);
+        } catch (FormatInputNoValid e) {
+            assertEquals("El missatge d'error és correcte", "No hi ha productes: La matriu de similituds és buida.", e.getMessage());
+        }
+    }
+
+    @Test
     public void testSolucionarAmbZeroElements() {
         double[][] matriu = new double[0][0];
         int[] esperat = {};
-        int[] obtingut = algorisme.solucionar(matriu);
+        int[] obtingut = null;
+        try {
+            obtingut = algorisme.solucionar(matriu);
+        } catch (FormatInputNoValid e) {
+            fail("Excepció de FormatInputNoValid inesperada.");
+        }
         assertArrayEquals("Test: Solucionar amb una matriu buida", esperat, obtingut);
     }
 
@@ -39,7 +56,12 @@ public class TestAproximacio {
     public void testSolucionarAmbUnElement() {
         double[][] matriu = {{0.0}};
         int[] esperat = {0};
-        int[] obtingut = algorisme.solucionar(matriu);
+        int[] obtingut = null;
+        try {
+            obtingut = algorisme.solucionar(matriu);
+        } catch (FormatInputNoValid e) {
+            fail("Excepció de FormatInputNoValid inesperada.");
+        }
         assertArrayEquals("Test: Solucionar amb una matriu d'un element", esperat, obtingut);
     }
 
@@ -50,7 +72,12 @@ public class TestAproximacio {
                 {1.0, 0.0}
         };
         int[] esperat = {0, 1};
-        int[] obtingut = algorisme.solucionar(matriu);
+        int[] obtingut = null;
+        try {
+            obtingut = algorisme.solucionar(matriu);
+        } catch (FormatInputNoValid e) {
+            fail("Excepció de FormatInputNoValid inesperada.");
+        }
         assertArrayEquals("Test: Solucionar amb una matriu de quatre elements", esperat, obtingut);
     }
 
@@ -63,7 +90,12 @@ public class TestAproximacio {
                 {20, 25, 30, 0}
         };
         int[] esperat = {0, 3, 2, 1};
-        int[] obtingut = algorisme.solucionar(matriu);
+        int[] obtingut = null;
+        try {
+            obtingut = algorisme.solucionar(matriu);
+        } catch (FormatInputNoValid e) {
+            fail("Excepció de FormatInputNoValid inesperada.");
+        }
         assertArrayEquals("Test: Solucionar amb una matriu de quatre elements", esperat, obtingut);
     }
 
@@ -82,7 +114,12 @@ public class TestAproximacio {
         };
 
         int[] esperat = {0, 2, 1, 6, 3, 4, 5, 7, 8};
-        int[] obtingut = algorisme.solucionar(matriu);
+        int[] obtingut = null;
+        try {
+            obtingut = algorisme.solucionar(matriu);
+        } catch (FormatInputNoValid e) {
+            fail("Excepció de FormatInputNoValid inesperada.");
+        }
         assertArrayEquals("Test: Solucionar amb una matriu de nou elements", esperat, obtingut);
     }
 
@@ -107,7 +144,12 @@ public class TestAproximacio {
         };
 
         int[] esperat = {0, 2, 1, 10, 4, 3, 8, 14, 5, 7, 6, 12, 9, 11, 13};
-        int[] obtingut = algorisme.solucionar(matriu);
+        int[] obtingut = null;
+        try {
+            obtingut = algorisme.solucionar(matriu);
+        } catch (FormatInputNoValid e) {
+            fail("Excepció de FormatInputNoValid inesperada.");
+        }
         assertArrayEquals("Test: Solucionar amb una matriu de quinze elements", esperat, obtingut);
     }
 
