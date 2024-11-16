@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Execucions {
     public static void main(String[] args) {
-        Algorisme a = new AlgorismeBT();
+        Algorisme a = new AlgorismeGreedy(5, 1);
         double[][] matriu = {
                 {0, 29, 82, 46, 68, 52, 72, 42, 51, 55, 29, 74, 23, 72, 46},
                 {29, 0, 55, 46, 42, 43, 43, 23, 23, 31, 41, 51, 11, 52, 21},
@@ -23,6 +23,7 @@ public class Execucions {
                 {46, 21, 51, 64, 23, 59, 33, 37, 11, 37, 61, 55, 23, 59, 0}
         };
 
+        //matriu = Arrays.copyOf(matriu, 12);
         System.out.println(Arrays.toString(a.solucionar(matriu)));
     }
 }
