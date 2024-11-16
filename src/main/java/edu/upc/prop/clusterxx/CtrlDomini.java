@@ -31,8 +31,6 @@ public class CtrlDomini{
             cataleg.afegir_producte(nom);
         } catch (ProducteNoValid e){
             System.out.println(e.getMessage());
-        }catch (FormatInputNoValid e){
-            System.out.println(e.getMessage());
         }
     }
 
@@ -63,8 +61,6 @@ public class CtrlDomini{
         try {
             cataleg.eliminar_producte_nom(nom);
         }catch (ProducteNoValid e){
-            System.out.println(e.getMessage());
-        }catch (FormatInputNoValid e){
             System.out.println(e.getMessage());
         }
     }
@@ -104,11 +100,7 @@ public class CtrlDomini{
      * mostren totes les solucions del moment
      */
     public void mostrarSolucions() {
-       try {
-           gs.mostrarSolucions();
-       } catch (NomSolucioNoValid e) {
-           System.out.println(e.getMessage());
-       }
+        gs.mostrarSolucions();
     }
 
     /**
@@ -177,10 +169,13 @@ public class CtrlDomini{
         }catch (FormatInputNoValid e){
             System.out.println(e.getMessage());
         }
+        /*
         try {
             gs.setParametres(param1, param2);
         }catch (FormatInputNoValid e){
             System.out.println(e.getMessage());
         }
+
+         */
     }
 }
