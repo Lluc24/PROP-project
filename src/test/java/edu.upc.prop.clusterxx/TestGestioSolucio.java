@@ -1,7 +1,6 @@
 package edu.upc.prop.clusterxx;
 
-import edu.upc.prop.clusterxx.Excepcions.IntercanviNoValid;
-import edu.upc.prop.clusterxx.Excepcions.NomSolucioNoValid;
+import edu.upc.prop.clusterxx.Excepcions.*;
 import org.junit.Before;
 import org.junit.Test;
 
