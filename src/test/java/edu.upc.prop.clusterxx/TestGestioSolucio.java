@@ -64,7 +64,7 @@ public class TestGestioSolucio {
      */
     @Test
     public void setParametresTest() {
-        /*
+
         try {
             gs.setParametres(3, 4);
         }catch (FormatInputNoValid e){
@@ -72,8 +72,6 @@ public class TestGestioSolucio {
         }
 
         assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof AlgorismeGreedy);
-
-         */
     }
 
     /**
@@ -172,6 +170,8 @@ public class TestGestioSolucio {
         gs.creaSolucio("Solucio1");
         }catch (NomSolucioNoValid e) {
             System.out.println(e.getMessage());
+        }catch (FormatInputNoValid e) {
+            System.out.println(e.getMessage());
         }
 
         assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
@@ -206,6 +206,8 @@ public class TestGestioSolucio {
         gs.creaSolucio("Solucio1");
         }catch (NomSolucioNoValid e) {
             System.out.println(e.getMessage());
+        }catch (FormatInputNoValid e) {
+            System.out.println(e.getMessage());
         }
 
         assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
@@ -235,10 +237,14 @@ public class TestGestioSolucio {
         gs.creaSolucio("Solucio1");
         }catch (NomSolucioNoValid e) {
             System.out.println(e.getMessage());
+        }catch (FormatInputNoValid e) {
+            System.out.println(e.getMessage());
         }
         try{
         gs.creaSolucio("Solucio1");
         }catch (NomSolucioNoValid e) {
+            System.out.println(e.getMessage());
+        }catch (FormatInputNoValid e) {
             System.out.println(e.getMessage());
         }
 
@@ -271,10 +277,14 @@ public class TestGestioSolucio {
         gs.creaSolucio("Solucio1");
         }catch (NomSolucioNoValid e) {
             System.out.println(e.getMessage());
+        }catch (FormatInputNoValid e) {
+            System.out.println(e.getMessage());
         }
         try{
         gs.creaSolucio("Solucio2");
         }catch (NomSolucioNoValid e) {
+            System.out.println(e.getMessage());
+        }catch (FormatInputNoValid e) {
             System.out.println(e.getMessage());
         }
 
@@ -311,6 +321,8 @@ public class TestGestioSolucio {
         try{
         gs.creaSolucio("Solucio1");
         }catch (NomSolucioNoValid e) {
+            System.out.println(e.getMessage());
+        }catch (FormatInputNoValid e) {
             System.out.println(e.getMessage());
         }
         try {
@@ -353,6 +365,8 @@ public class TestGestioSolucio {
         gs.creaSolucio("Solucio1");
         }catch (NomSolucioNoValid e) {
             System.out.println(e.getMessage());
+        }catch (FormatInputNoValid e) {
+            System.out.println(e.getMessage());
         }
         try{
         gs.modificarSolucio(productes.get(0).getNom(),productes.get(1).getNom(),"SolucioNoExisteix");
@@ -393,6 +407,8 @@ public class TestGestioSolucio {
         gs.creaSolucio("Solucio1");
         }catch (NomSolucioNoValid e) {
             System.out.println(e.getMessage());
+        }catch (FormatInputNoValid e) {
+            System.out.println(e.getMessage());
         }
         try {
         gs.eliminarSolucio("Solucio1");
@@ -423,6 +439,8 @@ public class TestGestioSolucio {
         try {
         gs.creaSolucio("Solucio1");
         }catch (NomSolucioNoValid e) {
+            System.out.println(e.getMessage());
+        }catch (FormatInputNoValid e) {
             System.out.println(e.getMessage());
         }
         try{
