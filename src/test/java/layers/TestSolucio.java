@@ -111,4 +111,4 @@ public class TestSolucio {
         boolean resultat = solucio.trobarProducte("ProducteNoExisteix");
         assertFalse("El producte no hauria d'existir", resultat);  // Ens assegurem que retorna false
     }
-    }
+}

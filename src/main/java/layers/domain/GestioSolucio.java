@@ -39,7 +39,6 @@ public class GestioSolucio {
      * @param tipusAlgorisme
      */
     public void gestioAlgorisme(String tipusAlgorisme) throws FormatInputNoValid {
-
         if (tipusAlgorisme.equals("greedy")){
             algorismeAct =  new AlgorismeGreedy();
         }
@@ -50,7 +49,7 @@ public class GestioSolucio {
             algorismeAct = new AlgorismeBT();;
         }
         else {
-            String missatge = "El tipus d'algorisme '"+ tipusAlgorisme+ "' no existeix al sistema";
+            String missatge = "El tipus d'algorisme '" +tipusAlgorisme+ "' no existeix al sistema";
             throw new FormatInputNoValid(missatge);
         }
     }
@@ -62,7 +61,7 @@ public class GestioSolucio {
     public void creaSolucio(String nomSolucio) throws NomSolucioNoValid, FormatInputNoValid {
         for (Solucio s: solucions){
             if (s.getNom().equals(nomSolucio)) {
-                String missatge = "Ja existeix una solucio amb nom '"+nomSolucio+"'";
+                String missatge = "Ja existeix una solucio amb nom '" +nomSolucio+ "'";
                 throw new NomSolucioNoValid(missatge);
             }
         }
@@ -99,16 +98,16 @@ public class GestioSolucio {
                     break;
                 }
                 else {
-                    String missatge = "No existeix cap dels productes a la solucio amb nom '" + nomSolucio+"'";;
-                    if (s.trobarProducte(prod2)) missatge = "No existeix "+prod1+" a la solucio amb nom '"+ nomSolucio+"'";
-                    else if (s.trobarProducte(prod1)) missatge = "No existeix "+prod2+" a la solucio '"+ nomSolucio+ "'";
+                    String missatge = "No existeix cap dels productes a la solucio amb nom '" +nomSolucio+ "'";;
+                    if (s.trobarProducte(prod2)) missatge = "No existeix " +prod1+ " a la solucio amb nom '" +nomSolucio+ "'";
+                    else if (s.trobarProducte(prod1)) missatge = "No existeix " +prod2+ " a la solucio '" +nomSolucio+ "'";
                     throw new NomSolucioNoValid(missatge);
                 }
 
             }
         }
         if (!trobat){
-            String missatge = "No existeix una solucio amb nom '"+ nomSolucio + "'";
+            String missatge = "No existeix una solucio amb nom '" +nomSolucio+ "'";
             throw new NomSolucioNoValid(missatge);
         }
         else {
@@ -129,7 +128,7 @@ public class GestioSolucio {
             }
         }
         if (!trobat){
-            String missatge = "No existeix una solucio amb nom '"+ nomSolucio+"'";
+            String missatge = "No existeix una solucio amb nom '" +nomSolucio+ "'";
             throw new NomSolucioNoValid(missatge);
         }
     }
@@ -157,7 +156,7 @@ public class GestioSolucio {
             }
         }
         if (!trobat) {
-            String missatge = "No existeix una solucio amb nom '"+ nomSol+"'";
+            String missatge = "No existeix una solucio amb nom '" +nomSol+ "'";
             throw new NomSolucioNoValid(missatge);
         }
     }

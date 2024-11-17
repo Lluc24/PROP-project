@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**
- * Classe de testeig de Solucio.java
+ * Classe de testeig de GestioSolucio.java
  */
 public class TestGestioSolucio {
     private GestioSolucio gs;

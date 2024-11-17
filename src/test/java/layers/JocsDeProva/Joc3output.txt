@@ -1,0 +1,384 @@
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Entra el valor del parametre producteInicial: 
+Entra el valor del parametre numIteracions: 
+L'index del producte inicial no pot ser negatiu
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Entra el valor del parametre producteInicial: 
+Entra el valor del parametre numIteracions: 
+El nombre d'iteracions ha de ser positiu i no zero
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Entra el valor del parametre producteInicial: 
+Entra el valor del parametre numIteracions: 
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte llet
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte cereals
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte poma
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+L'index del producte no pot ser negatiu o superior a la quantitat de productes al cataleg
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Entra el valor del parametre producteInicial: 
+Entra el valor del parametre numIteracions: 
+L'index del producte inicial no pot ser negatiu
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+El tipus d'algorisme 'noexiste' no existeix al sistema
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Entra el valor del parametre producteInicial: 
+Entra el valor del parametre numIteracions: 
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Entra el valor del parametre producteInicial: 
+Entra el valor del parametre numIteracions: 
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Entra el valor del parametre producteInicial: 
+Entra el valor del parametre numIteracions: 
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Entra el valor del parametre producteInicial: 
+Entra el valor del parametre numIteracions: 
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Entra el valor del parametre producteInicial: 
+Entra el valor del parametre numIteracions: 
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+L'index del producte no pot ser negatiu o superior a la quantitat de productes al cataleg
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+aprox: la solucio no te cap producte
+bt: la solucio no te cap producte
+greedy: la solucio no te cap producte
+aprox2: galetes, cereals, llet, poma
+bt2: galetes, cereals, llet, poma
+g0: galetes, cereals, llet, poma
+g1: llet, cereals, galetes, poma
+g2: poma, galetes, cereals, llet
+g3: galetes, cereals, llet, poma
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Fins la proxima!

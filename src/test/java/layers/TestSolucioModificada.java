@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 
 /**
- * Classe de testeig de Solucio.java
+ * Classe de testeig de SolucioModificada.java
  */
 public class TestSolucioModificada {
     ArrayList<Producte> productes = new ArrayList<Producte>();

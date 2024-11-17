@@ -6,12 +6,11 @@ Crear una solucio amb el mateix nom
 Crear una solucio
 Intentar canviar d'algorisme a greedy amb el primer parametre negatiu.
 Intentar canviar d'algorisme a greedy amb el segon parametre negatiu.
-Canviar els paràmetres amb index primer producte = 0
-Crear una solucio
 Canviar els paràmetres a índes primer producte = 5
+Crear una solucio
+Afegeix 4 productes
 Intentar crear una solucio
 Intentar canviar d'algorisme a greedy amb els dos parametres negatiu.
-Afegir 5 productes
 Solucionar amb aproximacio
 Solucionar amb algorismeBT
 Intenta canviar a un algorisme que no existeix
