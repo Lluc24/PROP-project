@@ -11,13 +11,13 @@ import java.util.Iterator;
 public class CtrlSolucions {
     // Llista de solucions
     private ArrayList<Solucio> solucions;//llista de solucions que tracta
-    private CtrlCataleg ctrlCataleg;// relació amb el catàleg
+    private CtrlCataleg cataleg;// relació amb el catàleg
     private Algorisme algorismeAct; //algorisme de la solució que esta tractant
 
     // Constructora
     public CtrlSolucions(CtrlCataleg c){
         this.solucions = new ArrayList<Solucio>();
-        this.ctrlCataleg = c;
+        this.cataleg = c;
         this.algorismeAct = new Aproximacio(); //per defecte, el algorismeAct és d'aproximació
     }
 
@@ -25,7 +25,7 @@ public class CtrlSolucions {
 
     public ArrayList<Solucio> getSolucions(){ return solucions; }
 
-    public CtrlCataleg getCataleg(){ return ctrlCataleg; }
+    public CtrlCataleg getCataleg(){ return cataleg; }
 
     public Algorisme getAlgorismeAct(){ return algorismeAct;}
 
@@ -47,7 +47,7 @@ public class CtrlSolucions {
             algorismeAct = new Aproximacio();;
         }
         else if (tipusAlgorisme.equals("algorismeBT")){
-            algorismeAct = new AlgorismeBT();;
+            algorismeAct = new AlgorismeBT();
         }
         else {
             String missatge = "El tipus d'algorisme '" +tipusAlgorisme+ "' no existeix al sistema";
@@ -66,12 +66,12 @@ public class CtrlSolucions {
                 throw new NomSolucioNoValid(missatge);
             }
         }
-        double[][] similituds = ctrlCataleg.getMatriuSimilituds();
+        double[][] similituds = cataleg.getMatriuSimilituds();
         int[] solucio = algorismeAct.solucionar(similituds);
 
-        ArrayList<Producte> llistaProd = new ArrayList<Producte>();
+        ArrayList<String> llistaProd = new ArrayList<String>();
         for (int i: solucio){
-            llistaProd.add(ctrlCataleg.getProd_index(i));
+            llistaProd.add(cataleg.getNomProd_index(i));
         }
         Solucio sol = new Solucio(llistaProd, algorismeAct, nomSolucio);
         solucions.add(sol);

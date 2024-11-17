@@ -1,20 +1,20 @@
 La finalitat d'aquest joc de prova és portar al límit les funcionalitatd d'afegir i eliminar producte
 
 Crea un producte
-Intenta crear un producte el relaciona amb un producte que no esta a cataleg
+Intenta crear un producte el relaciona amb un producte que no esta a ctrlCataleg
 Intenta crear un producte amb el mateix nom
 Intenta crear un producte amb similituds negatives
 Intenta crear un producte amb similituds > 100
 Crea un altre producte
-Intenta eliminar un producte que no esta a cataleg
+Intenta eliminar un producte que no esta a ctrlCataleg
 Elimina el primer producte
 Intenta tornar a eliminar el primer producte
 Afegeix un producte amb el nom del primer i similituds diferents
 Intenta afegir un producte amb algunes similituds >100
 Intenta afegir un producte amb algunes similituds negatives
 Afegeix un tercer producte
-Mostra el cataleg
+Mostra el ctrlCataleg
 Elimina tots els productes
-Intenta eliminar un producte amb el cataleg buit
-Mostra cataleg
+Intenta eliminar un producte amb el ctrlCataleg buit
+Mostra ctrlCataleg
 Surt

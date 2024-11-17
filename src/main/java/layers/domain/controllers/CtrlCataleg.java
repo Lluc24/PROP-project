@@ -6,8 +6,8 @@ import layers.domain.utils.Pair;
 
 import java.util.ArrayList;
 /**
- * @Class Cataleg
- * @Description Cataleg representa el conjunt de productes que es troben dins del sistema
+ * @Class CtrlCataleg
+ * @Description CtrlCataleg representa el conjunt de productes que es troben dins del sistema
  * @see Producte
  * @author Alejandro Lorenzo Navarro
  * @version 2.2
@@ -27,7 +27,7 @@ import java.util.ArrayList;
  * es a dir el index seguent al ultim producte.
  */
 public class CtrlCataleg {
-    //Classe Cataleg
+    //Classe CtrlCataleg
      //Atributs
 
      /** Un Array List Representa el conjunt de productes es troben din del sistema */
@@ -39,7 +39,7 @@ public class CtrlCataleg {
      * Metode de construccio d'un cataleg buit, sense cap producte
      */
     public CtrlCataleg() {
-          //creacio Cataleg Productes
+          //creacio CtrlCataleg Productes
           ArrayList<Producte> aux = new ArrayList<Producte>();
           this.Cataleg_Productes = aux;
      }
@@ -129,7 +129,7 @@ public class CtrlCataleg {
         }
 
         if (num_prod_act() != 0) {
-            System.err.println("Cataleg ja te productes");
+            System.err.println("CtrlCataleg ja te productes");
             return;
         }
 

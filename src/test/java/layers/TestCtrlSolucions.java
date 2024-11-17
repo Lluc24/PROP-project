@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**
- * Classe de testeig de GestioSolucio.java
+ * Classe de testeig de CtrlSolucions.java
  */
 public class TestCtrlSolucions {
     private CtrlSolucions gs;
@@ -81,7 +81,7 @@ public class TestCtrlSolucions {
 
     /**
      * Test de la creadora
-     * Crea una instància de GestioSolucio i comprova que sigui correcte
+     * Crea una instància de CtrlSolucions i comprova que sigui correcte
      */
     @Test
     public void crearGestioSolucioTest() {

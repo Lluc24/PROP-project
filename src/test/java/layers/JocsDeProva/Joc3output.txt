@@ -149,7 +149,7 @@ Selecciona l'accio:
 [5] Editar una distribucio
 [6] Triar tipus d'Algorisme per resoldre
 Entra el nom de la solucio
-L'index del producte no pot ser negatiu o superior a la quantitat de productes al cataleg
+L'index del producte no pot ser negatiu o superior a la quantitat de productes al ctrlCataleg
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les distribucions existents i calcular una nova
@@ -356,7 +356,7 @@ Selecciona l'accio:
 [5] Editar una distribucio
 [6] Triar tipus d'Algorisme per resoldre
 Entra el nom de la solucio
-L'index del producte no pot ser negatiu o superior a la quantitat de productes al cataleg
+L'index del producte no pot ser negatiu o superior a la quantitat de productes al ctrlCataleg
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les distribucions existents i calcular una nova
