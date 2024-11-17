@@ -37,7 +37,7 @@ public class TestAlgorismeGreedy {
         AlgorismeGreedy alg = null;
 
         try {
-            new AlgorismeGreedy(1, 5);
+            alg = new AlgorismeGreedy(1, 5);
         } catch (FormatInputNoValid e) {
             fail("Excepció de FormatInputNoValid inesperada.");
         }
@@ -190,7 +190,7 @@ public class TestAlgorismeGreedy {
         int[] configuracio = null;
 
         try {
-            algorisme.solucionar(matriuSimilituds);
+            configuracio = algorisme.solucionar(matriuSimilituds);
         } catch (FormatInputNoValid e) {
             fail("Excepció de FormatInputNoValid inesperada.");
         }
@@ -214,7 +214,7 @@ public class TestAlgorismeGreedy {
         int[] configuracio = null;
 
         try {
-            algorisme.solucionar(matriuSimilituds);
+            configuracio = algorisme.solucionar(matriuSimilituds);
         } catch (FormatInputNoValid e) {
             fail("Excepció de FormatInputNoValid inesperada.");
         }
