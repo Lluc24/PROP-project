@@ -19,6 +19,8 @@ Solucio1
 2
 6
 greedy
+1
+1
 2
 3
 Solucio2

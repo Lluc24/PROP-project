@@ -1,0 +1,12 @@
+La finalitat d'aquest joc és provar la funcionalitat de  modificar similituds. Forçar a que passin errors i veure que el sistema els gestiona correctament
+
+Intenta modificar similituds entre dos productes que no existeixen
+Afegeix un producte
+Intenta modificar la seva similituds
+Afegeix un producte
+Intenta modificar la seva similitud al mateix numero
+Intenta modificar la seva similitud a una > 100
+Intenta modificar la seva similitud a una < 0
+Modifica la seva similitud
+Surt
+

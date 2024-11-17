@@ -47,7 +47,7 @@ public class Solucio {
                 System.out.println();
             }
         }
-        if (solucio.size() == 0) System.out.println("la estenteria esta buida");
+        if (solucio.size() == 0) System.out.println("la solucio no te cap producte");
     }
 
     /**

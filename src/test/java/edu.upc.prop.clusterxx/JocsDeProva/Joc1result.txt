@@ -170,5 +170,4 @@ Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les distribucions existents i calcular una nova
 [3] Sortir
-Selecciona l'accio:
 Fins la proxima!

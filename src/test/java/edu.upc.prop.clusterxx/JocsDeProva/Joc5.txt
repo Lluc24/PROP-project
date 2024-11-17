@@ -1,0 +1,11 @@
+La finalitat d'aquest joc és portar al limit el sistema introduint dades invalides relacionades amb les funcionalitats de visualitzar producres perquè saltin les excepcions
+
+Mostra cataleg buit
+Demana que mostri un producte que no existeix
+Afegeix un producte
+Mostra el producte
+Demana mostrar un producte que no existeix
+Mostra cataleg
+Elimina el producte de catàleg
+Mostra cataleg
+Surt

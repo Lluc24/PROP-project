@@ -3,6 +3,56 @@ Quina gestio vols realitzar?
 [2] Gestionar les distribucions existents i calcular una nova
 [3] Sortir
 Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+No hi ha solucions a mostrar
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+No existeix una solucio amb aquest nom
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+solucio1: la solucio no te cap producte
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
 [1] Visualitzar tots els productes
 [2] Visualitzar un producte especific pel seu id
 [3] Crear un nou producte
@@ -14,42 +64,6 @@ Quina gestio vols realitzar?
 [2] Gestionar les distribucions existents i calcular una nova
 [3] Sortir
 Selecciona l'accio:
-[1] Visualitzar tots els productes
-[2] Visualitzar un producte especific pel seu id
-[3] Crear un nou producte
-[4] Eliminar un producte
-[5] Editar una similitud
-Entra el nom del producte
-Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte llet
-Quina gestio vols realitzar?
-[1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les distribucions existents i calcular una nova
-[3] Sortir
-Selecciona l'accio:
-[1] Visualitzar tots els productes
-[2] Visualitzar un producte especific pel seu id
-[3] Crear un nou producte
-[4] Eliminar un producte
-[5] Editar una similitud
-Entra el nom del producte
-Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte cereals
-Quina gestio vols realitzar?
-[1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les distribucions existents i calcular una nova
-[3] Sortir
-Selecciona l'accio:
-[1] Visualitzar tots els productes
-[2] Visualitzar un producte especific pel seu id
-[3] Crear un nou producte
-[4] Eliminar un producte
-[5] Editar una similitud
-Entra el nom del producte
-Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte poma
-Quina gestio vols realitzar?
-[1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les distribucions existents i calcular una nova
-[3] Sortir
-Selecciona l'accio:
 [1] Visualitzar totes les distribucions existents
 [2] Visualitzar una distribucio especifica
 [3] Calcular una distribucio per la prestatgeria actual
@@ -68,9 +82,8 @@ Selecciona l'accio:
 [4] Eliminar una distribucio
 [5] Editar una distribucio
 [6] Triar tipus d'Algorisme per resoldre
-Entra el nom del algorisme: greedy, aproximacio, algorismeBT
-Entra el valor del parametre producteInicial: 
-Entra el valor del parametre numIteracions: 
+solucio1: la solucio no te cap producte
+solucio2: macarrons
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les distribucions existents i calcular una nova
@@ -83,18 +96,7 @@ Selecciona l'accio:
 [5] Editar una distribucio
 [6] Triar tipus d'Algorisme per resoldre
 Entra el nom de la solucio
-Quina gestio vols realitzar?
-[1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les distribucions existents i calcular una nova
-[3] Sortir
-Selecciona l'accio:
-[1] Visualitzar totes les distribucions existents
-[2] Visualitzar una distribucio especifica
-[3] Calcular una distribucio per la prestatgeria actual
-[4] Eliminar una distribucio
-[5] Editar una distribucio
-[6] Triar tipus d'Algorisme per resoldre
-Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+No existeix una solucio amb aquest nom
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les distribucions existents i calcular una nova
@@ -107,32 +109,7 @@ Selecciona l'accio:
 [5] Editar una distribucio
 [6] Triar tipus d'Algorisme per resoldre
 Entra el nom de la solucio
-Quina gestio vols realitzar?
-[1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les distribucions existents i calcular una nova
-[3] Sortir
-Selecciona l'accio:
-[1] Visualitzar totes les distribucions existents
-[2] Visualitzar una distribucio especifica
-[3] Calcular una distribucio per la prestatgeria actual
-[4] Eliminar una distribucio
-[5] Editar una distribucio
-[6] Triar tipus d'Algorisme per resoldre
-Solucio1: galetes, cereals, llet, poma
-Solucio2: llet, cereals, galetes, poma
-Solucio3: galetes, cereals, llet, poma
-Quina gestio vols realitzar?
-[1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les distribucions existents i calcular una nova
-[3] Sortir
-Selecciona l'accio:
-[1] Visualitzar tots els productes
-[2] Visualitzar un producte especific pel seu id
-[3] Crear un nou producte
-[4] Eliminar un producte
-[5] Editar una similitud
-Entra el nom del producte
-Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte sucre
+solucio2: macarrons
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les distribucions existents i calcular una nova
@@ -168,31 +145,7 @@ Selecciona l'accio:
 [4] Eliminar una distribucio
 [5] Editar una distribucio
 [6] Triar tipus d'Algorisme per resoldre
-Entra el nom de la solucio
-Quina gestio vols realitzar?
-[1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les distribucions existents i calcular una nova
-[3] Sortir
-Selecciona l'accio:
-[1] Visualitzar totes les distribucions existents
-[2] Visualitzar una distribucio especifica
-[3] Calcular una distribucio per la prestatgeria actual
-[4] Eliminar una distribucio
-[5] Editar una distribucio
-[6] Triar tipus d'Algorisme per resoldre
-Entra el nom de la solucio
-Quina gestio vols realitzar?
-[1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les distribucions existents i calcular una nova
-[3] Sortir
-Selecciona l'accio:
-[1] Visualitzar totes les distribucions existents
-[2] Visualitzar una distribucio especifica
-[3] Calcular una distribucio per la prestatgeria actual
-[4] Eliminar una distribucio
-[5] Editar una distribucio
-[6] Triar tipus d'Algorisme per resoldre
-Solucio4: galetes, cereals, llet, poma, sucre
+No hi ha solucions a mostrar
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les distribucions existents i calcular una nova

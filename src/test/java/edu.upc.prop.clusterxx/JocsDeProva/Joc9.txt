@@ -1,0 +1,14 @@
+La finalitat d'aquest joc és porovar les funcionalitats eliminar i crear solucio
+
+Intenta eliminar una solucio que no existeix
+Crea una solucio buida
+Intenta eliminar una solucio que no existeix
+Elimina la solucio buida
+Intenta eliminarla una altra vegada
+Crea una solucio
+Intenta crear una solucio amb el mateix nom
+Afegeix producte
+Intenta crear una solucio amb el mateix nom
+Crea una solucio
+Elimina totes les solucions
+Surt

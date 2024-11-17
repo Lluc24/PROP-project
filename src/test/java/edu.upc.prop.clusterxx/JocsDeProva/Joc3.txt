@@ -1,0 +1,1 @@
+La finalitat d'aquest joc de prova és testejar la funcionalitat  de triar tipus algorisme i comprovar que el programa gestioni bé tots els possibles casos

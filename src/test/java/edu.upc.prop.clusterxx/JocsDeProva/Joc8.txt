@@ -1,0 +1,17 @@
+La finalitat d'aquest joc de prova és portar al limit les funcionalitats de visualitzar solucions
+
+Mostra totes les solucions
+Mostra una solucio que no existeix
+Crea una solucio buida
+Mostra la solucio 
+Afegeix un producte
+Crea una solucio
+Mostra cataleg
+Afegeix un producte
+Crea una solucio
+Mostra cataleg
+Intenta mostrar una solucio que no existeix
+Mostra una solucio que existeix
+Elimina totes les solucions 
+Mostra cataleg
+Surt

@@ -1,0 +1,26 @@
+1
+5
+aigua sucre 10
+1
+3
+aigua
+1
+5
+aigua sucre 10
+1
+5
+sucre aigua 10
+1
+3
+sucre
+aigua 10
+1
+5
+sucre aigua 101
+1
+5
+sucre aigua -10
+1
+5
+sucre aigua 20
+3

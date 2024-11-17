@@ -1,0 +1,67 @@
+1
+3
+Orbit_menta
+1
+3
+kitkat 
+Orbit_maduixa 90.0
+1
+3
+Orbit_menta
+Orbit_menta 90.0
+1
+3
+Orbit_menta
+kitkat 90.0
+1
+3
+kitkat
+Orbit_menta -3.0
+1
+3
+kitkat
+Orbit_menta 110.0
+1
+3
+kitkat
+Orbit_menta 90.0
+1
+4
+ous
+1
+4
+Orbit_menta
+1
+4
+Orbit_menta
+1
+3
+Orbit_menta
+kitkat 50.
+1
+3
+ous
+kitkat 30.0 Orbit_menta 200.0
+1
+3
+ous kitkat -30.0 Orbit_menta 10.0
+1
+3
+ous kitkat 30.0 Orbit_menta 10.0
+1
+1
+1
+4
+kitkat
+1
+4
+ous
+1
+4
+Orbit_menta
+1
+4
+Orbit_maduixa
+1
+1
+3
