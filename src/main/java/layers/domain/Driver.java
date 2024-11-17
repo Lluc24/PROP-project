@@ -6,13 +6,14 @@ import layers.domain.utils.Pair;
 import java.util.Scanner;
 
 public class Driver {
-    private CtrlDomini ctrlDomini;
+    private static CtrlDomini ctrlDomini;
 
-    Driver() {
+    public static void main(String[] args) {
         ctrlDomini = CtrlDomini.getCtrlDomini();
+        executar();
     }
 
-    public void executar() {
+    private static void executar() {
         boolean finalitzat = false;
         Scanner scanner = new Scanner(System.in);
         while (!finalitzat) {
@@ -20,7 +21,6 @@ public class Driver {
             System.out.println("[1] Gestionar els productes i similituds de la prestatgeria");
             System.out.println("[2] Gestionar les distribucions existents i calcular una nova");
             System.out.println("[3] Sortir");
-           // Scanner scanner = new Scanner(System.in);
             int gestio = scanner.nextInt();
 
             if (gestio == 1) {
