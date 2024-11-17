@@ -1,13 +1,13 @@
 La finalitat d'aquest joc de prova és comprovar com crea diferents solucions del mateix catàleg amb els mateixos productes amb cadascun dels tres algorismes.
 
-Afegeix 4 productes al cataleg
+Afegeix 4 productes al ctrlCataleg
 Crea una solucio
 Canvia l'algorisme per resoldre
 Crea una solucio
 Canvia l'algorisme per resoldre
 Crea una solucio
 Mostra totes les solucions
-Afegeix un producte al cataleg
+Afegeix un producte al ctrlCataleg
 Crea una solucio
 Elimina tres solucions inicials
 Mostra totes les solucions

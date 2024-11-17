@@ -1,11 +1,5 @@
 package layers.domain.controllers;
 
-import layers.domain.excepcions.FormatInputNoValid;
-import layers.domain.excepcions.IntercanviNoValid;
-import layers.domain.excepcions.NomSolucioNoValid;
-import layers.domain.excepcions.ProducteNoValid;
-import layers.domain.utils.Pair;
-
 public class CtrlDomini{
     private static CtrlDomini instancia = null;
     private static CtrlCataleg ctrlCataleg = null;

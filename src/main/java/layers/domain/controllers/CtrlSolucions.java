@@ -1,5 +1,6 @@
-package layers.domain;
+package layers.domain.controllers;
 
+import layers.domain.*;
 import layers.domain.excepcions.FormatInputNoValid;
 import layers.domain.excepcions.IntercanviNoValid;
 import layers.domain.excepcions.NomSolucioNoValid;
@@ -7,14 +8,14 @@ import layers.domain.excepcions.NomSolucioNoValid;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class GestioSolucio {
+public class CtrlSolucions {
     // Llista de solucions
     private ArrayList<Solucio> solucions;//llista de solucions que tracta
-    private Cataleg cataleg;// relació amb el catàleg
+    private CtrlCataleg cataleg;// relació amb el catàleg
     private Algorisme algorismeAct; //algorisme de la solució que esta tractant
 
     // Constructora
-    public GestioSolucio(Cataleg c){
+    public CtrlSolucions(CtrlCataleg c){
         this.solucions = new ArrayList<Solucio>();
         this.cataleg = c;
         this.algorismeAct = new Aproximacio(); //per defecte, el algorismeAct és d'aproximació
@@ -24,7 +25,7 @@ public class GestioSolucio {
 
     public ArrayList<Solucio> getSolucions(){ return solucions; }
 
-    public Cataleg getCataleg(){ return cataleg; }
+    public CtrlCataleg getCataleg(){ return cataleg; }
 
     public Algorisme getAlgorismeAct(){ return algorismeAct;}
 
@@ -46,7 +47,7 @@ public class GestioSolucio {
             algorismeAct = new Aproximacio();;
         }
         else if (tipusAlgorisme.equals("algorismeBT")){
-            algorismeAct = new AlgorismeBT();;
+            algorismeAct = new AlgorismeBT();
         }
         else {
             String missatge = "El tipus d'algorisme '" +tipusAlgorisme+ "' no existeix al sistema";

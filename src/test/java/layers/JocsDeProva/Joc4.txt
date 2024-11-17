@@ -2,7 +2,7 @@ La finalitat d'aquest joc de prova es portar al limit els algorismes que calcule
 Es probara amb quinze productes per l'aproximacio i el greedy, que te una combinatoria de possibilitats de l'orde de 10E12.
 Per l'algorisme de backtracking s'utilitzaran deu productes, ja que aquest es exponencial i tarda mes temps en calcular.
 Els passos del joc de proves son:
-Afegeix 15 productes al cataleg
+Afegeix 15 productes al ctrlCataleg
 Crea una solucio (per defecte amb l'algorisme d'aproximacio)
 Mostra aquesta solucio
 Canvia l'algorisme a backtracking
