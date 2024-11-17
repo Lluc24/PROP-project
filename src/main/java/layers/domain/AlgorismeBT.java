@@ -34,13 +34,14 @@ public class AlgorismeBT extends Algorisme {
     @Override
     public int[] solucionar(double[][] matriuSimilituds) throws FormatInputNoValid {
 
+        int[] millorConfiguracio = new int[matriuSimilituds.length];
+
         if (matriuSimilituds.length <= 0) {
-            throw new FormatInputNoValid("No hi ha productes: La matriu de similituds és buida.");
+            return millorConfiguracio;
         }
 
         ArrayList<Integer> configuracioActual = new ArrayList<>();
         boolean[] visitats = new boolean[matriuSimilituds.length];
-        int[] millorConfiguracio = new int[matriuSimilituds.length];
 
         backtrack(matriuSimilituds, configuracioActual, visitats, 0.0, millorConfiguracio, 0.0);
 
