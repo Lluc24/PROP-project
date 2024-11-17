@@ -24,22 +24,33 @@ public class ControladorCatalegAmbRestriccions extends CtrlCataleg {
     public ControladorCatalegAmbRestriccions() {
 
         super();
-        this.noConsecutius = new ArrayList<ArrayList<Boolean>>();
+        this.noConsecutius = new ArrayList<>();
 
     }
 
     //Mètodes
-    private void producteAfegit() {
 
-        ArrayList<Boolean> aux = new ArrayList<>(Collections.nCopies(noConsecutius.getFirst().size(), false));
-        noConsecutius.add(aux);
+    public int get_mida() { return noConsecutius.size(); }
 
-        for(int i = 0; i < noConsecutius.size(); ++i) {
-            noConsecutius.get(i).add(false);
+    public void producteAfegit() {
+
+        if (noConsecutius.isEmpty()) {
+            //cas inicial: cap producte encara
+            ArrayList<Boolean> aux = new ArrayList<>();
+            aux.add(false);
+            noConsecutius.add(aux);
+        } else {
+            //afegir nova fila i columna per al nou producte
+            ArrayList<Boolean> aux = new ArrayList<>(Collections.nCopies(noConsecutius.getFirst().size(), false));
+            noConsecutius.add(aux);
+
+            for (ArrayList<Boolean> fila : noConsecutius) {
+                fila.add(false);
+            }
         }
     }
 
-    private void producteEliminat(int id) {
+    public void producteEliminat(int id) {
         noConsecutius.remove(id);
         for(int i = 0; i < noConsecutius.getFirst().size(); ++i) {
             noConsecutius.get(i).remove(id);
@@ -91,6 +102,7 @@ public class ControladorCatalegAmbRestriccions extends CtrlCataleg {
     }
 
     public boolean[][] getMatrRestrConsec() {
+
         int costat = noConsecutius.size();
         boolean[][] matriu = new boolean[costat][costat];
 
@@ -104,7 +116,7 @@ public class ControladorCatalegAmbRestriccions extends CtrlCataleg {
 
     }
 
-    private void mostrarRestrConsec(int index) {
+    public void mostrarRestrConsec(int index) {
 
         boolean hihaRestr = false;
         for (int i = 0; i < noConsecutius.size(); ++i) {
