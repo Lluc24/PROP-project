@@ -154,5 +154,66 @@ public class TestAproximacio {
         assertArrayEquals("Test: Solucionar amb una matriu de quinze elements", esperat, obtingut);
     }
 
+    @Test
+    public void testSolucionarAmbVariesRestriccions() {
+        double[][] matriuAdjacencia = {
+                {0, 10, 15, 20},
+                {10, 0, 35, 25},
+                {15, 35, 0, 30},
+                {20, 25, 30, 0}
+        };
+
+        boolean[][] matriuRestrConsec = {
+                {false, false, false, false},
+                {false, false, true, false},
+                {false, true, false, true},
+                {false, false, true, false}
+        };
+        int[] esperat = {0, 2, 3, 1};
+        int[] obtingut = null;
+        try {
+            obtingut = algorisme.solucionar(matriuAdjacencia, matriuRestrConsec);
+        } catch (FormatInputNoValid e) {
+            fail("Excepció de FormatInputNoValid inesperada.");
+        }
+        assertArrayEquals("Test: Solucionar amb quatre elements i dos restriccions", esperat, obtingut);
+    }
+
+    @Test
+    public void testSolucionarAmbBastantesRestriccions() {
+        double[][] matriuAdjacencia = {
+                {0, 29, 82, 46, 68, 52, 72, 42, 51},
+                {29, 0, 55, 46, 42, 43, 43, 23, 23},
+                {82, 55, 0, 68, 46, 55, 23, 43, 41},
+                {46, 46, 68, 0, 82, 15, 72, 31, 62},
+                {68, 42, 46, 82, 0, 74, 23, 52, 21},
+                {52, 43, 55, 15, 74, 0, 61, 23, 55},
+                {72, 43, 23, 72, 23, 61, 0, 42, 23},
+                {42, 23, 43, 31, 52, 23, 42, 0, 33},
+                {51, 23, 41, 62, 21, 55, 23, 33, 0}
+        };
+
+        boolean[][] matriuRestrConsec = {
+                {false, false, true, false, true, false, true, false, false},
+                {false, false, false, false, false, false, false, false, false},
+                {true, false, false, true, false, false, false, false, false},
+                {false, false, true, false, true, false, true, false, true},
+                {true, false, false, true, false, true, false, false, false},
+                {false, false, false, false, true, false, true, false, false},
+                {true, false, false, true, false, true, false, false, false},
+                {false, false, false, false, false, false, false, false, false},
+                {false, false, false, true, false, false, false, false, false}
+        };
+
+        int[] esperat = {0, 5, 2, 1, 3, 6, 4, 7, 8};
+        int[] obtingut = null;
+        try {
+            obtingut = algorisme.solucionar(matriuAdjacencia, matriuRestrConsec);
+        } catch (FormatInputNoValid e) {
+            fail("Excepció de FormatInputNoValid inesperada.");
+        }
+        assertArrayEquals("Test: Solucionar amb nou elements i nou restriccions", esperat, obtingut);
+    }
+
     static String[] productes = {/*0*/"Fairy", /*1*/"Cocacola", /*2*/"Lays_onduladas", /*3*/"Ruffles_jamom", /*4*/"Pelotazos_Cheetos", /*5*/"Champu_HS", /*6*/"Pepsi", /*7*/"Toallitas_Dodot", /*8*/"Cuchilla_Guillette", /*9*/"Pastillas_Ariel", /*10*/"Pasta_dientes_OralB", /*11*/"Powerade", /*12*/"Agua_Evian", /*13*/"Mtn_dew", /*14*/"Gatorade"};
 }
