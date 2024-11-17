@@ -30,7 +30,7 @@ public class Cataleg {
      //Atributs
 
      /** Un Array List Representa el conjunt de productes es troben din del sistema */
-     private ArrayList<Producte> Cataleg_Productes;
+     protected ArrayList<Producte> Cataleg_Productes;
 
      // Constructor
 
