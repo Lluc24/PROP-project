@@ -1,0 +1,21 @@
+DIRECTORI: layers (test.java.layers)
+
+DESCRIPCIO:
+    Es troben tots els tests unitaris (Junit) per cada clase implementada
+
+ARXIUS:
+    TestAlgorismeBT.java
+    TestAlgorimeGreedy.java
+    TestAproximacio.java
+    TestCtrlCataleg.java
+    TestCtrlSolucions.java
+    TestMergeFindSet.java
+    TestPair.java
+    TestProducte.java
+    TestSolucio.java
+    TestSolucioModificada.java
+
+ALTRES DIRECTORIS
+    JocsDeProva     (El jocs de prova de les diferents
+OBSERVACIONS
+---

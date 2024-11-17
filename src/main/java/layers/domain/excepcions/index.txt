@@ -1,0 +1,25 @@
+DIRECTORI: excepcions (main.java.layers.domain.excepcions)
+
+DESCRIPCIO:
+    Es troben totes les excepcions de creació propia per el diversos errores que es generen a les clases
+    amb relació a els inputs del usuari.
+
+ARXIUS:
+    FormatInpuntNoValid.java
+    IntercanviNoValid.java
+    NomSolucioNoValid.java
+    ProducteNoValid.java
+
+ALTRES DIRECTORIS
+---
+OBSERVACIONS
+    FormatInpuntNoValid ->      Es llença quan algun input del usuari pot no esta dins dels valors valids,
+                                principalment les similituds del productes
+
+    IntercanviNoValid ->        Es llença quan usuari intenta intercambiar productes de una solucio
+                                de manera incorrecte (Producte no existeix, productes iguals...)
+
+    NomSolucioNoValid.java ->   Es llença quan l'usuari dona un nom de una solucio el qual no es valid
+
+    ProducteNoValid.java ->     Es llença quan l'usuari dona un nom per un producte el cual no es valid
+                                (no existeix, son dos productes iguals...)

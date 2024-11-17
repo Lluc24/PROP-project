@@ -1,0 +1,23 @@
+DIRECTORI: JocsDeProva (test.java.layers.domain.JocsDeProva)
+
+DESCRIPCIO:
+    Es troben tots els jocs de prova de diferents funcionalitats del programa
+
+ARXIUS:
+    (Per cada joc de proba hi han tres arxius JocX.txt, JocXinput.txt, JocXoutput.txt)
+    Joc1
+    Joc2
+    Joc3
+    Joc4
+    Joc5
+    Joc6
+    Joc7
+    Joc8
+    Joc9
+    Joc10
+
+ALTRES DIRECTORIS
+---
+OBSERVACIONS
+    Cada joc de prova te explicat la o les funcionalitats que es proven
+    El JocXinput representa el input que rep el programa, que hauria de retornar el JocXoutput
