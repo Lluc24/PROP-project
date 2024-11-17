@@ -1,6 +1,12 @@
 package layers.domain;
 
+import layers.domain.controllers.CtrlCataleg;
+import layers.domain.controllers.CtrlSolucions;
 import layers.domain.controllers.CtrlDomini;
+import layers.domain.excepcions.FormatInputNoValid;
+import layers.domain.excepcions.IntercanviNoValid;
+import layers.domain.excepcions.NomSolucioNoValid;
+import layers.domain.excepcions.ProducteNoValid;
 import layers.domain.utils.Pair;
 
 import java.util.Scanner;
@@ -28,19 +34,24 @@ public class Driver {
                 case 1: // Gestio productes i similituds
                     imprimirMenuAccioDeGestio1();
                     int accioGestio1 = demanaInt(formatNoEnter, scanner);
+                    CtrlCataleg ctrlCataleg = ctrlDomini.getCtrlCataleg();
                     switch (accioGestio1) {
                         case 1: // Mostrar tots els productes
-                            ctrlDomini.mostrarCataleg();
+                            ctrlCataleg.mostrarCataleg();
                             break;
                         case 2: // Veure un producte
                             System.out.println("Entra el nom del producte");
                             String nomProducteCase2 = scanner.next();
-                            ctrlDomini.mostrarProducte(nomProducteCase2);
+                            try {
+                                ctrlCataleg.mostrarProducte(nomProducteCase2);
+                            }catch (ProducteNoValid e){
+                                System.out.println(e.getMessage());
+                            }
                             break;
                         case 3: // Crear producte
                             System.out.println("Entra el nom del producte");
                             String nomProducteCase3 = scanner.next();
-                            int midaCataleg = ctrlDomini.getMidaCataleg();
+                            int midaCataleg = ctrlCataleg.num_prod_act();
                             if (midaCataleg > 0) {
                                 System.out.println("Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte " + nomProducteCase3);
                                 Pair<String, Double>[] similituds = new Pair[midaCataleg];
@@ -49,22 +60,42 @@ public class Driver {
                                     double similitud = demanaDouble(formatNoDecimal, scanner);
                                     similituds[i] = new Pair<>(producte, similitud);
                                 }
-                                ctrlDomini.afegirProducte(nomProducteCase3, similituds);
+                                try {
+                                    ctrlCataleg.afegir_producte(nomProducteCase3, similituds);
+                                }catch (ProducteNoValid e){
+                                    System.out.println(e.getMessage());
+                                }catch (FormatInputNoValid e){
+                                    System.out.println(e.getMessage());
+                                }
                             } else {
-                                ctrlDomini.afegirProducte(nomProducteCase3);
+                                try {
+                                    ctrlCataleg.afegir_producte(nomProducteCase3);
+                                } catch (ProducteNoValid e){
+                                    System.out.println(e.getMessage());
+                                }
                             }
                             break;
                         case 4: // Eliminar un producte
                             System.out.println("Entra el nom del producte");
                             String nomProducteCase4 = scanner.next();
-                            ctrlDomini.eliminarProducte(nomProducteCase4);
+                            try {
+                                ctrlCataleg.eliminar_producte_nom(nomProducteCase4);
+                            }catch (ProducteNoValid e){
+                                System.out.println(e.getMessage());
+                            }
                             break;
                         case 5: // Editar una similitud
                             System.out.println("Entra el nom dels dos productes a modificar la similitud seguit del nou grau de similitud");
                             String nomProducte1 = scanner.next();
                             String nomProducte2 = scanner.next();
                             double similitud = demanaDouble(formatNoDecimal, scanner);
-                            ctrlDomini.editarSimilitud(nomProducte1, nomProducte2, similitud);
+                            try {
+                                ctrlCataleg.editar_similitud(nomProducte1, nomProducte2, similitud);
+                            }catch (ProducteNoValid e){
+                                System.out.println(e.getMessage());
+                            }catch (FormatInputNoValid e){
+                                System.out.println(e.getMessage());
+                            }
                             break;
                         default:
                             System.out.println("Numero fora de rang: " + accioGestio1 + " no esta entre 1 y " + numAccions[gestio - 1]);
@@ -75,44 +106,74 @@ public class Driver {
                 case 2: // Gestio solcucions
                     imprimirMenuAccioDeGestio2();
                     int accioGestio2 = demanaInt(formatNoEnter, scanner);
+                    CtrlSolucions ctrlSolucions = ctrlDomini.getCtrlSolucions();
                     switch (accioGestio2) {
                         case 1: // Veure totes les solucions
-                            ctrlDomini.mostrarSolucions();
+                            ctrlSolucions.mostrarSolucions();
                             break;
                         case 2: // Veure una solucio
                             System.out.println("Entra el nom de la solucio");
                             String nomSolucioCase2 = scanner.next();
-                            ctrlDomini.mostrarSolucio(nomSolucioCase2);
+                            try {
+                                ctrlSolucions.mostrarSolucio(nomSolucioCase2);
+                            }catch (NomSolucioNoValid e) {
+                                System.out.println(e.getMessage());
+                            }
                             break;
                         case 3:  // Crear una solucio
                             System.out.println("Entra el nom de la solucio");
                             String nomSolucioCase3 = scanner.next();
-                            ctrlDomini.crearSolucio(nomSolucioCase3);
+                            try {
+                                ctrlSolucions.creaSolucio(nomSolucioCase3);
+                            }catch (NomSolucioNoValid e) {
+                                System.out.println(e.getMessage());
+                            }catch (FormatInputNoValid e) {
+                                System.out.println(e.getMessage());
+                            }
                             break;
                         case 4: // Eliminar una solucio
                             System.out.println("Entra el nom de la solucio");
                             String nomSolucioCase4 = scanner.next();
-                            ctrlDomini.eliminarSolucio(nomSolucioCase4);
+                            try {
+                                ctrlSolucions.eliminarSolucio(nomSolucioCase4);
+                            }catch (NomSolucioNoValid e) {
+                                System.out.println(e.getMessage());
+                            }
                             break;
                         case 5: // Intercambiar dos productes en una solucio
                             System.out.println("Entra el nom de la solucio seguit dels dos productes a intercambiar en la solucio");
                             String nomSolucioCase5 = scanner.next();
                             String nomProducte1 = scanner.next();
                             String nomProducte2 = scanner.next();
-                            ctrlDomini.modificarSolucio(nomSolucioCase5, nomProducte1, nomProducte2);
+                            try {
+                                ctrlSolucions.modificarSolucio(nomProducte1, nomProducte2, nomSolucioCase5);
+                            }catch (NomSolucioNoValid e) {
+                                System.out.println(e.getMessage());
+                            }catch (IntercanviNoValid e) {
+                                System.out.println(e.getMessage());
+                            }
                             break;
                         case 6: // Canviar d'algorisme
                             System.out.println("Entra el nom del algorisme: greedy, aproximacio, algorismeBT");
                             String nomAlgorisme = scanner.next();
+                            try {
+                                ctrlSolucions.gestioAlgorisme(nomAlgorisme);
+                            }catch (FormatInputNoValid e){
+                                System.out.println(e.getMessage());
+                            }
 
                             if (nomAlgorisme.equals("greedy")) {
                                 System.out.println("Entra el valor del parametre producteInicial: ");
                                 int producteIncial = demanaInt(formatNoEnter, scanner);
                                 System.out.println("Entra el valor del parametre numIteracions: ");
                                 int numIteracions = demanaInt(formatNoEnter, scanner);
-                                ctrlDomini.canviarAlgorisme(nomAlgorisme, producteIncial, numIteracions);
+
+                                try {
+                                    ctrlSolucions.setParametres(producteIncial, numIteracions);
+                                }catch (FormatInputNoValid e){
+                                    System.out.println(e.getMessage());
+                                }
                             }
-                            else ctrlDomini.canviarAlgorisme(nomAlgorisme);
                             break;
                         default:
                             System.out.println("Numero fora de rang: " + accioGestio2 + " no esta entre 1 y " + numGestions);

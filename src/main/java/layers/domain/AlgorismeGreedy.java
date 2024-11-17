@@ -28,6 +28,11 @@ public class AlgorismeGreedy extends Algorisme {
     private int numIteracions;
 
     //Mètodes
+    @Override
+    public int[] solucionar(double[][] matriuSimilituds, boolean[][] matriuRestrConsec) throws FormatInputNoValid {
+        return null;
+    }
+
     /**
      * Constructor de la classe AlgorismeGreedy
      * @param producteInicial L'índex del producte amb el qual comença l'algorisme. No pot ser negatiu, o superior a la quantitat de productes al catàleg, com a precondició.

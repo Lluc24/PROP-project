@@ -1,4 +1,5 @@
-package layers.domain;
+package layers.domain.controllers;
+import layers.domain.Producte;
 import layers.domain.excepcions.FormatInputNoValid;
 import layers.domain.excepcions.ProducteNoValid;
 import layers.domain.utils.Pair;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
  * El primer index sempre tindra valor '0', el metode num_prod_actual sempre retorna la mida correcte del cataleg, 
  * es a dir el index seguent al ultim producte.
  */
-public class Cataleg {
+public class CtrlCataleg {
     //Classe Cataleg
      //Atributs
 
@@ -37,7 +38,7 @@ public class Cataleg {
     /**
      * Metode de construccio d'un cataleg buit, sense cap producte
      */
-    public Cataleg() {
+    public CtrlCataleg() {
           //creacio Cataleg Productes
           ArrayList<Producte> aux = new ArrayList<Producte>();
           this.Cataleg_Productes = aux;
@@ -424,7 +425,7 @@ public class Cataleg {
          double[][] ret_MS = new double[Cataleg_Productes.size()][Cataleg_Productes.size()];
 
          for (int i = 0; i < Cataleg_Productes.size(); ++i) {
-              double[] aux = Cataleg.transformArray(Cataleg_Productes.get(i).getSimilituds());
+              double[] aux = CtrlCataleg.transformArray(Cataleg_Productes.get(i).getSimilituds());
               ret_MS[i] = aux;
          }
          return ret_MS;

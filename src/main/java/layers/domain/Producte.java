@@ -1,5 +1,7 @@
 package layers.domain;
 
+import layers.domain.controllers.CtrlCataleg;
+
 import java.util.ArrayList;
 
 
@@ -7,7 +9,7 @@ import java.util.ArrayList;
  * @Class Producte
  * @Description Representa un producte del sistema, amb nom, llista de similituts
  * i index que representa la seva posicio al Catalge
- * @see Cataleg
+ * @see CtrlCataleg
  * @author Alejandro Lorenzo Navarro
  * @version 2.2
  */
