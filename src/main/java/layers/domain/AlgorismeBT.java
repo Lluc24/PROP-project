@@ -32,7 +32,7 @@ public class AlgorismeBT extends Algorisme {
      * @return Un vector d'índexs de productes al catàleg que representa la millor configuració trobada.
      */
     @Override
-    public int[] solucionar(double[][] matriuSimilituds) throws FormatInputNoValid {
+    public int[] solucionar(double[][] matriuSimilituds, boolean[][] matriuRestrConsec) throws FormatInputNoValid {
 
         int[] millorConfiguracio = new int[matriuSimilituds.length];
 
@@ -43,7 +43,11 @@ public class AlgorismeBT extends Algorisme {
         ArrayList<Integer> configuracioActual = new ArrayList<>();
         boolean[] visitats = new boolean[matriuSimilituds.length];
 
-        backtrack(matriuSimilituds, configuracioActual, visitats, 0.0, millorConfiguracio, 0.0);
+        backtrack(matriuSimilituds, configuracioActual, visitats, 0.0, millorConfiguracio, 0.0, matriuRestrConsec);
+
+        if (matriuRestrConsec[millorConfiguracio[0]][millorConfiguracio[millorConfiguracio.length]]) {
+            throw new FormatInputNoValid("No hi ha una solucio valida amb les restriccions actuals");
+        }
 
         return millorConfiguracio;
     }
@@ -58,7 +62,7 @@ public class AlgorismeBT extends Algorisme {
      * @param maxSimilitud La màxima similitud trobada fins ara.
      * @return El màxim de similitud trobat fins al moment per la configuració actual.
      */
-    private double backtrack(double[][] matriuSimilituds, ArrayList<Integer> configuracioActual, boolean[] visitats, double similitudAcumulada, int[] millorConfiguracio, double maxSimilitud) {
+    private double backtrack(double[][] matriuSimilituds, ArrayList<Integer> configuracioActual, boolean[] visitats, double similitudAcumulada, int[] millorConfiguracio, double maxSimilitud, boolean[][] matriuRestrConsec) {
         int numProd = matriuSimilituds.length;
 
         //comprovem si la configuració actual està completa
@@ -67,6 +71,10 @@ public class AlgorismeBT extends Algorisme {
             int primerIndex = configuracioActual.getFirst();
             int ultimIndex = configuracioActual.getLast();
             double similitudTotal = similitudAcumulada + matriuSimilituds[primerIndex][ultimIndex];
+
+            if (matriuRestrConsec[configuracioActual.getLast()][configuracioActual.getFirst()]) {
+                similitudTotal = -1.0;
+            }
 
             if (similitudTotal > maxSimilitud) {
                 maxSimilitud = similitudTotal;
@@ -86,22 +94,39 @@ public class AlgorismeBT extends Algorisme {
 
         for (int i = 0; i < numProd; i++) {
             if (!visitats[i]) {
-                visitats[i] = true;
-                configuracioActual.add(i);
 
-                //si no és el primer, afegim la similitud amb l'anterior
                 double novaSimilitudAcumulada = similitudAcumulada;
-                if (configuracioActual.size() > 1) {
-                    int anteriorIndex = configuracioActual.get(configuracioActual.size() - 2);
-                    int actualIndex = configuracioActual.getLast();
-                    novaSimilitudAcumulada += matriuSimilituds[anteriorIndex][actualIndex];
+
+                //configuracioActual no és buida
+                if (!configuracioActual.isEmpty()) {
+                    int anteriorIndex = configuracioActual.getLast();
+                    if (!matriuRestrConsec[anteriorIndex][i]) {
+                        novaSimilitudAcumulada += matriuSimilituds[anteriorIndex][i];
+                        visitats[i] = true;
+                        configuracioActual.add(i);
+
+                        maxSimilitud = backtrack(matriuSimilituds, configuracioActual, visitats, novaSimilitudAcumulada, millorConfiguracio, maxSimilitud, matriuRestrConsec);
+
+                        configuracioActual.removeLast();
+                        visitats[i] = false;
+
+                    }
+
+
+                //configuracioActual és buida
+                } else {
+
+                    visitats[i] = true;
+                    configuracioActual.add(i);
+
+                    maxSimilitud = backtrack(matriuSimilituds, configuracioActual, visitats, novaSimilitudAcumulada, millorConfiguracio, maxSimilitud, matriuRestrConsec);
+
+                    configuracioActual.removeLast();
+                    visitats[i] = false;
+
                 }
-
-                maxSimilitud = backtrack(matriuSimilituds, configuracioActual, visitats, novaSimilitudAcumulada, millorConfiguracio, maxSimilitud);
-
-                configuracioActual.removeLast();
-                visitats[i] = false;
             }
+
         }
 
         return maxSimilitud;

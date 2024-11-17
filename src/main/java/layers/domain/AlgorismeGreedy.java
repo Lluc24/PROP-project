@@ -98,7 +98,7 @@ public class AlgorismeGreedy extends Algorisme {
      * @return Un vector d'índexs de productes al catàleg que representa la millor configuració trobada.
      */
     @Override
-    public int[] solucionar(double[][] matriuSimilituds) throws FormatInputNoValid {
+    public int[] solucionar(double[][] matriuSimilituds, boolean[][] matriuRestrConsec) throws FormatInputNoValid {
 
         int numProd = matriuSimilituds.length;
 
@@ -135,7 +135,8 @@ public class AlgorismeGreedy extends Algorisme {
                 int proper = -1;
 
                 for (int j = 0; j < numProd; j++) {
-                    if (!visitats[j]) {
+                    if (!visitats[j] && !matriuRestrConsec[actual][j]) {
+
                         double similitud = matriuSimilituds[actual][j];
                         if (similitud > maxSimilitud) {
                             maxSimilitud = similitud;

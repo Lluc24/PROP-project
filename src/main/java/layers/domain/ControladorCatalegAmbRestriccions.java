@@ -77,7 +77,7 @@ public class ControladorCatalegAmbRestriccions extends Cataleg {
         remRestrConsecId(get_index_prod(nom1), get_index_prod(nom2));
     }
 
-    public Boolean getRestrConsecID(int id1, int id2) throws ProducteNoValid {
+    public boolean getRestrConsecID(int id1, int id2) throws ProducteNoValid {
 
         if (!valida_index(id1) || !valida_index(id2)) {
             throw new ProducteNoValid("getRestrConsec: Producte no existeix");
@@ -85,7 +85,7 @@ public class ControladorCatalegAmbRestriccions extends Cataleg {
         return noConsecutius.get(id1).get(id2);
     }
 
-    public Boolean getRestrConsecNom(String nom1, String nom2) throws ProducteNoValid {
+    public boolean getRestrConsecNom(String nom1, String nom2) throws ProducteNoValid {
         return getRestrConsecID(get_index_prod(nom1), get_index_prod(nom2));
     }
 
@@ -105,7 +105,7 @@ public class ControladorCatalegAmbRestriccions extends Cataleg {
 
     private void mostrarRestrConsec(int index){
 
-        Boolean hihaRestr = false;
+        boolean hihaRestr = false;
         for (int i = 0; i < noConsecutius.size(); ++i) {
             if (noConsecutius.get(index).get(i)) {
                 if (!hihaRestr) {
