@@ -24,7 +24,7 @@ public class Producte {
     private ArrayList<Double> llista_Similituds;
 
     /**
-     * @param index El index a Cataleg_Productes de la classe Cataleg on es troba el producte
+     * @param index El index a Cataleg_Productes de la classe CtrlCataleg on es troba el producte
      * @param nom El nom de producte a crear
      * @param llista Una llista amb totes les similituds del productes
      * Descripció: Es crea una nova instancia de productes

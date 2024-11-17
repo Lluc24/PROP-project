@@ -20,7 +20,7 @@ import java.util.Random;
  */
 public class TestCtrlCataleg {
 
-    public CtrlCataleg ctrlCatalegTest;
+    public CtrlCataleg ctrlCtrlCatalegTest;
 
     @Test
     public void TestCataleg() { }
@@ -49,7 +49,7 @@ public class TestCtrlCataleg {
             }
         }
 
-        this.ctrlCatalegTest = aux_cat;
+        this.ctrlCtrlCatalegTest = aux_cat;
 
     }
 
@@ -62,13 +62,13 @@ public class TestCtrlCataleg {
             when(producteMock.getNom()).thenReturn("Prod_" + i);
         }
 
-        int size_ini = ctrlCatalegTest.num_prod_act();
+        int size_ini = ctrlCtrlCatalegTest.num_prod_act();
         for (int i = 0; i < size_ini; ++i) {
-            assertEquals("Producte existeix", "Prod_" + i, ctrlCatalegTest.getProd_index(i).getNom());
+            assertEquals("Producte existeix", "Prod_" + i, ctrlCtrlCatalegTest.getProd_index(i).getNom());
             for (int j = 0; j < size_ini; ++j) {
-                if (i == j) assertEquals("Similituds correcte", ctrlCatalegTest.getSimilitud_index(i, j), 0.0, 0.0);
-                else if (j < i) assertEquals("Similituds correcte", ctrlCatalegTest.getSimilitud_index(i, j), i, 0.01);
-                else if (j > i) assertEquals("Similituds correcte", ctrlCatalegTest.getSimilitud_index(i, j), j, 0.01);
+                if (i == j) assertEquals("Similituds correcte", ctrlCtrlCatalegTest.getSimilitud_index(i, j), 0.0, 0.0);
+                else if (j < i) assertEquals("Similituds correcte", ctrlCtrlCatalegTest.getSimilitud_index(i, j), i, 0.01);
+                else if (j > i) assertEquals("Similituds correcte", ctrlCtrlCatalegTest.getSimilitud_index(i, j), j, 0.01);
             }
         }
     }
@@ -81,7 +81,7 @@ public class TestCtrlCataleg {
             when(producteMock.getNom()).thenReturn("Prod_" + i);
         }
         //Afegim un nou producte
-        int size_ini = ctrlCatalegTest.num_prod_act();
+        int size_ini = ctrlCtrlCatalegTest.num_prod_act();
         String new_prod = "Prod_"+size_ini;
         Pair<String,Double>[] simi = new Pair[size_ini];
         for (int i = 0; i < simi.length; ++i) {
@@ -90,24 +90,24 @@ public class TestCtrlCataleg {
             simi[i] = p;
         }
         try {
-            ctrlCatalegTest.afegir_producte(new_prod, simi);
+            ctrlCtrlCatalegTest.afegir_producte(new_prod, simi);
         } catch (ProducteNoValid e) {
             System.out.println(e.getMessage());
         } catch (FormatInputNoValid e) {
             System.out.println(e.getMessage());
         }
         //Comprovació si ha funcionat correctament
-        int size2 = ctrlCatalegTest.num_prod_act();
+        int size2 = ctrlCtrlCatalegTest.num_prod_act();
         assertEquals("Mida correcte", size_ini+1, size2);
-        int new_index = ctrlCatalegTest.get_index_prod(new_prod);
+        int new_index = ctrlCtrlCatalegTest.get_index_prod(new_prod);
         assertEquals("Index correcte", new_index, size_ini);
 
         for (int i = 0; i < size2; ++i) {
-            assertEquals("Producte existeix", "Prod_"+i, ctrlCatalegTest.getProd_index(i).getNom());
+            assertEquals("Producte existeix", "Prod_"+i, ctrlCtrlCatalegTest.getProd_index(i).getNom());
             for (int j = 0; j < size2; ++j) {
-                if (i == j) assertEquals("Similituds(i==j) correcte", ctrlCatalegTest.getSimilitud_index(i, j), 0.0, 0.0);
-                else if (j < i) assertEquals("Similituds(j<i) correcte", ctrlCatalegTest.getSimilitud_index(i, j), i, 0.0);
-                else if (j > i) assertEquals("Similituds(j>i) correcte", ctrlCatalegTest.getSimilitud_index(i, j), j, 0.0);
+                if (i == j) assertEquals("Similituds(i==j) correcte", ctrlCtrlCatalegTest.getSimilitud_index(i, j), 0.0, 0.0);
+                else if (j < i) assertEquals("Similituds(j<i) correcte", ctrlCtrlCatalegTest.getSimilitud_index(i, j), i, 0.0);
+                else if (j > i) assertEquals("Similituds(j>i) correcte", ctrlCtrlCatalegTest.getSimilitud_index(i, j), j, 0.0);
             }
         }
     }
@@ -120,7 +120,7 @@ public class TestCtrlCataleg {
             when(producteMock.getNom()).thenReturn("Prod_" + i);
         }
         //Afegim un nou producte
-        int size_ini = ctrlCatalegTest.num_prod_act();
+        int size_ini = ctrlCtrlCatalegTest.num_prod_act();
         String new_prod = "Prod_"+size_ini;
 
         //Aquesta llista es fara en ordre invers al ordre de cataleg
@@ -131,24 +131,24 @@ public class TestCtrlCataleg {
             simi[i] = p;
         }
         try {
-            ctrlCatalegTest.afegir_producte(new_prod, simi);
+            ctrlCtrlCatalegTest.afegir_producte(new_prod, simi);
         } catch (ProducteNoValid e) {
             System.out.println(e.getMessage());
         } catch (FormatInputNoValid e) {
             System.out.println(e.getMessage());
         }
         //Comprovació si ha funcionat correctament
-        int size2 = ctrlCatalegTest.num_prod_act();
+        int size2 = ctrlCtrlCatalegTest.num_prod_act();
         assertEquals("Mida correcte", size_ini+1, size2);
-        int new_index = ctrlCatalegTest.get_index_prod(new_prod);
+        int new_index = ctrlCtrlCatalegTest.get_index_prod(new_prod);
         assertEquals("Index correcte", new_index, size_ini);
 
         for (int i = 0; i < size2; ++i) {
-            assertEquals("Producte existeix", "Prod_"+i, ctrlCatalegTest.getProd_index(i).getNom());
+            assertEquals("Producte existeix", "Prod_"+i, ctrlCtrlCatalegTest.getProd_index(i).getNom());
             for (int j = 0; j < size2; ++j) {
-                if (i == j) assertEquals("Similituds(i==j) correcte", ctrlCatalegTest.getSimilitud_index(i, j), 0.0, 0.0);
-                else if (j < i) assertEquals("Similituds(j<i) correcte", ctrlCatalegTest.getSimilitud_index(i, j), i, 0.0);
-                else if (j > i) assertEquals("Similituds(j>i) correcte", ctrlCatalegTest.getSimilitud_index(i, j), j, 0.0);
+                if (i == j) assertEquals("Similituds(i==j) correcte", ctrlCtrlCatalegTest.getSimilitud_index(i, j), 0.0, 0.0);
+                else if (j < i) assertEquals("Similituds(j<i) correcte", ctrlCtrlCatalegTest.getSimilitud_index(i, j), i, 0.0);
+                else if (j > i) assertEquals("Similituds(j>i) correcte", ctrlCtrlCatalegTest.getSimilitud_index(i, j), j, 0.0);
             }
         }
     }
@@ -164,7 +164,7 @@ public class TestCtrlCataleg {
             when(producteMock.getNom()).thenReturn("Prod_" + i);
         }
         //Afegim un nou producte
-        int size_ini = ctrlCatalegTest.num_prod_act();
+        int size_ini = ctrlCtrlCatalegTest.num_prod_act();
         String new_prod = "Prod_"+size_ini;
         Pair<String,Double>[] simi = new Pair[size_ini];
         for (int i = 0; i < simi.length; ++i) {
@@ -175,22 +175,22 @@ public class TestCtrlCataleg {
             simi[i] = p;
         }
         try {
-            ctrlCatalegTest.afegir_producte(new_prod, simi);
+            ctrlCtrlCatalegTest.afegir_producte(new_prod, simi);
         } catch (ProducteNoValid e){
             System.out.println(e.getMessage());
         } catch (FormatInputNoValid e) {
             System.out.println(e.getMessage());
         }
         //Comprovació si ha funcionat correctament
-        int size2 = ctrlCatalegTest.num_prod_act();
+        int size2 = ctrlCtrlCatalegTest.num_prod_act();
         assertEquals("Mida correcte", size_ini, size2);
 
         for (int i = 0; i < size2; ++i) {
-            assertEquals("Producte existeix", "Prod_"+i, ctrlCatalegTest.getProd_index(i).getNom());
+            assertEquals("Producte existeix", "Prod_"+i, ctrlCtrlCatalegTest.getProd_index(i).getNom());
             for (int j = 0; j < size2; ++j) {
-                if (i == j) assertEquals("Similituds(i==j) correcte", ctrlCatalegTest.getSimilitud_index(i, j), 0.0, 0.0);
-                else if (j < i) assertEquals("Similituds(j<i) correcte", ctrlCatalegTest.getSimilitud_index(i, j), i, 0.0);
-                else if (j > i) assertEquals("Similituds(j>i) correcte", ctrlCatalegTest.getSimilitud_index(i, j), j, 0.0);
+                if (i == j) assertEquals("Similituds(i==j) correcte", ctrlCtrlCatalegTest.getSimilitud_index(i, j), 0.0, 0.0);
+                else if (j < i) assertEquals("Similituds(j<i) correcte", ctrlCtrlCatalegTest.getSimilitud_index(i, j), i, 0.0);
+                else if (j > i) assertEquals("Similituds(j>i) correcte", ctrlCtrlCatalegTest.getSimilitud_index(i, j), j, 0.0);
             }
         }
     }
@@ -214,30 +214,30 @@ public class TestCtrlCataleg {
 
     @Test
     public void TestEliminarProducte() {
-        int size_ini = ctrlCatalegTest.num_prod_act();
+        int size_ini = ctrlCtrlCatalegTest.num_prod_act();
         String[] noms_eliminats = new String[3];
         int[] index_eliminats = {0,5,size_ini-3}; //El primer, un del mig, l'ultim, elements
 
         for (int i = 0; i < 3; ++i) {
-            String nom_out = ctrlCatalegTest.getNomProd_index(index_eliminats[i]);
+            String nom_out = ctrlCtrlCatalegTest.getNomProd_index(index_eliminats[i]);
             noms_eliminats[i] = nom_out;
             try {
-                ctrlCatalegTest.eliminar_producte_nom(nom_out);
+                ctrlCtrlCatalegTest.eliminar_producte_nom(nom_out);
             } catch (ProducteNoValid e) {
                 System.out.println(e.getMessage());
             }
         }
 
-        assertEquals("Nova mida del cataleg", size_ini-3, ctrlCatalegTest.num_prod_act());
+        assertEquals("Nova mida del cataleg", size_ini-3, ctrlCtrlCatalegTest.num_prod_act());
 
         //Indexos ha variat correctament
-        for (int i = 0; i < ctrlCatalegTest.num_prod_act(); ++i) {
-            assertEquals("Index"+i +" Correctes", i, ctrlCatalegTest.getProd_index(i).getIndex());
+        for (int i = 0; i < ctrlCtrlCatalegTest.num_prod_act(); ++i) {
+            assertEquals("Index"+i +" Correctes", i, ctrlCtrlCatalegTest.getProd_index(i).getIndex());
         }
 
         //Produtes han sigut eliminats
         for (int i = 0; i < 3; ++i) {
-            assertFalse("Producte ha sigut eliminat", ctrlCatalegTest.find_prod(noms_eliminats[i]));
+            assertFalse("Producte ha sigut eliminat", ctrlCtrlCatalegTest.find_prod(noms_eliminats[i]));
         }
 
         //Similituds eliminades, (queda inventar una forma de veure que les similituds estan be, que ho estan).
@@ -260,117 +260,117 @@ public class TestCtrlCataleg {
         int index1 = 3;
         int index2 = 7;
         try {
-            ctrlCatalegTest.editar_similitud(ctrlCatalegTest.getNomProd_index(index1), ctrlCatalegTest.getNomProd_index(index2), 99.99);
+            ctrlCtrlCatalegTest.editar_similitud(ctrlCtrlCatalegTest.getNomProd_index(index1), ctrlCtrlCatalegTest.getNomProd_index(index2), 99.99);
         } catch (ProducteNoValid e) {
             System.out.println(e.getMessage());
         } catch (FormatInputNoValid e) {
             System.out.println(e.getMessage());
         }
-        assertEquals("Similitud producte editat", ctrlCatalegTest.getProd_index(index1).get_simil_prod(index2), 99.99, 0.0);
-        assertEquals("Similitud producte editat", ctrlCatalegTest.getProd_index(index2).get_simil_prod(index1), 99.99, 0.0);
+        assertEquals("Similitud producte editat", ctrlCtrlCatalegTest.getProd_index(index1).get_simil_prod(index2), 99.99, 0.0);
+        assertEquals("Similitud producte editat", ctrlCtrlCatalegTest.getProd_index(index2).get_simil_prod(index1), 99.99, 0.0);
 
         //Valor iguals
         index1 = 3;
         index2 = 3;
         try {
-            ctrlCatalegTest.editar_similitud(ctrlCatalegTest.getNomProd_index(index1), ctrlCatalegTest.getNomProd_index(index2), 99.99);
+            ctrlCtrlCatalegTest.editar_similitud(ctrlCtrlCatalegTest.getNomProd_index(index1), ctrlCtrlCatalegTest.getNomProd_index(index2), 99.99);
         } catch (ProducteNoValid e) {
             System.out.println(e.getMessage());
         }
         catch (FormatInputNoValid e) {
             System.out.println(e.getMessage());
         }
-        assertEquals("Similitud producte editat", ctrlCatalegTest.getProd_index(index1).get_simil_prod(index2), 0.0, 0.0);
-        assertEquals("Similitud producte editat", ctrlCatalegTest.getProd_index(index2).get_simil_prod(index1), 0.0, 0.0);
+        assertEquals("Similitud producte editat", ctrlCtrlCatalegTest.getProd_index(index1).get_simil_prod(index2), 0.0, 0.0);
+        assertEquals("Similitud producte editat", ctrlCtrlCatalegTest.getProd_index(index2).get_simil_prod(index1), 0.0, 0.0);
 
     }
 
     @Test
     public void TestFind_prod() {
-        assertTrue("Producte trobat correcte", ctrlCatalegTest.find_prod("Prod_1"));
-        assertFalse("Producte no trobat correcte", ctrlCatalegTest.find_prod("NoEsTrobaACataleg"));
+        assertTrue("Producte trobat correcte", ctrlCtrlCatalegTest.find_prod("Prod_1"));
+        assertFalse("Producte no trobat correcte", ctrlCtrlCatalegTest.find_prod("NoEsTrobaACataleg"));
     }
 
     @Test
     public void TestValida_index() {
         Random rand = new Random();
-        int rand_index = rand.nextInt(ctrlCatalegTest.num_prod_act());
-        assertTrue("Index valid correcte", ctrlCatalegTest.valida_index(rand_index));
-        assertTrue("Index valid correcte", ctrlCatalegTest.valida_index(0));
-        assertFalse("Index no valid correcte", ctrlCatalegTest.valida_index(ctrlCatalegTest.num_prod_act()));
-        assertFalse("Index no valid correcte", ctrlCatalegTest.valida_index(ctrlCatalegTest.num_prod_act()+10));
-        assertFalse("Index no valid correcte", ctrlCatalegTest.valida_index(-5));
+        int rand_index = rand.nextInt(ctrlCtrlCatalegTest.num_prod_act());
+        assertTrue("Index valid correcte", ctrlCtrlCatalegTest.valida_index(rand_index));
+        assertTrue("Index valid correcte", ctrlCtrlCatalegTest.valida_index(0));
+        assertFalse("Index no valid correcte", ctrlCtrlCatalegTest.valida_index(ctrlCtrlCatalegTest.num_prod_act()));
+        assertFalse("Index no valid correcte", ctrlCtrlCatalegTest.valida_index(ctrlCtrlCatalegTest.num_prod_act()+10));
+        assertFalse("Index no valid correcte", ctrlCtrlCatalegTest.valida_index(-5));
 
 
     }
 
     @Test
     public void TestIndex_prod() {
-        assertEquals("Index correcte", ctrlCatalegTest.get_index_prod("Prod_1"), 1);
-        assertEquals("Index correcte", ctrlCatalegTest.get_index_prod("No es troba a cataleg"), -1);
-        assertNotEquals("Index incorrecte", ctrlCatalegTest.get_index_prod("Prod_3"),1);
-        int last = ctrlCatalegTest.num_prod_act() -1;
-        assertEquals("Index final correcte", ctrlCatalegTest.get_index_prod("Prod_"+last), last);
+        assertEquals("Index correcte", ctrlCtrlCatalegTest.get_index_prod("Prod_1"), 1);
+        assertEquals("Index correcte", ctrlCtrlCatalegTest.get_index_prod("No es troba a cataleg"), -1);
+        assertNotEquals("Index incorrecte", ctrlCtrlCatalegTest.get_index_prod("Prod_3"),1);
+        int last = ctrlCtrlCatalegTest.num_prod_act() -1;
+        assertEquals("Index final correcte", ctrlCtrlCatalegTest.get_index_prod("Prod_"+last), last);
     }
 
     @Test
     public void TestGetNomProd_index() {
-        assertEquals("Nom correcte", ctrlCatalegTest.getNomProd_index(1), "Prod_1");
-        assertEquals("Nom correcte", ctrlCatalegTest.getNomProd_index(-1), null);
-        assertNotEquals("Nom incorrecte", ctrlCatalegTest.getNomProd_index(1),"Prod_3");
+        assertEquals("Nom correcte", ctrlCtrlCatalegTest.getNomProd_index(1), "Prod_1");
+        assertEquals("Nom correcte", ctrlCtrlCatalegTest.getNomProd_index(-1), null);
+        assertNotEquals("Nom incorrecte", ctrlCtrlCatalegTest.getNomProd_index(1),"Prod_3");
     }
 
     @Test
     public void TestGetProd_index() {
-        assertEquals("Producte correcte", ctrlCatalegTest.getProd_index(1).getNom(), "Prod_1");
-        assertEquals("Producte correcte", ctrlCatalegTest.getProd_index(-1), null);
-        assertNotEquals("Producte incorrecte", ctrlCatalegTest.getProd_index(1).getNom(),"Prod_3");
+        assertEquals("Producte correcte", ctrlCtrlCatalegTest.getProd_index(1).getNom(), "Prod_1");
+        assertEquals("Producte correcte", ctrlCtrlCatalegTest.getProd_index(-1), null);
+        assertNotEquals("Producte incorrecte", ctrlCtrlCatalegTest.getProd_index(1).getNom(),"Prod_3");
     }
 
     @Test
     public void TestGetProd_nom() {
-        assertEquals("Producte correcte", ctrlCatalegTest.getProd_nom("Prod_1").getNom(), "Prod_1");
-        assertEquals("Producte correcte", ctrlCatalegTest.getProd_nom("NoEsTrobaCataleg"), null);
-        assertNotEquals("Producte incorrecte", ctrlCatalegTest.getProd_nom("Prod_1").getNom(),"Prod_3");
+        assertEquals("Producte correcte", ctrlCtrlCatalegTest.getProd_nom("Prod_1").getNom(), "Prod_1");
+        assertEquals("Producte correcte", ctrlCtrlCatalegTest.getProd_nom("NoEsTrobaCataleg"), null);
+        assertNotEquals("Producte incorrecte", ctrlCtrlCatalegTest.getProd_nom("Prod_1").getNom(),"Prod_3");
     }
 
     @Test
     public void TestGetSimilitud_nom() {
-        assertEquals("Similitud correcte", ctrlCatalegTest.getSimilitud_nom("Prod_1", "Prod_2"), 2, 0.0);
-        assertEquals("Similitud correcte", ctrlCatalegTest.getSimilitud_nom("Prod_1", "Prod_1"), 0, 0.0);
-        assertNotEquals("Similitud correcte", ctrlCatalegTest.getSimilitud_nom("Prod_1", "NoExisteix"), 2, 0.0);
-        assertNotEquals("Similitud correcte", ctrlCatalegTest.getSimilitud_nom("Prod_1", "Prod_3"), 2, 0.0);
+        assertEquals("Similitud correcte", ctrlCtrlCatalegTest.getSimilitud_nom("Prod_1", "Prod_2"), 2, 0.0);
+        assertEquals("Similitud correcte", ctrlCtrlCatalegTest.getSimilitud_nom("Prod_1", "Prod_1"), 0, 0.0);
+        assertNotEquals("Similitud correcte", ctrlCtrlCatalegTest.getSimilitud_nom("Prod_1", "NoExisteix"), 2, 0.0);
+        assertNotEquals("Similitud correcte", ctrlCtrlCatalegTest.getSimilitud_nom("Prod_1", "Prod_3"), 2, 0.0);
     }
 
     @Test
     public void TestNum_prod_act() {
-        assertEquals("Mida correcte", 10, ctrlCatalegTest.num_prod_act());
+        assertEquals("Mida correcte", 10, ctrlCtrlCatalegTest.num_prod_act());
     }
 
     @Test
     public void TestGetAllSimilitudsProd_nom() {
         ArrayList<Double> simi = new ArrayList<>();
-        for (int i = 0; i < ctrlCatalegTest.num_prod_act(); ++i) {
+        for (int i = 0; i < ctrlCtrlCatalegTest.num_prod_act(); ++i) {
             simi.add(i*1.0);
         }
 
-        assertEquals("Totes les similituds correctes", simi, ctrlCatalegTest.getAllSimilitudsProd_nom("Prod_0"));
+        assertEquals("Totes les similituds correctes", simi, ctrlCtrlCatalegTest.getAllSimilitudsProd_nom("Prod_0"));
     }
 
     @Test
     public void TestGetCataleg() {
-        ArrayList<Producte> Array_Prod = ctrlCatalegTest.getCataleg();
+        ArrayList<Producte> Array_Prod = ctrlCtrlCatalegTest.getCataleg();
 
-        for (int i = 0; i < ctrlCatalegTest.num_prod_act(); ++i) {
-            assertEquals("Es producte"+i+" correcte", Array_Prod.get(i), ctrlCatalegTest.getProd_index(i));
+        for (int i = 0; i < ctrlCtrlCatalegTest.num_prod_act(); ++i) {
+            assertEquals("Es producte"+i+" correcte", Array_Prod.get(i), ctrlCtrlCatalegTest.getProd_index(i));
         }
     }
 
     @Test
     public void TestGetMatriuSimilituds() {
 
-        int size = ctrlCatalegTest.num_prod_act();
-        double[][] mat = ctrlCatalegTest.getMatriuSimilituds();
+        int size = ctrlCtrlCatalegTest.num_prod_act();
+        double[][] mat = ctrlCtrlCatalegTest.getMatriuSimilituds();
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
                 if (i == j) assertEquals("Similituds correcte", mat[i][j], 0, 0.0);
@@ -383,13 +383,13 @@ public class TestCtrlCataleg {
     @Ignore
     @Test
     public void TestMostratCataleg() {
-        ctrlCatalegTest.mostrarCataleg();
+        ctrlCtrlCatalegTest.mostrarCataleg();
     }
 
     @Ignore
     @Test
     public void TestMostraProducte() {
-        ctrlCatalegTest.mostrarProducte(0);
+        ctrlCtrlCatalegTest.mostrarProducte(0);
     }
 
 

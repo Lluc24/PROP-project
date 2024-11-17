@@ -1,4 +1,4 @@
-Afegeix 4 productes al cataleg
+Afegeix 4 productes al ctrlCataleg
 Crea una solucio
 Mostra totes les solucions
 Intercanvia dos elemens de la solucio

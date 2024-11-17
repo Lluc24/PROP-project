@@ -6,12 +6,12 @@ Crea una solucio buida
 Mostra la solucio 
 Afegeix un producte
 Crea una solucio
-Mostra cataleg
+Mostra ctrlCataleg
 Afegeix un producte
 Crea una solucio
-Mostra cataleg
+Mostra ctrlCataleg
 Intenta mostrar una solucio que no existeix
 Mostra una solucio que existeix
 Elimina totes les solucions 
-Mostra cataleg
+Mostra ctrlCataleg
 Surt
