@@ -26,6 +26,11 @@ public class AlgorismeBT extends Algorisme {
 
     }
 
+    @Override
+    public int[] solucionar(double[][] matriuSimilituds, boolean[][] matriuRestrConsec) throws FormatInputNoValid {
+        return null;
+    }
+
     /**
      * Mètode principal per trobar la configuració òptima de la prestatgeria.
      * @param matriuSimilituds Matriu de similituds entre productes, on matriuSimilituds[i][j] és la similitud entre els productes i i j.

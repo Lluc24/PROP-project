@@ -1,4 +1,22 @@
 La finalitat d'aquest joc és prova la funcionalitat de modificar solucions
 
 Intenta modificar una solucio que no existeix
-Intenta...
+Crea una solucio
+Intenta modificar una solucio que no existeix
+Intenta intercanviar productes d'una solucio buida
+Afegeix 4 productes
+Elimina la solucio
+Crea una solucio
+Intenta modificar la solucio intercanviant un producte amb ell mateix
+Intenta modificar una solucio intercanviant dos productes que no estan a la solucio
+Intenta intercanviar un producte que esta a la solucio amb un que no hi és
+Intenta intercanviar un producte que no esta a la solucio amb un que hi és
+Intercanvia els dos primers elements
+Els torna a intercanviar
+Intercanvia el primer i l'últim element
+Intercanvia el últim i el tercer element
+Elimina un producte 
+Crea una solucio2
+Intenta intarcanviar un element de solucio1 a solucio2
+Intercanvia el element de solucio1
+Surt

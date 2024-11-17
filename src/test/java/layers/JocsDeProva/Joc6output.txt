@@ -21,7 +21,7 @@ Selecciona l'accio:
 [5] Editar una similitud
 Entra el nom del producte
 Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte kitkat
-Afegir producte: Producte per similtud no esta a cataleg
+Afegir producte: Producte per similtud no esta a ctrlCataleg
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les distribucions existents i calcular una nova
@@ -34,7 +34,7 @@ Selecciona l'accio:
 [5] Editar una similitud
 Entra el nom del producte
 Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte Orbit_menta
-Afegir producte: El producte ja es troba a el cataleg
+Afegir producte: El producte ja es troba a el ctrlCataleg
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les distribucions existents i calcular una nova
@@ -47,7 +47,7 @@ Selecciona l'accio:
 [5] Editar una similitud
 Entra el nom del producte
 Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte Orbit_menta
-Afegir producte: El producte ja es troba a el cataleg
+Afegir producte: El producte ja es troba a el ctrlCataleg
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les distribucions existents i calcular una nova
@@ -97,7 +97,7 @@ Selecciona l'accio:
 [4] Eliminar un producte
 [5] Editar una similitud
 Entra el nom del producte
-Eliminar Producte: El producte no es troba a cataleg
+Eliminar Producte: El producte no es troba a ctrlCataleg
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les distribucions existents i calcular una nova
@@ -120,7 +120,7 @@ Selecciona l'accio:
 [4] Eliminar un producte
 [5] Editar una similitud
 Entra el nom del producte
-Eliminar Producte: El producte no es troba a cataleg
+Eliminar Producte: El producte no es troba a ctrlCataleg
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les distribucions existents i calcular una nova
@@ -228,7 +228,7 @@ Selecciona l'accio:
 [4] Eliminar un producte
 [5] Editar una similitud
 Entra el nom del producte
-Eliminar Producte: El producte no es troba a cataleg
+Eliminar Producte: El producte no es troba a ctrlCataleg
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les distribucions existents i calcular una nova
@@ -239,7 +239,7 @@ Selecciona l'accio:
 [3] Crear un nou producte
 [4] Eliminar un producte
 [5] Editar una similitud
-No hi han productes dins de cataleg
+No hi han productes dins de ctrlCataleg
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les distribucions existents i calcular una nova

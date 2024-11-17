@@ -8,7 +8,7 @@ Selecciona l'accio:
 [3] Crear un nou producte
 [4] Eliminar un producte
 [5] Editar una similitud
-No hi han productes dins de cataleg
+No hi han productes dins de ctrlCataleg
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les distribucions existents i calcular una nova
@@ -88,7 +88,7 @@ Selecciona l'accio:
 [3] Crear un nou producte
 [4] Eliminar un producte
 [5] Editar una similitud
-No hi han productes dins de cataleg
+No hi han productes dins de ctrlCataleg
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les distribucions existents i calcular una nova
