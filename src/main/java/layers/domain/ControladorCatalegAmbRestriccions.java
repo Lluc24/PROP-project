@@ -113,8 +113,8 @@ public class ControladorCatalegAmbRestriccions extends Cataleg {
                 }
                 hihaRestr = true;
                 System.out.print(getNomProd_index(i) + ", ");
-                }
             }
+        }
 
         if (!hihaRestr) {
             System.out.print("Pot estar consecutiu a qualsevol altre producte ");
