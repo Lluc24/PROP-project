@@ -1,0 +1,70 @@
+2
+5
+fruita poma melo
+2
+3
+fruita
+2
+5
+begudes cocacola fanta_llimona
+2
+5
+fruita melo poma
+1
+3
+poma
+1
+3
+melo
+poma 70
+1
+3
+mango
+melo 90 poma 60
+1
+3
+mandarina
+melo 40 poma 95 mango 60
+2
+4
+fruita
+2
+3
+fruita
+2
+5
+fruita melo melo
+2
+5
+fruita cocacola pepsi
+2
+5
+fruita melo raim
+2
+5
+fruita raim melo
+2
+5
+fruita poma melo
+2
+5
+fruita poma melo
+2
+5
+fruita poma mango
+2
+5
+fruita mandarina poma
+1
+4
+mandarina
+2
+3
+fruita2
+2
+5
+fruita2 mandarina poma
+2
+5
+fruita mandarina mango
+3

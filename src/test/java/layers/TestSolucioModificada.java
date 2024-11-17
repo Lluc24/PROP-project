@@ -12,20 +12,17 @@ import static org.junit.Assert.*;
 
 
 /**
- * Classe de testeig de Solucio.java
+ * Classe de testeig de SolucioModificada.java
  */
 public class TestSolucioModificada {
-    ArrayList<Producte> productes = new ArrayList<Producte>();
+    ArrayList<String> productes = new ArrayList<String>();
     Algorisme alg;
     SolucioModificada solucioModificada;
 
     @Before
     public void Inicialitza(){
         for (int i = 0; i < 4; i++) {
-            Producte producteMock = mock(Producte.class);
-            when(producteMock.getIndex()).thenReturn(i);
-            when(producteMock.getNom()).thenReturn("p"+i);
-            productes.add(producteMock);
+            productes.add("p"+i);
         }
         alg = mock(Algorisme.class);
 
@@ -50,12 +47,12 @@ public class TestSolucioModificada {
     @Test
     public void testIntercanvia1() {
         try {
-            solucioModificada.intercanvia(productes.get(0).getNom(), productes.get(1).getNom());
+            solucioModificada.intercanvia(productes.get(0), productes.get(1));
         }catch (IntercanviNoValid e){
             System.out.println(e.getMessage());
         }
 
-        ArrayList<Producte> productesIntercanviats = productes;
+        ArrayList<String> productesIntercanviats = productes;
         productesIntercanviats.add(0, productes.get(1));
         productesIntercanviats.add(1, productes.get(0));
 
@@ -69,12 +66,12 @@ public class TestSolucioModificada {
     @Test
     public void testIntercanvia2() {
         try {
-            solucioModificada.intercanvia(productes.get(0).getNom(), productes.get(3).getNom());
+            solucioModificada.intercanvia(productes.get(0), productes.get(3));
         }catch (IntercanviNoValid e){
             System.out.println(e.getMessage());
         }
 
-        ArrayList<Producte> productesIntercanviats = productes;
+        ArrayList<String> productesIntercanviats = productes;
         productesIntercanviats.add(0, productes.get(3));
         productesIntercanviats.add(3, productes.get(0));
 
@@ -88,7 +85,7 @@ public class TestSolucioModificada {
     @Test
     public void testIntercanvia3() {
         try {
-            solucioModificada.intercanvia(productes.getFirst().getNom(), productes.getFirst().getNom());
+            solucioModificada.intercanvia(productes.getFirst(), productes.getFirst());
         }catch (IntercanviNoValid e){
         System.out.println(e.getMessage());
         }

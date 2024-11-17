@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Solucio {
     // Atributs
-    protected ArrayList<Producte> solucio;
+    protected ArrayList<String> solucio;
     protected Algorisme algorisme;
     protected String nom;
 
     // Constructor
-    public Solucio(ArrayList<Producte> s, Algorisme a, String n) {
+    public Solucio(ArrayList<String> s, Algorisme a, String n) {
         this.solucio = s;
         this.algorisme = a;
         this.nom = n;
@@ -24,7 +24,7 @@ public class Solucio {
         return algorisme;
     }
 
-    public ArrayList<Producte> getSolucio() {
+    public ArrayList<String> getSolucio() {
         return solucio;
     }
 
@@ -38,8 +38,7 @@ public class Solucio {
     public void mostrarSolucio() {
         System.out.print(nom+": ");
         for (int i = 0; i < solucio.size(); i++) {
-            Producte p = solucio.get(i);  // Obtener el producto en la posición i
-            System.out.print(p.getNom());
+            System.out.print(solucio.get(i));
 
             if (i != solucio.size() - 1) {
                 System.out.print(", ");
@@ -57,10 +56,9 @@ public class Solucio {
      * @author Eulalia Peiret Santacana
      */
     public boolean trobarProducte(String x){
-        for (Producte p : solucio){
-            if (p.getNom().equals(x)) return true;
+        for (String p : solucio){
+            if (p.equals(x)) return true;
         }
         return false;
     }
-
 }

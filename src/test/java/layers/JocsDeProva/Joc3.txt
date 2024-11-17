@@ -1,1 +1,18 @@
 La finalitat d'aquest joc de prova és testejar la funcionalitat  de triar tipus algorisme i comprovar que el programa gestioni bé tots els possibles casos
+
+Crear una solucio 
+Canvia d'algorisme a algorismeBT
+Crear una solucio amb el mateix nom
+Crear una solucio
+Intentar canviar d'algorisme a greedy amb el primer parametre negatiu.
+Intentar canviar d'algorisme a greedy amb el segon parametre negatiu.
+Canviar els paràmetres a índes primer producte = 5
+Crear una solucio
+Afegeix 4 productes
+Intentar crear una solucio
+Intentar canviar d'algorisme a greedy amb els dos parametres negatiu.
+Solucionar amb aproximacio
+Solucionar amb algorismeBT
+Intenta canviar a un algorisme que no existeix
+Solucionar amb greedy canviant el paràmetre de primer element
+Visualitzar les solucions

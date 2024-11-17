@@ -11,9 +11,8 @@ public class Aproximacio extends Algorisme {
     private int n, m;
 
     @Override
-    public int[] solucionar(double[][] matriuSimilituds) throws FormatInputNoValid {
+    public int[] solucionar(double[][] matriuSimilituds, boolean[][] matriuRestrConsec) throws FormatInputNoValid {
         n = matriuSimilituds.length;
-        m = n * (n - 1) / 2;
         similituds = matriuSimilituds;
 
         // Cas base:
@@ -22,15 +21,31 @@ public class Aproximacio extends Algorisme {
 
         // Cas extens:
 
-        // Construim un array amb totes les arestes del graf
-        Pair<Integer, Integer>[] arestesOrdenades = new Pair[m];
+        // Construim un array amb totes les arestes del graf que no tenen restriccio
+        List<Pair<Integer, Integer>> arestesOrdenades = new ArrayList<Pair<Integer, Integer>>();
         int k = 0;
         for (int i = 0; i < n; ++i) {
             for (int j = i + 1; j < n; ++j) {
-                arestesOrdenades[k] = new Pair<>(i, j);
-                ++k;
+                if (similituds[i][i] != 0) {
+                    throw new FormatInputNoValid("La diagonal de la matriu d'adjacencia no es nul.la");
+                }
+                if (similituds[i][j] != similituds[j][i]) {
+                    throw new FormatInputNoValid("La matriu d'adjacencia no es simetrica");
+                }
+                if (matriuRestrConsec[i][i]) {
+                    throw new FormatInputNoValid("La diagonal de la matriu de restriccions no es false");
+                }
+                if (matriuRestrConsec[i][j] != matriuRestrConsec[j][i]) {
+                    throw new FormatInputNoValid("La matriu de restriccions no es simetrica");
+                }
+                if (!matriuRestrConsec[i][j]) { // No hi ha restriccio, podem afegir l'aresta
+                    arestesOrdenades.add(new Pair<>(i, j));
+                    ++k;
+                }
             }
         }
+
+        m = k;
 
         // Ordenem les arestes per pes creixent utilitzant QUICKSORT
         ordenacioRapida(arestesOrdenades, 0, m-1);
@@ -43,7 +58,7 @@ public class Aproximacio extends Algorisme {
         List<Set<Integer>> grafDobleDirigit = new ArrayList<Set<Integer>>(n);
         for (int i = 0; i < n; ++i) grafDobleDirigit.add(new HashSet<Integer>());
         for (int i = 0; i < n - 1; ++i) { // Recorrem les arestes del MST
-            Pair<Integer, Integer> aresta = arestesOrdenades[idxArestesMST[i]]; // aresta = (u, v)
+            Pair<Integer, Integer> aresta = arestesOrdenades.get(idxArestesMST[i]); // aresta = (u, v)
             grafDobleDirigit.get(aresta.first).add(aresta.second); // Afegim l'arc u -> v
             grafDobleDirigit.get(aresta.second).add(aresta.first); // Afegim l'arc v -> u
         }
@@ -62,7 +77,17 @@ public class Aproximacio extends Algorisme {
         return camiHamiltonia;
     }
 
-    void ordenacioRapida(Pair<Integer, Integer>[] arestes, int e, int d) {
+    @Override
+    public int[] solucionar(double[][] matriuSimilituds) throws FormatInputNoValid {
+        n = matriuSimilituds.length;
+        boolean[][] matriuRestrConsec = new boolean[n][n];
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) matriuRestrConsec[i][j] = false;
+        }
+        return solucionar(matriuSimilituds, matriuRestrConsec);
+    }
+
+    void ordenacioRapida(List<Pair<Integer, Integer>> arestes, int e, int d) {
         if (e < d) {
             int q = particioHoare(arestes, e, d);   // q es la posicio que deixa a la seva esquerra les arestes de menor
                                                     // pes que l'aresta q i la resta a la dreta
@@ -72,8 +97,8 @@ public class Aproximacio extends Algorisme {
         }
     }
 
-    int particioHoare(Pair<Integer, Integer>[] arestes, int e, int d) {
-        double pivot = similituds[arestes[e].first][arestes[e].second]; // Utilitzem com a pivot la primera aresta
+    int particioHoare(List<Pair<Integer, Integer>> arestes, int e, int d) {
+        double pivot = similituds[arestes.get(e).first][arestes.get(e).second]; // Utilitzem com a pivot la primera aresta
         int i = e;
         int j = d;
         boolean acabat = false;
@@ -81,14 +106,14 @@ public class Aproximacio extends Algorisme {
             // Obtenim les posicions i, j tals que:
             // Tota aresta a l'equerra d'i te menor pes que l'aresta de la posicio pivot
             // Tota aresta a la dreta de j te major pes que l'aresta de la posicio pivot
-            while (similituds[arestes[i].first][arestes[i].second] < pivot) ++i;
-            while (similituds[arestes[j].first][arestes[j].second] > pivot) --j;
+            while (similituds[arestes.get(i).first][arestes.get(i).second] < pivot) ++i;
+            while (similituds[arestes.get(j).first][arestes.get(j).second] > pivot) --j;
             if (i >= j) acabat = true;
             else {
                 // Intercambiem les posicions i, j
-                Pair<Integer, Integer> aux = arestes[i];
-                arestes[i] = arestes[j];
-                arestes[j] = aux;
+                Pair<Integer, Integer> aux = arestes.get(i);
+                arestes.set(i, arestes.get(j));
+                arestes.set(j, aux);
                 ++i;
                 --j;
                 // Es compleix que:
@@ -100,21 +125,22 @@ public class Aproximacio extends Algorisme {
         return j;
     }
 
-    int[] kruskal(Pair<Integer, Integer>[] arestesOrdenades) {
+    int[] kruskal(List<Pair<Integer, Integer>> arestesOrdenades) throws FormatInputNoValid {
         MergeFindSet mfs = new MergeFindSet(n);
         int[] idxArestes = new int[n-1]; // Hem de trobar els indexos de les n - 1 arestes que construeixen el MST
         idxArestes[0] = m-1; // La primera aresta sera la de major pes, amb una aresta no fem cap cicle
         int arestesFixades = 1;
         int i = m-2;
-        mfs.unir(arestesOrdenades[m-1].first, arestesOrdenades[m-1].second);
+        mfs.unir(arestesOrdenades.get(m-1).first, arestesOrdenades.get(m-1).second);
 
         while (mfs.getNombreConjunts() > 1) { // Mentre no sigui connex
-            if (mfs.unir(arestesOrdenades[i].first, arestesOrdenades[i].second)) {
+            if (mfs.unir(arestesOrdenades.get(i).first, arestesOrdenades.get(i).second)) {
                 // Hem trobat l'aresta i de maxim pes que no fa un cicle
                 idxArestes[arestesFixades] = i;
                 ++arestesFixades;
             }
             --i;
+            if (i < 0) throw new FormatInputNoValid("No es pot solucionar la prestatgeria (massa restriccions)");
         }
         return idxArestes;
     }
