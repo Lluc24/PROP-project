@@ -26,10 +26,6 @@ public class AlgorismeBT extends Algorisme {
 
     }
 
-    @Override
-    public int[] solucionar(double[][] matriuSimilituds, boolean[][] matriuRestrConsec) throws FormatInputNoValid {
-        return null;
-    }
 
     /**
      * Mètode principal per trobar la configuració òptima de la prestatgeria.
@@ -50,7 +46,7 @@ public class AlgorismeBT extends Algorisme {
 
         backtrack(matriuSimilituds, configuracioActual, visitats, 0.0, millorConfiguracio, 0.0, matriuRestrConsec);
 
-        if (matriuRestrConsec[millorConfiguracio[0]][millorConfiguracio[millorConfiguracio.length]]) {
+        if (matriuRestrConsec[millorConfiguracio[0]][millorConfiguracio[millorConfiguracio.length - 1]]) {
             throw new FormatInputNoValid("No hi ha una solucio valida amb les restriccions actuals");
         }
 

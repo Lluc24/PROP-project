@@ -28,6 +28,7 @@ public class AlgorismeGreedy extends Algorisme {
     private int numIteracions;
 
     //Mètodes
+
     /**
      * Constructor de la classe AlgorismeGreedy
      * @param producteInicial L'índex del producte amb el qual comença l'algorisme. No pot ser negatiu, o superior a la quantitat de productes al catàleg, com a precondició.
@@ -113,6 +114,8 @@ public class AlgorismeGreedy extends Algorisme {
         }
 
         double maxSimilitudTotal = -1.0;
+        boolean millorSolucioBruta = true;
+        boolean solucioBruta = false;
 
         //bucle per realitzar les diferents iteracions
         for (int iteracio = 0; iteracio < numIteracions % numProd; iteracio++) {
@@ -134,13 +137,28 @@ public class AlgorismeGreedy extends Algorisme {
                 double maxSimilitud = -1.0;
                 int proper = -1;
 
-                for (int j = 0; j < numProd; j++) {
-                    if (!visitats[j] && !matriuRestrConsec[actual][j]) {
+                if (!solucioBruta) {
+                    for (int j = 0; j < numProd; j++) {
+                        if (!visitats[j] && !matriuRestrConsec[actual][j]) {
 
-                        double similitud = matriuSimilituds[actual][j];
-                        if (similitud > maxSimilitud) {
-                            maxSimilitud = similitud;
-                            proper = j;
+                            double similitud = matriuSimilituds[actual][j];
+                            if (similitud > maxSimilitud) {
+                                maxSimilitud = similitud;
+                                proper = j;
+                            }
+                        }
+                    }
+                }
+
+                else {
+                    for (int j = 0; j < numProd; j++) {
+                        if (!visitats[j]) {
+
+                            double similitud = matriuSimilituds[actual][j];
+                            if (similitud > maxSimilitud) {
+                                maxSimilitud = similitud;
+                                proper = j;
+                            }
                         }
                     }
                 }
@@ -152,22 +170,28 @@ public class AlgorismeGreedy extends Algorisme {
                     actual = proper;
                 }
 
+                else {
+                    solucioBruta = true;
+                    --i;
+                }
+
                 i++;
                 //càlcul del valor màxim possible a partir del punt actual
                 int productesRestants = numProd - configuracioActual.size();
                 double maxPossible = similitudTotal + (productesRestants + 1) * 100.0;
 
                 //Poda: si el màxim possible no supera la millor similitud trobada, deixem d'executar el cos
-                if (maxPossible <= maxSimilitudTotal) {
+                if ((!solucioBruta && !millorSolucioBruta && maxPossible <= maxSimilitudTotal) || (solucioBruta && millorSolucioBruta && maxPossible <= maxSimilitudTotal) || (solucioBruta && !millorSolucioBruta)) {
                     continuar = false;
                 }
             }
 
-            if (similitudTotal > maxSimilitudTotal) {
+            if ((!solucioBruta && millorSolucioBruta) || (similitudTotal > maxSimilitudTotal)) {
                 maxSimilitudTotal = similitudTotal;
                 for (int j = 0; j < configuracioActual.size(); j++) {
                     millorConfiguracio[j] = configuracioActual.get(j);
                 }
+                if (!solucioBruta && millorSolucioBruta) millorSolucioBruta = false;
             }
 
             //actualitzem el producte inicial per a la següent iteració

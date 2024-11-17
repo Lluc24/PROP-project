@@ -3,11 +3,12 @@ package layers.domain;
 import layers.domain.excepcions.FormatInputNoValid;
 import layers.domain.excepcions.ProducteNoValid;
 import layers.domain.utils.Pair;
+import layers.domain.controllers.CtrlCataleg;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ControladorCatalegAmbRestriccions extends Cataleg {
+public class ControladorCatalegAmbRestriccions extends CtrlCataleg {
 
     //Atributs
     /** Indica els productes que no poden aparèixer consecutivament a la solució
@@ -48,7 +49,7 @@ public class ControladorCatalegAmbRestriccions extends Cataleg {
     public void setRestrConsecId(int id1, int id2) {
 
         if (!valida_index(id1) || !valida_index(id2)) {
-            System.err.println("SetRestrConsec: Producte no valid");
+            System.err.println("Algun producte no es valid");
             return; //Error;
         }
 
@@ -60,7 +61,7 @@ public class ControladorCatalegAmbRestriccions extends Cataleg {
     public void remRestrConsecId(int id1, int id2) {
 
         if (!valida_index(id1) || !valida_index(id2)) {
-            System.err.println("SetRestrConsec: Producte no valid");
+            System.err.println("Algun producte no es valid");
             return; //Error;
         }
 
@@ -80,7 +81,7 @@ public class ControladorCatalegAmbRestriccions extends Cataleg {
     public boolean getRestrConsecID(int id1, int id2) throws ProducteNoValid {
 
         if (!valida_index(id1) || !valida_index(id2)) {
-            throw new ProducteNoValid("getRestrConsec: Producte no existeix");
+            throw new ProducteNoValid("Algun producte no existeix");
         }
         return noConsecutius.get(id1).get(id2);
     }
@@ -103,7 +104,7 @@ public class ControladorCatalegAmbRestriccions extends Cataleg {
 
     }
 
-    private void mostrarRestrConsec(int index){
+    private void mostrarRestrConsec(int index) {
 
         boolean hihaRestr = false;
         for (int i = 0; i < noConsecutius.size(); ++i) {
@@ -128,14 +129,14 @@ public class ControladorCatalegAmbRestriccions extends Cataleg {
 
         //Existeix un producte amb new_nom
         if (find_prod(new_nom)) {
-            throw new ProducteNoValid("Afegir producte: El producte ja es troba a el cataleg");
+            throw new ProducteNoValid("El producte ja es troba a el cataleg");
         }
 
         Pair<Integer, Double>[] simi_index = new Pair[llista_simi.length];
         for (int i = 0; i < llista_simi.length; ++i) {
             int index_in = get_index_prod(llista_simi[i].first);
             if (!valida_index(index_in)) {
-                throw new ProducteNoValid("Afegir producte: Producte per similtud no esta a cataleg");
+                throw new ProducteNoValid("Producte per similtud no esta a cataleg");
             } else {
                 if (llista_simi[i].second >= 0 && llista_simi[i].second <= 100) {
                     Pair<Integer, Double> p = new Pair<>(i, llista_simi[i].second);
@@ -190,12 +191,12 @@ public class ControladorCatalegAmbRestriccions extends Cataleg {
     public void afegir_producte(String new_nom) throws ProducteNoValid {
         //Existe producto con new_nom
         if (find_prod(new_nom)) {
-            throw new ProducteNoValid("Afegir producte: El producte ja es troba a el cataleg");
+            throw new ProducteNoValid("El producte ja es troba a el cataleg");
 
         }
 
         if (num_prod_act() != 0) {
-            System.err.println("Afegir_producte: Cataleg ja te productes");
+            System.err.println("Cataleg ja te productes");
             return;
         }
 
@@ -212,7 +213,7 @@ public class ControladorCatalegAmbRestriccions extends Cataleg {
 
     public void eliminar_producte_index(int index_out) {
         if (!valida_index(index_out)) {
-            System.err.println("Eliminar producte: Index de producte no valid");
+            System.err.println("Index de producte no valid");
             return; //Error;
         }
 
@@ -234,7 +235,7 @@ public class ControladorCatalegAmbRestriccions extends Cataleg {
     @Override
     public void mostrarProducte(int index) {
         if (!valida_index(index)) {
-            System.err.println("mostrarProducte: Index no es valid");
+            System.err.println("Index no es valid");
         }
 
         Producte prod = Cataleg_Productes.get(index);
