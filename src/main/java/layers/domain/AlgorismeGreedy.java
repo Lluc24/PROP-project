@@ -102,6 +102,12 @@ public class AlgorismeGreedy extends Algorisme {
 
         int numProd = matriuSimilituds.length;
 
+        int[] millorConfiguracio = new int[matriuSimilituds.length];
+
+        if (numProd <= 0) {
+            return millorConfiguracio;
+        }
+
         if (numProd <= 0) {
             throw new FormatInputNoValid("No hi ha productes: La matriu de similituds és buida.");
         }
@@ -110,7 +116,6 @@ public class AlgorismeGreedy extends Algorisme {
             throw new FormatInputNoValid("L'índex del producte no pot ser negatiu o superior a la quantitat de productes al catàleg.");
         }
 
-        int[] millorConfiguracio = new int[numProd];
         double maxSimilitudTotal = -1.0;
 
         //bucle per realitzar les diferents iteracions
