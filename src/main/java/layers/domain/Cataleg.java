@@ -234,7 +234,7 @@ public class Cataleg {
              throw new FormatInputNoValid("El valor de la similitud no es valid");
          }
 
-         if (getSimilitud_nom(index1, index2) == new_simi) System.out.println("La similitud ja te valor "+new_simi);
+         if (getSimilitud_index(index1, index2) == new_simi) System.out.println("La similitud ja te valor "+new_simi);
 
          editar_similitud_index(index1, index2, new_simi);
      }
