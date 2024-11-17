@@ -35,10 +35,10 @@ public class AlgorismeGreedy extends Algorisme {
      */
     public AlgorismeGreedy(int producteInicial, int numIteracions) throws FormatInputNoValid {
         if (producteInicial < 0) {
-            throw new FormatInputNoValid("L'índex del producte inicial no pot ser negatiu.");
+            throw new FormatInputNoValid("L'index del producte inicial no pot ser negatiu");
         }
         if (numIteracions <= 0) {
-            throw new FormatInputNoValid("El nombre d'iteracions ha de ser positiu i no zero.");
+            throw new FormatInputNoValid("El nombre d'iteracions ha de ser positiu i no zero");
         }
         this.producteInicial = producteInicial;
         this.numIteracions = numIteracions;
@@ -67,7 +67,7 @@ public class AlgorismeGreedy extends Algorisme {
     public void setProducteInicial(int producteInicial) throws FormatInputNoValid {
 
         if (producteInicial < 0) {
-            throw new FormatInputNoValid("L'índex del producte inicial no pot ser negatiu.");
+            throw new FormatInputNoValid("L'index del producte inicial no pot ser negatiu");
         }
         this.producteInicial = producteInicial;
     }
@@ -87,7 +87,7 @@ public class AlgorismeGreedy extends Algorisme {
     public void setNumIteracions(int numIteracions) throws FormatInputNoValid {
 
         if (numIteracions <= 0) {
-            throw new FormatInputNoValid("El nombre d'iteracions ha de ser positiu i no zero.");
+            throw new FormatInputNoValid("El nombre d'iteracions ha de ser positiu i no zero");
         }
         this.numIteracions = numIteracions;
     }
@@ -108,12 +108,8 @@ public class AlgorismeGreedy extends Algorisme {
             return millorConfiguracio;
         }
 
-        if (numProd <= 0) {
-            throw new FormatInputNoValid("No hi ha productes: La matriu de similituds és buida.");
-        }
-
         if (producteInicial < 0 || producteInicial >= numProd) {
-            throw new FormatInputNoValid("L'índex del producte no pot ser negatiu o superior a la quantitat de productes al catàleg.");
+            throw new FormatInputNoValid("L'index del producte no pot ser negatiu o superior a la quantitat de productes al cataleg");
         }
 
         double maxSimilitudTotal = -1.0;

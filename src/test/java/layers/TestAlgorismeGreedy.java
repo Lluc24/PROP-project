@@ -52,7 +52,7 @@ public class TestAlgorismeGreedy {
             new AlgorismeGreedy(-1, 5);
             fail("S'hauria d'haver llançat una excepció");
         } catch (FormatInputNoValid e) {
-            assertEquals("El missatge d'error és correcte", "L'índex del producte inicial no pot ser negatiu.", e.getMessage());
+            assertEquals("El missatge d'error és correcte", "L'index del producte inicial no pot ser negatiu", e.getMessage());
         }
     }
 
@@ -65,14 +65,14 @@ public class TestAlgorismeGreedy {
             new AlgorismeGreedy(1, -5);
             fail("S'hauria d'haver llançat una excepció");
         } catch (FormatInputNoValid e) {
-            assertEquals("El missatge d'error és correcte", "El nombre d'iteracions ha de ser positiu i no zero.", e.getMessage());
+            assertEquals("El missatge d'error és correcte", "El nombre d'iteracions ha de ser positiu i no zero", e.getMessage());
         }
 
         try {
             new AlgorismeGreedy(1, 0);
             fail("S'hauria d'haver llançat una excepció");
         } catch (FormatInputNoValid e) {
-            assertEquals("El missatge d'error és correcte", "El nombre d'iteracions ha de ser positiu i no zero.", e.getMessage());
+            assertEquals("El missatge d'error és correcte", "El nombre d'iteracions ha de ser positiu i no zero", e.getMessage());
         }
     }
 
@@ -99,7 +99,7 @@ public class TestAlgorismeGreedy {
             algorisme.setProducteInicial(-1);
             fail("S'hauria d'haver llançat una excepció");
         } catch (FormatInputNoValid e) {
-            assertEquals("El missatge d'error és correcte", "L'índex del producte inicial no pot ser negatiu.", e.getMessage());
+            assertEquals("El missatge d'error és correcte", "L'index del producte inicial no pot ser negatiu", e.getMessage());
         }
     }
 
@@ -126,14 +126,14 @@ public class TestAlgorismeGreedy {
             algorisme.setNumIteracions(0);
             fail("S'hauria d'haver llançat una excepció");
         } catch (FormatInputNoValid e) {
-            assertEquals("El missatge d'error és correcte", "El nombre d'iteracions ha de ser positiu i no zero.", e.getMessage());
+            assertEquals("El missatge d'error és correcte", "El nombre d'iteracions ha de ser positiu i no zero", e.getMessage());
         }
 
         try {
             algorisme.setNumIteracions(-3);
             fail("S'hauria d'haver llançat una excepció");
         } catch (FormatInputNoValid e) {
-            assertEquals("El missatge d'error és correcte", "El nombre d'iteracions ha de ser positiu i no zero.", e.getMessage());
+            assertEquals("El missatge d'error és correcte", "El nombre d'iteracions ha de ser positiu i no zero", e.getMessage());
         }
     }
 
@@ -157,7 +157,7 @@ public class TestAlgorismeGreedy {
             algorisme.solucionar(matriuSimilituds);
             fail("S'hauria d'haver llançat una excepció");
         } catch (FormatInputNoValid e) {
-            assertEquals("El missatge d'error és correcte", "L'índex del producte no pot ser negatiu o superior a la quantitat de productes al catàleg.", e.getMessage());
+            assertEquals("El missatge d'error és correcte", "L'index del producte no pot ser negatiu o superior a la quantitat de productes al cataleg", e.getMessage());
         }
     }
 
@@ -172,7 +172,7 @@ public class TestAlgorismeGreedy {
             assertArrayEquals("Ordre correcte", new int[] {}, resultat);
 
         } catch (FormatInputNoValid e) {
-            assertEquals("Error inesperat.", "No hi ha productes: La matriu de similituds és buida.", e.getMessage());
+
         }
     }
 

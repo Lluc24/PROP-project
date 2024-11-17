@@ -34,12 +34,6 @@ public class AlgorismeBT extends Algorisme {
     @Override
     public int[] solucionar(double[][] matriuSimilituds) throws FormatInputNoValid {
 
-        /*
-        if (matriuSimilituds.length <= 0) {
-            throw new FormatInputNoValid("No hi ha productes: La matriu de similituds és buida.");
-        }
-        */
-
         int[] millorConfiguracio = new int[matriuSimilituds.length];
 
         if (matriuSimilituds.length <= 0) {
