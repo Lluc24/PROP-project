@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**
- * Classe de testeig de Solucio.java
+ * Classe de testeig de GestioSolucio.java
  */
 public class TestGestioSolucio {
     private GestioSolucio gs;
@@ -25,7 +25,7 @@ public class TestGestioSolucio {
     private double[][] matriuSim = {{0.0, 0.5},{0.5, 0.0}};
 
     @Before
-   public void Inicialitza() {
+    public void Inicialitza() {
         c = mock(Cataleg.class);
         gs = new GestioSolucio(c);
         similituds0.add(0.0);
@@ -67,7 +67,6 @@ public class TestGestioSolucio {
      */
     @Test
     public void setParametresTest() {
-
         try {
             gs.setParametres(3, 4);
         }catch (FormatInputNoValid e){
@@ -219,10 +218,10 @@ public class TestGestioSolucio {
         assertTrue("Verificar algorisme", gs.getSolucions().getFirst().getAlgorisme() instanceof AlgorismeGreedy);
     }
 
-        /**
-         * Test de crearSolucio
-         * Valors estudiats: Intenta crear dues solucions amb el mateix nom i ha de comprovar que no s'hagi permés.
-         */
+    /**
+     *  Test de crearSolucio
+     * Valors estudiats: Intenta crear dues solucions amb el mateix nom i ha de comprovar que no s'hagi permés.
+     */
     @Test
     public void testCrearSolucio3() {
         for (int i = 0; i < 2; i++) {
@@ -257,10 +256,10 @@ public class TestGestioSolucio {
         assertTrue("Verificar algorisme", gs.getSolucions().getFirst().getAlgorisme() instanceof Aproximacio);
     }
 
-/**
- * Test de crearSolucio
- * Valors estudiats: Intenta crear dues solucions amb diferent nom i ha de comprovar que ho hagi permés.
- */
+    /**
+     * Test de crearSolucio
+     * Valors estudiats: Intenta crear dues solucions amb diferent nom i ha de comprovar que ho hagi permés.
+     */
     @Test
     public void testCrearSolucio4() {
         for (int i = 0; i < 2; i++) {
@@ -305,8 +304,8 @@ public class TestGestioSolucio {
          * Test de modificarSolucio
          * Valors estudiats: Crea una solucio i intercanvia els seus productes.
          */
-    @Test
-    public void testModificarSolucio1() {
+        @Test
+        public void testModificarSolucio1() {
         for (int i = 0; i < 2; i++) {
             Producte producteMock = mock(Producte.class);
             when(producteMock.getIndex()).thenReturn(i);
@@ -335,6 +334,7 @@ public class TestGestioSolucio {
         }catch (NomSolucioNoValid e) {
         System.out.println(e.getMessage());
         }
+
         Solucio solFi = gs.getSolucions().getFirst();
 
         assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
@@ -345,10 +345,10 @@ public class TestGestioSolucio {
         assertEquals("Verificar segon intercanvi", "p0", solFi.getSolucio().get(1).getNom());
     }
 
-        /**
-         * Test de modificarSolucio
-         * Valors estudiats: Intenta modificar una solucio que no existeix i ha de comprovar que no s'hagi permés.
-         */
+    /**
+     * Test de modificarSolucio
+     * Valors estudiats: Intenta modificar una solucio que no existeix i ha de comprovar que no s'hagi permés.
+     */
     @Test
     public void testModificarSolucio2() {
         for (int i = 0; i < 2; i++) {
@@ -389,10 +389,10 @@ public class TestGestioSolucio {
         assertEquals("Verificar segon intercanvi", "p1", solFi.getSolucio().get(1).getNom());
     }
 
-        /**
-         * Test de eliminarSolucio
-         * Valors estudiats: Afegeix una solucio i la elimina. Ha de comprovar que s'hagi permés.
-         */
+    /**
+     * Test de eliminarSolucio
+     * Valors estudiats: Afegeix una solucio i la elimina. Ha de comprovar que s'hagi permés.
+     */
     @Test
     public void testEliminarSolucio1() {
         for (int i = 0; i < 2; i++) {
@@ -422,10 +422,10 @@ public class TestGestioSolucio {
         assertTrue("Verificar que s'ha eliminat", gs.getSolucions().isEmpty());
     }
 
-/**
- * Test de eliminarSolucio
- * Valors estudiats: Intenta eliminar una solucio que no existeix. Ha de comprovar que no hagi fet res.
- */
+    /**
+     * Test de eliminarSolucio
+     * Valors estudiats: Intenta eliminar una solucio que no existeix. Ha de comprovar que no hagi fet res.
+     */
     @Test
     public void testEliminarSolucio2() {
         for (int i = 0; i < 2; i++) {

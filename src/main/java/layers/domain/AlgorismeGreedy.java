@@ -99,7 +99,6 @@ public class AlgorismeGreedy extends Algorisme {
      */
     @Override
     public int[] solucionar(double[][] matriuSimilituds) throws FormatInputNoValid {
-
         int numProd = matriuSimilituds.length;
 
         int[] millorConfiguracio = new int[matriuSimilituds.length];

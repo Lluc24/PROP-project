@@ -24,7 +24,7 @@ public class SolucioModificada extends Solucio {
      */
     public void intercanvia (String prod1, String prod2) throws IntercanviNoValid{
         if (prod1.equals(prod2)) {
-            String missatge = "Error no pots intercanviar dos productes iguals";
+            String missatge = "No pots intercanviar un producte amb ell mateix";
             throw new IntercanviNoValid(missatge);
         }
         int index1 = -1;
