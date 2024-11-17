@@ -11,7 +11,7 @@ public class Aproximacio extends Algorisme {
     private int n, m;
 
     @Override
-    public int[] solucionar(double[][] matriuSimilituds) throws FormatInputNoValid {
+    public int[] solucionar(double[][] matriuSimilituds, boolean[][] matriuRestrConsec) throws FormatInputNoValid {
         n = matriuSimilituds.length;
         m = n * (n - 1) / 2;
         similituds = matriuSimilituds;
@@ -22,13 +22,31 @@ public class Aproximacio extends Algorisme {
 
         // Cas extens:
 
-        // Construim un array amb totes les arestes del graf
+        // Construim un array amb totes les arestes del graf que no tenen restriccio
         Pair<Integer, Integer>[] arestesOrdenades = new Pair[m];
         int k = 0;
         for (int i = 0; i < n; ++i) {
             for (int j = i + 1; j < n; ++j) {
-                arestesOrdenades[k] = new Pair<>(i, j);
-                ++k;
+                if (similituds[i][i] != 0) {
+                    FormatInputNoValid formatInputNoValid = new FormatInputNoValid("La diagonal de la matriu d'adjacencia no es nul.la");
+                    throw formatInputNoValid;
+                }
+                if (similituds[i][j] != similituds[j][i]) {
+                    FormatInputNoValid formatInputNoValid = new FormatInputNoValid("La matriu d'adjacencia no es simetrica");
+                    throw formatInputNoValid;
+                }
+                if (matriuRestrConsec[i][i]) {
+                    FormatInputNoValid formatInputNoValid = new FormatInputNoValid("La diagonal de la matriu de restriccions no es false");
+                    throw formatInputNoValid;
+                }
+                if (matriuRestrConsec[i][j] != matriuRestrConsec[j][i]) {
+                    FormatInputNoValid formatInputNoValid = new FormatInputNoValid("La matriu de restriccions no es simetrica");
+                    throw formatInputNoValid;
+                }
+                if (!matriuRestrConsec[i][j]) { // No hi ha restriccio, podem afegir l'aresta
+                    arestesOrdenades[k] = new Pair<>(i, j);
+                    ++k;
+                }
             }
         }
 
@@ -60,6 +78,16 @@ public class Aproximacio extends Algorisme {
         int[] camiHamiltonia = new int[n];
         for (int i = 0; i < n; ++i) camiHamiltonia[i] = cicleHamiltonia.get(i);
         return camiHamiltonia;
+    }
+
+    @Override
+    public int[] solucionar(double[][] matriuSimilituds) throws FormatInputNoValid {
+        n = matriuSimilituds.length;
+        boolean[][] matriuRestrConsec = new boolean[n][n];
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) matriuRestrConsec[i][j] = false;
+        }
+        return solucionar(matriuSimilituds, matriuRestrConsec);
     }
 
     void ordenacioRapida(Pair<Integer, Integer>[] arestes, int e, int d) {

@@ -1,6 +1,8 @@
 package layers;
 
 import layers.domain.*;
+import layers.domain.controllers.CtrlCataleg;
+import layers.domain.controllers.CtrlSolucions;
 import layers.domain.excepcions.FormatInputNoValid;
 import layers.domain.excepcions.IntercanviNoValid;
 import layers.domain.excepcions.NomSolucioNoValid;
@@ -16,9 +18,9 @@ import static org.mockito.Mockito.*;
 /**
  * Classe de testeig de GestioSolucio.java
  */
-public class TestGestioSolucio {
-    private GestioSolucio gs;
-    private Cataleg c;
+public class TestCtrlSolucions {
+    private CtrlSolucions gs;
+    private CtrlCataleg c;
     private ArrayList<Double> similituds0 = new ArrayList<>();
     private ArrayList<Double> similituds1 = new ArrayList<>();
     private ArrayList<String> productes = new ArrayList<String>();
@@ -27,8 +29,8 @@ public class TestGestioSolucio {
 
     @Before
     public void Inicialitza() {
-        c = mock(Cataleg.class);
-        gs = new GestioSolucio(c);
+        c = mock(CtrlCataleg.class);
+        gs = new CtrlSolucions(c);
         similituds0.add(0.0);
         similituds1.add(0.5);
         similituds1.add(0.0);
