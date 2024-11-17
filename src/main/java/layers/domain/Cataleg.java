@@ -435,7 +435,7 @@ public class Cataleg {
      */
     public void mostrarCataleg() {
         if (num_prod_act()==0) {
-            System.out.println("No hi han productes dins de cataleg");
+            System.out.println("No hi ha productes dins de cataleg");
         } else if (num_prod_act() == 1) {
             System.out.println("Producte 0:"+getProd_index(0).getNom());
         } else {
