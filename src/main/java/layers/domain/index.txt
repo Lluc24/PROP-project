@@ -1,0 +1,25 @@
+DIRECTORI: domain (main.java.layers.domain)
+
+DESCRIPCIO:
+    Es troben les principals clases del programa, entre les estructures de dades bàsiques,
+    com el algorismes.
+
+ARXIUS:
+    Algorisme.java
+    AlgorismeBT.java
+    AlgorismeGreedy.java
+    Aproximació.java
+    Driver.java
+    Producte.java
+    Solucio.java
+    SolucioModificada.java
+
+
+ALTRES DIRECTORIS
+    controllers     (Directori amb tots el controladors)
+    excepcions      (Directori amb totes les excepcions propies)
+    utils           (Clases de java d'utilitat per les clases d'aquest directori, de creacio propia)
+
+OBSERVACIONS
+    Driver ->   La clase driver correspon al la funcio main del programa (Nomes per la primmera entrega),
+                es la primera classe en executar-se.

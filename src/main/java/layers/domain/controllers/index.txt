@@ -1,0 +1,15 @@
+DIRECTORI: controllers (main.java.layers.domain.controllers)
+
+DESCRIPCIO:
+    Es troben tots els controladors de la capa de domini
+
+ARXIUS:
+    CtrlCataleg.java
+    CtrlDomini.java
+    CtrlSolucions.java
+    CtrlCatalegAmbRestriccions.java
+
+ALTRES DIRECTORIS
+---
+OBSERVACIONS
+---

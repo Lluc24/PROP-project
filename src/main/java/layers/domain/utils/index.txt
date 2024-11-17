@@ -1,0 +1,12 @@
+DIRECTORI: utils (main.java.layers.domain.utils)
+
+DESCRIPCIO:
+    Es troben totes les eines de creacio propia que fan servir les nostres classes java
+
+ARXIUS:
+    MergeFindSet.java
+    Pair.java
+
+ALTRES DIRECTORIS
+---
+OBSERVACIONS
