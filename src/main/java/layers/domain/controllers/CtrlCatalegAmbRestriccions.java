@@ -1,14 +1,15 @@
-package layers.domain;
+package layers.domain.controllers;
 
+import layers.domain.Producte;
 import layers.domain.excepcions.FormatInputNoValid;
 import layers.domain.excepcions.ProducteNoValid;
 import layers.domain.utils.Pair;
-import layers.domain.controllers.CtrlCataleg;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
-public class ControladorCatalegAmbRestriccions extends CtrlCataleg {
+public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 
     //Atributs
     /** Indica els productes que no poden aparèixer consecutivament a la solució
@@ -21,7 +22,7 @@ public class ControladorCatalegAmbRestriccions extends CtrlCataleg {
     /**
      * Mètode de construcció d'un conjunt de restriccions buit
      */
-    public ControladorCatalegAmbRestriccions() {
+    public CtrlCatalegAmbRestriccions() {
 
         super();
         this.noConsecutius = new ArrayList<>();
@@ -263,6 +264,33 @@ public class ControladorCatalegAmbRestriccions extends CtrlCataleg {
         System.out.println(" ");
 
         mostrarRestrConsec(index);
+    }
+
+    public void mostrarRestrConsec() {
+        Iterator<ArrayList<Boolean>> it1 = noConsecutius.iterator();
+        boolean hihaRestr = false;
+        int i = 0;
+        while (it1.hasNext()) {
+            Iterator<Boolean> it2 = it1.next().iterator();
+            boolean teRestr = false;
+            int j = 0;
+            while (it2.hasNext()) {
+                if (it2.next()) {
+                    if (!teRestr) {
+                        System.out.print("El producte " + Cataleg_Productes.get(i).getNom() + " te restriccions amb: ");
+                    }
+                    System.out.print(Cataleg_Productes.get(j).getNom() + " ");
+                    teRestr = true;
+                }
+                ++j;
+                if (teRestr) {
+                    System.out.println();
+                    hihaRestr = true;
+                }
+            }
+            ++i;
+        }
+        if (!hihaRestr) System.out.println("No hi ha restriccions");
     }
 
 }

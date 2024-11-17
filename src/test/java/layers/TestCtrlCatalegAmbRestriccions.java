@@ -1,22 +1,19 @@
 package layers;
 
 import static org.junit.Assert.*;
-import layers.domain.ControladorCatalegAmbRestriccions;
-import layers.domain.controllers.CtrlCataleg;
-import layers.domain.excepcions.FormatInputNoValid;
+import layers.domain.controllers.CtrlCatalegAmbRestriccions;
 import layers.domain.excepcions.ProducteNoValid;
-import layers.domain.utils.Pair;
 import org.junit.Before;
 import org.junit.Test;
 
 
-public class TestControladorCatalegAmbRestriccions {
+public class TestCtrlCatalegAmbRestriccions {
 
-    private ControladorCatalegAmbRestriccions controlador;
+    private CtrlCatalegAmbRestriccions controlador;
 
     @Before
     public void setUp() {
-        controlador = new ControladorCatalegAmbRestriccions();
+        controlador = new CtrlCatalegAmbRestriccions();
     }
 
     @Test

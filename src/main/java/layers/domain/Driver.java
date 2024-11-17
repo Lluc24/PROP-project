@@ -1,6 +1,7 @@
 package layers.domain;
 
 import layers.domain.controllers.CtrlCataleg;
+import layers.domain.controllers.CtrlCatalegAmbRestriccions;
 import layers.domain.controllers.CtrlSolucions;
 import layers.domain.controllers.CtrlDomini;
 import layers.domain.excepcions.FormatInputNoValid;
@@ -13,8 +14,8 @@ import java.util.Scanner;
 
 public class Driver {
     private static CtrlDomini ctrlDomini;
-    private static final int numGestions = 3;
-    private static final int[] numAccions = {5, 6};
+    private static final int numGestions = 4;
+    private static final int[] numAccions = {5, 6, 4};
     private static final String formatNoEnter = "Fomat incorrecte: \"%s\" no es un enter";
     private static final String formatNoDecimal = "Fomat incorrecte: \"%s\" no es un decimal";
 
@@ -26,6 +27,9 @@ public class Driver {
     private static void executar() {
         boolean finalitzat = false;
         Scanner scanner = new Scanner(System.in);
+        CtrlCatalegAmbRestriccions ctrlCataleg = ctrlDomini.getCtrlCatalegAmbRestriccions();
+        CtrlSolucions ctrlSolucions = ctrlDomini.getCtrlSolucions();
+
         while (!finalitzat) {
             imprimirMenuGestio();
             int gestio = demanaInt(formatNoEnter, scanner);
@@ -34,7 +38,6 @@ public class Driver {
                 case 1: // Gestio productes i similituds
                     imprimirMenuAccioDeGestio1();
                     int accioGestio1 = demanaInt(formatNoEnter, scanner);
-                    CtrlCataleg ctrlCataleg = ctrlDomini.getCtrlCataleg();
                     switch (accioGestio1) {
                         case 1: // Mostrar tots els productes
                             ctrlCataleg.mostrarCataleg();
@@ -106,7 +109,6 @@ public class Driver {
                 case 2: // Gestio solcucions
                     imprimirMenuAccioDeGestio2();
                     int accioGestio2 = demanaInt(formatNoEnter, scanner);
-                    CtrlSolucions ctrlSolucions = ctrlDomini.getCtrlSolucions();
                     switch (accioGestio2) {
                         case 1: // Veure totes les solucions
                             ctrlSolucions.mostrarSolucions();
@@ -176,12 +178,52 @@ public class Driver {
                             }
                             break;
                         default:
-                            System.out.println("Numero fora de rang: " + accioGestio2 + " no esta entre 1 y " + numGestions);
+                            System.out.println("Numero fora de rang: " + accioGestio2 + " no esta entre 1 y " + numAccions[gestio - 1]);
                             break;
                     }
                     break;
 
                 case 3:
+                    imprimirMenuAccioDeGestio3();
+                    int accioGestio3 = demanaInt(formatNoEnter, scanner);
+                    switch (accioGestio3) {
+                        case 1: // Veure totes les restriccions
+                            ctrlCataleg.mostrarRestrConsec();
+                            break;
+                        case 2: // Comprobar restriccio en dos productes
+                            System.out.println("Entra el nom dels dos productes a comprobar la restriccio");
+                            String nomProducteComprobar1 = scanner.next();
+                            String nomProducteComprobar2 = scanner.next();
+                            try {
+                                if (ctrlCataleg.getRestrConsecNom(nomProducteComprobar1, nomProducteComprobar2)) {
+                                    System.out.println(nomProducteComprobar1 + " i " + nomProducteComprobar2 + " tenen una restriccio");
+                                }
+                                else {
+                                    System.out.println(nomProducteComprobar1 + " i " + nomProducteComprobar2 + " no tenen una restriccio");
+                                }
+                            } catch (ProducteNoValid e) {
+                                System.out.println(e.getMessage());
+                            }
+                            break;
+                        case 3: // Crear restriccio
+                            System.out.println("Entra el nom dels dos productes a afegir la restriccio");
+                            String nomProducteAfegir1 = scanner.next();
+                            String nomProducteAfegir2 = scanner.next();
+                            ctrlCataleg.setRestrConsecNom(nomProducteAfegir1, nomProducteAfegir2);
+                            break;
+                        case 4: // Eliminar una restriccio
+                            System.out.println("Entra el nom dels dos productes a eliminar la restriccio");
+                            String nomProducteEliminar1 = scanner.next();
+                            String nomProducteEliminar2 = scanner.next();
+                            ctrlCataleg.remRestrConsecNom(nomProducteEliminar1, nomProducteEliminar2);
+                            break;
+                        default:
+                            System.out.println("Numero fora de rang: " + accioGestio3 + " no esta entre 1 y " + numAccions[gestio - 1]);
+                            break;
+                    }
+                    break;
+
+                case 4:
                     System.out.println("Fins la proxima!");
                     finalitzat = true;
                     break;
@@ -197,7 +239,8 @@ public class Driver {
         System.out.println("Quina gestio vols realitzar?");
         System.out.println("[1] Gestionar els productes i similituds de la prestatgeria");
         System.out.println("[2] Gestionar les solucions existents i calcular una nova");
-        System.out.println("[3] Sortir");
+        System.out.println("[3] Gestionar les restriccions entre productes");
+        System.out.println("[4] Sortir");
     }
 
     private static void imprimirMenuAccioDeGestio1() {
@@ -217,6 +260,14 @@ public class Driver {
         System.out.println("[4] Eliminar una solucio");
         System.out.println("[5] Editar una solucio");
         System.out.println("[6] Triar tipus d'algorisme per resoldre");
+    }
+
+    private static void imprimirMenuAccioDeGestio3() {
+        System.out.println("Selecciona l'accio:");
+        System.out.println("[1] Visualitzar totes les restriccions existents");
+        System.out.println("[2] Comprobar si dos productes tenen restriccio");
+        System.out.println("[3] Crear una restriccio entre dos productes");
+        System.out.println("[4] Eliminar una restriccio entre dos productes");
     }
 
     private static int demanaInt(String err, Scanner scanner) {

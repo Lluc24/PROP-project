@@ -2,7 +2,7 @@ package layers.domain.controllers;
 
 public class CtrlDomini{
     private static CtrlDomini instancia = null;
-    private static CtrlCataleg ctrlCataleg = null;
+    private static CtrlCatalegAmbRestriccions ctrlCatalegAmbRestriccions = null;
     private static CtrlSolucions ctrlSolucions = null;
 
     private CtrlDomini(){}
@@ -10,14 +10,14 @@ public class CtrlDomini{
     public static CtrlDomini getCtrlDomini(){
         if (instancia == null){
             instancia = new CtrlDomini();
-            ctrlCataleg = new CtrlCataleg();
-            ctrlSolucions = new CtrlSolucions(ctrlCataleg);
+            ctrlCatalegAmbRestriccions = new CtrlCatalegAmbRestriccions();
+            ctrlSolucions = new CtrlSolucions(ctrlCatalegAmbRestriccions);
         }
         return instancia;
     }
 
-    public CtrlCataleg getCtrlCataleg() {
-        return ctrlCataleg;
+    public CtrlCatalegAmbRestriccions getCtrlCatalegAmbRestriccions() {
+        return ctrlCatalegAmbRestriccions;
     }
 
     public CtrlSolucions getCtrlSolucions() {
