@@ -7,7 +7,7 @@ import java.util.*;
 public class SolucioModificada extends Solucio {
 
     // Constructor
-    public SolucioModificada(ArrayList<Producte> s, Algorisme a, String n) {
+    public SolucioModificada(ArrayList<String> s, Algorisme a, String n) {
         super(s, a, n);
         this.solucio = s;
         this.algorisme = a;
@@ -31,16 +31,16 @@ public class SolucioModificada extends Solucio {
         int index2 = -1;
         // Busca els idx dels prod a solucio
         for (int i = 0; i < solucio.size() && (index1 == -1 || index2 == -1); i++) {
-            if (solucio.get(i).getNom().equals(prod1)) {
+            if (solucio.get(i).equals(prod1)) {
                 index1 = i;
-            } else if (solucio.get(i).getNom().equals(prod2)) {
+            } else if (solucio.get(i).equals(prod2)) {
                 index2 = i;
             }
         }
 
         // Verifica que hagi trobat els 2 productes
         if (index1 != -1 && index2 != -1) {
-            Producte aux = solucio.get(index1);
+            String aux = solucio.get(index1);
             solucio.set(index1, solucio.get(index2));
             solucio.set(index2, aux);
         }

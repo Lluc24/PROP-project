@@ -68,9 +68,9 @@ public class GestioSolucio {
         double[][] similituds = cataleg.getMatriuSimilituds();
         int[] solucio = algorismeAct.solucionar(similituds);
 
-        ArrayList<Producte> llistaProd = new ArrayList<Producte>();
+        ArrayList<String> llistaProd = new ArrayList<String>();
         for (int i: solucio){
-            llistaProd.add(cataleg.getProd_index(i));
+            llistaProd.add(cataleg.getNomProd_index(i));
         }
         Solucio sol = new Solucio(llistaProd, algorismeAct, nomSolucio);
         solucions.add(sol);

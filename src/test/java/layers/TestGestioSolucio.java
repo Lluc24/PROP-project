@@ -21,7 +21,8 @@ public class TestGestioSolucio {
     private Cataleg c;
     private ArrayList<Double> similituds0 = new ArrayList<>();
     private ArrayList<Double> similituds1 = new ArrayList<>();
-    private ArrayList<Producte> productes = new ArrayList<Producte>();
+    private ArrayList<String> productes = new ArrayList<String>();
+    private ArrayList<Producte> productesLit = new ArrayList<Producte>();
     private double[][] matriuSim = {{0.0, 0.5},{0.5, 0.0}};
 
     @Before
@@ -163,9 +164,9 @@ public class TestGestioSolucio {
             if (i == 0) when(producteMock.getSimilituds()).thenReturn(similituds0);
             if (i == 1) when(producteMock.getSimilituds()).thenReturn(similituds1);
             when(producteMock.getNom()).thenReturn("p" + i);
-            productes.add(producteMock);
+            productesLit.add(producteMock);
         }
-        when(c.getCataleg()).thenReturn(productes);
+        when(c.getCataleg()).thenReturn(productesLit);
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
 
         try{
@@ -194,9 +195,9 @@ public class TestGestioSolucio {
             if (i == 0) when(producteMock.getSimilituds()).thenReturn(similituds0);
             if (i == 1) when(producteMock.getSimilituds()).thenReturn(similituds1);
             when(producteMock.getNom()).thenReturn("p" + i);
-            productes.add(producteMock);
+            productesLit.add(producteMock);
         }
-        when(c.getCataleg()).thenReturn(productes);
+        when(c.getCataleg()).thenReturn(productesLit);
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
 
         try {
@@ -230,9 +231,9 @@ public class TestGestioSolucio {
             if (i == 0) when(producteMock.getSimilituds()).thenReturn(similituds0);
             if (i == 1) when(producteMock.getSimilituds()).thenReturn(similituds1);
             when(producteMock.getNom()).thenReturn("p" + i);
-            productes.add(producteMock);
+            productesLit.add(producteMock);
         }
-        when(c.getCataleg()).thenReturn(productes);
+        when(c.getCataleg()).thenReturn(productesLit);
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
 
         try {
@@ -268,12 +269,12 @@ public class TestGestioSolucio {
             if (i == 0) when(producteMock.getSimilituds()).thenReturn(similituds0);
             if (i == 1) when(producteMock.getSimilituds()).thenReturn(similituds1);
             when(producteMock.getNom()).thenReturn("p" + i);
-            productes.add(producteMock);
+            productesLit.add(producteMock);
         }
-        when(c.getCataleg()).thenReturn(productes);
+        when(c.getCataleg()).thenReturn(productesLit);
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
-        when(c.getProd_index(0)).thenReturn(productes.get(0));
-        when(c.getProd_index(1)).thenReturn(productes.get(1));
+        when(c.getProd_index(0)).thenReturn(productesLit.get(0));
+        when(c.getProd_index(1)).thenReturn(productesLit.get(1));
 
         try{
         gs.creaSolucio("Solucio1");
@@ -293,7 +294,8 @@ public class TestGestioSolucio {
         assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
         assertEquals("Verificar nom","Solucio2", gs.getSolucions().get(1).getNom());
         assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
-        assertEquals("Verificar mida Solucio","p0", gs.getSolucions().getFirst().getSolucio().getFirst().getNom());
+        assertEquals("Verificar els primer elements de les solucions",gs.getSolucions().get(1).getSolucio().getFirst(), gs.getSolucions().getFirst().getSolucio().getFirst());
+        assertEquals("Verificar els segons elements de les solucions",gs.getSolucions().get(1).getSolucio().get(1), gs.getSolucions().getFirst().getSolucio().get(1));
         assertEquals("Verificar mida Solucio",2, gs.getSolucions().get(1).getSolucio().size());
         assertEquals("Verificar mida solucions",2, gs.getSolucions().size());
         assertTrue("Verificar algorisme", gs.getSolucions().getFirst().getAlgorisme() instanceof Aproximacio);
@@ -312,13 +314,13 @@ public class TestGestioSolucio {
             if (i == 0) when(producteMock.getSimilituds()).thenReturn(similituds0);
             if (i == 1) when(producteMock.getSimilituds()).thenReturn(similituds1);
             when(producteMock.getNom()).thenReturn("p" + i);
-            productes.add(producteMock);
+            productesLit.add(producteMock);
         }
-        when(c.getCataleg()).thenReturn(productes);
+        when(c.getCataleg()).thenReturn(productesLit);
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
 
-        when(c.getProd_index(0)).thenReturn(productes.get(0));
-        when(c.getProd_index(1)).thenReturn(productes.get(1));
+        when(c.getNomProd_index(0)).thenReturn("p0");
+        when(c.getNomProd_index(1)).thenReturn("p1");
 
         try{
         gs.creaSolucio("Solucio1");
@@ -328,7 +330,7 @@ public class TestGestioSolucio {
             System.out.println(e.getMessage());
         }
         try {
-            gs.modificarSolucio(productes.get(0).getNom(), productes.get(1).getNom(), "Solucio1");
+            gs.modificarSolucio(productesLit.get(0).getNom(), productesLit.get(1).getNom(), "Solucio1");
         }catch (IntercanviNoValid e){
         System.out.println(e.getMessage());
         }catch (NomSolucioNoValid e) {
@@ -341,8 +343,8 @@ public class TestGestioSolucio {
         assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
         assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
         assertTrue("Verificar algorisme", gs.getSolucions().getFirst().getAlgorisme() instanceof Aproximacio);
-        assertEquals("Verificar primer intercanvi", "p1", solFi.getSolucio().get(0).getNom());
-        assertEquals("Verificar segon intercanvi", "p0", solFi.getSolucio().get(1).getNom());
+        assertEquals("Verificar primer intercanvi", "p1", solFi.getSolucio().get(0));
+        assertEquals("Verificar segon intercanvi", "p0", solFi.getSolucio().get(1));
     }
 
     /**
@@ -357,12 +359,13 @@ public class TestGestioSolucio {
             if (i == 0) when(producteMock.getSimilituds()).thenReturn(similituds0);
             if (i == 1) when(producteMock.getSimilituds()).thenReturn(similituds1);
             when(producteMock.getNom()).thenReturn("p" + i);
-            productes.add(producteMock);
+            productesLit.add(producteMock);
         }
-        when(c.getCataleg()).thenReturn(productes);
+        when(c.getCataleg()).thenReturn(productesLit);
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
-        when(c.getProd_index(0)).thenReturn(productes.get(0));
-        when(c.getProd_index(1)).thenReturn(productes.get(1));
+
+        when(c.getNomProd_index(0)).thenReturn("p0");
+        when(c.getNomProd_index(1)).thenReturn("p1");
 
         try{
         gs.creaSolucio("Solucio1");
@@ -372,7 +375,7 @@ public class TestGestioSolucio {
             System.out.println(e.getMessage());
         }
         try{
-        gs.modificarSolucio(productes.get(0).getNom(),productes.get(1).getNom(),"SolucioNoExisteix");
+        gs.modificarSolucio(productesLit.get(0).getNom(),productesLit.get(1).getNom(),"SolucioNoExisteix");
         }catch (IntercanviNoValid e){
             System.out.println(e.getMessage());
         }catch (NomSolucioNoValid e) {
@@ -385,8 +388,8 @@ public class TestGestioSolucio {
         assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
         assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
         assertTrue("Verificar algorisme", gs.getSolucions().getFirst().getAlgorisme() instanceof Aproximacio);
-        assertEquals("Verificar primer intercanvi", "p0", solFi.getSolucio().get(0).getNom());
-        assertEquals("Verificar segon intercanvi", "p1", solFi.getSolucio().get(1).getNom());
+        assertEquals("Verificar primer intercanvi", "p0", solFi.getSolucio().get(0));
+        assertEquals("Verificar segon intercanvi", "p1", solFi.getSolucio().get(1));
     }
 
     /**
@@ -401,9 +404,9 @@ public class TestGestioSolucio {
             if (i == 0) when(producteMock.getSimilituds()).thenReturn(similituds0);
             if (i == 1) when(producteMock.getSimilituds()).thenReturn(similituds1);
             when(producteMock.getNom()).thenReturn("p" + i);
-            productes.add(producteMock);
+            productesLit.add(producteMock);
         }
-        when(c.getCataleg()).thenReturn(productes);
+        when(c.getCataleg()).thenReturn(productesLit);
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
 
         try{
@@ -434,9 +437,9 @@ public class TestGestioSolucio {
             if (i == 0) when(producteMock.getSimilituds()).thenReturn(similituds0);
             if (i == 1) when(producteMock.getSimilituds()).thenReturn(similituds1);
             when(producteMock.getNom()).thenReturn("p" + i);
-            productes.add(producteMock);
+            productesLit.add(producteMock);
         }
-        when(c.getCataleg()).thenReturn(productes);
+        when(c.getCataleg()).thenReturn(productesLit);
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
 
         try {
