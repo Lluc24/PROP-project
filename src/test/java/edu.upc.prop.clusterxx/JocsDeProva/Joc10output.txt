@@ -1,0 +1,275 @@
+sQuina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio seguit dels dos productes a intercambiar en la solucio
+No existeix una solucio amb nom 'fruita'
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio seguit dels dos productes a intercambiar en la solucio
+No existeix una solucio amb nom 'begudes'
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio seguit dels dos productes a intercambiar en la solucio
+No existeix cap dels productes a la solucio amb nom 'fruita'
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte melo
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte mango
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte mandarina
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio seguit dels dos productes a intercambiar en la solucio
+No pots intercanviar un producte amb ell mateix
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio seguit dels dos productes a intercambiar en la solucio
+No existeix cap dels productes a la solucio amb nom 'fruita'
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio seguit dels dos productes a intercambiar en la solucio
+No existeix raim a la solucio 'fruita'
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio seguit dels dos productes a intercambiar en la solucio
+No existeix raim a la solucio amb nom 'fruita'
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio seguit dels dos productes a intercambiar en la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio seguit dels dos productes a intercambiar en la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio seguit dels dos productes a intercambiar en la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio seguit dels dos productes a intercambiar en la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific pel seu id
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio seguit dels dos productes a intercambiar en la solucio
+No existeix mandarina a la solucio amb nom 'fruita2'
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les distribucions existents
+[2] Visualitzar una distribucio especifica
+[3] Calcular una distribucio per la prestatgeria actual
+[4] Eliminar una distribucio
+[5] Editar una distribucio
+[6] Triar tipus d'Algorisme per resoldre
+Entra el nom de la solucio seguit dels dos productes a intercambiar en la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les distribucions existents i calcular una nova
+[3] Sortir
+Fins la proxima!
