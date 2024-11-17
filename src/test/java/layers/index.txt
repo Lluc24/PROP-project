@@ -16,6 +16,6 @@ ARXIUS:
     TestSolucioModificada.java
 
 ALTRES DIRECTORIS
-    JocsDeProva     (El jocs de prova de les diferents
+    JocsDeProva     (El jocs de prova de les diferents funcionalitats)
 OBSERVACIONS
 ---
