@@ -3,11 +3,11 @@ plugins {
     id 'application'
 }
 
-group = 'edu.upc.prop.clusterxx'
+group = 'layers'
 version = '1.0-SNAPSHOT'
 
 ext {
-    javaMainClass = 'layers.domain.Main'
+    javaMainClass = 'layers.domain.Driver'
 }
 
 application {
@@ -32,9 +32,8 @@ repositories {
 
 dependencies {
     // this is just an example of importing an external library, you do not need to use it in your project
-    testImplementation('junit:junit:4.13.1')
-
-    testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.14.2'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '4.9.0'
 }
 
 run {
