@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  */
 public class TestSolucio {
 
-    ArrayList<Producte> productes = new ArrayList<Producte>();
+    ArrayList<String> productes = new ArrayList<String>();
     Algorisme alg;
     Solucio solucio;
 
@@ -24,10 +24,7 @@ public class TestSolucio {
     public void Inicialitza(){
 
         for (int i = 0; i < 4; i++) {
-            Producte producteMock = mock(Producte.class);
-            when(producteMock.getIndex()).thenReturn(i);
-            when(producteMock.getNom()).thenReturn("p" + i);
-            productes.add(producteMock);
+            productes.add("p" + i);
         }
 
         alg = mock(Algorisme.class);
