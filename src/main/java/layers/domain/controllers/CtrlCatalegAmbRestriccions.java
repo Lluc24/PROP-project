@@ -54,7 +54,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
      * Afegir un nou producte a la matriu de restriccions.
      * Quan un producte és afegit, s'afegeixen noves files i columnes a la matriu per mantenir les restriccions de consecutius.
      */
-    public void producteAfegit() {
+    private void producteAfegit() {
 
         if (noConsecutius.isEmpty()) {
             //cas inicial: cap producte encara
@@ -78,7 +78,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
      *
      * @param id L'índex del producte a eliminar.
      */
-    public void producteEliminat(int id) {
+    private void producteEliminat(int id) {
         noConsecutius.remove(id);
         for(int i = 0; i < noConsecutius.getFirst().size(); ++i) {
             noConsecutius.get(i).remove(id);
@@ -217,7 +217,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
      *
      * @param index L'índex del producte per al qual mostrar les restriccions.
      */
-    public void mostrarRestrConsec(int index) {
+    private void mostrarRestrConsec(int index) {
 
         boolean hihaRestr = false;
         for (int i = 0; i < noConsecutius.size(); ++i) {
@@ -271,6 +271,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
             new_simi.add(new_index,0.0);
             Producte new_prod = new Producte(new_index, new_nom, new_simi);
             Cataleg_Productes.add(new_index, new_prod);
+            producteAfegit();
             return;
         }
 
