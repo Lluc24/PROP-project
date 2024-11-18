@@ -28,6 +28,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
      * Els índexs de la matriu corresponen amb els índexs dels productes.
      * La mida és sempre igual al nombre de productes al catàleg. És quadrada.
      */
+
     private ArrayList<ArrayList<Boolean>> noConsecutius;
 
     //Constructora
@@ -80,7 +81,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
      */
     private void producteEliminat(int id) {
         noConsecutius.remove(id);
-        for(int i = 0; i < noConsecutius.getFirst().size(); ++i) {
+        for(int i = 0; i < noConsecutius.size(); ++i) {
             noConsecutius.get(i).remove(id);
         }
     }
@@ -262,7 +263,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
                     Pair<Integer, Double> p = new Pair<>(i, llista_simi[i].second);
                     simi_index[i] = p;
                 } else {
-                    throw new FormatInputNoValid("El valors de la similitud per producte" +llista_simi[i].first+"no son valid");
+                    throw new FormatInputNoValid("El valors de la similitud per producte " +llista_simi[i].first+" no son valid");
                 }
             }
 
