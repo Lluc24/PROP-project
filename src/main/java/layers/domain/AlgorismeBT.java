@@ -26,6 +26,18 @@ public class AlgorismeBT extends Algorisme {
 
     }
 
+    private boolean noPle(int[] millorConfiguracio) {
+
+        if (millorConfiguracio[millorConfiguracio.length - 1] != 0) return false;
+
+        if (millorConfiguracio.length == 1) return false;
+
+        for (int i = millorConfiguracio.length - 2; i >= 0; --i) {
+            if (millorConfiguracio[i] == 0) return true;
+        }
+
+        return false;
+    }
 
     /**
      * Mètode principal per trobar la configuració òptima de la prestatgeria.
@@ -46,7 +58,8 @@ public class AlgorismeBT extends Algorisme {
 
         backtrack(matriuSimilituds, configuracioActual, visitats, 0.0, millorConfiguracio, 0.0, matriuRestrConsec);
 
-        if (matriuRestrConsec[millorConfiguracio[0]][millorConfiguracio[millorConfiguracio.length - 1]]) {
+
+        if (noPle(millorConfiguracio) || matriuRestrConsec[millorConfiguracio[0]][millorConfiguracio[millorConfiguracio.length - 1]]) {
             throw new FormatInputNoValid("No hi ha una solucio valida amb les restriccions actuals");
         }
 
