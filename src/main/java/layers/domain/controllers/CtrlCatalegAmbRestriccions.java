@@ -80,8 +80,10 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
      */
     private void producteEliminat(int id) {
         noConsecutius.remove(id);
-        for(int i = 0; i < noConsecutius.getFirst().size(); ++i) {
-            noConsecutius.get(i).remove(id);
+        if (!noConsecutius.isEmpty()) {
+            for (int i = 0; i < noConsecutius.getFirst().size(); ++i) {
+                noConsecutius.get(i).remove(id);
+            }
         }
     }
 
