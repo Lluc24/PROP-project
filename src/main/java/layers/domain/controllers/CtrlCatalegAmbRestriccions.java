@@ -159,7 +159,12 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 
         if (!noms_valids) throw new ProducteNoValid("Algun producte no es valid");
 
-        remRestrConsecId(index1, index2);
+        if (!getRestrConsecID(index1, index2)) {
+            System.out.println("No existeix aquesta restricció entre "+ nom1+" i "+nom2);
+            return;
+        } else {
+            remRestrConsecId(index1, index2);
+        }
     }
 
     /**
@@ -224,10 +229,10 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
             if (noConsecutius.get(index).get(i)) {
                 if (!hihaRestr) {
                     System.out.print("Restrictivament, no pot estar consecutiu a: ");
+                    System.out.print(getNomProd_index(i));
+                    hihaRestr = true;
                 }
-                hihaRestr = true;
-                if (i != 0) System.out.print(getNomProd_index(i));
-                else System.out.println(" , " + getNomProd_index(i));
+                else System.out.print(" , " + getNomProd_index(i));
             }
         }
 
