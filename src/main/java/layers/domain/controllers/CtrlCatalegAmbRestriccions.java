@@ -28,6 +28,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
      * Els índexs de la matriu corresponen amb els índexs dels productes.
      * La mida és sempre igual al nombre de productes al catàleg. És quadrada.
      */
+
     private ArrayList<ArrayList<Boolean>> noConsecutius;
 
     //Constructora
@@ -80,7 +81,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
      */
     private void producteEliminat(int id) {
         noConsecutius.remove(id);
-        for(int i = 0; i < noConsecutius.getFirst().size(); ++i) {
+        for(int i = 0; i < noConsecutius.size(); ++i) {
             noConsecutius.get(i).remove(id);
         }
     }
