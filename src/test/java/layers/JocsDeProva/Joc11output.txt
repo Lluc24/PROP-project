@@ -1,0 +1,238 @@
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte Prod2
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte Prod3
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les restriccions existents
+[2] Comprobar si dos productes tenen restriccio
+[3] Crear una restriccio entre dos productes
+[4] Eliminar una restriccio entre dos productes
+No hi ha restriccions
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Producte 0: Prod1. Les seves similituds son: Prod2 -> 45.0 , Prod3 -> 10.0
+Pot estar consecutiu a qualsevol altre producte  
+Producte 1: Prod2. Les seves similituds son: Prod1 -> 45.0 , Prod3 -> 20.0
+Pot estar consecutiu a qualsevol altre producte  
+Producte 2: Prod3. Les seves similituds son: Prod1 -> 10.0 , Prod2 -> 20.0
+Pot estar consecutiu a qualsevol altre producte  
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les restriccions existents
+[2] Comprobar si dos productes tenen restriccio
+[3] Crear una restriccio entre dos productes
+[4] Eliminar una restriccio entre dos productes
+Entra el nom dels dos productes a afegir la restriccio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les restriccions existents
+[2] Comprobar si dos productes tenen restriccio
+[3] Crear una restriccio entre dos productes
+[4] Eliminar una restriccio entre dos productes
+Entra el nom dels dos productes a afegir la restriccio
+Algun producte no es valid
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les restriccions existents
+[2] Comprobar si dos productes tenen restriccio
+[3] Crear una restriccio entre dos productes
+[4] Eliminar una restriccio entre dos productes
+Entra el nom dels dos productes a comprobar la restriccio
+Prod1 i Prod2 tenen una restriccio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les restriccions existents
+[2] Comprobar si dos productes tenen restriccio
+[3] Crear una restriccio entre dos productes
+[4] Eliminar una restriccio entre dos productes
+Entra el nom dels dos productes a comprobar la restriccio
+Prod2 i Prod3 no tenen una restriccio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les restriccions existents
+[2] Comprobar si dos productes tenen restriccio
+[3] Crear una restriccio entre dos productes
+[4] Eliminar una restriccio entre dos productes
+Entra el nom dels dos productes a comprobar la restriccio
+Algun producte no existeix
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les restriccions existents
+[2] Comprobar si dos productes tenen restriccio
+[3] Crear una restriccio entre dos productes
+[4] Eliminar una restriccio entre dos productes
+El producte Prod1 te restriccions amb: Prod2 
+
+El producte Prod2 te restriccions amb: Prod1 
+
+
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Producte 0: Prod1. Les seves similituds son: Prod2 -> 45.0 , Prod3 -> 10.0
+Restrictivament, no pot estar consecutiu a: Prod2 
+Producte 1: Prod2. Les seves similituds son: Prod1 -> 45.0 , Prod3 -> 20.0
+Restrictivament, no pot estar consecutiu a: Prod1 
+Producte 2: Prod3. Les seves similituds son: Prod1 -> 10.0 , Prod2 -> 20.0
+Pot estar consecutiu a qualsevol altre producte  
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les restriccions existents
+[2] Comprobar si dos productes tenen restriccio
+[3] Crear una restriccio entre dos productes
+[4] Eliminar una restriccio entre dos productes
+Entra el nom dels dos productes a eliminar la restriccio
+No existeix aquesta restricció entre Prod1 i Prod3
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les restriccions existents
+[2] Comprobar si dos productes tenen restriccio
+[3] Crear una restriccio entre dos productes
+[4] Eliminar una restriccio entre dos productes
+Entra el nom dels dos productes a eliminar la restriccio
+Algun producte no es valid
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les restriccions existents
+[2] Comprobar si dos productes tenen restriccio
+[3] Crear una restriccio entre dos productes
+[4] Eliminar una restriccio entre dos productes
+Entra el nom dels dos productes a eliminar la restriccio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les restriccions existents
+[2] Comprobar si dos productes tenen restriccio
+[3] Crear una restriccio entre dos productes
+[4] Eliminar una restriccio entre dos productes
+Entra el nom dels dos productes a comprobar la restriccio
+Prod1 i Prod2 no tenen una restriccio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les restriccions existents
+[2] Comprobar si dos productes tenen restriccio
+[3] Crear una restriccio entre dos productes
+[4] Eliminar una restriccio entre dos productes
+No hi ha restriccions
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Producte 0: Prod1. Les seves similituds son: Prod2 -> 45.0 , Prod3 -> 10.0
+Pot estar consecutiu a qualsevol altre producte  
+Producte 1: Prod2. Les seves similituds son: Prod1 -> 45.0 , Prod3 -> 20.0
+Pot estar consecutiu a qualsevol altre producte  
+Producte 2: Prod3. Les seves similituds son: Prod1 -> 10.0 , Prod2 -> 20.0
+Pot estar consecutiu a qualsevol altre producte  
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Fins la proxima!
