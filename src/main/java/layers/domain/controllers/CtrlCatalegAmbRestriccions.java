@@ -1,6 +1,5 @@
 package layers.domain.controllers;
 
-import layers.domain.AlgorismeBT;
 import layers.domain.Producte;
 import layers.domain.excepcions.FormatInputNoValid;
 import layers.domain.excepcions.ProducteNoValid;
