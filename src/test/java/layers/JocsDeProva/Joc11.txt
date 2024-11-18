@@ -1,0 +1,18 @@
+Funcionalitat: Provar les diferents funcionalitat de restriccions i visualitzarlas
+
+Afegir un primer producte
+Afegir un segon producte
+Afegir un tercer producte
+Visualitzar les restriccions
+Visualitzar tots els productes
+Afegeix una restricció entre Producte 1 i Producte 2
+Afegeix una restricció entre Producte 4 i Producte 3
+Comprovar si Producte 1 i Producte 2 tenen restricció
+Visualitza les restriccions
+Visualitza tots els productes
+Elimina les restriccions entre Producte 1 i Producte 3
+Elimina les restriccions entre Producte 1 i Producte 4
+Elimina les restriccions entre Producte 1 i Producte 2
+Comprovar si Producte 1 i Producte 2 tenen restricció
+Visualitza les restriccions
+Visualitza totes els productes
