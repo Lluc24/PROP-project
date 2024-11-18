@@ -263,7 +263,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
                     Pair<Integer, Double> p = new Pair<>(i, llista_simi[i].second);
                     simi_index[i] = p;
                 } else {
-                    throw new FormatInputNoValid("El valors de la similitud per producte" +llista_simi[i].first+"no son valid");
+                    throw new FormatInputNoValid("El valors de la similitud per producte " +llista_simi[i].first+" no son valid");
                 }
             }
 
