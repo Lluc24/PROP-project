@@ -278,7 +278,7 @@ public class TestAlgorismeGreedy {
         try {
             configuracio = algorisme.solucionar(matriuSimilituds, matriuRestr);
         } catch (FormatInputNoValid e) {
-            assertEquals("El missatge d'error és correcte", "No hi ha una solucio valida amb les restriccions actuals", e.getMessage());
+            fail("Error inesperat");
         }
         assertArrayEquals("Ordre correcte", configuracioEsperada, configuracio);
     }
