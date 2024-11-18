@@ -1,5 +1,6 @@
 package layers.domain.controllers;
 
+import layers.domain.AlgorismeBT;
 import layers.domain.Producte;
 import layers.domain.excepcions.FormatInputNoValid;
 import layers.domain.excepcions.ProducteNoValid;
@@ -9,13 +10,25 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
+/**
+ * Aquesta classe reescriu alguns mètodes de CtrlCataleg i permet establir o eliminar restriccions entre productes.
+ *
+ * @see CtrlCataleg
+ *
+ * @author Efrain Tito Cortés
+ * @version 1,1
+ *
+ * <p><b>Informació:</b></p>
+ * Manté una matriu de mida igual al nombre de productes al catàleg i les restriccions entre ells per determinar quins productes no poden ser consecutius en la solució.
+ * Matriu noConsecutius: Si l'element de la fila 'i', columna 'j' és true, hi ha una restricció de consecutius entre el producte amb índex 'i' i aquell amb índex 'j'.
+ */
 public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 
     //Atributs
-    /** Indica els productes que no poden aparèixer consecutivament a la solució
+    /** Indica els productes que no poden aparèixer consecutivament a la solució.
      * Els índexs de la matriu corresponen amb els índexs dels productes.
+     * La mida és sempre igual al nombre de productes al catàleg. És quadrada.
      */
-
     private ArrayList<ArrayList<Boolean>> noConsecutius;
 
     //Constructora
@@ -31,8 +44,17 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 
     //Mètodes
 
+    /**
+     * Obté la mida actual de la matriu de restriccions consecutives (nombre de productes).
+     *
+     * @return La mida de la matriu, que correspon al nombre de productes en la gestió de restriccions de consecutius.
+     */
     public int get_mida_noConsec() { return noConsecutius.size(); }
 
+    /**
+     * Afegir un nou producte a la matriu de restriccions.
+     * Quan un producte és afegit, s'afegeixen noves files i columnes a la matriu per mantenir les restriccions de consecutius.
+     */
     public void producteAfegit() {
 
         if (noConsecutius.isEmpty()) {
@@ -51,6 +73,12 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
         }
     }
 
+    /**
+     * Elimina un producte de la matriu de restriccions.
+     * Aquesta operació elimina la fila i la columna corresponents al producte especificat.
+     *
+     * @param id L'índex del producte a eliminar.
+     */
     public void producteEliminat(int id) {
         noConsecutius.remove(id);
         for(int i = 0; i < noConsecutius.getFirst().size(); ++i) {
@@ -58,6 +86,13 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
         }
     }
 
+    /**
+     * Estableix una restricció de consecutius entre dos productes especificats pels seus índexs.
+     * Aquesta operació fa que els dos productes no puguin estar consecutius.
+     *
+     * @param id1 L'índex del primer producte.
+     * @param id2 L'índex del segon producte.
+     */
     public void setRestrConsecId(int id1, int id2) {
 
         if (!valida_index(id1) || !valida_index(id2)) {
@@ -70,6 +105,13 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 
     }
 
+    /**
+     * Elimina una restricció de consecutivitat entre dos productes especificats pels seus índexs.
+     * Aquesta operació permet que els dos productes puguin estar consecutius.
+     *
+     * @param id1 L'índex del primer producte.
+     * @param id2 L'índex del segon producte.
+     */
     public void remRestrConsecId(int id1, int id2) {
 
         if (!valida_index(id1) || !valida_index(id2)) {
@@ -82,14 +124,36 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 
     }
 
+    /**
+     * Estableix una restricció de consecutivitat entre dos productes identificats pels seus noms.
+     * Aquesta operació fa que els productes amb els noms especificats no puguin estar consecutius.
+     *
+     * @param nom1 El nom del primer producte.
+     * @param nom2 El nom del segon producte.
+     */
     public void setRestrConsecNom(String nom1, String nom2) {
         setRestrConsecId(get_index_prod(nom1), get_index_prod(nom2));
     }
 
+    /**
+     * Elimina una restricció de consecutivitat entre dos productes identificats pels seus noms.
+     * Aquesta operació permet que els productes amb els noms especificats puguin estar consecutius.
+     *
+     * @param nom1 El nom del primer producte.
+     * @param nom2 El nom del segon producte.
+     */
     public void remRestrConsecNom(String nom1, String nom2) {
         remRestrConsecId(get_index_prod(nom1), get_index_prod(nom2));
     }
 
+    /**
+     * Obté si hi ha una restricció de consecutivitat entre dos productes especificats pels seus índexs.
+     *
+     * @param id1 L'índex del primer producte.
+     * @param id2 L'índex del segon producte.
+     * @return True si els productes no poden estar consecutius, false en cas contrari.
+     * @throws ProducteNoValid Si algun dels productes no és vàlid (el seu índex no es troba al catàleg).
+     */
     public boolean getRestrConsecID(int id1, int id2) throws ProducteNoValid {
 
         if (!valida_index(id1) || !valida_index(id2)) {
@@ -98,10 +162,24 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
         return noConsecutius.get(id1).get(id2);
     }
 
+    /**
+     * Obté si hi ha una restricció de consecutivitat entre dos productes identificats pels seus noms.
+     *
+     * @param nom1 El nom del primer producte.
+     * @param nom2 El nom del segon producte.
+     * @return True si els productes no poden estar consecutius, false en cas contrari.
+     * @throws ProducteNoValid Si algun dels productes no és vàlid (el seu nom no es troba al catàleg).
+     */
     public boolean getRestrConsecNom(String nom1, String nom2) throws ProducteNoValid {
         return getRestrConsecID(get_index_prod(nom1), get_index_prod(nom2));
     }
 
+    /**
+     * Obté la matriu completa de restriccions de consecutivitat entre els productes.
+     * Aquesta matriu és una representació booleana en què true indica que els productes no poden ser consecutius.
+     *
+     * @return La matriu de restriccions de consecutivitat.
+     */
     public boolean[][] getMatrRestrConsec() {
 
         int costat = noConsecutius.size();
@@ -117,6 +195,12 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 
     }
 
+    /**
+     * Mostra les restriccions de consecutivitat per a un producte especificat pel seu índex.
+     * Imprimeix els productes amb els quals el producte actual no pot estar consecutiu.
+     *
+     * @param index L'índex del producte per al qual mostrar les restriccions.
+     */
     public void mostrarRestrConsec(int index) {
 
         boolean hihaRestr = false;
@@ -137,6 +221,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
         System.out.println(" ");
     }
 
+    /** Override de afegir_producte(String new_nom, Pair<String, Double>[] llista_simi) throws ProducteNoValid, FormatInputNoValid */
     @Override
     public void afegir_producte(String new_nom, Pair<String, Double>[] llista_simi) throws ProducteNoValid, FormatInputNoValid {
 
@@ -200,6 +285,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 
     }
 
+    /** Override de afegir_producte(String new_nom) throws ProducteNoValid */
     @Override
     public void afegir_producte(String new_nom) throws ProducteNoValid {
         //Existe producto con new_nom
@@ -224,6 +310,8 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
         producteAfegit();
     }
 
+    /** Override de public void eliminar_producte_index(int index_out) */
+    @Override
     public void eliminar_producte_index(int index_out) {
         if (!valida_index(index_out)) {
             System.err.println("Index de producte no valid");
@@ -245,6 +333,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
         producteEliminat(index_out);
     }
 
+    /** Override de public void mostrarProducte(int index) */
     @Override
     public void mostrarProducte(int index) {
         if (!valida_index(index)) {
@@ -266,6 +355,12 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
         mostrarRestrConsec(index);
     }
 
+    /**
+     * Mostra totes les restriccions de consecutivitat entre els productes.
+     * Aquest mètode recorre la matriu de restriccions i imprimeix quins productes tenen restriccions de consecutivitat amb altres productes.
+     * Si un producte té alguna restricció, es mostrarà el seu nom i el dels productes amb els quals té restriccions.
+     * En cas que no hi hagi cap restricció, es mostrarà un missatge indicant-ho.
+     */
     public void mostrarRestrConsec() {
         Iterator<ArrayList<Boolean>> it1 = noConsecutius.iterator();
         boolean hihaRestr = false;

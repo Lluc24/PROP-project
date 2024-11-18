@@ -11,11 +11,12 @@ import layers.domain.excepcions.FormatInputNoValid;
  * @see Algorisme
  *
  * @author Efrain Tito Cortés
- * @version 2,2
+ * @version 3,0
  *
  * <p><b>Informació:</b></p>
  * Per al mètode 'solucionar', cal passar com a paràmetre una matriu de similituds, on l'element
  * [i][j] representa la similitud entre el producte amb índex de catàleg 'i' i el producte amb índex de catàleg 'j'.
+ * Nota: Per tal d'optimitzar, l'algorisme assumeix que la similitud màxima entre dos productes és 100,0.
  */
 public class AlgorismeBT extends Algorisme {
 
@@ -26,6 +27,12 @@ public class AlgorismeBT extends Algorisme {
 
     }
 
+    /**
+     * Comprova si la configuració no està plena.
+     *
+     * @param millorConfiguracio Representa la millor configuració trobada.
+     * @return True si encara hi ha espais no ocupats a la configuració (és a dir, és una solució incompleta), false en cas contrari.
+     */
     private boolean noPle(int[] millorConfiguracio) {
 
         if (millorConfiguracio[millorConfiguracio.length - 1] != 0) return false;
@@ -42,6 +49,7 @@ public class AlgorismeBT extends Algorisme {
     /**
      * Mètode principal per trobar la configuració òptima de la prestatgeria.
      * @param matriuSimilituds Matriu de similituds entre productes, on matriuSimilituds[i][j] és la similitud entre els productes i i j.
+     * @param matriuRestrConsec Matriu de restriccions de consecutius, on matriuRestrConsec[i][j] indica si els productes i i j no poden ser consecutius a la solució.
      * @return Un vector d'índexs de productes al catàleg que representa la millor configuració trobada.
      */
     @Override
@@ -74,6 +82,7 @@ public class AlgorismeBT extends Algorisme {
      * @param similitudAcumulada Similitud total acumulada fins al punt actual de la configuració.
      * @param millorConfiguracio Millor configuració trobada fins ara.
      * @param maxSimilitud La màxima similitud trobada fins ara.
+     * @param matriuRestrConsec Matriu de restriccions de consecutius, on matriuRestrConsec[i][j] indica si els productes i i j no poden ser consecutius a la solució.
      * @return El màxim de similitud trobat fins al moment per la configuració actual.
      */
     private double backtrack(double[][] matriuSimilituds, ArrayList<Integer> configuracioActual, boolean[] visitats, double similitudAcumulada, int[] millorConfiguracio, double maxSimilitud, boolean[][] matriuRestrConsec) {
