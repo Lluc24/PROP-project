@@ -1,0 +1,68 @@
+1
+3
+Fairy
+1
+3
+Cocacola
+Fairy 6
+1
+3
+Lays_onduladas
+Fairy 13
+Cocacola 13
+1
+3
+Ruffles_jamom
+Fairy 20
+Cocacola 20
+Lays_onduladas 20
+1
+3
+Pelotazos_Cheetos
+Fairy 26
+Cocacola 26
+Lays_onduladas 26
+Ruffles_jamom 26
+1
+3
+Champu_HS
+Fairy 33
+Cocacola 33
+Lays_onduladas 33
+Ruffles_jamom 33
+Pelotazos_Cheetos 33
+3
+3
+Fairy Cocacola
+3
+3
+Ruffles_jamom Champu_HS
+3
+3
+Cocacola Pelotazos_Cheetos
+3
+3
+Pelotazos_Cheetos Ruffles_jamon
+3
+3
+Fairy Lays_onduladas
+2
+3
+aproximacio
+2
+6
+algorismeBT
+2
+3
+backtracking
+2
+6
+greedy
+0
+1
+2
+3
+greedy01
+2
+1
+4

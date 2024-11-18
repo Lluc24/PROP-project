@@ -1,4 +1,4 @@
-La finalitat d'aquest joc és prova la funcionalitat de modificar solucions
+La finalitat d'aquest joc es prova la funcionalitat de modificar solucions
 
 Intenta modificar una solucio que no existeix
 Crea una solucio
