@@ -1,0 +1,20 @@
+La finalitat d'aquest joc de prova es verificar el funcionament correcte dels algoritmes quan els productes tenen algunes restriccions.
+Es provara amb sis productes i cinc restriccions.
+
+Afegir un primer producte
+Afegir un segon producte
+Afegir un tercer producte
+Afegir un quart producte
+Afegir un cinque producte
+Afegir un sise producte
+Afegir una restriccio entre el primer producte i el segon
+Afegir una restriccio entre el quart producte i el sise
+Afegir una restriccio entre el segon producte i el cinque
+Afegir una restriccio entre el quart producte i el cinque
+Afegir una restriccio entre el primer producte i el tercer
+Crea una solucio (per defecte amb l'algorisme d'aproximacio)
+Canvia l'algorisme a backtracking
+Crea una solucio
+Canvia l'algorisme a greedy amb parametres (producteInicial = 0, numIteracions = 1)
+Crea una solucio
+Mostra totes les solucions

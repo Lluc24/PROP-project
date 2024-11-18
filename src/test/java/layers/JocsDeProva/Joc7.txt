@@ -1,4 +1,5 @@
-La finalitat d'aquest joc és provar la funcionalitat de  modificar similituds. Forçar a que passin errors i veure que el sistema els gestiona correctament
+La finalitat d'aquest joc es provar la funcionalitat de modificar similituds.
+Tambe es provoca que passin errors per tal de verificar que el sistema els gestiona correctament
 
 Intenta modificar similituds entre dos productes que no existeixen
 Afegeix un producte
