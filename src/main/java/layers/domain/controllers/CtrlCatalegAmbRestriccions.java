@@ -53,7 +53,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 
     public void producteEliminat(int id) {
         noConsecutius.remove(id);
-        for(int i = 0; i < noConsecutius.getFirst().size(); ++i) {
+        for(int i = 0; i < noConsecutius.size(); ++i) {
             noConsecutius.get(i).remove(id);
         }
     }
@@ -246,7 +246,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 
         producteAfegit();
     }
-
+    @Override
     public void eliminar_producte_index(int index_out) {
         if (!valida_index(index_out)) {
             System.err.println("Index de producte no valid");
