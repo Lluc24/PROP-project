@@ -223,5 +223,66 @@ public class TestAlgorismeGreedy {
         assertArrayEquals("Ordre correcte", configuracioEsperada, configuracio);
     }
 
+    /**
+     * Test pel mètode 'solucionar' que espera que l'algorisme retorni l'ordre dels índexs [0, 2, 3, 1].
+     * Amb restriccions.
+     */
+    @Test
+    public void testSolucionarAmbQuatreProductesRestriccio() {
+
+        double[][] matriuSimilituds = {
+                {0.0, 0.4, 0.7, 0.4},
+                {0.4, 0.0, 0.8, 0.2},
+                {0.7, 0.8, 0.0, 0.9},
+                {0.4, 0.2, 0.9, 0.0}
+        };
+
+        boolean[][] matriuRestr = {
+                {false, false, false, false},
+                {false, false, true, false},
+                {false, true, false, false},
+                {false, false, false, false}
+        };
+
+        int[] configuracio = null;
+        int[] configuracioEsperada = {0, 2, 3, 1};
+
+        try {
+            configuracio = algorisme.solucionar(matriuSimilituds, matriuRestr);
+        } catch (FormatInputNoValid e) {
+            fail("Excepció de FormatInputNoValid inesperada.");
+        }
+        assertArrayEquals("Ordre correcte", configuracioEsperada, configuracio);
+    }
+
+    @Test
+    public void testSolucionarAmbQuatreProductesImpossible() {
+
+        double[][] matriuSimilituds = {
+                {0.0, 0.4, 0.7, 0.4},
+                {0.4, 0.0, 0.8, 0.2},
+                {0.7, 0.8, 0.0, 0.9},
+                {0.4, 0.2, 0.9, 0.0}
+        };
+
+        boolean[][] matriuRestr = {
+                {false, true, true, true},
+                {true, false, true, true},
+                {true, true, false, true},
+                {true, true, true, false}
+        };
+
+        int[] configuracio = null;
+        int[] configuracioEsperada = {0, 2, 3, 1};
+
+        try {
+            configuracio = algorisme.solucionar(matriuSimilituds, matriuRestr);
+        } catch (FormatInputNoValid e) {
+            fail("Error inesperat");
+        }
+        assertArrayEquals("Ordre correcte", configuracioEsperada, configuracio);
+    }
+
+
 }
 

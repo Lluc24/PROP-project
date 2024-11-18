@@ -10,13 +10,16 @@ import layers.domain.excepcions.FormatInputNoValid;
  * @see Algorisme
  *
  * @author Efrain Tito Cortés
- * @version 2,2
+ * @version 3,0
  *
  * <p><b>Informació:</b></p>
  * Per al mètode 'solucionar', cal passar com a paràmetre una matriu de similituds, on l'element [i][j]
  * representa la similitud entre el producte amb índex de catàleg 'i' i el producte amb índex de catàleg 'j'.
  * Els atributs de la classe indiquen per quin producte iniciar l'algorisme i les vegades que cal fer-ho, començant
  * les posteriors pels productes amb índexs consecutius.
+ *
+ * Nota: L'algorisme tracta de trobar una solució que compleixi les restriccions, però no té per què retornar sempre una solució que les compleixi.
+ * Nota: Per tal d'optimitzar, l'algorisme assumeix que la similitud màxima entre dos productes és 100,0.
  */
 public class AlgorismeGreedy extends Algorisme {
 
@@ -28,10 +31,6 @@ public class AlgorismeGreedy extends Algorisme {
     private int numIteracions;
 
     //Mètodes
-    @Override
-    public int[] solucionar(double[][] matriuSimilituds, boolean[][] matriuRestrConsec) throws FormatInputNoValid {
-        return null;
-    }
 
     /**
      * Constructor de la classe AlgorismeGreedy
@@ -100,10 +99,12 @@ public class AlgorismeGreedy extends Algorisme {
     /**
      * Mètode que resol el problema utilitzant l'algorisme voraç
      * @param matriuSimilituds Matriu de similituds entre productes, on matriuSimilituds[i][j] és la similitud entre els productes i i j.
+     * @param matriuRestrConsec Matriu de restriccions de consecutius, on matriuRestrConsec[i][j] indica si els productes i i j no haurien de ser consecutius a la solució, si és possible.
      * @return Un vector d'índexs de productes al catàleg que representa la millor configuració trobada.
      */
     @Override
-    public int[] solucionar(double[][] matriuSimilituds) throws FormatInputNoValid {
+    public int[] solucionar(double[][] matriuSimilituds, boolean[][] matriuRestrConsec) throws FormatInputNoValid {
+
         int numProd = matriuSimilituds.length;
 
         int[] millorConfiguracio = new int[matriuSimilituds.length];
@@ -117,6 +118,9 @@ public class AlgorismeGreedy extends Algorisme {
         }
 
         double maxSimilitudTotal = -1.0;
+        //Diu si les
+        boolean millorSolucioBruta = true;
+        boolean solucioBruta = false;
 
         //bucle per realitzar les diferents iteracions
         for (int iteracio = 0; iteracio < numIteracions % numProd; iteracio++) {
@@ -138,12 +142,28 @@ public class AlgorismeGreedy extends Algorisme {
                 double maxSimilitud = -1.0;
                 int proper = -1;
 
-                for (int j = 0; j < numProd; j++) {
-                    if (!visitats[j]) {
-                        double similitud = matriuSimilituds[actual][j];
-                        if (similitud > maxSimilitud) {
-                            maxSimilitud = similitud;
-                            proper = j;
+                if (!solucioBruta) {
+                    for (int j = 0; j < numProd; j++) {
+                        if (!visitats[j] && !matriuRestrConsec[actual][j]) {
+
+                            double similitud = matriuSimilituds[actual][j];
+                            if (similitud > maxSimilitud) {
+                                maxSimilitud = similitud;
+                                proper = j;
+                            }
+                        }
+                    }
+                }
+
+                else {
+                    for (int j = 0; j < numProd; j++) {
+                        if (!visitats[j]) {
+
+                            double similitud = matriuSimilituds[actual][j];
+                            if (similitud > maxSimilitud) {
+                                maxSimilitud = similitud;
+                                proper = j;
+                            }
                         }
                     }
                 }
@@ -155,22 +175,28 @@ public class AlgorismeGreedy extends Algorisme {
                     actual = proper;
                 }
 
+                else {
+                    solucioBruta = true;
+                    --i;
+                }
+
                 i++;
                 //càlcul del valor màxim possible a partir del punt actual
                 int productesRestants = numProd - configuracioActual.size();
                 double maxPossible = similitudTotal + (productesRestants + 1) * 100.0;
 
                 //Poda: si el màxim possible no supera la millor similitud trobada, deixem d'executar el cos
-                if (maxPossible <= maxSimilitudTotal) {
+                if ((!solucioBruta && !millorSolucioBruta && maxPossible <= maxSimilitudTotal) || (solucioBruta && millorSolucioBruta && maxPossible <= maxSimilitudTotal) || (solucioBruta && !millorSolucioBruta)) {
                     continuar = false;
                 }
             }
 
-            if (similitudTotal > maxSimilitudTotal) {
+            if ((!solucioBruta && millorSolucioBruta) || (similitudTotal > maxSimilitudTotal)) {
                 maxSimilitudTotal = similitudTotal;
                 for (int j = 0; j < configuracioActual.size(); j++) {
                     millorConfiguracio[j] = configuracioActual.get(j);
                 }
+                if (!solucioBruta && millorSolucioBruta) millorSolucioBruta = false;
             }
 
             //actualitzem el producte inicial per a la següent iteració

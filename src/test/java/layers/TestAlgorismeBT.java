@@ -82,6 +82,140 @@ public class TestAlgorismeBT {
         assertArrayEquals("Ordre correcte", configuracioEsperada, configuracio);
     }
 
+    /**
+     * Test pel mètode 'solucionar' que espera que l'algorisme retorni l'ordre dels índexs [0, 1, 3, 2].
+     * Amb restriccions.
+     */
+    @Test
+    public void testSolucionarAmbQuatreProductesRestriccio() {
+
+        double[][] matriuSimilituds = {
+                {0.0, 0.4, 0.7, 0.4},
+                {0.4, 0.0, 0.8, 0.2},
+                {0.7, 0.8, 0.0, 0.9},
+                {0.4, 0.2, 0.9, 0.0}
+        };
+
+        boolean[][] matriuRestr = {
+                {false, false, false, false},
+                {false, false, true, false},
+                {false, true, false, false},
+                {false, false, false, false}
+        };
+
+        int[] configuracio = null;
+        int[] configuracioEsperada = {0, 1, 3, 2};
+
+        try {
+            configuracio = algorismeBT.solucionar(matriuSimilituds, matriuRestr);
+        } catch (FormatInputNoValid e) {
+            fail("Excepció de FormatInputNoValid inesperada.");
+        }
+        assertArrayEquals("Ordre correcte", configuracioEsperada, configuracio);
+    }
+
+    /**
+     * Test pel mètode 'solucionar' que espera que l'algorisme retorni l'ordre dels índexs [0, 1, 3, 2].
+     * Amb restriccions.
+     */
+    @Test
+    public void testSolucionarAmbQuatreProductesImpossible() {
+
+        double[][] matriuSimilituds = {
+                {0.0, 0.4, 0.7, 0.4},
+                {0.4, 0.0, 0.8, 0.2},
+                {0.7, 0.8, 0.0, 0.9},
+                {0.4, 0.2, 0.9, 0.0}
+        };
+
+        boolean[][] matriuRestr = {
+                {false, true, true, true},
+                {true, false, true, true},
+                {true, true, false, true},
+                {true, true, true, false}
+        };
+
+        try {
+            algorismeBT.solucionar(matriuSimilituds, matriuRestr);
+        } catch (FormatInputNoValid e) {
+            assertEquals("El missatge d'error és correcte", "No hi ha una solucio valida amb les restriccions actuals", e.getMessage());
+        }
+
+    }
+
+    @Test
+    public void testSolucionarAmbQuatreProductesImpossible2() {
+
+        double[][] matriuSimilituds = {
+                {0.0, 0.4, 0.7, 0.4},
+                {0.4, 0.0, 0.8, 0.2},
+                {0.7, 0.8, 0.0, 0.9},
+                {0.4, 0.2, 0.9, 0.0}
+        };
+
+        boolean[][] matriuRestr = {
+                {false, false, true, true},
+                {false, false, true, true},
+                {true, true, false, false},
+                {true, true, false, false}
+        };
+
+        try {
+            algorismeBT.solucionar(matriuSimilituds, matriuRestr);
+        } catch (FormatInputNoValid e) {
+            assertEquals("El missatge d'error és correcte", "No hi ha una solucio valida amb les restriccions actuals", e.getMessage());
+        }
+
+    }
+
+    @Test
+    public void testSolucionarAmbDosProductesImpossible() {
+
+        double[][] matriuSimilituds = {
+                {0.0, 0.4},
+                {0.4, 0.0}
+        };
+
+        boolean[][] matriuRestr = {
+                {false, true},
+                {true, false}
+
+        };
+
+
+        try {
+            algorismeBT.solucionar(matriuSimilituds, matriuRestr);
+        } catch (FormatInputNoValid e) {
+            assertEquals("El missatge d'error és correcte", "No hi ha una solucio valida amb les restriccions actuals", e.getMessage());
+        }
+    }
+
+    @Test
+    public void testSolucionarAmbDosProductesPossible() {
+
+        double[][] matriuSimilituds = {
+                {0.0, 0.4},
+                {0.4, 0.0}
+        };
+
+        boolean[][] matriuRestr = {
+                {false, false},
+                {false, false}
+
+        };
+
+        int[] configuracio = null;
+        int[] configuracioEsperada = {0, 1};
+
+        try {
+            configuracio = algorismeBT.solucionar(matriuSimilituds, matriuRestr);
+        } catch (FormatInputNoValid e) {
+            assertNotEquals("El missatge d'error és inesperat", "No hi ha una solucio valida amb les restriccions actuals", e.getMessage());
+        }
+
+        assertArrayEquals("Ordre correcte", configuracioEsperada, configuracio);
+    }
+
 }
 
 

@@ -1,0 +1,52 @@
+1
+3
+Prod1
+1
+3
+Prod2
+Prod1 45
+1
+3
+Prod3
+Prod1 10
+Prod2 20
+3
+1
+1
+1
+3
+3
+Prod1 Prod2
+3
+3
+Prod4 Prod3
+3
+2
+Prod1 Prod2
+3
+2
+Prod2 Prod3
+3
+2
+Prod1 Prod4
+3
+1
+1
+1
+3
+4
+Prod1 Prod3
+3
+4
+Prod1 Prod4
+3
+4
+Prod1 Prod2
+3
+2
+Prod1 Prod2
+3
+1
+1
+1
+4
