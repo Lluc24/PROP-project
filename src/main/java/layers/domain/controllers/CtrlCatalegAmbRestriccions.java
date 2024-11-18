@@ -82,12 +82,29 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 
     }
 
-    public void setRestrConsecNom(String nom1, String nom2) {
-        setRestrConsecId(get_index_prod(nom1), get_index_prod(nom2));
+    public void setRestrConsecNom(String nom1, String nom2) throws ProducteNoValid{
+        boolean noms_valids = true;
+        int index1 = get_index_prod(nom1);
+        if (index1 == -1) noms_valids = false;
+        int index2 = get_index_prod(nom2);
+        if (index2 == -1) noms_valids = false;
+
+        if (!noms_valids) throw new ProducteNoValid("Algun producte no es valid");
+
+        setRestrConsecId(index1, index2);
+
     }
 
-    public void remRestrConsecNom(String nom1, String nom2) {
-        remRestrConsecId(get_index_prod(nom1), get_index_prod(nom2));
+    public void remRestrConsecNom(String nom1, String nom2) throws ProducteNoValid {
+        boolean noms_valids = true;
+        int index1 = get_index_prod(nom1);
+        if (index1 == -1) noms_valids = false;
+        int index2 = get_index_prod(nom2);
+        if (index2 == -1) noms_valids = false;
+
+        if (!noms_valids) throw new ProducteNoValid("Algun producte no es valid");
+
+        remRestrConsecId(index1, index2);
     }
 
     public boolean getRestrConsecID(int id1, int id2) throws ProducteNoValid {
@@ -126,7 +143,8 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
                     System.out.print("Restrictivament, no pot estar consecutiu a: ");
                 }
                 hihaRestr = true;
-                System.out.print(getNomProd_index(i) + ", ");
+                if (i != 0) System.out.print(getNomProd_index(i));
+                else System.out.println(" , " + getNomProd_index(i));
             }
         }
 
@@ -251,17 +269,22 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
             System.err.println("Index no es valid");
         }
 
+        boolean first_print = true ;
+
         Producte prod = Cataleg_Productes.get(index);
         System.out.print("Producte " +index+ ": "+prod.getNom()+". Les seves similituds son: ");
         ArrayList<Double>  Simi = prod.getSimilituds();
         for (int j = 0; j < Simi.size(); ++j) {
-            if (j !=  index) {
-                if (j < Simi.size() - 1) {
-                    System.out.print(getNomProd_index(j) + " -> " + Simi.get(j) + " , ");
-                } else System.out.print(getNomProd_index(j) + " -> " + Simi.get(j) + " ");
+            if (j != index) {
+                if (first_print) {
+                    System.out.print(getNomProd_index(j) + " -> " + Simi.get(j));
+                    first_print = false;
+                } else {
+                    System.out.print(" , "+getNomProd_index(j) + " -> " + Simi.get(j));
+                }
             }
         }
-        System.out.println(" ");
+        System.out.println("");
 
         mostrarRestrConsec(index);
     }

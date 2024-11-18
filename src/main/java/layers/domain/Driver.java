@@ -183,7 +183,7 @@ public class Driver {
                     }
                     break;
 
-                case 3:
+                case 3: //Gestio restriccions
                     imprimirMenuAccioDeGestio3();
                     int accioGestio3 = demanaInt(formatNoEnter, scanner);
                     switch (accioGestio3) {
@@ -209,13 +209,21 @@ public class Driver {
                             System.out.println("Entra el nom dels dos productes a afegir la restriccio");
                             String nomProducteAfegir1 = scanner.next();
                             String nomProducteAfegir2 = scanner.next();
-                            ctrlCataleg.setRestrConsecNom(nomProducteAfegir1, nomProducteAfegir2);
+                            try {
+                                ctrlCataleg.setRestrConsecNom(nomProducteAfegir1, nomProducteAfegir2);
+                            } catch (ProducteNoValid e) {
+                                System.out.println(e.getMessage());
+                            }
                             break;
                         case 4: // Eliminar una restriccio
                             System.out.println("Entra el nom dels dos productes a eliminar la restriccio");
                             String nomProducteEliminar1 = scanner.next();
                             String nomProducteEliminar2 = scanner.next();
-                            ctrlCataleg.remRestrConsecNom(nomProducteEliminar1, nomProducteEliminar2);
+                            try {
+                                ctrlCataleg.remRestrConsecNom(nomProducteEliminar1, nomProducteEliminar2);
+                            } catch (ProducteNoValid e) {
+                                System.out.println(e.getMessage());
+                            }
                             break;
                         default:
                             System.out.println("Numero fora de rang: " + accioGestio3 + " no esta entre 1 y " + numAccions[gestio - 1]);
