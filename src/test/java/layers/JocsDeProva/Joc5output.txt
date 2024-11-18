@@ -1,96 +1,106 @@
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les distribucions existents i calcular una nova
-[3] Sortir
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
 Selecciona l'accio:
 [1] Visualitzar tots els productes
-[2] Visualitzar un producte especific pel seu id
+[2] Visualitzar un producte especific
 [3] Crear un nou producte
 [4] Eliminar un producte
 [5] Editar una similitud
-No hi han productes dins de ctrlCataleg
+No hi ha productes dins de cataleg
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les distribucions existents i calcular una nova
-[3] Sortir
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
 Selecciona l'accio:
 [1] Visualitzar tots els productes
-[2] Visualitzar un producte especific pel seu id
+[2] Visualitzar un producte especific
 [3] Crear un nou producte
 [4] Eliminar un producte
 [5] Editar una similitud
-Entra el id del producte
-Mostrar Producte: El producte no existeix
+Entra el nom del producte
+El producte no existeix
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les distribucions existents i calcular una nova
-[3] Sortir
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
 Selecciona l'accio:
 [1] Visualitzar tots els productes
-[2] Visualitzar un producte especific pel seu id
+[2] Visualitzar un producte especific
 [3] Crear un nou producte
 [4] Eliminar un producte
 [5] Editar una similitud
 Entra el nom del producte
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les distribucions existents i calcular una nova
-[3] Sortir
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
 Selecciona l'accio:
 [1] Visualitzar tots els productes
-[2] Visualitzar un producte especific pel seu id
+[2] Visualitzar un producte especific
 [3] Crear un nou producte
 [4] Eliminar un producte
 [5] Editar una similitud
-Entra el id del producte
-Producte 0: poma. Les seves similituds son:  
+Entra el nom del producte
+Producte 0: poma. Les seves similituds son: 
+Pot estar consecutiu a qualsevol altre producte  
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les distribucions existents i calcular una nova
-[3] Sortir
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
 Selecciona l'accio:
 [1] Visualitzar tots els productes
-[2] Visualitzar un producte especific pel seu id
+[2] Visualitzar un producte especific
 [3] Crear un nou producte
 [4] Eliminar un producte
 [5] Editar una similitud
-Entra el id del producte
-Mostrar Producte: El producte no existeix
+Entra el nom del producte
+El producte no existeix
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les distribucions existents i calcular una nova
-[3] Sortir
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
 Selecciona l'accio:
 [1] Visualitzar tots els productes
-[2] Visualitzar un producte especific pel seu id
+[2] Visualitzar un producte especific
 [3] Crear un nou producte
 [4] Eliminar un producte
 [5] Editar una similitud
-Producte 0: poma. Les seves similituds son:  
+Producte 0:poma
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les distribucions existents i calcular una nova
-[3] Sortir
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
 Selecciona l'accio:
 [1] Visualitzar tots els productes
-[2] Visualitzar un producte especific pel seu id
+[2] Visualitzar un producte especific
 [3] Crear un nou producte
 [4] Eliminar un producte
 [5] Editar una similitud
 Entra el nom del producte
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les distribucions existents i calcular una nova
-[3] Sortir
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
 Selecciona l'accio:
 [1] Visualitzar tots els productes
-[2] Visualitzar un producte especific pel seu id
+[2] Visualitzar un producte especific
 [3] Crear un nou producte
 [4] Eliminar un producte
 [5] Editar una similitud
-No hi han productes dins de ctrlCataleg
+No hi ha productes dins de cataleg
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les distribucions existents i calcular una nova
-[3] Sortir
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
 Fins la proxima!

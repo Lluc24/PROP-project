@@ -31,4 +31,4 @@ solucio1
 solucio2
 2
 1
-3
+4
