@@ -15,6 +15,9 @@ ARXIUS:
     Joc8
     Joc9
     Joc10
+    Joc11
+    Joc12
+    Joc13
 
 ALTRES DIRECTORIS
 ---
