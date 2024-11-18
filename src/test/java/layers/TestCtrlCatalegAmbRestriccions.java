@@ -31,14 +31,14 @@ public class TestCtrlCatalegAmbRestriccions {
     @Test
     public void testAfegitBuit() {
         controlador.producteAfegit();
-        assertEquals(1, controlador.get_mida());
+        assertEquals(1, controlador.get_mida_noConsec());
     }
 
     @Test
     public void testAfegitNoBuit() {
         controlador.producteAfegit();
         controlador.producteAfegit();
-        assertEquals(2, controlador.get_mida());
+        assertEquals(2, controlador.get_mida_noConsec());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class TestCtrlCatalegAmbRestriccions {
         controlador.producteAfegit();
         controlador.setRestrConsecId(0, 1);
         controlador.producteEliminat(1);
-        assertEquals(2, controlador.get_mida());
+        assertEquals(2, controlador.get_mida_noConsec());
         try {
             assertFalse(controlador.getRestrConsecID(0, 1));
         } catch (ProducteNoValid e) {

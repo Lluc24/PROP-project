@@ -31,7 +31,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 
     //Mètodes
 
-    public int get_mida() { return noConsecutius.size(); }
+    public int get_mida_noConsec() { return noConsecutius.size(); }
 
     public void producteAfegit() {
 
