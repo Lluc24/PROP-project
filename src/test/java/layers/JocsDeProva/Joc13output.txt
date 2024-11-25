@@ -22,7 +22,7 @@ Selecciona l'accio:
 [4] Eliminar un producte
 [5] Editar una similitud
 Entra el nom del producte
-Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte llet
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte P1
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -35,7 +35,7 @@ Selecciona l'accio:
 [4] Eliminar un producte
 [5] Editar una similitud
 Entra el nom del producte
-Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte cereals
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte P2
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -48,99 +48,7 @@ Selecciona l'accio:
 [4] Eliminar un producte
 [5] Editar una similitud
 Entra el nom del producte
-Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte poma
-Quina gestio vols realitzar?
-[1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les solucions existents i calcular una nova
-[3] Gestionar les restriccions entre productes
-[4] Sortir
-Selecciona l'accio:
-[1] Visualitzar totes les solucions existents
-[2] Visualitzar una solucio especifica
-[3] Calcular una solucio per la prestatgeria actual
-[4] Eliminar una solucio
-[5] Editar una solucio
-[6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
-Quina gestio vols realitzar?
-[1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les solucions existents i calcular una nova
-[3] Gestionar les restriccions entre productes
-[4] Sortir
-Selecciona l'accio:
-[1] Visualitzar totes les solucions existents
-[2] Visualitzar una solucio especifica
-[3] Calcular una solucio per la prestatgeria actual
-[4] Eliminar una solucio
-[5] Editar una solucio
-[6] Triar tipus d'algorisme per resoldre
-Solucio1: galetes, cereals, llet, poma
-Quina gestio vols realitzar?
-[1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les solucions existents i calcular una nova
-[3] Gestionar les restriccions entre productes
-[4] Sortir
-Selecciona l'accio:
-[1] Visualitzar totes les solucions existents
-[2] Visualitzar una solucio especifica
-[3] Calcular una solucio per la prestatgeria actual
-[4] Eliminar una solucio
-[5] Editar una solucio
-[6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio seguit dels dos productes a intercambiar en la solucio
-Quina gestio vols realitzar?
-[1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les solucions existents i calcular una nova
-[3] Gestionar les restriccions entre productes
-[4] Sortir
-Selecciona l'accio:
-[1] Visualitzar totes les solucions existents
-[2] Visualitzar una solucio especifica
-[3] Calcular una solucio per la prestatgeria actual
-[4] Eliminar una solucio
-[5] Editar una solucio
-[6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
-Solucio1: galetes, poma, llet, cereals
-Quina gestio vols realitzar?
-[1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les solucions existents i calcular una nova
-[3] Gestionar les restriccions entre productes
-[4] Sortir
-Selecciona l'accio:
-[1] Visualitzar totes les solucions existents
-[2] Visualitzar una solucio especifica
-[3] Calcular una solucio per la prestatgeria actual
-[4] Eliminar una solucio
-[5] Editar una solucio
-[6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
-Quina gestio vols realitzar?
-[1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les solucions existents i calcular una nova
-[3] Gestionar les restriccions entre productes
-[4] Sortir
-Selecciona l'accio:
-[1] Visualitzar totes les solucions existents
-[2] Visualitzar una solucio especifica
-[3] Calcular una solucio per la prestatgeria actual
-[4] Eliminar una solucio
-[5] Editar una solucio
-[6] Triar tipus d'algorisme per resoldre
-No hi ha solucions a mostrar
-Quina gestio vols realitzar?
-[1] Gestionar els productes i similituds de la prestatgeria
-[2] Gestionar les solucions existents i calcular una nova
-[3] Gestionar les restriccions entre productes
-[4] Sortir
-Selecciona l'accio:
-[1] Visualitzar totes les solucions existents
-[2] Visualitzar una solucio especifica
-[3] Calcular una solucio per la prestatgeria actual
-[4] Eliminar una solucio
-[5] Editar una solucio
-[6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte P3
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -153,6 +61,35 @@ Selecciona l'accio:
 [4] Eliminar un producte
 [5] Editar una similitud
 Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte P4
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar tots els productes
+[2] Visualitzar un producte especific
+[3] Crear un nou producte
+[4] Eliminar un producte
+[5] Editar una similitud
+Entra el nom del producte
+Entra un per un el nom dels productes ja existents seguit per la similitud amb el producte P5
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les solucions existents
+[2] Visualitzar una solucio especifica
+[3] Calcular una solucio per la prestatgeria actual
+[4] Eliminar una solucio
+[5] Editar una solucio
+[6] Triar tipus d'algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Entra el valor del parametre producteInicial: 
+Entra el valor del parametre numIteracions: 
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -178,8 +115,116 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Solucio1: galetes, cereals, llet, poma
-Solucio2: galetes, cereals, llet
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Entra el valor del parametre producteInicial: 
+Entra el valor del parametre numIteracions: 
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les solucions existents
+[2] Visualitzar una solucio especifica
+[3] Calcular una solucio per la prestatgeria actual
+[4] Eliminar una solucio
+[5] Editar una solucio
+[6] Triar tipus d'algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les restriccions existents
+[2] Comprobar si dos productes tenen restriccio
+[3] Crear una restriccio entre dos productes
+[4] Eliminar una restriccio entre dos productes
+Entra el nom dels dos productes a afegir la restriccio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les restriccions existents
+[2] Comprobar si dos productes tenen restriccio
+[3] Crear una restriccio entre dos productes
+[4] Eliminar una restriccio entre dos productes
+Entra el nom dels dos productes a afegir la restriccio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les solucions existents
+[2] Visualitzar una solucio especifica
+[3] Calcular una solucio per la prestatgeria actual
+[4] Eliminar una solucio
+[5] Editar una solucio
+[6] Triar tipus d'algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Entra el valor del parametre producteInicial: 
+Entra el valor del parametre numIteracions: 
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les solucions existents
+[2] Visualitzar una solucio especifica
+[3] Calcular una solucio per la prestatgeria actual
+[4] Eliminar una solucio
+[5] Editar una solucio
+[6] Triar tipus d'algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les solucions existents
+[2] Visualitzar una solucio especifica
+[3] Calcular una solucio per la prestatgeria actual
+[4] Eliminar una solucio
+[5] Editar una solucio
+[6] Triar tipus d'algorisme per resoldre
+Entra el nom del algorisme: greedy, aproximacio, algorismeBT
+Entra el valor del parametre producteInicial: 
+Entra el valor del parametre numIteracions: 
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les solucions existents
+[2] Visualitzar una solucio especifica
+[3] Calcular una solucio per la prestatgeria actual
+[4] Eliminar una solucio
+[5] Editar una solucio
+[6] Triar tipus d'algorisme per resoldre
+Entra el nom de la solucio
+Quina gestio vols realitzar?
+[1] Gestionar els productes i similituds de la prestatgeria
+[2] Gestionar les solucions existents i calcular una nova
+[3] Gestionar les restriccions entre productes
+[4] Sortir
+Selecciona l'accio:
+[1] Visualitzar totes les solucions existents
+[2] Visualitzar una solucio especifica
+[3] Calcular una solucio per la prestatgeria actual
+[4] Eliminar una solucio
+[5] Editar una solucio
+[6] Triar tipus d'algorisme per resoldre
+Sol1: P0, P2, P3, P4, P1, P5
+Sol2: P1, P4, P5, P3, P0, P2
+Sol3: P0, P2, P3, P4, P1, P5
+Sol4: P0, P2, P3, P4, P1, P5
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova

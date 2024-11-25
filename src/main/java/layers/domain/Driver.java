@@ -10,6 +10,7 @@ import layers.domain.excepcions.NomSolucioNoValid;
 import layers.domain.excepcions.ProducteNoValid;
 import layers.domain.utils.Pair;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Driver {
@@ -27,6 +28,7 @@ public class Driver {
     private static void executar() {
         boolean finalitzat = false;
         Scanner scanner = new Scanner(System.in);
+        scanner.useLocale(Locale.US);
         CtrlCatalegAmbRestriccions ctrlCataleg = ctrlDomini.getCtrlCatalegAmbRestriccions();
         CtrlSolucions ctrlSolucions = ctrlDomini.getCtrlSolucions();
 
