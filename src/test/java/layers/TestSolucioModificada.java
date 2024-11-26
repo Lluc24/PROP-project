@@ -1,6 +1,7 @@
 package layers;
 
 import layers.domain.Algorisme;
+import layers.domain.excepcions.FormatInputNoValid;
 import layers.domain.excepcions.IntercanviNoValid;
 import layers.domain.Producte;
 import layers.domain.SolucioModificada;
@@ -16,17 +17,22 @@ import static org.junit.Assert.*;
  */
 public class TestSolucioModificada {
     ArrayList<String> productes = new ArrayList<String>();
-    Algorisme alg;
     SolucioModificada solucioModificada;
+    int prodPrestatge;
 
     @Before
     public void Inicialitza(){
         for (int i = 0; i < 4; i++) {
             productes.add("p"+i);
         }
-        alg = mock(Algorisme.class);
 
-        solucioModificada = new SolucioModificada(productes, alg, "Solucio1");
+        prodPrestatge = 4;
+
+        try{
+            solucioModificada = new SolucioModificada(productes, "Solucio1", prodPrestatge);
+        }catch (FormatInputNoValid e){
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -36,8 +42,8 @@ public class TestSolucioModificada {
     @Test
     public void testConstructor() {
         assertEquals("Verificar nom", "Solucio1", solucioModificada.getNom());
-        assertEquals("Verificar algorisme", alg, solucioModificada.getAlgorisme());
         assertEquals("Verificar productes", productes, solucioModificada.getSolucio());
+        assertEquals("Verificar prodPrestatge", prodPrestatge, solucioModificada.getProdPrestatge());
     }
 
     /**

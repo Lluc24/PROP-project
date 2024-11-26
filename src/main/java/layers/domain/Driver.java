@@ -125,10 +125,11 @@ public class Driver {
                             }
                             break;
                         case 3:  // Crear una solucio
-                            System.out.println("Entra el nom de la solucio");
+                            System.out.println("Entra el nom de la solucio i el numero de productes per prestatge");
                             String nomSolucioCase3 = scanner.next();
+                            int prodPrestatgeria = demanaInt(formatNoEnter, scanner);
                             try {
-                                ctrlSolucions.creaSolucio(nomSolucioCase3);
+                                ctrlSolucions.creaSolucio(nomSolucioCase3, prodPrestatgeria);
                             }catch (NomSolucioNoValid e) {
                                 System.out.println(e.getMessage());
                             }catch (FormatInputNoValid e) {
@@ -154,6 +155,8 @@ public class Driver {
                             }catch (NomSolucioNoValid e) {
                                 System.out.println(e.getMessage());
                             }catch (IntercanviNoValid e) {
+                                System.out.println(e.getMessage());
+                            }catch (FormatInputNoValid e) {
                                 System.out.println(e.getMessage());
                             }
                             break;

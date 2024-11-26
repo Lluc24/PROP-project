@@ -172,7 +172,7 @@ public class TestCtrlSolucions {
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
 
         try{
-        gs.creaSolucio("Solucio1");
+        gs.creaSolucio("Solucio1", 4);
         }catch (NomSolucioNoValid e) {
             System.out.println(e.getMessage());
         }catch (FormatInputNoValid e) {
@@ -182,7 +182,6 @@ public class TestCtrlSolucions {
         assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
         assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
         assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
-        assertTrue("Verificar algorisme", gs.getSolucions().getFirst().getAlgorisme() instanceof Aproximacio);
     }
 
     /**
@@ -208,7 +207,7 @@ public class TestCtrlSolucions {
             System.out.println(e.getMessage());
         }
         try {
-        gs.creaSolucio("Solucio1");
+        gs.creaSolucio("Solucio1",4);
         }catch (NomSolucioNoValid e) {
             System.out.println(e.getMessage());
         }catch (FormatInputNoValid e) {
@@ -218,7 +217,6 @@ public class TestCtrlSolucions {
         assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
         assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
         assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
-        assertTrue("Verificar algorisme", gs.getSolucions().getFirst().getAlgorisme() instanceof AlgorismeGreedy);
     }
 
     /**
@@ -239,14 +237,14 @@ public class TestCtrlSolucions {
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
 
         try {
-        gs.creaSolucio("Solucio1");
+        gs.creaSolucio("Solucio1",4);
         }catch (NomSolucioNoValid e) {
             System.out.println(e.getMessage());
         }catch (FormatInputNoValid e) {
             System.out.println(e.getMessage());
         }
         try{
-        gs.creaSolucio("Solucio1");
+        gs.creaSolucio("Solucio1", 4);
         }catch (NomSolucioNoValid e) {
             System.out.println(e.getMessage());
         }catch (FormatInputNoValid e) {
@@ -256,7 +254,6 @@ public class TestCtrlSolucions {
         assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
         assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
         assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
-        assertTrue("Verificar algorisme", gs.getSolucions().getFirst().getAlgorisme() instanceof Aproximacio);
     }
 
     /**
@@ -279,14 +276,14 @@ public class TestCtrlSolucions {
         when(c.getProd_index(1)).thenReturn(productesLit.get(1));
 
         try{
-        gs.creaSolucio("Solucio1");
+        gs.creaSolucio("Solucio1", 4);
         }catch (NomSolucioNoValid e) {
             System.out.println(e.getMessage());
         }catch (FormatInputNoValid e) {
             System.out.println(e.getMessage());
         }
         try{
-        gs.creaSolucio("Solucio2");
+        gs.creaSolucio("Solucio2", 4);
         }catch (NomSolucioNoValid e) {
             System.out.println(e.getMessage());
         }catch (FormatInputNoValid e) {
@@ -300,8 +297,6 @@ public class TestCtrlSolucions {
         assertEquals("Verificar els segons elements de les solucions",gs.getSolucions().get(1).getSolucio().get(1), gs.getSolucions().getFirst().getSolucio().get(1));
         assertEquals("Verificar mida Solucio",2, gs.getSolucions().get(1).getSolucio().size());
         assertEquals("Verificar mida solucions",2, gs.getSolucions().size());
-        assertTrue("Verificar algorisme", gs.getSolucions().getFirst().getAlgorisme() instanceof Aproximacio);
-        assertTrue("Verificar algorisme", gs.getSolucions().get(1).getAlgorisme() instanceof Aproximacio);
     }
 
         /**
@@ -325,7 +320,7 @@ public class TestCtrlSolucions {
         when(c.getNomProd_index(1)).thenReturn("p1");
 
         try{
-        gs.creaSolucio("Solucio1");
+        gs.creaSolucio("Solucio1", 4);
         }catch (NomSolucioNoValid e) {
             System.out.println(e.getMessage());
         }catch (FormatInputNoValid e) {
@@ -337,6 +332,8 @@ public class TestCtrlSolucions {
         System.out.println(e.getMessage());
         }catch (NomSolucioNoValid e) {
         System.out.println(e.getMessage());
+        }catch (FormatInputNoValid e) {
+        System.out.println(e.getMessage());
         }
 
         Solucio solFi = gs.getSolucions().getFirst();
@@ -344,7 +341,6 @@ public class TestCtrlSolucions {
         assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
         assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
         assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
-        assertTrue("Verificar algorisme", gs.getSolucions().getFirst().getAlgorisme() instanceof Aproximacio);
         assertEquals("Verificar primer intercanvi", "p1", solFi.getSolucio().get(0));
         assertEquals("Verificar segon intercanvi", "p0", solFi.getSolucio().get(1));
     }
@@ -370,7 +366,7 @@ public class TestCtrlSolucions {
         when(c.getNomProd_index(1)).thenReturn("p1");
 
         try{
-        gs.creaSolucio("Solucio1");
+        gs.creaSolucio("Solucio1", 4);
         }catch (NomSolucioNoValid e) {
             System.out.println(e.getMessage());
         }catch (FormatInputNoValid e) {
@@ -381,15 +377,16 @@ public class TestCtrlSolucions {
         }catch (IntercanviNoValid e){
             System.out.println(e.getMessage());
         }catch (NomSolucioNoValid e) {
-        System.out.println(e.getMessage());
-         }
+            System.out.println(e.getMessage());
+        }catch (FormatInputNoValid e) {
+            System.out.println(e.getMessage());
+        }
 
         Solucio solFi = gs.getSolucions().getFirst();
 
         assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
         assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
         assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
-        assertTrue("Verificar algorisme", gs.getSolucions().getFirst().getAlgorisme() instanceof Aproximacio);
         assertEquals("Verificar primer intercanvi", "p0", solFi.getSolucio().get(0));
         assertEquals("Verificar segon intercanvi", "p1", solFi.getSolucio().get(1));
     }
@@ -412,7 +409,7 @@ public class TestCtrlSolucions {
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
 
         try{
-        gs.creaSolucio("Solucio1");
+        gs.creaSolucio("Solucio1", 4);
         }catch (NomSolucioNoValid e) {
             System.out.println(e.getMessage());
         }catch (FormatInputNoValid e) {
@@ -445,7 +442,7 @@ public class TestCtrlSolucions {
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
 
         try {
-        gs.creaSolucio("Solucio1");
+        gs.creaSolucio("Solucio1", 4);
         }catch (NomSolucioNoValid e) {
             System.out.println(e.getMessage());
         }catch (FormatInputNoValid e) {
@@ -460,6 +457,5 @@ public class TestCtrlSolucions {
         assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
         assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
         assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
-        assertTrue("Verificar algorisme", gs.getSolucions().getFirst().getAlgorisme() instanceof Aproximacio);
     }
 }

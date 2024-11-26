@@ -1,12 +1,12 @@
 2
 3
-aprox
+aprox 4
 2
 6
 algorismeBT
 2
 3
-bt
+bt 4
 2
 6
 greedy
@@ -24,7 +24,7 @@ greedy
 3
 2
 3
-greedy
+greedy 4
 1
 3
 galetes
@@ -42,7 +42,7 @@ poma
 llet 0.1 galetes 0.1 cereals 0.1
 2
 3
-greedy2
+greedy2 4
 2
 6
 greedy
@@ -53,13 +53,13 @@ greedy
 aproximacio
 2
 3
-aprox2
+aprox2 4
 2
 6
 algorismeBT
 2
 3
-bt2
+bt2 4
 2
 6
 noexiste
@@ -70,7 +70,7 @@ greedy
 10
 2
 3
-g0
+g0 4
 2
 6
 greedy
@@ -78,7 +78,7 @@ greedy
 10
 2
 3
-g1
+g1 4
 2
 6
 greedy
@@ -86,7 +86,7 @@ greedy
 10
 2
 3
-g2
+g2 4
 2
 6
 greedy
@@ -94,7 +94,7 @@ greedy
 10
 2
 3
-g3
+g3 4
 2
 6
 greedy
@@ -102,7 +102,7 @@ greedy
 10
 2
 3
-g4
+g4 4
 2
 1
 4

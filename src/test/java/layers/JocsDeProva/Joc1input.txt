@@ -15,7 +15,7 @@ poma
 llet 0.1 galetes 0.1 cereals 0.1
 2
 3
-Solucio1
+Solucio1 4
 2
 1
 2
@@ -31,13 +31,13 @@ Solucio1
 1
 2
 3
-Solucio1
+Solucio1 4
 1
 4
 poma
 2
 3
-Solucio2
+Solucio2 4
 2
 1
 4

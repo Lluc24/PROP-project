@@ -1,5 +1,6 @@
 package layers.domain;
 
+import layers.domain.excepcions.FormatInputNoValid;
 import layers.domain.excepcions.IntercanviNoValid;
 
 import java.util.*;
@@ -7,11 +8,19 @@ import java.util.*;
 public class SolucioModificada extends Solucio {
 
     // Constructor
-    public SolucioModificada(ArrayList<String> s, Algorisme a, String n) {
-        super(s, a, n);
+    public SolucioModificada(ArrayList<String> s, String n, int p) throws FormatInputNoValid {
+        super(s, n, validateProducts(p));
         this.solucio = s;
-        this.algorisme = a;
         this.nom = n;
+        this.prodPrestatge = p;
+    }
+
+    private static int validateProducts(int p) throws FormatInputNoValid {
+        if (p <= 0) {
+            String missatge = "El numero de productes per prestatgeria ha de ser minim 1";
+            throw new FormatInputNoValid(missatge);
+        }
+        return p;
     }
 
     /**

@@ -48,13 +48,13 @@ Pelotazos_Cheetos Ruffles_jamon
 Fairy Lays_onduladas
 2
 3
-aproximacio
+aproximacio 4
 2
 6
 algorismeBT
 2
 3
-backtracking
+backtracking 4
 2
 6
 greedy
@@ -62,7 +62,7 @@ greedy
 1
 2
 3
-greedy01
+greedy01 4
 2
 1
 4

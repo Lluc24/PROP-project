@@ -28,7 +28,7 @@ greedy
 1
 2
 3
-Sol1
+Sol1 4
 2
 6
 greedy
@@ -36,7 +36,7 @@ greedy
 2
 2
 3
-Sol2
+Sol2 4
 3
 3
 P0 P2
@@ -50,7 +50,7 @@ greedy
 1
 2
 3
-Sol3
+Sol3 4
 2
 6
 greedy
@@ -58,7 +58,7 @@ greedy
 1
 2
 3
-Sol4
+Sol4 4
 2
 1
 4
