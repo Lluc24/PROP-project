@@ -59,7 +59,7 @@ public class CtrlSolucions {
      * post: s'ha creat una nova instància de solucio resolta amb algorismeAct
      * @param nomSolucio : nom de la nova solucio que es vol crear
      */
-    public void creaSolucio(String nomSolucio) throws NomSolucioNoValid, FormatInputNoValid {
+    public void creaSolucio(String nomSolucio, int prodPrestatge) throws NomSolucioNoValid, FormatInputNoValid {
         for (Solucio s: solucions){
             if (s.getNom().equals(nomSolucio)) {
                 String missatge = "Ja existeix una solucio amb nom '" +nomSolucio+ "'";
@@ -73,7 +73,7 @@ public class CtrlSolucions {
         for (int i: solucio){
             llistaProd.add(cataleg.getNomProd_index(i));
         }
-        Solucio sol = new Solucio(llistaProd, algorismeAct, nomSolucio);
+        Solucio sol = new Solucio(llistaProd, nomSolucio, prodPrestatge);
         solucions.add(sol);
     }
 
@@ -83,7 +83,7 @@ public class CtrlSolucions {
      * @param prod2
      * @param nomSolucio
      */
-    public void modificarSolucio (String prod1, String prod2, String nomSolucio) throws IntercanviNoValid, NomSolucioNoValid {
+    public void modificarSolucio (String prod1, String prod2, String nomSolucio) throws IntercanviNoValid, NomSolucioNoValid, FormatInputNoValid {
         boolean trobat = false;
         //ArrayList<Solucio> solucionsTemp = new ArrayList<>(solucions);
         Iterator<Solucio> iterator = solucions.iterator();
@@ -93,7 +93,7 @@ public class CtrlSolucions {
             if (s.getNom().equals(nomSolucio)){
                 trobat = true;
                 if (s.trobarProducte(prod1) && s.trobarProducte(prod2)) {
-                    solMod = new SolucioModificada(s.getSolucio(), s.getAlgorisme(), nomSolucio);
+                    solMod = new SolucioModificada(s.getSolucio(), nomSolucio, s.getProdPrestatge());
                     solMod.intercanvia(prod1, prod2);
                     iterator.remove();
                     break;

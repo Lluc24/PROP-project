@@ -5,7 +5,7 @@
 solucio1
 2
 3
-solucio1
+solucio1 4
 2
 2
 solucio1
@@ -14,7 +14,7 @@ solucio1
 macarrons
 2
 3
-solucio2
+solucio2 4
 2
 1
 2

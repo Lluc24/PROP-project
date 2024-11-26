@@ -15,7 +15,7 @@ poma
 llet 0.1 galetes 0.1 cereals 0.1
 2
 3
-Solucio1
+Solucio1 4
 2
 6
 greedy
@@ -23,13 +23,13 @@ greedy
 1
 2
 3
-Solucio2
+Solucio2 4
 2
 6
 algorismeBT
 2
 3
-Solucio3
+Solucio3 4
 2
 1
 1
@@ -38,7 +38,7 @@ sucre
 poma 0.5 llet 0.5 galetes 0.1 cereals 0.1
 2
 3
-Solucio4
+Solucio4 4
 2
 4
 Solucio1

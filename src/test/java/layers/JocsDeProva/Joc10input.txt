@@ -3,7 +3,7 @@
 fruita poma melo
 2
 3
-fruita
+fruita 4
 2
 5
 begudes cocacola fanta_llimona
@@ -30,7 +30,7 @@ melo 40 poma 95 mango 60
 fruita
 2
 3
-fruita
+fruita 4
 2
 5
 fruita melo melo
@@ -60,7 +60,7 @@ fruita mandarina poma
 mandarina
 2
 3
-fruita2
+fruita2 4
 2
 5
 fruita2 mandarina poma
