@@ -8,7 +8,7 @@ import layers.domain.excepcions.NomSolucioNoValid;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class CtrlSolucions {
+public class CtrlSolucions extends CtrlGeneric {
     // Llista de solucions
     private ArrayList<Solucio> solucions;//llista de solucions que tracta
     private CtrlCataleg cataleg;// relació amb el catàleg
