@@ -14,6 +14,10 @@ public class VistaPrincipal extends VistaGeneric {
     private JButton botoCataleg;
     private JButton botoSolucions = new JButton("Gestionar Solucions");
 
+    VistaPrincipal() {
+
+    }
+
     public void executar(CtrlVistaGeneric ctrl1, CtrlVistaGeneric ctrl2) {
         ctrlVistaCatalegAmbRestriccions = (CtrlVistaCatalegAmbRestriccions)ctrl1;
         ctrlVistaSolucions = (CtrlVistaSolucions)ctrl2;
