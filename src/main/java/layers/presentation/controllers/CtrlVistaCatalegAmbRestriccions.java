@@ -16,7 +16,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
     //Mètodes
 
     /** Constructora
-     * @param SingCtrlCatalegAmbRestriccions Singleton del controlador de cataleg amb restriccions
+     * @param SingCtrlCatalegAmbRestriccions Singleton del controlador de catàleg amb restriccions
      */
 
     public CtrlVistaCatalegAmbRestriccions(CtrlGeneric ctrlGeneric, CtrlCatalegAmbRestriccions SingCtrlCatalegAmbRestriccions) {
