@@ -3,12 +3,13 @@ package layers.presentation;
 import javax.swing.*;
 import layers.domain.*;
 import layers.presentation.controllers.CtrlPreSolucions;
+import layers.presentation.views.VistaGeneric;
 
 import java.util.ArrayList;
 import java.awt.FlowLayout;
 import java.awt.event.*;
 
-public class VistaInicialSolucio {
+public class VistaPrincipalSolucio extends VistaGeneric {
     private CtrlPreSolucions iCtrlPreSol;
     private JFrame frameVista = new JFrame("Vista Inicial");
     private JPanel panelContenidos = new JPanel();
