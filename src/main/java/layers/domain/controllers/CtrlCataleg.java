@@ -487,11 +487,18 @@ public class CtrlCataleg extends CtrlGeneric{
 
     }
 
+    public String producte_a_String(String nomProd) throws ProducteNoValid {
+
+         //idem que cataleg_a_String (obviament sense punt i coma (;))
+        return null;
+    }
+
     public String cataleg_a_String() {
 
          //format: "Nomprod1,Nomprod2,Similitud,NomProd3,Similitud;NomProd2,NomProd1,Similitud,NomProd3,Similitud;..." (sense les "), (primer es dóna
          //el nom del producte a registrar, després el nom de la resta de productes i la similitud amb aquest, to separat per comes. Quan es dóna l'ultima
          //similitud d'aquell producte i es vol escriure el nom del següent producte a registrar, es separa amb punt i coma.
+        //NO S'INCLOU LA SIMILITUD DEL PRODUCTE AMB SI MATEIX
          return null;
     }
 
