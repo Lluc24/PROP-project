@@ -10,15 +10,15 @@ import java.awt.event.ActionListener;
 public class VistaGeneric {
 
     protected JFrame frameVista = new JFrame("Vista principal");
-    private JPanel panelContinguts = new JPanel();
+    protected JPanel panelContinguts = new JPanel();
 
-    private JComboBox<String> boxOpcions;
-    private JButton buttonAfegir = new JButton("Afegir");
-    private JButton button2 = new JButton("Boto 2");
+    protected JComboBox<String> boxOpcions;
+    protected JButton buttonAfegir = new JButton("Afegir");
+    protected JButton button2 = new JButton("Boto 2");
 
-    private JMenuBar menubarVista = new JMenuBar();
-    private JMenu menuFile = new JMenu("File");
-    private JMenuItem menuitemSortir = new JMenuItem("Sortir");
+    protected JMenuBar menubarVista = new JMenuBar();
+    protected JMenu menuFile = new JMenu("File");
+    protected JMenuItem menuitemSortir = new JMenuItem("Sortir");
 
     public abstract VistaGeneric() {
     }
