@@ -1,0 +1,19 @@
+Funcionalitat: Comparar les solucions donades per l'algorisme greedy amb i sense restriccions.
+Donades les iteracions, no es poden respectar les restriccions.
+
+Afegir un primer producte
+Afegir un segon producte
+Afegir un tercer producte
+Afegir un quart producte
+Afegir un cinquè producte
+Configurar algorisme greedy ini 0 ite 1
+Resoldre
+Configurar algorisme greedy ini 0 ite 2
+Resoldre
+Afegeix una restricció entre Producte 0 i Producte 2
+Afegeix una restricció entre Producte 0 i Producte 5
+Configurar algorisme greedy ini 0 ite 1
+Resoldre
+Configurar algorisme greedy ini 0 ite 2
+Resoldre
+Visualitzar les solucions

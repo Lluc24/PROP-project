@@ -3,7 +3,7 @@
 solucio1
 2
 3
-solucio1
+solucio1 4
 2
 4
 solucio2
@@ -15,23 +15,23 @@ solucio1
 solucio1
 2
 3
-solucio1
+solucio1 4
 2
 3
-solucio1
+solucio1 4
 1
 3
 aigua
 2
 3
-solucio1
+solucio1 4
 2
 3
-solucio2
+solucio2 4
 2
 4
 solucio1
 2
 4
 solucio2
-3
+4

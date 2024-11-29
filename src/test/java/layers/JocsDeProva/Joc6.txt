@@ -1,4 +1,4 @@
-La finalitat d'aquest joc de prova és portar al límit les funcionalitatd d'afegir i eliminar producte
+La finalitat d'aquest joc de prova es portar al limit les funcionalitatd d'afegir i eliminar producte
 
 Crea un producte
 Intenta crear un producte el relaciona amb un producte que no esta a ctrlCataleg

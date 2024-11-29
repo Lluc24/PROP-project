@@ -1,4 +1,4 @@
-La finalitat d'aquest joc és porovar les funcionalitats eliminar i crear solucio
+La finalitat d'aquest joc es porovar les funcionalitats eliminar i crear solucio
 
 Intenta eliminar una solucio que no existeix
 Crea una solucio buida

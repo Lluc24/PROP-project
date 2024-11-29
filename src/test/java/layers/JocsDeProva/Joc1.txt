@@ -1,3 +1,5 @@
+La finalitat d'aquest joc de prova és provar les funcionalitats bàsiques del sistema.
+
 Afegeix 4 productes al ctrlCataleg
 Crea una solucio
 Mostra totes les solucions

@@ -10,6 +10,7 @@ import layers.domain.excepcions.NomSolucioNoValid;
 import layers.domain.excepcions.ProducteNoValid;
 import layers.domain.utils.Pair;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Driver {
@@ -27,6 +28,7 @@ public class Driver {
     private static void executar() {
         boolean finalitzat = false;
         Scanner scanner = new Scanner(System.in);
+        scanner.useLocale(Locale.US);
         CtrlCatalegAmbRestriccions ctrlCataleg = ctrlDomini.getCtrlCatalegAmbRestriccions();
         CtrlSolucions ctrlSolucions = ctrlDomini.getCtrlSolucions();
 
@@ -123,10 +125,11 @@ public class Driver {
                             }
                             break;
                         case 3:  // Crear una solucio
-                            System.out.println("Entra el nom de la solucio");
+                            System.out.println("Entra el nom de la solucio i el numero de productes per prestatge");
                             String nomSolucioCase3 = scanner.next();
+                            int prodPrestatgeria = demanaInt(formatNoEnter, scanner);
                             try {
-                                ctrlSolucions.creaSolucio(nomSolucioCase3);
+                                ctrlSolucions.creaSolucio(nomSolucioCase3, prodPrestatgeria);
                             }catch (NomSolucioNoValid e) {
                                 System.out.println(e.getMessage());
                             }catch (FormatInputNoValid e) {
@@ -152,6 +155,8 @@ public class Driver {
                             }catch (NomSolucioNoValid e) {
                                 System.out.println(e.getMessage());
                             }catch (IntercanviNoValid e) {
+                                System.out.println(e.getMessage());
+                            }catch (FormatInputNoValid e) {
                                 System.out.println(e.getMessage());
                             }
                             break;

@@ -1,4 +1,4 @@
-Funcionalitat: Provar les diferents funcionalitat de restriccions i visualitzarlas
+Finalitat: Provar les diferents funcionalitats de restriccions i visualitzar-les
 
 Afegir un primer producte
 Afegir un segon producte

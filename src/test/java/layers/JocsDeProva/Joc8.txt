@@ -1,4 +1,4 @@
-La finalitat d'aquest joc de prova és portar al limit les funcionalitats de visualitzar solucions
+La finalitat d'aquest joc de prova es portar al limit les funcionalitats de visualitzar solucions
 
 Mostra totes les solucions
 Mostra una solucio que no existeix

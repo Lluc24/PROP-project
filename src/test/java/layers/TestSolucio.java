@@ -3,6 +3,7 @@ package layers;
 import layers.domain.Algorisme;
 import layers.domain.Producte;
 import layers.domain.Solucio;
+import layers.domain.excepcions.FormatInputNoValid;
 import org.junit.Test;
 import java.util.ArrayList;
 import org.junit.Before;
@@ -17,8 +18,8 @@ import static org.junit.Assert.*;
 public class TestSolucio {
 
     ArrayList<String> productes = new ArrayList<String>();
-    Algorisme alg;
     Solucio solucio;
+    int prodPrestatge;
 
     @Before
     public void Inicialitza(){
@@ -27,9 +28,12 @@ public class TestSolucio {
             productes.add("p" + i);
         }
 
-        alg = mock(Algorisme.class);
-
-        solucio = new Solucio(productes, alg, "Solucio1");
+        prodPrestatge = 4;
+        try {
+            solucio = new Solucio(productes, "Solucio1", prodPrestatge);
+        }catch (FormatInputNoValid e){
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -39,8 +43,8 @@ public class TestSolucio {
     @Test
     public void testConstructor() {
         assertEquals("Verificar nom", "Solucio1", solucio.getNom());
-        assertEquals("Verificar algorisme", alg, solucio.getAlgorisme());
         assertEquals("Verificar productes", productes, solucio.getSolucio());
+        assertEquals("Verificar prodPrestatge", prodPrestatge, solucio.getProdPrestatge());
     }
 
     /**
@@ -53,21 +57,21 @@ public class TestSolucio {
     }
 
     /**
-     * Test de getAlgorisme
-     * Valors estudiats: Crea una instància de Solucio i comprova que el algorisme sigui correcte.
-     */
-    @Test
-    public void testgetAlgorisme() {
-        assertEquals("Verificar algorisme", alg, solucio.getAlgorisme());
-    }
-
-    /**
      * Test de getSolucio
      * Valors estudiats: Crea una instància de Solucio i comprova que el paràmetre solucio sigui correcte.
      */
     @Test
     public void testgetSolucio() {
         assertEquals("Verificar llista de productes", productes, solucio.getSolucio());
+    }
+
+    /**
+     * Test de getSolucio
+     * Valors estudiats: Crea una instància de Solucio i comprova que el paràmetre prodPrestatge sigui correcte.
+     */
+    @Test
+    public void testgetProdPrestatge() {
+        assertEquals("Verificar prodPrestatge", prodPrestatge, solucio.getProdPrestatge());
     }
 
     /**

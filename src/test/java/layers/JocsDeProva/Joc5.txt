@@ -1,4 +1,4 @@
-La finalitat d'aquest joc és portar al limit el sistema introduint dades invalides relacionades amb les funcionalitats de visualitzar producres perquè saltin les excepcions
+La finalitat d'aquest joc es portar al limit el sistema introduint dades invalides relacionades amb les funcionalitats de visualitzar productes perque saltin les excepcions
 
 Mostra ctrlCataleg buit
 Demana que mostri un producte que no existeix

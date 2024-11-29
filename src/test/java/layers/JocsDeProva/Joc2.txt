@@ -1,4 +1,4 @@
-La finalitat d'aquest joc de prova és comprovar com crea diferents solucions del mateix catàleg amb els mateixos productes amb cadascun dels tres algorismes.
+La finalitat d'aquest joc de prova es comprovar com crea diferents solucions del mateix cataleg amb els mateixos productes amb cadascun dels tres algorismes.
 
 Afegeix 4 productes al ctrlCataleg
 Crea una solucio
