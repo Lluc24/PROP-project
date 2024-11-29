@@ -5,7 +5,7 @@ import layers.presentation.controllers.CtrlVistaCatalegAmbRestriccions;
 import layers.presentation.controllers.CtrlVistaSolucions;
 import javax.swing.*;
 
-public class VistaPrincipal extends VistaGeneric {
+public class VistaPrincipal extends VistaGenerica {
     private CtrlVistaCatalegAmbRestriccions ctrlVistaCatalegAmbRestriccions;
     private CtrlVistaSolucions ctrlVistaSolucions;
 
