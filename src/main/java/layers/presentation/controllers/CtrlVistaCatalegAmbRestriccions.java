@@ -73,9 +73,9 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
      *
      * @return Una cadena amb la informació del catàleg.
      */
-    public String infoCataleg() {
+    public String[][] infoCataleg() {
 
-        return ctrl.cataleg_a_String(); //editar per retornar un string que es decodifiqui a la vista
+        return decodificar_cataleg(ctrl.cataleg_a_String());
 
     }
 
@@ -88,7 +88,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
     public String infoProducte(String nomProd) {
 
         try {
-            return ctrl.producte_a_String(nomProd); //editar per retornar un string que es decodifiqui a la vista
+            return ctrl.producte_a_String(nomProd);
         } catch (ProducteNoValid e) {
             System.out.println(e.getMessage());
         }
@@ -146,7 +146,6 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
      */
     public void eliminarProducte(String str) {
 
-        //substituir per nomProd com a paràmetre
         String[] nomProd = decodificar_producte(str);
 
         try {
