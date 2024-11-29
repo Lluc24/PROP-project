@@ -7,7 +7,7 @@ group = 'layers'
 version = '1.0-SNAPSHOT'
 
 ext {
-    javaMainClass = 'layers.domain.Driver'
+    javaMainClass = 'layers.presentation.Main'
 }
 
 application {

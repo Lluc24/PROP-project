@@ -26,7 +26,7 @@ import java.util.ArrayList;
  * El primer index sempre tindra valor '0', el metode num_prod_actual sempre retorna la mida correcte del cataleg, 
  * es a dir el index seguent al ultim producte.
  */
-public class CtrlCataleg {
+public class CtrlCataleg extends CtrlGeneric{
     //Classe CtrlCataleg
      //Atributs
 
