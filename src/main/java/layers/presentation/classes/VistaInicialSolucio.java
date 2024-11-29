@@ -10,7 +10,7 @@ import java.awt.event.*;
 
 public class VistaInicialSolucio {
     private CtrlPreSolucions iCtrlPreSol;
-    private JFrame frameVista = new JFrame("Vista Inicial Solucio");
+    private JFrame frameVista = new JFrame("Vista Inicial");
     private JPanel panelContenidos = new JPanel();
 
     private JComboBox<String> boxSolucions;
