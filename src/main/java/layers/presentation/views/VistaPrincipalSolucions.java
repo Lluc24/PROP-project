@@ -2,7 +2,7 @@ package layers.presentation;
 
 import javax.swing.*;
 import layers.domain.*;
-import layers.presentation.controllers.CtrlPreSolucions;
+import layers.presentation.controllers.CtrlVistaSolucions;
 import layers.presentation.views.VistaGeneric;
 
 import java.util.ArrayList;
@@ -10,20 +10,11 @@ import java.awt.FlowLayout;
 import java.awt.event.*;
 
 public class VistaPrincipalSolucio extends VistaGeneric {
-    private CtrlPreSolucions iCtrlPreSol;
-    private JFrame frameVista = new JFrame("Vista Inicial");
-    private JPanel panelContenidos = new JPanel();
+    private CtrlVistaSolucions iCtrlVistaSols;
+    private JLabel labelAlgorismeAct = new JLabel("Panel Informacion 1");
 
-    private JComboBox<String> boxSolucions;
-    private JButton buttonCrearSolucio = new JButton("Crear nova solucio");
-    private JButton buttonGestionarAlgorisme = new JButton("Canviar algorisme actual");
-
-    private JMenuBar menubarVista = new JMenuBar();
-    private JMenu menuFile = new JMenu("File");
-    private JMenuItem menuitemSortir = new JMenuItem("Sortir");
-
-    public VistaInicialSolucio (CtrlPreSolucions cps) {
-        iCtrlPreSol = cps;
+    public VistaPrincipalSolucio (CtrlVistaSolucions cps) {
+        iCtrlVistaSols = cps;
         inicialitzarComponents();
     }
 
@@ -34,16 +25,23 @@ public class VistaPrincipalSolucio extends VistaGeneric {
     void inicialitzarComponents(){
         frameVista.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        String[] solucions = CtrlPreSolucions.getSolucions();
-        boxSolucions = new JComboBox<>(solucions);
+        frameVista = new JFrame("Vista inicial solucions");
 
-        panelContenidos = (JPanel)frameVista.getContentPane();
-        panelContenidos.setLayout(new BoxLayout.Y_AXIS);
-        panelContenidos.add(buttonGestionarAlgorisme);
-        panelContenidos.add(buttonCrearSolucio);
-        panelContenidos.add(boxSolucions);
+        buttonAfegir = new JButton("Crear nova solucio");
+        button2 = new JButton("Canviar l'algorisme actual");
+        String[] solucions = iCtrlVistaSols.getSolucions();
+        boxOpcions = new JComboBox<>(solucions);
+        String algInfo = iCtrlVistaSols.getAlgorismeAct();
+        labelAlgorismeAct = new JLabel(algInfo);
 
-        frameVista.add(panelContenidos);
+        panelContinguts = (JPanel)frameVista.getContentPane();
+        panelContinguts.setLayout(new BoxLayout.Y_AXIS);
+        panelContinguts.add(button2);
+        panelContinguts.add(buttonAfegir);
+        panelContinguts.add(labelAlgorismeAct);
+        panelContinguts.add(boxOpcions);
+
+        frameVista.add(panelContinguts);
 
         menuFile.add(menuitemSortir);
         menubarVista.add(menuFile);
@@ -51,7 +49,7 @@ public class VistaPrincipalSolucio extends VistaGeneric {
 
         menuitemSortir.addActionListener(e -> System.exit(0));
 
-        buttonCrearSolucio.addActionListener
+        buttonAfegir.addActionListener
                 (new ActionListener() {
                     @Override
                     public void actionPerformed (ActionEvent event) {
@@ -62,10 +60,32 @@ public class VistaPrincipalSolucio extends VistaGeneric {
                     }
                 });
 
+        button2.addActionListener
+                (new ActionListener() {
+                    @Override
+                    public void actionPerformed (ActionEvent event) {
+                        String texto = ((JButton) event.getSource()).getText();
+                        System.out.println("Has clickat el boto amb text: " +
+                                texto);
+                        actionPerformed_button2(event);
+                    }
+                });
+
     }
 
     public void actionPerformed_buttonCreaSolucio (ActionEvent event) {
-        String resulDominio =
-                iCtrlPreSol.botoCreaSolucio(event.getSource()).getText());
+        iCtrlVistaSols.botoCreaSolucio(event.getSource()).getText());
+
+        //actualitza les solucions
+        String[] solucions = CtrlVistaSolucions.getSolucions();
+        boxOpcions = new JComboBox<>(solucions);
+    }
+
+    public void actionPerformed_button2 (ActionEvent event) {
+        iCtrlVistaSols.botoCreaSolucio(event.getSource()).getText());
+
+        //actualitza label
+        String algInfo = iCtrlVistaSols.getAlgorismeAct();
+        labelAlgorismeAct = new JLabel(algInfo);
     }
 }
