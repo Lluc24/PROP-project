@@ -1,12 +1,8 @@
 package layers.presentation.views;
 
-
-import layers.presentation.controllers.CtrlPreSolucions;
-import layers.presentation.controllers.CtrlVistaGeneric;
-
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 
 public abstract class VistaGenerica {
 
@@ -14,7 +10,7 @@ public abstract class VistaGenerica {
 
     protected String titolFrame = "Vista Generica";
     protected String ajuda = "Lorem Ipsum";
-    private final String respecteDe =
+    private final String respecteA =
             "Lluc Santamaria Riba\n" +
             "lluc.santamaria@estudiantat.upc.edu\n" +
             "Afegiu-vos aqui";
@@ -23,16 +19,16 @@ public abstract class VistaGenerica {
     protected JFrame frameVista;
     protected JPanel panelContinguts;
 
-    protected JMenuBar menuBar;
+    protected MenuBar menuBar;
 
-    protected JMenu menuFitxer;
-    protected JMenuItem menuItemSortir;
+    protected Menu menuFitxer;
+    protected MenuItem menuItemSortir;
 
-    protected JMenu menuAjuda;
-    protected JMenuItem menuItemAjuda;
-    protected JMenuItem menuItemRespecteA;
+    protected Menu menuAjuda;
+    protected MenuItem menuItemAjuda;
+    protected MenuItem menuItemRespecteA;
 
-    protected JButtonTornar botoTornar;
+    protected JButton botoTornar;
 
     protected VistaGenerica() {
         inicialitzarComponents();
@@ -42,25 +38,26 @@ public abstract class VistaGenerica {
 
         // Inicialitzem el frame
         frameVista = new JFrame(titolFrame);
-        frameVista.setDefaultCloseOperation(WindowConstants.DO_NOTHIING_ON_CLOSE);
+        frameVista.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         frameVista.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 System.out.println("Accio de sortir clicant X realitzada");
                 sortir();
             }
         });
+        frameVista.setSize(1000, 800);
 
         // Inicialitzem el panel
         panelContinguts = (JPanel) frameVista.getContentPane();
         panelContinguts.setLayout(new FlowLayout());
 
         // Inicialitzem el menuBar amb els seus actionListeners
-        menuBar = new JMenuBar();
+        menuBar = new MenuBar();
 
-        menuFitxer = new JMenu("Fitxer"); // Menu Fitxer
-        menuItemSortir = new JMenuItem("Sortir"); // Item Sortir
+        menuFitxer = new Menu("Fitxer"); // Menu Fitxer
+        menuItemSortir = new MenuItem("Sortir"); // Item Sortir
         menuItemSortir.addActionListener(new ActionListener() {
-            public void ActionPerformed(ActionEvent event) {
+            public void actionPerformed(ActionEvent event) {
                 System.out.println("Accio realitzada en Menu->Fitxer->Sortir");
                 sortir();
             }
@@ -68,44 +65,44 @@ public abstract class VistaGenerica {
         menuFitxer.add(menuItemSortir);
         menuBar.add(menuFitxer);
 
-        menuAjuda = new JMenu("Ajuda"); // Menu Ajuda
-        menuItemAjuda = new JMenuItem("? Ajuda"); // Item ? Ajuda
+        menuAjuda = new Menu("Ajuda"); // Menu Ajuda
+        menuItemAjuda = new MenuItem("? Ajuda"); // Item ? Ajuda
         menuItemAjuda.addActionListener(new ActionListener() {
-            public void ActionPerformed(ActionEvent event) {
-                System.out.println("Accio realitzada en Menu->Ajuda->? Ajuda")
+            public void actionPerformed(ActionEvent event) {
+                System.out.println("Accio realitzada en Menu->Ajuda->? Ajuda");
                 mostraAjuda();
             }
-        }):
+        });
         menuAjuda.add(menuItemAjuda);
-        menuItemRespecteA = new JMenuItem("Respecte a"); // Item Respecte de
+        menuItemRespecteA = new MenuItem("Respecte a"); // Item Respecte de
         menuItemRespecteA.addActionListener(new ActionListener() {
-            public void ActionPerformed(ActionEvent event) {
-                System.out.println("Accio realitzada en Menu->Ajuda->Respecte a")
+            public void actionPerformed(ActionEvent event) {
+                System.out.println("Accio realitzada en Menu->Ajuda->Respecte a");
                 mostraRespecteA();
             }
         });
         menuAjuda.add(menuItemRespecteA);
 
         menuBar.add(menuAjuda);
-        panelContinguts.setMenuBar(menuBar);
+        frameVista.setMenuBar(menuBar);
 
         // Inicialitzem el boto de Tornar
         if (teBotoTornar) {
             botoTornar = new JButton("Tornar");
-            botoSortir.setSize(30, 20);
-            botoCataleg.addActionListener(new ActionListener() {
+            botoTornar.setSize(30, 20);
+            botoTornar.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent event) {
                     System.out.println("S'ha clicat el boto 'Tornar'");
                     tornar();
                 }
             });
-            panelContinguts.add(botoSortir);
+            panelContinguts.add(botoTornar);
         }
 
     }
 
-    public void ferVisible() {
-        frameVista.setVisible(true);
+    public void setVisible(boolean visibilitat) {
+        frameVista.setVisible(visibilitat);
     }
 
     protected void sortir() {
@@ -121,11 +118,11 @@ public abstract class VistaGenerica {
     }
 
     protected void mostraAjuda() {
-
+        JOptionPane.showMessageDialog(frameVista, ajuda, "Ajuda", JOptionPane.INFORMATION_MESSAGE);
     }
 
     protected void mostraRespecteA() {
-
+        JOptionPane.showMessageDialog(frameVista, respecteA, "Respecte a", JOptionPane.INFORMATION_MESSAGE);
     }
 
 
