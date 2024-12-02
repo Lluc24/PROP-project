@@ -1,7 +1,10 @@
 package layers.presentation;
+import layers.presentation.views.VistaInfoSolucio;
 import layers.presentation.views.VistaPrincipal;
 import layers.presentation.controllers.CtrlPresentacio;
 import layers.presentation.controllers.CtrlVistaGeneric;
+
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,7 +12,8 @@ public class Main {
         CtrlVistaGeneric ctrlVistaSolucions = ctrlPresentacio.getCtrlVistaSolucions();
         CtrlVistaGeneric ctrlVistaCatalegAmbRestriccions = ctrlPresentacio.getCtrlVistaCatalegAmbRestriccions();
 
-        VistaPrincipal vistaPrincipal = new VistaPrincipal();
-        vistaPrincipal.executar(ctrlVistaCatalegAmbRestriccions, ctrlVistaSolucions);
+        //VistaPrincipal vistaPrincipal = new VistaPrincipal();
+        //vistaPrincipal.executar(ctrlVistaCatalegAmbRestriccions, ctrlVistaSolucions);
+        new VistaInfoSolucio().executar(ctrlVistaSolucions, new ArrayList<>());
     }
 }
