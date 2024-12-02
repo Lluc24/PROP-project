@@ -9,13 +9,16 @@ import java.awt.*;
 public class VistaPrincipalSolucions extends VistaControladors {
     private CtrlVistaSolucions ctrlVistaSolucions;
 
-    public void executar(CtrlVistaGeneric ctrl) {
-        ctrlVistaSolucions = (CtrlVistaSolucions) ctrl;
+    public VistaPrincipalSolucions(){
+    }
+
+    public void executar(CtrlVistaSolucions ctrl) {
+        ctrlVistaSolucions = ctrl;
         titolFrame = "Vista Principal Solucions";
         ajuda = "Estas a la vista principal de solucions. Des d'aquesta vista pots provar totes les funcionalitats relacionades amb  les solucions " +
                 "utilitzant els items correstponents.\n" +
                 "ComboBox d'opcions: Permet veure totes les solucions existents.\n" +
-                "Mostra solucio: Mostra la solucio seleccionada al ComboBox i permet eliminar-la i modificar-la.\n";
+                "Mostra solucio: Mostra la solucio seleccionada al ComboBox i permet eliminar-la i modificar-la.\n" +
                 "Crear solucio: Permet crear una nova solucio amb els productes ja existents al cataleg.\n" +
                 "Gestionar algorisme: Permet crear una nova solucio.\n";
         super.executar();
@@ -49,7 +52,7 @@ public class VistaPrincipalSolucions extends VistaControladors {
             ctrlVistaSolucions.gestioAlgorisme();
         }
         else if (textBoto.equals(textBotoMostrar)) {
-            String solucioSeleccionada = opcions.getSelectedItem();
+            String solucioSeleccionada = (String) opcions.getSelectedItem();
             ctrlVistaSolucions.mostrarSolucio(solucioSeleccionada);
         }
         else {

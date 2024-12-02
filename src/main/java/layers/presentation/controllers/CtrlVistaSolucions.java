@@ -10,7 +10,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
 
     public CtrlVistaSolucions(CtrlSolucions cs) {
         this.ctrlSolucions = cs;
-        vistaPplSols = new VistaPrincipalSolucions(this);
+        vistaPplSols = new VistaPrincipalSolucions();
     }
 
     @Override
@@ -20,7 +20,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
 
     public String[] getSolucions(){
         System.out.println("ctrlSols->getSolucions()");
-        return String[]{"solucio1", "solucio2"};
+        return new String[]{"solucio1", "solucio2"};
     }
 
     public String getAlgorismeAct(){
