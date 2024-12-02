@@ -4,63 +4,102 @@ import layers.presentation.controllers.CtrlVistaGeneric;
 import layers.presentation.controllers.CtrlVistaCatalegAmbRestriccions;
 import layers.presentation.controllers.CtrlVistaSolucions;
 import javax.swing.*;
+import java.awt.*;
 
-public class VistaPrincipal extends VistaGeneric {
+public class VistaPrincipal extends VistaGenerica {
     private CtrlVistaCatalegAmbRestriccions ctrlVistaCatalegAmbRestriccions;
     private CtrlVistaSolucions ctrlVistaSolucions;
 
-    private JFrame frameVista;
-    private JPanel panelContingut;
-    private JButton botoCataleg;
-    private JButton botoSolucions = new JButton("Gestionar Solucions");
+    protected String textEtiquetaTriar = "Quina funcionalitat vols realitzar?";
+    protected JLabel etiquetaTriar;
 
-    VistaPrincipal() {
+    protected String textBotoCataleg = "Gestionar cataleg";
+    protected Boto botoCataleg;
 
-    }
+    protected String textBotoSolucions = "Gestionar solucions";
+    protected Boto botoSolucions;
 
+    protected String textBotoRestriccions = "Gestionar restriccions";
+    protected Boto botoRestriccions;
+
+    protected String textBotoSortir = "Sortir";
+    protected Boto botoSortir;
+
+    @Override
     public void executar(CtrlVistaGeneric ctrl1, CtrlVistaGeneric ctrl2) {
         ctrlVistaCatalegAmbRestriccions = (CtrlVistaCatalegAmbRestriccions)ctrl1;
         ctrlVistaSolucions = (CtrlVistaSolucions)ctrl2;
-
-        inicialitzarComponents();
+        titolFrame = "Vista Principal";
+        ajuda = "Estas a la vista principal. Des d'aquesta vista pots provar qualsevol de les quatre funcionalitats " +
+                "utilitzant els botons correstponents.\n" +
+                "Gestionar cataleg: Permet gestionar els productes i similituds de la prestatgeria.\n" +
+                "Gestionar solucions: Permet gestionar les solucions existents i calcular una nova.\n" +
+                "Gestionar restriccions: Permet gestionar les restriccions entre productes.\n" +
+                "Sortir: Finalitza l'aplicacio.";
+        super.executar();
     }
 
-    private void inicialitzarComponents() {
+    @Override
+    protected void inicialitzarComponents() {
+        teBotoTornar = false;
 
-        // Inicialitzem el frame
-        frameVista = new JFrame("Vista Principal");
-        frameVista.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        // Inicialitzem la superclase
+        super.inicialitzarComponents();
 
-        // Inicialitzem el panel
-        panelContingut = (JPanel) frameVista.getContentPane();
-        panel.setLayout(new FlowLayout());
+        // Inicialitzem el panel com a BoxLayout ordenat verticalment
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        add(Box.createVerticalGlue());
 
-        // Inicialitzem el boto Gestionar Cataleg
-        botoCataleg = new JButton("Gestionar Cataleg");
-        botoCataleg.setSize(100, 20);
-        botoCataleg.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-                System.out.println("S'ha clicat el boto 'Gestionar Cataleg'");
-                actionPerformedBotoCataleg(event);
-            }
-        });
+        // Inicialitzem la etiqueta descriptiva
+        etiquetaTriar = new JLabel(textEtiquetaTriar);
+        etiquetaTriar.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(etiquetaTriar);
+        add(Box.createRigidArea(new Dimension(0, 10)));
 
-        // Inicialitzem el boto Gestionar Solucions
-        botoCataleg = new JButton("Gestionar Solucions");
-        botoCataleg.setSize(100, 20);
-        botoCataleg.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-                System.out.println("S'ha clicat el boto 'Gestionar Solucions'");
-                actionPerformedBotoSolucions(event);
-            }
-        });
+        // Inicialitzem el boto Gestionar cataleg
+        botoCataleg = new Boto(textBotoCataleg);
+        botoCataleg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(botoCataleg);
+        add(Box.createRigidArea(new Dimension(0, 10)));
+
+        // Inicialitzem el boto Gestionar solucions
+        botoSolucions = new Boto(textBotoSolucions);
+        botoSolucions.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(botoSolucions);
+        add(Box.createRigidArea(new Dimension(0, 10)));
+
+        // Inicialitzem el boto Gestionar restriccions
+        botoRestriccions = new Boto(textBotoRestriccions);
+        botoRestriccions.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(botoRestriccions);
+        add(Box.createRigidArea(new Dimension(0, 10)));
+
+        // Inicialitzem el boto Sortir
+        botoSortir = new Boto(textBotoSortir);
+        botoSortir.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(botoSortir);
+
+        add(Box.createVerticalGlue());
     }
 
-    private void actionPerformedBotoCataleg(ActionEvent event) {
-        ctrlVistaCatalegAmbRestriccions.executar();
+    @Override
+    protected void botoAccionat(String textBoto) {
+        if (textBoto.equals(textBotoCataleg) || textBoto.equals(textBotoRestriccions)) {
+            ctrlVistaCatalegAmbRestriccions.executar();
+        }
+        else if (textBoto.equals(textBotoSolucions)) {
+            ctrlVistaSolucions.executar();
+        }
+        else if (textBoto.equals(textBotoSortir)) {
+            sortir();
+        }
+        else {
+            super.botoAccionat(textBoto);
+        }
     }
 
-    private void actionPerformedBotoSolucions(ActionEvent event) {
-        ctrlVistaSolucions.executar();
+    @Override
+    protected void itemAccionat(String textItem) {
+        super.itemAccionat(textItem);
     }
 }

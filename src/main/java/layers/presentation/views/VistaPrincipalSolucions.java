@@ -1,71 +1,59 @@
-package layers.presentation;
+package layers.presentation.views;
 
+import layers.presentation.controllers.CtrlVistaGeneric;
+import layers.presentation.controllers.CtrlVistaCatalegAmbRestriccions;
+import layers.presentation.controllers.CtrlVistaSolucions;
 import javax.swing.*;
-import layers.domain.*;
-import layers.presentation.controllers.CtrlPreSolucions;
-import layers.presentation.views.VistaGeneric;
+import java.awt.*;
 
-import java.util.ArrayList;
-import java.awt.FlowLayout;
-import java.awt.event.*;
+public class VistaPrincipalSolucions extends VistaControladors {
+    private CtrlVistaSolucions ctrlVistaSolucions;
 
-public class VistaPrincipalSolucio extends VistaGeneric {
-    private CtrlPreSolucions iCtrlPreSol;
-    private JFrame frameVista = new JFrame("Vista Inicial");
-    private JPanel panelContenidos = new JPanel();
-
-    private JComboBox<String> boxSolucions;
-    private JButton buttonCrearSolucio = new JButton("Crear nova solucio");
-    private JButton buttonGestionarAlgorisme = new JButton("Canviar algorisme actual");
-
-    private JMenuBar menubarVista = new JMenuBar();
-    private JMenu menuFile = new JMenu("File");
-    private JMenuItem menuitemSortir = new JMenuItem("Sortir");
-
-    public VistaInicialSolucio (CtrlPreSolucions cps) {
-        iCtrlPreSol = cps;
-        inicialitzarComponents();
+    public void executar(CtrlVistaGeneric ctrl) {
+        ctrlVistaSolucions = (CtrlVistaSolucions) ctrl;
+        titolFrame = "Vista Principal Solucions";
+        ajuda = "Estas a la vista principal de solucions. Des d'aquesta vista pots provar totes les funcionalitats relacionades amb  les solucions " +
+                "utilitzant els items correstponents.\n" +
+                "ComboBox d'opcions: Permet veure totes les solucions existents.\n" +
+                "Mostra solucio: Mostra la solucio seleccionada al ComboBox i permet eliminar-la i modificar-la.\n";
+                "Crear solucio: Permet crear una nova solucio amb els productes ja existents al cataleg.\n" +
+                "Gestionar algorisme: Permet crear una nova solucio.\n";
+        super.executar();
     }
 
-    public void ferVisible() {
-        frameVista.setVisible(true);
+    @Override
+    protected void inicialitzarComponents() {
+        super.inicialitzarComponents();
+
+        // Inicialitzem el panel com a BoxLayout ordenat verticalment
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        add(Box.createVerticalGlue());
+
+        //Inicialitzem el text dels botons
+        String alg = ctrlVistaSolucions.getAlgorismeAct();
+        textEtiquetaTriar = "L'algorisme actual és de tipus" + alg;
+        etiquetaTriar.setText(textEtiquetaTriar);
+        botoAfegir.setText("Crear solucio");
+        boto2.setText("Gestio algorisme");
+        botoMostrar.setText("Mostrar algorisme");
+        String[] sols = ctrlVistaSolucions.getSolucions();
+        opcions = new JComboBox<>(sols);
     }
 
-    void inicialitzarComponents(){
-        frameVista.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        String[] solucions = CtrlPreSolucions.getSolucions();
-        boxSolucions = new JComboBox<>(solucions);
-
-        panelContenidos = (JPanel)frameVista.getContentPane();
-        panelContenidos.setLayout(new BoxLayout.Y_AXIS);
-        panelContenidos.add(buttonGestionarAlgorisme);
-        panelContenidos.add(buttonCrearSolucio);
-        panelContenidos.add(boxSolucions);
-
-        frameVista.add(panelContenidos);
-
-        menuFile.add(menuitemSortir);
-        menubarVista.add(menuFile);
-        frameVista.setJMenuBar(menubarVista);
-
-        menuitemSortir.addActionListener(e -> System.exit(0));
-
-        buttonCrearSolucio.addActionListener
-                (new ActionListener() {
-                    @Override
-                    public void actionPerformed (ActionEvent event) {
-                        String texto = ((JButton) event.getSource()).getText();
-                        System.out.println("Has clickat el boto amb text: " +
-                                texto);
-                        actionPerformed_buttonCreaSolucio(event);
-                    }
-                });
-
-    }
-
-    public void actionPerformed_buttonCreaSolucio (ActionEvent event) {
-        String resulDominio =
-                iCtrlPreSol.botoCreaSolucio(event.getSource()).getText());
+    @Override
+    protected void botoAccionat(String textBoto) {
+        if (textBoto.equals(textBotoAfegir)) {
+            ctrlVistaSolucions.afegeixSolucio();
+        }
+        else if (textBoto.equals(textBoto2)) {
+            ctrlVistaSolucions.gestioAlgorisme();
+        }
+        else if (textBoto.equals(textBotoMostrar)) {
+            String solucioSeleccionada = opcions.getSelectedItem();
+            ctrlVistaSolucions.mostrarSolucio(solucioSeleccionada);
+        }
+        else {
+            super.botoAccionat(textBoto);
+        }
     }
 }

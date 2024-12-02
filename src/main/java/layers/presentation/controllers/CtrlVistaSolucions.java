@@ -2,36 +2,40 @@ package layers.presentation.controllers;
 
 import layers.domain.controllers.CtrlGeneric;
 import layers.domain.controllers.CtrlSolucions;
+import layers.presentation.views.VistaPrincipalSolucions;
 
 public class CtrlVistaSolucions extends CtrlVistaGeneric {
-    public CtrlVistaSolucions(CtrlGeneric ctrlGeneric) {
-        super(ctrlGeneric);
+    private CtrlSolucions ctrlSolucions;
+    private VistaPrincipalSolucions vistaPplSols;
+
+    public CtrlVistaSolucions(CtrlSolucions cs) {
+        this.ctrlSolucions = cs;
+        vistaPplSols = new VistaPrincipalSolucions(this);
     }
 
     @Override
     public void executar() {
-        System.out.println("Metode executar de CtrlVistaSolucions");
+        vistaPplSols.executar(this);
     }
 
-    private CtrlSolucions ctrlSolucions;
-    private VistaInicialSolucio vistaInicialSolucio;
-    private VistaInicial vistaInicial;
-
-    public CtrlPreSolucions(VistaInicial vi, CtrlSolucions cs) {
-        this.ctrlSolucions(cs);
-        this.vistaInicial = vi;
-        vistaInicialSolucio = new VistaInicialSolucio(this);
+    public String[] getSolucions(){
+        System.out.println("ctrlSols->getSolucions()");
+        return String[]{"solucio1", "solucio2"};
     }
 
-    public void inicialitzarPresentacio(){
-        vistaInicialSolucio.ferVisible();
+    public String getAlgorismeAct(){
+        System.out.println("ctrlSols->getAlgorismeAct()");
+        return ctrlSolucions.getAlgorismeAct();
     }
 
-    public String botoCreaSolucio( String s){
-        System.out.println("CtrlPreSol sap que has clickat el boto amb text: " +
-                s );
+    public void afegeixSolucio(){
+        System.out.println("ctrlSols->afegrixSolucio()");
+    }
 
-        CtrlSolucions.creaSolucio("solucio",4);
-        return "ok";
+    public void gestioAlgorisme(){
+        System.out.println("ctrlSols->gestioAlgorisme()");
+    }
+    public void mostrarSolucio(String s){
+        System.out.println("ctrlSols->getSolucio(" + s + ")");
     }
 }
