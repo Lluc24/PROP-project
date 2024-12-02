@@ -1,15 +1,10 @@
-package layers.presentation;
+package layers.presentation.views;
 
 import javax.swing.*;
-import layers.domain.*;
 import layers.presentation.controllers.CtrlVistaSolucions;
-import layers.presentation.views.VistaGeneric;
-
-import java.util.ArrayList;
-import java.awt.FlowLayout;
 import java.awt.event.*;
 
-public class VistaPrincipalSolucio extends VistaGeneric {
+public class VistaPrincipalSolucio extends VistaControladors {
     private CtrlVistaSolucions iCtrlVistaSols;
     private JLabel labelAlgorismeAct = new JLabel("Panel Informacion 1");
 
@@ -22,7 +17,8 @@ public class VistaPrincipalSolucio extends VistaGeneric {
         frameVista.setVisible(true);
     }
 
-    void inicialitzarComponents(){
+    @Override
+    public void inicialitzarComponents(){
         frameVista.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         frameVista = new JFrame("Vista inicial solucions");
@@ -32,7 +28,7 @@ public class VistaPrincipalSolucio extends VistaGeneric {
         String[] solucions = iCtrlVistaSols.getSolucions();
         boxOpcions = new JComboBox<>(solucions);
         String algInfo = iCtrlVistaSols.getAlgorismeAct();
-        labelAlgorismeAct = new JLabel(algInfo);
+        labelAlgorismeAct = new JLabel("L'algorisme actual és de tipus " + algInfo);
 
         panelContinguts = (JPanel)frameVista.getContentPane();
         panelContinguts.setLayout(new BoxLayout.Y_AXIS);
@@ -86,6 +82,6 @@ public class VistaPrincipalSolucio extends VistaGeneric {
 
         //actualitza label
         String algInfo = iCtrlVistaSols.getAlgorismeAct();
-        labelAlgorismeAct = new JLabel(algInfo);
+        labelAlgorismeAct.setText("L'algorisme actual és de tipus " + algInfo);
     }
 }

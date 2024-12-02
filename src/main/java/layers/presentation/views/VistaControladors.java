@@ -1,15 +1,12 @@
-package layers.presentation.views;
+qpackage layers.presentation.views;
 
-import layers.presentation.controllers.CtrlVistaSolucions;
 import layers.presentation.controllers.CtrlVistaGeneric;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public abstract class VistaGeneric {
+public abstract class VistaControladors extends VistaGenerica {
 
-    protected JFrame frameVista = new JFrame("Vista principal");
+    protected JFrame frameVista = new JFrame("Vista controladors");
     protected JPanel panelContinguts = new JPanel();
 
     protected JComboBox<String> boxOpcions;
@@ -20,16 +17,18 @@ public abstract class VistaGeneric {
     protected JMenu menuFile = new JMenu("File");
     protected JMenuItem menuitemSortir = new JMenuItem("Sortir");
 
-    public abstract VistaGeneric() {
+    public abstract class VistaGeneric() {
+
     }
 
     public void executar(CtrlVistaGeneric ctrlVista) {
-        System.out.println("Metode executar de VistaGeneric");
+        System.out.println("Metode executar de VistaControladors");
     }
     public void executar(CtrlVistaGeneric ctrlVista1, CtrlVistaGeneric ctrlVista2) {
-        System.out.println("Metode executar de VistaGeneric");
+        System.out.println("Metode executar de VistaControladors");
     }
 
     public abstract void ferVisible();
 
+    public abstract void inicialitzarComponents();
 }

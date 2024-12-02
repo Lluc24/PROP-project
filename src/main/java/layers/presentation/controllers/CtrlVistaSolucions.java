@@ -5,11 +5,11 @@ import layers.domain.controllers.CtrlSolucions;
 import layers.presentation.VistaPrincipalSolucio;
 
 public class CtrlVistaSolucions extends CtrlVistaGeneric {
-    private CtrlSolucions ctrlSolucions;
+    private CtrlSolucions iCtrlSolucions;
     private VistaPrincipalSolucio iVistaPplSols;
 
     public CtrlVistaSolucions(CtrlSolucions cs) {
-        this.ctrlSolucions(cs);
+        this.iCtrlSolucions = cs;
         iVistaPplSols = new VistaPrincipalSolucio(this);
     }
 
@@ -32,5 +32,9 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
 
     public String[] getSolucions(){
 
+    }
+
+    public String getAlgorismeAct(){
+        return iCtrlSolucions.getAlgorismeAct();
     }
 }

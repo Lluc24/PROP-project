@@ -27,7 +27,11 @@ public class CtrlSolucions extends CtrlGeneric {
 
     public CtrlCataleg getCataleg(){ return cataleg; }
 
-    public Algorisme getAlgorismeAct(){ return algorismeAct;}
+    public String getAlgorismeAct(){
+        if (algorismeAct instanceof AlgorismeBT)  return "backtracking";
+        else if (algorismeAct instanceof AlgorismeGreedy) return "greedy";
+        else return "aproximacio";
+    }
 
     public void setParametres(int param1, int param2) throws FormatInputNoValid{
         algorismeAct = new AlgorismeGreedy(param1, param2);
@@ -54,6 +58,7 @@ public class CtrlSolucions extends CtrlGeneric {
             throw new FormatInputNoValid(missatge);
         }
     }
+
     /**
      * pre: l'usuari crida a aquesta funcio quan vol crear una nova solucio
      * post: s'ha creat una nova instància de solucio resolta amb algorismeAct

@@ -42,7 +42,7 @@ public class TestCtrlSolucions {
      */
     @Test
     public void getAlgorismeActTest() {
-        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof Aproximacio);
+        assertEquals("Verificar algorismeAct", "aproximacio", gs.getAlgorismeAct());
     }
 
     /**
@@ -76,7 +76,7 @@ public class TestCtrlSolucions {
             System.out.println(e.getMessage());
         }
 
-        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof AlgorismeGreedy);
+        assertEquals("Verificar algorismeAct", "greedy", gs.getAlgorismeAct());
     }
 
     /**
@@ -89,7 +89,7 @@ public class TestCtrlSolucions {
 
         assertEquals("Verificar solucions", solucions, gs.getSolucions());
         assertEquals("Verificar cataleg", c, gs.getCataleg());
-        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof Aproximacio);
+        assertEquals("Verificar algorismeAct", "aproximacio", gs.getAlgorismeAct());
     }
 
     /**
@@ -104,7 +104,7 @@ public class TestCtrlSolucions {
             System.out.println(e.getMessage());
         }
 
-        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof Aproximacio);
+        assertEquals("Verificar algorismeAct", "aproximacio", gs.getAlgorismeAct());
     }
 
     /**
@@ -119,7 +119,7 @@ public class TestCtrlSolucions {
             System.out.println(e.getMessage());
         }
 
-        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof AlgorismeGreedy);
+        assertEquals("Verificar algorismeAct", "greedy", gs.getAlgorismeAct());
     }
 
     /**
@@ -136,7 +136,7 @@ public class TestCtrlSolucions {
             System.out.println(e.getMessage());
         }
 
-        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof AlgorismeBT);
+        assertEquals("Verificar algorismeAct","backtracking" gs.getAlgorismeAct());
     }
 
     /**
@@ -151,7 +151,7 @@ public class TestCtrlSolucions {
             System.out.println(e.getMessage());
         }
 
-        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof Aproximacio);
+        assertEquals("Verificar algorismeAct", "aproximacio", gs.getAlgorismeAct());
     }
 
     /**
