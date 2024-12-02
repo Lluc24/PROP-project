@@ -1,87 +1,59 @@
 package layers.presentation.views;
 
-import javax.swing.*;
+import layers.presentation.controllers.CtrlVistaGeneric;
+import layers.presentation.controllers.CtrlVistaCatalegAmbRestriccions;
 import layers.presentation.controllers.CtrlVistaSolucions;
-import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
 
-public class VistaPrincipalSolucio extends VistaControladors {
-    private CtrlVistaSolucions iCtrlVistaSols;
-    private JLabel labelAlgorismeAct = new JLabel("Panel Informacion 1");
+public class VistaPrincipalSolucions extends VistaControladors {
+    private CtrlVistaSolucions ctrlVistaSolucions;
 
-    public VistaPrincipalSolucio (CtrlVistaSolucions cps) {
-        iCtrlVistaSols = cps;
-        inicialitzarComponents();
-    }
-
-    public void ferVisible() {
-        frameVista.setVisible(true);
+    public void executar(CtrlVistaGeneric ctrl) {
+        ctrlVistaSolucions = (CtrlVistaSolucions) ctrl;
+        titolFrame = "Vista Principal Solucions";
+        ajuda = "Estas a la vista principal de solucions. Des d'aquesta vista pots provar totes les funcionalitats relacionades amb  les solucions " +
+                "utilitzant els items correstponents.\n" +
+                "ComboBox d'opcions: Permet veure totes les solucions existents.\n" +
+                "Mostra solucio: Mostra la solucio seleccionada al ComboBox i permet eliminar-la i modificar-la.\n";
+                "Crear solucio: Permet crear una nova solucio amb els productes ja existents al cataleg.\n" +
+                "Gestionar algorisme: Permet crear una nova solucio.\n";
+        super.executar();
     }
 
     @Override
-    public void inicialitzarComponents(){
-        frameVista.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    protected void inicialitzarComponents() {
+        super.inicialitzarComponents();
 
-        frameVista = new JFrame("Vista inicial solucions");
+        // Inicialitzem el panel com a BoxLayout ordenat verticalment
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        add(Box.createVerticalGlue());
 
-        buttonAfegir = new JButton("Crear nova solucio");
-        button2 = new JButton("Canviar l'algorisme actual");
-        String[] solucions = iCtrlVistaSols.getSolucions();
-        boxOpcions = new JComboBox<>(solucions);
-        String algInfo = iCtrlVistaSols.getAlgorismeAct();
-        labelAlgorismeAct = new JLabel("L'algorisme actual és de tipus " + algInfo);
-
-        panelContinguts = (JPanel)frameVista.getContentPane();
-        panelContinguts.setLayout(new BoxLayout.Y_AXIS);
-        panelContinguts.add(button2);
-        panelContinguts.add(buttonAfegir);
-        panelContinguts.add(labelAlgorismeAct);
-        panelContinguts.add(boxOpcions);
-
-        frameVista.add(panelContinguts);
-
-        menuFile.add(menuitemSortir);
-        menubarVista.add(menuFile);
-        frameVista.setJMenuBar(menubarVista);
-
-        menuitemSortir.addActionListener(e -> System.exit(0));
-
-        buttonAfegir.addActionListener
-                (new ActionListener() {
-                    @Override
-                    public void actionPerformed (ActionEvent event) {
-                        String texto = ((JButton) event.getSource()).getText();
-                        System.out.println("Has clickat el boto amb text: " +
-                                texto);
-                        actionPerformed_buttonCreaSolucio(event);
-                    }
-                });
-
-        button2.addActionListener
-                (new ActionListener() {
-                    @Override
-                    public void actionPerformed (ActionEvent event) {
-                        String texto = ((JButton) event.getSource()).getText();
-                        System.out.println("Has clickat el boto amb text: " +
-                                texto);
-                        actionPerformed_button2(event);
-                    }
-                });
-
+        //Inicialitzem el text dels botons
+        String alg = ctrlVistaSolucions.getAlgorismeAct();
+        textEtiquetaTriar = "L'algorisme actual és de tipus" + alg;
+        etiquetaTriar.setText(textEtiquetaTriar);
+        botoAfegir.setText("Crear solucio");
+        boto2.setText("Gestio algorisme");
+        botoMostrar.setText("Mostrar algorisme");
+        String[] sols = ctrlVistaSolucions.getSolucions();
+        opcions = new JComboBox<>(sols);
     }
 
-    public void actionPerformed_buttonCreaSolucio (ActionEvent event) {
-        iCtrlVistaSols.botoCreaSolucio(event.getSource()).getText());
-
-        //actualitza les solucions
-        String[] solucions = CtrlVistaSolucions.getSolucions();
-        boxOpcions = new JComboBox<>(solucions);
-    }
-
-    public void actionPerformed_button2 (ActionEvent event) {
-        iCtrlVistaSols.botoCreaSolucio(event.getSource()).getText());
-
-        //actualitza label
-        String algInfo = iCtrlVistaSols.getAlgorismeAct();
-        labelAlgorismeAct.setText("L'algorisme actual és de tipus " + algInfo);
+    @Override
+    protected void botoAccionat(String textBoto) {
+        if (textBoto.equals(textBotoAfegir)) {
+            ctrlVistaSolucions.afegeixSolucio();
+        }
+        else if (textBoto.equals(textBoto2)) {
+            ctrlVistaSolucions.gestioAlgorisme();
+        }
+        else if (textBoto.equals(textBotoMostrar)) {
+            String solucioSeleccionada = opcions.getSelectedItem();
+            ctrlVistaSolucions.mostrarSolucio(solucioSeleccionada);
+        }
+        else {
+            super.botoAccionat(textBoto);
+        }
     }
 }

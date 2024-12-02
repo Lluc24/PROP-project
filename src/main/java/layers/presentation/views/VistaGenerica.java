@@ -21,6 +21,8 @@ public abstract class VistaGenerica extends JPanel {
     private final String respecteA =
             "Lluc Santamaria Riba\n" +
             "lluc.santamaria@estudiantat.upc.edu\n" +
+            "Eulalia Peiret Santacana\n" +
+            "eulalia.peiret@estudiantat.upc.edu\n" +
             "Afegiu-vos aqui";
 
 

@@ -25,6 +25,7 @@ public class VistaPrincipal extends VistaGenerica {
     protected String textBotoSortir = "Sortir";
     protected Boto botoSortir;
 
+    @Override
     public void executar(CtrlVistaGeneric ctrl1, CtrlVistaGeneric ctrl2) {
         ctrlVistaCatalegAmbRestriccions = (CtrlVistaCatalegAmbRestriccions)ctrl1;
         ctrlVistaSolucions = (CtrlVistaSolucions)ctrl2;

@@ -2,39 +2,40 @@ package layers.presentation.controllers;
 
 import layers.domain.controllers.CtrlGeneric;
 import layers.domain.controllers.CtrlSolucions;
-import layers.presentation.VistaPrincipalSolucio;
+import layers.presentation.views.VistaPrincipalSolucions;
 
 public class CtrlVistaSolucions extends CtrlVistaGeneric {
-    private CtrlSolucions iCtrlSolucions;
-    private VistaPrincipalSolucio iVistaPplSols;
+    private CtrlSolucions ctrlSolucions;
+    private VistaPrincipalSolucions vistaPplSols;
 
     public CtrlVistaSolucions(CtrlSolucions cs) {
-        this.iCtrlSolucions = cs;
-        iVistaPplSols = new VistaPrincipalSolucio(this);
-    }
-
-    public CtrlVistaSolucions(CtrlGeneric ctrlGeneric) {
-        super(ctrlGeneric);
+        this.ctrlSolucions = cs;
+        vistaPplSols = new VistaPrincipalSolucions(this);
     }
 
     @Override
     public void executar() {
-        iVistaPplSols.ferVisible();
-    }
-
-    public String botoCreaSolucio( String s){
-        System.out.println("CtrlPreSol sap que has clickat el boto amb text: " +
-                s );
-
-        CtrlSolucions.creaSolucio("solucio",4);
-        return "ok";
+        vistaPplSols.executar(this);
     }
 
     public String[] getSolucions(){
-
+        System.out.println("ctrlSols->getSolucions()");
+        return String[]{"solucio1", "solucio2"};
     }
 
     public String getAlgorismeAct(){
-        return iCtrlSolucions.getAlgorismeAct();
+        System.out.println("ctrlSols->getAlgorismeAct()");
+        return ctrlSolucions.getAlgorismeAct();
+    }
+
+    public void afegeixSolucio(){
+        System.out.println("ctrlSols->afegrixSolucio()");
+    }
+
+    public void gestioAlgorisme(){
+        System.out.println("ctrlSols->gestioAlgorisme()");
+    }
+    public void mostrarSolucio(String s){
+        System.out.println("ctrlSols->getSolucio(" + s + ")");
     }
 }

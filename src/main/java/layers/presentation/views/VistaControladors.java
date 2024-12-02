@@ -1,34 +1,72 @@
-qpackage layers.presentation.views;
-
-import layers.presentation.controllers.CtrlVistaGeneric;
+package layers.presentation.views;
 
 import javax.swing.*;
+import java.awt.*;
 
-public abstract class VistaControladors extends VistaGenerica {
+public class VistaControladors extends VistaGenerica {
+    protected String textEtiquetaTriar = "Quina funcionalitat vols realitzar?";
+    protected JLabel etiquetaTriar;
 
-    protected JFrame frameVista = new JFrame("Vista controladors");
-    protected JPanel panelContinguts = new JPanel();
+    protected String textBotoAfegir = "Afegir";
+    protected Boto botoAfegir;
 
-    protected JComboBox<String> boxOpcions;
-    protected JButton buttonAfegir = new JButton("Afegir");
-    protected JButton button2 = new JButton("Boto 2");
+    protected String textBotoMostrar = "Mostrar";
+    protected Boto botoMostrar;
 
-    protected JMenuBar menubarVista = new JMenuBar();
-    protected JMenu menuFile = new JMenu("File");
-    protected JMenuItem menuitemSortir = new JMenuItem("Sortir");
+    protected String textBoto2 = "Utilitat";
+    protected Boto boto2;
 
-    public abstract class VistaGeneric() {
+    protected JComboBox<String> opcions;
 
+    public VistaControladors() {
+        super();
+        this.titolFrame = "Vista Controladors";
     }
 
-    public void executar(CtrlVistaGeneric ctrlVista) {
-        System.out.println("Metode executar de VistaControladors");
-    }
-    public void executar(CtrlVistaGeneric ctrlVista1, CtrlVistaGeneric ctrlVista2) {
-        System.out.println("Metode executar de VistaControladors");
+    @Override
+    protected void inicialitzarComponents() {
+        super.inicialitzarComponents();
+
+        // Inicialitzem el panel com a BoxLayout ordenat verticalment
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        add(Box.createVerticalGlue());
+
+        // Inicialitzem la etiqueta descriptiva
+        etiquetaTriar = new JLabel(textEtiquetaTriar);
+        etiquetaTriar.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(etiquetaTriar);
+        add(Box.createRigidArea(new Dimension(0, 10)));
+
+        // Inicialitzem el ComboBox
+        opcions = new JComboBox<>(new String[]{"Opción 1", "Opción 2", "Opción 3"});
+        opcions.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(opcions);
+        add(Box.createRigidArea(new Dimension(0, 10)));
+
+        // Inicialitzem el boto Mostrar
+        botoMostrar = new Boto(textBotoMostrar);
+        botoMostrar.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(botoMostrar);
+        add(Box.createRigidArea(new Dimension(0, 10)));
+
+        // Inicialitzem el boto Afegir
+        botoAfegir = new Boto(textBotoAfegir);
+        botoAfegir.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(botoAfegir);
+        add(Box.createRigidArea(new Dimension(0, 10)));
+
+        // Inicialitzem el boto 2
+        boto2 = new Boto(textBoto2);
+        boto2.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(boto2);
+        add(Box.createRigidArea(new Dimension(0, 10)));
+        add(Box.createVerticalGlue());
     }
 
-    public abstract void ferVisible();
-
-    public abstract void inicialitzarComponents();
+    @Override
+    protected void botoAccionat(String textBoto) {
+        if (textBoto.equals(textBotoAfegir)) System.out.println("S'ha clickat 'Afegir' a la VistaControladors");
+        if (textBoto.equals(textBoto2)) System.out.println("S'ha clickat 'Boto2' a la VistaControladors");
+        else super.botoAccionat(textBoto);
+    }
 }
