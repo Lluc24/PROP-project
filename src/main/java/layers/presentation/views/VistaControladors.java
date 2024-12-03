@@ -13,9 +13,6 @@ public class VistaControladors extends VistaGenerica {
     protected String textBotoMostrar = "Mostrar";
     protected Boto botoMostrar;
 
-    protected String textBoto2 = "Utilitat";
-    protected Boto boto2;
-
     protected JComboBox<String> opcions;
 
     public VistaControladors() {
@@ -54,19 +51,19 @@ public class VistaControladors extends VistaGenerica {
         botoAfegir.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(botoAfegir);
         add(Box.createRigidArea(new Dimension(0, 10)));
-
-        // Inicialitzem el boto 2
-        boto2 = new Boto(textBoto2);
-        boto2.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        add(boto2);
-        add(Box.createRigidArea(new Dimension(0, 10)));
-        add(Box.createVerticalGlue());
     }
 
     @Override
     protected void botoAccionat(String textBoto) {
         if (textBoto.equals(textBotoAfegir)) System.out.println("S'ha clickat 'Afegir' a la VistaControladors");
-        if (textBoto.equals(textBoto2)) System.out.println("S'ha clickat 'Boto2' a la VistaControladors");
         else super.botoAccionat(textBoto);
+    }
+    @Override
+    protected void itemAccionat(String textItem) {
+        if (textItem.equals(textItemSortir)) {
+            super.itemAccionat(textItem);
+            frameVista.dispose();
+        }
+        else super.itemAccionat(textItem);
     }
 }
