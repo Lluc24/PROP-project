@@ -8,19 +8,10 @@ import java.util.*;
 public class SolucioModificada extends Solucio {
 
     // Constructor
-    public SolucioModificada(ArrayList<String> s, String n, int p) throws FormatInputNoValid {
-        super(s, n, validateProducts(p));
+    public SolucioModificada(ArrayList<ArrayList<String>> s, String n) throws FormatInputNoValid {
+        super(s, n);
         this.solucio = s;
         this.nom = n;
-        this.prodPrestatge = p;
-    }
-
-    private static int validateProducts(int p) throws FormatInputNoValid {
-        if (p <= 0) {
-            String missatge = "El numero de productes per prestatgeria ha de ser minim 1";
-            throw new FormatInputNoValid(missatge);
-        }
-        return p;
     }
 
     /**
@@ -36,22 +27,28 @@ public class SolucioModificada extends Solucio {
             String missatge = "No pots intercanviar un producte amb ell mateix";
             throw new IntercanviNoValid(missatge);
         }
-        int index1 = -1;
-        int index2 = -1;
+        int index1i = -1;
+        int index2i = -1;
+        int index2j = -1;
+        int index1j = -1;
         // Busca els idx dels prod a solucio
-        for (int i = 0; i < solucio.size() && (index1 == -1 || index2 == -1); i++) {
-            if (solucio.get(i).equals(prod1)) {
-                index1 = i;
-            } else if (solucio.get(i).equals(prod2)) {
-                index2 = i;
+        for (int i = 0; i < solucio.size() && (index1i == -1 || index2i == -1); i++) {
+            for (int j = 0; j < solucio.get(i).size(); ++j) {
+                if (solucio.get(i).get(j).equals(prod1)) {
+                    index1i = i;
+                    index1j = j;
+                } else if (solucio.get(i).get(j).equals(prod2)) {
+                    index2i = i;
+                    index2j = j;
+                }
             }
         }
 
         // Verifica que hagi trobat els 2 productes
-        if (index1 != -1 && index2 != -1) {
-            String aux = solucio.get(index1);
-            solucio.set(index1, solucio.get(index2));
-            solucio.set(index2, aux);
+        if (index1i != -1 && index2i != -1) {
+            String producte1 = solucio.get(index1i).get(index1j);
+            solucio.get(index1i).set(index1j, solucio.get(index2i).get(index2j));
+            solucio.get(index2i).set(index2j, producte1);
         }
         else {
             String missatge = "No existeix algun dels dos productes en la solucio";

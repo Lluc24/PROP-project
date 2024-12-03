@@ -60,6 +60,18 @@ public class CtrlSolucions extends CtrlGeneric {
     }
 
     /**
+     * L'usuari vol saber si existeix una solucio amb un nom determinat
+     * @param nomSolucio nom de la solucio
+     * @return retorna true si la solucio existeix, false altrament
+     */
+    public Boolean existeixSolucio(String nomSolucio){
+        for (Solucio sol : solucions){
+            if(sol.getNom().equals(nomSolucio)) return true;
+        }
+        return false;
+    }
+
+    /**
      * pre: l'usuari crida a aquesta funcio quan vol crear una nova solucio
      * post: s'ha creat una nova instància de solucio resolta amb algorismeAct
      * @param nomSolucio : nom de la nova solucio que es vol crear
@@ -98,7 +110,7 @@ public class CtrlSolucions extends CtrlGeneric {
             if (s.getNom().equals(nomSolucio)){
                 trobat = true;
                 if (s.trobarProducte(prod1) && s.trobarProducte(prod2)) {
-                    solMod = new SolucioModificada(s.getSolucio(), nomSolucio, s.getProdPrestatge());
+                    solMod = new SolucioModificada(s.getSolucio(), nomSolucio);
                     solMod.intercanvia(prod1, prod2);
                     iterator.remove();
                     break;

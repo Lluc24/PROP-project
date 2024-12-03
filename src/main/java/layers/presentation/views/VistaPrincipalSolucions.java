@@ -69,7 +69,7 @@ public class VistaPrincipalSolucions extends VistaControladors {
             }
         }
         else if (textBoto.equals(textBotoAlgorisme)) {
-            ctrlVistaSolucions.gestioAlgorisme();
+            ctrlVistaSolucions.canviarAlgorisme();
         }
         else if (textBoto.equals(textBotoMostrar)) {
             String solucioSeleccionada = (String) opcions.getSelectedItem();
@@ -91,11 +91,7 @@ public class VistaPrincipalSolucions extends VistaControladors {
             return input;
         }
 
-        // Comprobar si el usuario ha escrit correctament
-        try {
-            ctrlVistaSolucions.existeixSolucio(input);
-        } catch (NomSolucioNoValid e) {
-            // Si la entrada no es un numero valid, missatge d'error
+        if(ctrlVistaSolucions.existeixSolucio(input)) {
             JOptionPane.showMessageDialog(frameVista,
                     "Ja existeix una solucio amb aquest nom al sistema.",
                     "Error d'entrada",

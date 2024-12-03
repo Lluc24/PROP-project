@@ -4,12 +4,12 @@ import layers.domain.excepcions.FormatInputNoValid;
 import layers.domain.excepcions.NomSolucioNoValid;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Solucio {
     // Atributs
-    protected ArrayList<String> solucio;
+    protected ArrayList<ArrayList<String>> solucio;
     protected String nom;
-    protected int prodPrestatge;
 
     // Constructor
     public Solucio(ArrayList<String> s, String n, int p) throws FormatInputNoValid{
@@ -18,10 +18,29 @@ public class Solucio {
             throw new FormatInputNoValid(missatge);
         }
         else {
-            this.solucio = s;
             this.nom = n;
-            this.prodPrestatge = p;
+            ArrayList<ArrayList<String>> aux = new ArrayList<ArrayList<String>>();
+            for (int i = 0; i < s.size(); i++) {
+                if (i % p == 0) {
+                    ArrayList<String> prestatgeNou = new ArrayList<>();
+                    prestatgeNou.add(s.get(i));
+                    aux.add(prestatgeNou);
+                } else {
+                    aux.getLast().add(s.get(i));
+                }
+            }
+            for (int i = 0; i < aux.size(); i++) {
+                if (i % 2 != 0) {
+                    Collections.reverse(aux.get(i));
+                }
+            }
+            this.solucio = aux;
         }
+    }
+
+    public Solucio(ArrayList<ArrayList<String>> s, String n) {
+        this.nom = n;
+        this.solucio = s;
     }
 
     // Getters i Setters
@@ -29,13 +48,8 @@ public class Solucio {
         return nom;
     }
 
-
-    public ArrayList<String> getSolucio() {
+    public ArrayList<ArrayList<String>> getSolucio() {
         return solucio;
-    }
-
-    public int getProdPrestatge() {
-        return prodPrestatge;
     }
 
     //Metodes addicionals
@@ -47,18 +61,20 @@ public class Solucio {
     public void mostrarSolucio() {
         System.out.print(nom+": ");
         for (int i = 0; i < solucio.size(); i++) {
-            if (i%prodPrestatge == 0) {
-                System.out.println();
-                System.out.println("------------------------------------------");
-                System.out.print("| ");
-            }
-            System.out.print(solucio.get(i));
+            for (int j = 0; j < solucio.get(i).size(); ++j) {
+                if (j == 0) {
+                    System.out.println();
+                    System.out.println("------------------------------------------");
+                    System.out.print("| ");
+                }
+                System.out.print(solucio.get(i).get(j));
 
-            if (i != solucio.size() - 1) {
-                System.out.print(" | ");
-            } else {
-                System.out.println(" |");
-                System.out.println("------------------------------------------");
+                if (j != solucio.get(i).size() - 1) {
+                    System.out.print(" | ");
+                } else {
+                    System.out.println(" |");
+                    System.out.println("------------------------------------------");
+                }
             }
         }
         if (solucio.size() == 0) System.out.println("la solucio no te cap producte");
@@ -66,13 +82,15 @@ public class Solucio {
 
     /**
      * @Class Solucio
-     * @param x: el nom d'un producte
+     * @param nomProducte: el nom d'un producte
      * @return retorna true si hi ha un producte amb nom x a la solució. Fals en cas contrari.
      * @author Eulalia Peiret Santacana
      */
-    public boolean trobarProducte(String x){
-        for (String p : solucio){
-            if (p.equals(x)) return true;
+    public boolean trobarProducte(String nomProducte){
+        for (int i = 0; i < solucio.size(); ++i) {
+            for (String p : solucio.get(i)) {
+                if (p.equals(nomProducte)) return true;
+            }
         }
         return false;
     }

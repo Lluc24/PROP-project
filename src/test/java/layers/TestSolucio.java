@@ -16,21 +16,23 @@ import static org.junit.Assert.*;
  * Classe de testeig de Solucio.java
  */
 public class TestSolucio {
-
-    ArrayList<String> productes = new ArrayList<String>();
+    ArrayList<String> productesLlista = new ArrayList<String>();
+    ArrayList<ArrayList<String>> productesMatriu = new ArrayList<ArrayList<String>>();
     Solucio solucio;
     int prodPrestatge;
 
     @Before
     public void Inicialitza(){
+        prodPrestatge = 4;
 
         for (int i = 0; i < 4; i++) {
-            productes.add("p" + i);
+            productesLlista.add("p" + i);
         }
 
-        prodPrestatge = 4;
+        productesMatriu.add(productesLlista);
+
         try {
-            solucio = new Solucio(productes, "Solucio1", prodPrestatge);
+            solucio = new Solucio(productesLlista, "Solucio1", prodPrestatge);
         }catch (FormatInputNoValid e){
             System.out.println(e.getMessage());
         }
@@ -43,8 +45,7 @@ public class TestSolucio {
     @Test
     public void testConstructor() {
         assertEquals("Verificar nom", "Solucio1", solucio.getNom());
-        assertEquals("Verificar productes", productes, solucio.getSolucio());
-        assertEquals("Verificar prodPrestatge", prodPrestatge, solucio.getProdPrestatge());
+        assertEquals("Verificar productes", productesMatriu, solucio.getSolucio());
     }
 
     /**
@@ -62,16 +63,7 @@ public class TestSolucio {
      */
     @Test
     public void testgetSolucio() {
-        assertEquals("Verificar llista de productes", productes, solucio.getSolucio());
-    }
-
-    /**
-     * Test de getSolucio
-     * Valors estudiats: Crea una instància de Solucio i comprova que el paràmetre prodPrestatge sigui correcte.
-     */
-    @Test
-    public void testgetProdPrestatge() {
-        assertEquals("Verificar prodPrestatge", prodPrestatge, solucio.getProdPrestatge());
+        assertEquals("Verificar llista de productes", productesMatriu, solucio.getSolucio());
     }
 
     /**
