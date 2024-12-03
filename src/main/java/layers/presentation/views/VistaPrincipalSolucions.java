@@ -13,14 +13,11 @@ public class VistaPrincipalSolucions extends VistaControladors {
     protected String textBotoAlgorisme = "Canviar l'algorisme actual";
     protected Boto botoAlgorisme;
 
-    Boolean primeraVegada = true;
-
     public VistaPrincipalSolucions(){
     }
 
     public void executar(CtrlVistaSolucions ctrl) {
-        if (!primeraVegada) frameVista.setVisible(true);
-        else {
+        if (primeraVegada) {
             ctrlVistaSolucions = ctrl;
             titolFrame = "Vista Principal Solucions";
             ajuda = "Estas a la vista principal de solucions. Des d'aquesta vista pots provar totes les funcionalitats relacionades amb  les solucions " +
@@ -29,9 +26,8 @@ public class VistaPrincipalSolucions extends VistaControladors {
                     "Mostra solucio: Mostra la solucio seleccionada al ComboBox i permet eliminar-la i modificar-la.\n" +
                     "Crear solucio: Permet crear una nova solucio amb els productes ja existents al cataleg.\n" +
                     "Gestionar algorisme: Permet crear una nova solucio.\n";
-            super.executar();
-            primeraVegada = false;
         }
+        super.executar();
     }
 
     @Override
@@ -52,8 +48,11 @@ public class VistaPrincipalSolucions extends VistaControladors {
         textBotoAfegir = "Crear solucio";
         botoAfegir.setText(textBotoAfegir);
         botoMostrar.setText("Mostrar solucio");
-        String[] sols = ctrlVistaSolucions.getSolucions();
-        opcions = new JComboBox<>(sols);
+        String[] solsIni = ctrlVistaSolucions.getSolucions();
+        opcions.removeAllItems();
+        for (int i = 0; i < solsIni.length; ++i){
+            opcions.addItem(solsIni[i]);
+        }
     }
 
     @Override
@@ -64,8 +63,8 @@ public class VistaPrincipalSolucions extends VistaControladors {
                 int prodPrestatge = insertaProdPrestatge();
                 if (prodPrestatge > 0) {
                     ctrlVistaSolucions.afegeixSolucio(nom, prodPrestatge);
-                    String[] sols = ctrlVistaSolucions.getSolucions();
-                    opcions = new JComboBox<>(sols);
+                    opcions.addItem(nom);
+                    opcions.setSelectedItem(nom);
                 }
             }
         }

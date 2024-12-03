@@ -1,5 +1,7 @@
 package layers.presentation.views;
 
+import layers.presentation.controllers.CtrlVistaSolucions;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,6 +16,17 @@ public class VistaControladors extends VistaGenerica {
     protected Boto botoMostrar;
 
     protected JComboBox<String> opcions;
+
+    Boolean primeraVegada = true;
+
+    @Override
+    public void executar() {
+        if (!primeraVegada) frameVista.setVisible(true);
+        else {
+            primeraVegada = false;
+            super.executar();
+        }
+    }
 
     public VistaControladors() {
         super();
@@ -35,7 +48,7 @@ public class VistaControladors extends VistaGenerica {
         add(Box.createRigidArea(new Dimension(0, 10)));
 
         // Inicialitzem el ComboBox
-        opcions = new JComboBox<>(new String[]{"Opción 1", "Opción 2", "Opción 3"});
+        opcions = new JComboBox<>(new String[]{});
         opcions.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(opcions);
         add(Box.createRigidArea(new Dimension(0, 10)));
@@ -61,8 +74,7 @@ public class VistaControladors extends VistaGenerica {
     @Override
     protected void itemAccionat(String textItem) {
         if (textItem.equals(textItemSortir)) {
-            super.itemAccionat(textItem);
-            frameVista.dispose();
+            super.tornar();
         }
         else super.itemAccionat(textItem);
     }

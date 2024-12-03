@@ -139,6 +139,20 @@ public class CtrlSolucions extends CtrlGeneric {
         }
     }
 
+    /**
+     * pre: l'usuari crida aquesta funcio
+     * post: Retorna un vector amb els noms de totes les solucions
+     */
+    public String[] getSolucionsNom(){
+        String[] result = new String[solucions.size()];
+        int i = 0;
+        for (Solucio s: solucions){
+            result[i] = s.getNom();
+            ++i;
+        }
+        return result;
+    }
+
     // Obtenir totes les solucions
     public void mostrarSolucions() {
         if (solucions.isEmpty()) {
@@ -149,6 +163,7 @@ public class CtrlSolucions extends CtrlGeneric {
             for (Solucio s: solucions) s.mostrarSolucio();
         }
     }
+
 
     // Obtenir una solucio especifica
     public void mostrarSolucio(String nomSol) throws NomSolucioNoValid {

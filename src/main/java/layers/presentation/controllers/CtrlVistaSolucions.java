@@ -2,6 +2,7 @@ package layers.presentation.controllers;
 
 import layers.domain.controllers.CtrlGeneric;
 import layers.domain.controllers.CtrlSolucions;
+import layers.domain.excepcions.FormatInputNoValid;
 import layers.domain.excepcions.NomSolucioNoValid;
 import layers.presentation.views.VistaPrincipalSolucions;
 
@@ -12,7 +13,6 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
     public CtrlVistaSolucions(CtrlSolucions cs) {
         this.ctrlSolucions = cs;
         vistaPplSols = new VistaPrincipalSolucions();
-
     }
 
     @Override
@@ -21,22 +21,29 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
     }
 
     public String[] getSolucions() {
-        System.out.println("ctrlSols->getSolucions()");
-        return new String[]{"solucio1", "solucio2"};
+        return ctrlSolucions.getSolucionsNom();
     }
+
 
     public String getAlgorismeAct(){
         return ctrlSolucions.getAlgorismeAct();
     }
 
     public void afegeixSolucio(String nom, int prodPrest){
-        System.out.println("ctrlSols->afegrixSolucio()");
+        try{
+            ctrlSolucions.creaSolucio(nom, prodPrest);
+        }catch (NomSolucioNoValid e) {
+            System.out.println(e.getMessage());
+        }catch (FormatInputNoValid e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void gestioAlgorisme(){
-        System.out.println("ctrlSols->gestioAlgorisme()");
+
     }
     public void mostrarSolucio(String s){
+        //ctrlSolucions.mostrarSolucio(s);
         System.out.println("ctrlSols->getSolucio(" + s + ")");
     }
 
