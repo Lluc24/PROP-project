@@ -20,19 +20,25 @@ public class VistaGestioAlgorisme extends VistaGenerica {
     protected String textBotoBacktracking = "Backtracking";
     protected Boto botoBacktracking;
 
-    protected String textBotoSortir = "Sortir";
-    protected Boto botoSortir;
+    Boolean primeraVegada = true;
 
-    public void executar(CtrlVistaGeneric ctrl) {
-        ctrlVistaSolucions = (CtrlVistaSolucions) ctrl;
-        titolFrame = "Vista gestio algorisme";
-        ajuda = "Estas a la vista de gestio d'algorismes. Des d'aquesta vista pots canviar l'algorisme actual " +
-                "utilitzant els botons correstponents.\n" +
-                "Aproximacio: l'algorisme actual passara a ser de tipus Aproximacio.\n" +
-                "Greedy: l'algorisme actual passara a ser de tipus Greedy.\n" +
-                "Backtracking: l'algorisme actual passara a ser de tipus Backtracking.\n" +
-                "Sortir: Finalitza l'aplicacio.";
-        super.executar();
+    public VistaGestioAlgorisme(CtrlVistaSolucions ctrl){
+        ctrlVistaSolucions = ctrl;
+    }
+
+    public void executar() {
+        if (primeraVegada) {
+            titolFrame = "Vista gestio algorisme";
+            ajuda = "Estas a la vista de gestio d'algorismes. Des d'aquesta vista pots canviar l'algorisme actual " +
+                    "utilitzant els botons correstponents.\n" +
+                    "Aproximacio: l'algorisme actual passara a ser de tipus Aproximacio.\n" +
+                    "Greedy: l'algorisme actual passara a ser de tipus Greedy.\n" +
+                    "Backtracking: l'algorisme actual passara a ser de tipus Backtracking.\n" +
+                    "Sortir: Finalitza l'aplicacio.";
+                     super.executar();
+            primeraVegada = false;
+        }
+        else frameVista.setVisible(true);
     }
 
     @Override
@@ -68,11 +74,6 @@ public class VistaGestioAlgorisme extends VistaGenerica {
         add(botoBacktracking);
         add(Box.createRigidArea(new Dimension(0, 10)));
 
-        // Inicialitzem el boto Sortir
-        botoSortir = new Boto(textBotoSortir);
-        botoSortir.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        add(botoSortir);
-
         add(Box.createVerticalGlue());
     }
 
@@ -85,9 +86,6 @@ public class VistaGestioAlgorisme extends VistaGenerica {
         }
         else if (textBoto.equals(textBotoBacktracking)) {
             ctrlVistaSolucions.gestioAlgorisme("algorismeBT");
-        }
-        else if (textBoto.equals(textBotoSortir)) {
-            sortir();
         }
         else {
             super.botoAccionat(textBoto);

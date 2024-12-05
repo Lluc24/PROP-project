@@ -19,6 +19,16 @@ public class VistaControladors extends VistaGenerica {
 
     Boolean primeraVegada = true;
 
+    //Constructora
+    public VistaControladors() {
+        super();
+        this.titolFrame = "Vista Controladors";
+    }
+
+    /**
+     * Si es la primera vegada que s'executa la classe, inicialitza tots els components.
+     * Si ja s'han inicialitzat anteriorment, només cal fer la classe visible.
+     */
     @Override
     public void executar() {
         if (!primeraVegada) frameVista.setVisible(true);
@@ -26,11 +36,6 @@ public class VistaControladors extends VistaGenerica {
             primeraVegada = false;
             super.executar();
         }
-    }
-
-    public VistaControladors() {
-        super();
-        this.titolFrame = "Vista Controladors";
     }
 
     @Override
@@ -49,6 +54,8 @@ public class VistaControladors extends VistaGenerica {
 
         // Inicialitzem el ComboBox
         opcions = new JComboBox<>(new String[]{});
+        opcions.setMinimumSize(new java.awt.Dimension(250, 20));
+        opcions.setMaximumSize(new java.awt.Dimension(250, 20));
         opcions.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(opcions);
         add(Box.createRigidArea(new Dimension(0, 10)));
@@ -66,11 +73,6 @@ public class VistaControladors extends VistaGenerica {
         add(Box.createRigidArea(new Dimension(0, 10)));
     }
 
-    @Override
-    protected void botoAccionat(String textBoto) {
-        if (textBoto.equals(textBotoAfegir)) System.out.println("S'ha clickat 'Afegir' a la VistaControladors");
-        else super.botoAccionat(textBoto);
-    }
     @Override
     protected void itemAccionat(String textItem) {
         if (textItem.equals(textItemSortir)) {

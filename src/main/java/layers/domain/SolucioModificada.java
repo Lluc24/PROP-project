@@ -18,8 +18,8 @@ public class SolucioModificada extends Solucio {
      *
      * @Class SolucioModificada
      * Intercanvia els productes prod1 i prod2 si els dos estan en la solució
-     * @param prod1
-     * @param prod2
+     * @param prod1 nom del primer producte
+     * @param prod2 nom del segon producte
      * @author Eulalia Peiret Santacana
      */
     public void intercanvia (String prod1, String prod2) throws IntercanviNoValid{

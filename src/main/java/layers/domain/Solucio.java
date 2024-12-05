@@ -11,7 +11,7 @@ public class Solucio {
     protected ArrayList<ArrayList<String>> solucio;
     protected String nom;
 
-    // Constructor
+    // Constructora
     public Solucio(ArrayList<String> s, String n, int p) throws FormatInputNoValid{
         if (p <= 0) {
             String missatge = "El numero de productes per prestatgeria ha de ser minim 1";
@@ -19,6 +19,7 @@ public class Solucio {
         }
         else {
             this.nom = n;
+            //Divideix la llista en prestatges
             ArrayList<ArrayList<String>> aux = new ArrayList<ArrayList<String>>();
             for (int i = 0; i < s.size(); i++) {
                 if (i % p == 0) {
@@ -38,6 +39,7 @@ public class Solucio {
         }
     }
 
+    //Constructora
     public Solucio(ArrayList<ArrayList<String>> s, String n) {
         this.nom = n;
         this.solucio = s;
@@ -83,7 +85,7 @@ public class Solucio {
     /**
      * @Class Solucio
      * @param nomProducte: el nom d'un producte
-     * @return retorna true si hi ha un producte amb nom x a la solució. Fals en cas contrari.
+     * @return retorna true si hi ha un producte amb nom nomProducte a la solució. Fals en cas contrari.
      * @author Eulalia Peiret Santacana
      */
     public boolean trobarProducte(String nomProducte){

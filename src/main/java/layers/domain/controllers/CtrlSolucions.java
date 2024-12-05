@@ -155,12 +155,10 @@ public class CtrlSolucions extends CtrlGeneric {
      * pre: l'usuari crida aquesta funcio
      * post: Retorna un vector amb els noms de totes les solucions
      */
-    public String[] getSolucionsNom(){
-        String[] result = new String[solucions.size()];
-        int i = 0;
+    public ArrayList<String> getSolucionsNom(){
+        ArrayList<String> result = new ArrayList<String>();
         for (Solucio s: solucions){
-            result[i] = s.getNom();
-            ++i;
+            result.add(s.getNom());
         }
         return result;
     }

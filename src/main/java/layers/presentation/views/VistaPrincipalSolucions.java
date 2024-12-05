@@ -6,6 +6,7 @@ import layers.presentation.controllers.CtrlVistaCatalegAmbRestriccions;
 import layers.presentation.controllers.CtrlVistaSolucions;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class VistaPrincipalSolucions extends VistaControladors {
     private CtrlVistaSolucions ctrlVistaSolucions;
@@ -13,12 +14,14 @@ public class VistaPrincipalSolucions extends VistaControladors {
     protected String textBotoAlgorisme = "Canviar l'algorisme actual";
     protected Boto botoAlgorisme;
 
-    public VistaPrincipalSolucions(){
+    //Constructora
+    public VistaPrincipalSolucions(CtrlVistaSolucions ctrl){
+        ctrlVistaSolucions = ctrl;
     }
 
-    public void executar(CtrlVistaSolucions ctrl) {
+    public void executar() {
+        //Si es la primera vegada que s'executa, inicialitzar
         if (primeraVegada) {
-            ctrlVistaSolucions = ctrl;
             titolFrame = "Vista Principal Solucions";
             ajuda = "Estas a la vista principal de solucions. Des d'aquesta vista pots provar totes les funcionalitats relacionades amb  les solucions " +
                     "utilitzant els items correstponents.\n" +
@@ -48,10 +51,12 @@ public class VistaPrincipalSolucions extends VistaControladors {
         textBotoAfegir = "Crear solucio";
         botoAfegir.setText(textBotoAfegir);
         botoMostrar.setText("Mostrar solucio");
-        String[] solsIni = ctrlVistaSolucions.getSolucions();
+
+        //Inicialitzem el ComboBox amb totes les opcions
+        ArrayList<String> solsIni = ctrlVistaSolucions.getSolucions();
         opcions.removeAllItems();
-        for (int i = 0; i < solsIni.length; ++i){
-            opcions.addItem(solsIni[i]);
+        for (int i = 0; i < solsIni.size(); ++i){
+            opcions.addItem(solsIni.get(i));
         }
     }
 
@@ -80,6 +85,10 @@ public class VistaPrincipalSolucions extends VistaControladors {
         }
     }
 
+    /**
+     * L'usuari vol crear una nova solucio i ha d'indicar-ne el nom
+     * @return Retorna el nom que ha escrit l'usuari. Si ha abortat durant la operacio, retorna null
+     */
     private String insertaNom(){
         String input = JOptionPane.showInputDialog(frameVista,
                 "Escriu el nom de la nova solucio:",
@@ -101,6 +110,10 @@ public class VistaPrincipalSolucions extends VistaControladors {
         return input;
     }
 
+    /**
+     * L'usuari vol crear una nova solucio i ha d'indicar el numero de productes per prestatge
+     * @return Retorna el numero que ha escrit l'usuari. Si ha abortat durant la operacio, retorna null
+     */
     private int insertaProdPrestatge(){
         // Mostrar un cuadre d'entrada on l'usuario pugui escriure un texto
         String input = JOptionPane.showInputDialog(frameVista,
