@@ -45,8 +45,7 @@ public class VistaPrincipalSolucions extends VistaControladors {
         add(Box.createVerticalGlue());
 
         //Inicialitzem el text dels botons
-        String alg = ctrlVistaSolucions.getAlgorismeAct();
-        textEtiquetaTriar = "L'algorisme actual és de tipus " + alg;
+        textEtiquetaTriar = "Quina funcionalitat vols realitzar?";
         etiquetaTriar.setText(textEtiquetaTriar);
         textBotoAfegir = "Crear solucio";
         botoAfegir.setText(textBotoAfegir);
@@ -63,13 +62,16 @@ public class VistaPrincipalSolucions extends VistaControladors {
     @Override
     protected void botoAccionat(String textBoto) {
         if (textBoto.equals(textBotoAfegir)) {
-            String nom = insertaNom();
-            if (!nom.equals(null)) {
-                int prodPrestatge = insertaProdPrestatge();
-                if (prodPrestatge > 0) {
-                    ctrlVistaSolucions.afegeixSolucio(nom, prodPrestatge);
-                    opcions.addItem(nom);
-                    opcions.setSelectedItem(nom);
+            int alg = confirmacioAlgorisme();
+            if (alg > 0) {
+                String nom = insertaNom();
+                if (!nom.equals(null)) {
+                    int prodPrestatge = insertaProdPrestatge();
+                    if (prodPrestatge > 0) {
+                        ctrlVistaSolucions.afegeixSolucio(nom, prodPrestatge);
+                        opcions.addItem(nom);
+                        opcions.setSelectedItem(nom);
+                    }
                 }
             }
         }
@@ -148,5 +150,19 @@ public class VistaPrincipalSolucions extends VistaControladors {
         }
 
         return inputNumber;
+    }
+
+    private int confirmacioAlgorisme() {
+        String alg = ctrlVistaSolucions.getAlgorismeAct();
+        int result = JOptionPane.showConfirmDialog(frameVista,
+                "L'algorisme actual es de tipus "+alg+", vols continuar?",
+                "Confirmacio algorisme",
+                JOptionPane.YES_NO_OPTION);
+
+        if (result == JOptionPane.YES_OPTION) {
+            result = 1;
+        }
+        else result = -1;
+        return result;
     }
 }

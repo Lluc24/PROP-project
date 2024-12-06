@@ -89,4 +89,16 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
     public Boolean existeixSolucio(String nom) {
         return ctrlSolucions.existeixSolucio(nom);
     }
+
+    /**
+     * @param nom nom d'una solucio
+     * @return retorna cert si al sistema existeix una solucio amb nom igual a nom. Fals altrament.
+     */
+    public void setParametres(int idx, int iter){
+        try {
+            ctrlSolucions.setParametres(idx, iter);
+        }catch (FormatInputNoValid e){
+            System.out.println(e.getMessage());
+        }
+    }
 }

@@ -29,8 +29,8 @@ public class CtrlSolucions extends CtrlGeneric {
 
     public String getAlgorismeAct(){
         if (algorismeAct instanceof AlgorismeBT)  return "backtracking";
-        else if (algorismeAct instanceof AlgorismeGreedy) return "greedy";
-        else return "aproximacio";
+        if (algorismeAct instanceof AlgorismeGreedy) return "greedy";
+        return "aproximacio";
     }
 
     public void setParametres(int param1, int param2) throws FormatInputNoValid{
