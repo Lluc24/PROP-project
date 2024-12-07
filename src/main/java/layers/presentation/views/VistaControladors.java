@@ -1,5 +1,7 @@
 package layers.presentation.views;
 
+import layers.presentation.controllers.CtrlVistaSolucions;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,14 +15,27 @@ public class VistaControladors extends VistaGenerica {
     protected String textBotoMostrar = "Mostrar";
     protected Boto botoMostrar;
 
-    protected String textBoto2 = "Utilitat";
-    protected Boto boto2;
-
     protected JComboBox<String> opcions;
 
+    Boolean primeraVegada = true;
+
+    //Constructora
     public VistaControladors() {
         super();
         this.titolFrame = "Vista Controladors";
+    }
+
+    /**
+     * Si es la primera vegada que s'executa la classe, inicialitza tots els components.
+     * Si ja s'han inicialitzat anteriorment, només cal fer la classe visible.
+     */
+    @Override
+    public void executar() {
+        if (!primeraVegada) frameVista.setVisible(true);
+        else {
+            primeraVegada = false;
+            super.executar();
+        }
     }
 
     @Override
@@ -38,7 +53,9 @@ public class VistaControladors extends VistaGenerica {
         add(Box.createRigidArea(new Dimension(0, 10)));
 
         // Inicialitzem el ComboBox
-        opcions = new JComboBox<>(new String[]{"Opción 1", "Opción 2", "Opción 3"});
+        opcions = new JComboBox<>(new String[]{});
+        opcions.setMinimumSize(new java.awt.Dimension(250, 20));
+        opcions.setMaximumSize(new java.awt.Dimension(250, 20));
         opcions.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(opcions);
         add(Box.createRigidArea(new Dimension(0, 10)));
@@ -54,19 +71,13 @@ public class VistaControladors extends VistaGenerica {
         botoAfegir.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(botoAfegir);
         add(Box.createRigidArea(new Dimension(0, 10)));
-
-        // Inicialitzem el boto 2
-        boto2 = new Boto(textBoto2);
-        boto2.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        add(boto2);
-        add(Box.createRigidArea(new Dimension(0, 10)));
-        add(Box.createVerticalGlue());
     }
 
     @Override
-    protected void botoAccionat(String textBoto) {
-        if (textBoto.equals(textBotoAfegir)) System.out.println("S'ha clickat 'Afegir' a la VistaControladors");
-        if (textBoto.equals(textBoto2)) System.out.println("S'ha clickat 'Boto2' a la VistaControladors");
-        else super.botoAccionat(textBoto);
+    protected void itemAccionat(String textItem) {
+        if (textItem.equals(textItemSortir)) {
+            super.tornar();
+        }
+        else super.itemAccionat(textItem);
     }
 }

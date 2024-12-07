@@ -16,20 +16,22 @@ import static org.junit.Assert.*;
  * Classe de testeig de SolucioModificada.java
  */
 public class TestSolucioModificada {
-    ArrayList<String> productes = new ArrayList<String>();
+    ArrayList<String> productesLlista= new ArrayList<String>();
+    ArrayList<ArrayList<String>> productesMatriu = new ArrayList<ArrayList<String>>();
     SolucioModificada solucioModificada;
     int prodPrestatge;
 
     @Before
     public void Inicialitza(){
         for (int i = 0; i < 4; i++) {
-            productes.add("p"+i);
+            productesLlista.add("p"+i);
         }
 
+        productesMatriu.add(productesLlista);
         prodPrestatge = 4;
 
         try{
-            solucioModificada = new SolucioModificada(productes, "Solucio1", prodPrestatge);
+            solucioModificada = new SolucioModificada(productesMatriu, "Solucio1");
         }catch (FormatInputNoValid e){
             System.out.println(e.getMessage());
         }
@@ -42,8 +44,7 @@ public class TestSolucioModificada {
     @Test
     public void testConstructor() {
         assertEquals("Verificar nom", "Solucio1", solucioModificada.getNom());
-        assertEquals("Verificar productes", productes, solucioModificada.getSolucio());
-        assertEquals("Verificar prodPrestatge", prodPrestatge, solucioModificada.getProdPrestatge());
+        assertEquals("Verificar productes", productesMatriu, solucioModificada.getSolucio());
     }
 
     /**
@@ -53,16 +54,17 @@ public class TestSolucioModificada {
     @Test
     public void testIntercanvia1() {
         try {
-            solucioModificada.intercanvia(productes.get(0), productes.get(1));
+            solucioModificada.intercanvia(productesLlista.get(0), productesLlista.get(1));
         }catch (IntercanviNoValid e){
             System.out.println(e.getMessage());
         }
 
-        ArrayList<String> productesIntercanviats = productes;
-        productesIntercanviats.add(0, productes.get(1));
-        productesIntercanviats.add(1, productes.get(0));
+        ArrayList<String> productesIntercanviats = productesLlista;
+        productesIntercanviats.add(0, productesLlista.get(1));
+        productesIntercanviats.add(1, productesLlista.get(0));
+        productesMatriu.set(0,productesIntercanviats);
 
-        assertEquals("Verificar intercanvi", productesIntercanviats, solucioModificada.getSolucio());
+        assertEquals("Verificar intercanvi", productesMatriu, solucioModificada.getSolucio());
     }
 
     /**
@@ -72,16 +74,17 @@ public class TestSolucioModificada {
     @Test
     public void testIntercanvia2() {
         try {
-            solucioModificada.intercanvia(productes.get(0), productes.get(3));
+            solucioModificada.intercanvia(productesLlista.get(0), productesLlista.get(3));
         }catch (IntercanviNoValid e){
             System.out.println(e.getMessage());
         }
 
-        ArrayList<String> productesIntercanviats = productes;
-        productesIntercanviats.add(0, productes.get(3));
-        productesIntercanviats.add(3, productes.get(0));
+        ArrayList<String> productesIntercanviats = productesLlista;
+        productesIntercanviats.add(0, productesLlista.get(3));
+        productesIntercanviats.add(3, productesLlista.get(0));
+        productesMatriu.set(0,productesIntercanviats);
 
-        assertEquals("Verificar intercanvi", productesIntercanviats, solucioModificada.getSolucio());
+        assertEquals("Verificar intercanvi", productesMatriu, solucioModificada.getSolucio());
     }
 
     /**
@@ -91,12 +94,12 @@ public class TestSolucioModificada {
     @Test
     public void testIntercanvia3() {
         try {
-            solucioModificada.intercanvia(productes.getFirst(), productes.getFirst());
+            solucioModificada.intercanvia(productesLlista.getFirst(), productesLlista.getFirst());
         }catch (IntercanviNoValid e){
         System.out.println(e.getMessage());
         }
 
-        assertEquals("Verificar intercanvi", productes, solucioModificada.getSolucio());
+        assertEquals("Verificar intercanvi", productesMatriu, solucioModificada.getSolucio());
     }
 
     }
