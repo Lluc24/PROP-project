@@ -9,82 +9,128 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VistaInfoProducte extends VistaGeneric {
+public class VistaInfoProducte extends VistaControladors {
     private CtrlVistaCatalegAmbRestriccions controlVista;
-    private JLabel labelNom_prod = new JLabel("Nom del producte");
-    private JLabel labelSimis = new JLabel("Productes amb similituds");
     private String nom_prod;
 
-    private JList<String> llista_simi;
+    private Boolean primeraVegada = true;
+
+    private JLabel labelNom_prod;
+
 
     public VistaInfoProducte(CtrlVistaCatalegAmbRestriccions cps, String nom_prod) {
         controlVista = cps;
         this.nom_prod = nom_prod;
-        inicialitzarComponents();
     }
 
-    public void ferVisible() {
-        frameVista.setVisible(true);
+    public void executar() {
+        if (primeraVegada) {
+            titolFrame = "Vista Info producte: " +nom_prod;
+            ajuda = "Estas a la vista de informacio del producte "+nom_prod+" aqui pots" +
+                    "consultar les seves similituds amb la resta de productes" +
+                    ", editar alguna d'aquestes similituds i eliminar el producte\n" +
+                    "Delete: Elimina aquest producte\n" +
+                    "Editar: Et permet editar la similitud amb el producte seleccionat del comboBox\n" +
+                    "ComboBox: Et mostra les similituds amb la resta de productes, en pot seleccionar una\n" +
+                    "Enrere: Et permet anar a l'anterior vista\n" +
+                    "Sortir: Finalitzar l'aplicacio\n";
+            frameVista.setVisible(true);
+            super.executar();
+        } else {
+            frameVista.setVisible(true);
+        }
     }
 
     public void inicialitzarComponents() {
-        frameVista.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        panelContinguts = (JPanel) frameVista.getContentPane();
-        panelContinguts.add(buttonAfegir);
-        panelContinguts.add(labelNom_prod);
+        //Label nom producte
+        labelNom_prod = new JLabel("PRODUCTE: "+nom_prod);
+        labelNom_prod.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(labelNom_prod);
+        add(Box.createRigidArea(new Dimension(0,10)));
 
-        //Label Producte
-        labelNom_prod.setText(nom_prod);
-        labelNom_prod.setVerticalAlignment(SwingConstants.TOP); //Alineat adalt
+        //Boto eliminar
+        textBotoAfegir = "ELIMINAR PRODUCTE";
+        botoAfegir.setText(textBotoAfegir);
+        botoAfegir.setBackground(Color.RED);
+        botoAfegir.setForeground(Color.WHITE);
 
-        //Button delete
-        buttonAfegir = new JButton("ELIMINAR PRODUCTE");
-        buttonAfegir.setBackground(Color.RED);
-        buttonAfegir.setForeground(Color.WHITE);
-        buttonAfegir.addActionListener
-                (new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        System.out.println("S'ha cliclat el boto per eliminar producte");
-                        Eliminar();
-                    }
-                });
-        //Label similituds
-        labelNom_prod.setText("Producte amb similituds");
-        labelNom_prod.setVerticalAlignment(SwingConstants.TOP); //Alineat adalt
+        //Boto editar
+        textBotoMostrar = "EDITAR PRODUCTE";
+        botoMostrar.setText(textBotoMostrar);
 
-        //List productes + similituds
+        //ComboBox
         String[] productes = controlVista.getProductes();
-        int[] simis = controlVista.getSimilituds();
-
-        DefaultListModel<String> listModel = new DefaultListModel<>();
+        String[] similituds = controlVista.getSimilituds();
+        String[] Prod_Simi = new String[productes.length];
         for (int i = 0; i < productes.length; ++i) {
-            listModel.addElement(productes[i]+ " -> "+simis[i]);
+            Prod_Simi[i] = productes[i]+" -> "+similituds[i];
         }
-        llista_simi = new JList<>(listModel);
-        llista_simi.addListSelectionListener
-                (new ListSelectionListener() {
-                    @Override
-                    public void valueChanged(ListSelectionEvent e) {
-                        String seleccionat = llista_simi.getSelectedValue();
-                        if (seleccionat != null) {
-                            String[] parts = seleccionat.split(" -> ");
-                            String nom_editar = parts[0];
-                            System.out.println("S'ha seleccionat "+ nom_editar);
-                            EditarSimi(nom_editar);
-                        }
-                    }
-                });
-        panelContinguts.add(llista_simi);
-        JScrollPane scroll = new JScrollPane(llista_simi);
 
-
+        opcions.removeAllItems();
+        for (String item : Prod_Simi) {
+            opcions.addItem(item);
+        }
 
     }
 
-    private void EditarSimi(String nom_prod) {
-        //
+    @Override
+    protected void botoAccionat(String textBoto) {
+        if (textBoto.equals(textBotoAfegir)) {
+            Eliminar();
+        } else if (textBoto.equals(textBotoMostrar)) {
+            String seleccionat = (String) opcions.getSelectedItem();
+            if (seleccionat == null || seleccionat.isEmpty()) {
+                JOptionPane.showMessageDialog(frameVista,
+                        "No se ha seleccionat cap producte del ComboBox",
+                        "Error Input",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                String parts[] = seleccionat.split(" -> ");
+                String producteSelecionat = parts[0];
+                EditarSimi(producteSelecionat);
+            }
+        } else {
+            super.botoAccionat(textBoto);
+        }
+    }
+
+    private double Input_Similitud(String producteSeleccionat, String result) {
+        double ret = -1;
+        String message = "Quina sera la nova similtud del producte "+nom_prod+
+                " amb el producte "+producteSeleccionat+"\n" +
+                "**RECORDA: 0 < Similitud < 100. HA DE SER UN DECIMAL**";
+        result = JOptionPane.showInputDialog(frameVista, message, "Editar Similitud", JOptionPane.QUESTION_MESSAGE);
+        if (!result.equals("NO_INPUT")) {
+            try {
+                ret = Double.parseDouble(result);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(frameVista,
+                            "Si us plau, introdueix un numero del 1 al 100",
+                            "Error Input",
+                            JOptionPane.ERROR_MESSAGE);
+                return -1.0;
+            }
+        }
+        return ret;
+
+    }
+
+    private void EditarSimi(String producteSeleccionat) {
+        boolean ok = false;
+        String result = "NO_INPUT";
+        while(!ok) {
+           double d = Input_Similitud(producteSeleccionat, result);
+           if (d > 0 && d <= 100) {
+               ok = true;
+           } else {
+               JOptionPane.showMessageDialog(frameVista,
+                       "Si us plau, introdueix un numero del 1 al 100",
+                       "Error Input",
+                       JOptionPane.ERROR_MESSAGE);
+           }
+        }
+        controlVista.editarSimilitud(nom_prod, producteSeleccionat, result);
     }
 
     public void Eliminar() {

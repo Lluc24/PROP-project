@@ -1,100 +1,98 @@
 package layers.presentation.views;
 
-import javax.swing.*;
-import layers.domain.*;
 import layers.presentation.controllers.CtrlPreSolucions;
 import layers.presentation.controllers.CtrlVistaCatalegAmbRestriccions;
-import layers.presentation.views.VistaGeneric;
 
+import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.awt.event.*;
 
-import layers.presentation.controllers.CtrlVistaGeneric;
-
-public class VistaPrincipalCataleg extends VistaGeneric {
+public class VistaPrincipalCataleg extends VistaControladors {
     private CtrlVistaCatalegAmbRestriccions controlVista;
+    protected Boto botoMenuRestriccion;
+    protected String textBotoMenuRestriccions = "Menu Restriccions";
     
     public VistaPrincipalCataleg(CtrlVistaCatalegAmbRestriccions cps) {
         controlVista = cps;
-        inicialitzarComponents();
     }
 
-    @Override
-    public void ferVisible() {
-        frameVista.setVisible(true);
+    public void executar() {
+        if (primeraVegada) {
+            titolFrame = "Vista Principal del Cataleg";
+            ajuda = "Estas a la vista principal del cataleg. Des d'aquesta vista " +
+                    "podras veure els productes del cataleg, seleccionar-los, o anar el menu per afegir-ne mes" +
+                    "com tambe anar a menu de restriccions\n " +
+                    "Afegir Productes: Aniras a la vista per afegir un producte\n" +
+                    "Consultar Producte: Aniras a la vista per veure la informacio del producte seleccionat\n" +
+                    "Consultar Restriccions: Aniras al menu de restriccions, per consultarlas i editar les\n" +
+                    "ComboBox: Et mostra tots el productes del cataleg, pot seleccionar un\n" +
+                    "Enrere: Et permet anar a l'anterior vista\n" +
+                    "Sortir: Finalitzar l'aplicacio\n";
+            super.executar();
+            primeraVegada = false;
+        }else frameVista.setVisible(true);
     }
 
     @Override
     public void inicialitzarComponents() {
-        frameVista.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        super.inicialitzarComponents();
+        //Etiqueta de triar
+        textEtiquetaTriar = "Quina funcionalitat del cataleg vols realitzar";
+        etiquetaTriar.setText(textEtiquetaTriar);
 
-        boxOpcions = new JComboBox<String>();
-        //menubarVista = new JMenuBar();
-        //menuFile = new JMenu("File");
+        //Boto Afegir productes
+        textBotoAfegir = "Afegir Productes";
+        botoAfegir.setText(textBotoAfegir);
 
-        panelContinguts = (JPanel)frameVista.getContentPane();
-        panelContinguts.setLayout(new BoxLayout.Y_AXIS);
-        panelContinguts.add(boxOpcions);
-        panelContinguts.add(button2);
-        panelContinguts.add(buttonAfegir);
+        //Boto mostrar Producte
+        textBotoMostrar = "Mostrar Producte";
+        botoMostrar.setText(textBotoMostrar);
 
-        frameVista.add(panelContinguts);
+        //Boto Consultar Restriccions
+        botoMenuRestriccion = new Boto(textBotoMenuRestriccions);
+        botoMenuRestriccion.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(botoMenuRestriccion);
+        add(Box.createRigidArea(new Dimension(0,10)));
+        add(Box.createVerticalGlue());
 
-
-        //Boto afegir
-        buttonAfegir = new JButton("Afegir productes");
-        buttonAfegir.setSize(100, 80);
-        buttonAfegir.addActionListener
-                (new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        System.out.println("S'ha clicat al boto per afegir productes");
-                        canviVistaAfegirProducte();
-                    }
-                });
-        button2 = new JButton("Consultar Restriccions");
-        button2.setSize(100, 80);
-        button2.addActionListener
-                (new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        System.out.println("S'ha cliclat al boto per consultar restriccions");
-                        canviVistaConsultarRest();
-                    }
-                });
-
+        //Combo box
         String[] productes = controlVista.getProductes();
-        boxOpcions = new JComboBox<>(productes);
-        boxOpcions.setPreferredSize(new Dimension(200, 50));
-        boxOpcions.addActionListener
-                (new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        String seleccionat = (String) boxOpcions.getSelectedItem();
-                        if (seleccionat != null) {
-                            System.out.println("Seleccionat producte amb nom: " + seleccionat);
-                            canviaVistaInfoProd(seleccionat);
-                        } else {
-                            System.out.println("No se ha seleccionado nada");
-                        }
-                    }
-                });
+        opcions.removeAllItems();
+        for (String item : productes) {
+            opcions.addItem(item);
+        }
 
     }
 
+    @Override
+    public void botoAccionat (String textBoto) {
+        if (textBoto.equals(textBotoAfegir)) {
+            canviVistaAfegirProducte();
+        } else if (textBoto.equals(textBotoMostrar)) {
+            String prodSeleccionat = (String) opcions.getSelectedItem();
+            if (prodSeleccionat == null || prodSeleccionat.isEmpty()) {
+                JOptionPane.showMessageDialog(frameVista,
+                        "No se ha seleccionat cap producte del ComboBox",
+                        "Error Input",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                canviaVistaInfoProd(prodSeleccionat);
+            }
+        } else if (textBoto.equals(textBotoMenuRestriccions)) {
+            canviVistaConsultarRest();
+        } else {
+            super.botoAccionat(textBoto);
+        }
+    }
+
     private void canviVistaAfegirProducte() {
-        frameVista.dispose(); // AIXO ESTA BE????
         controlVista.canviaVista("AfegirProductes");
     }
 
     public void canviVistaConsultarRest() {
-        frameVista.dispose();
         controlVista.canviarVista("ConsultarRestriccions");
     }
 
     public void canviaVistaInfoProd(String prod) {
-        frameVista.dispose();
         controlVista.canviarVista("InfoProducte", prod);
     }
 
