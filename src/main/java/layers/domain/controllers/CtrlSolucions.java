@@ -29,8 +29,8 @@ public class CtrlSolucions extends CtrlGeneric {
 
     public String getAlgorismeAct(){
         if (algorismeAct instanceof AlgorismeBT)  return "backtracking";
-        else if (algorismeAct instanceof AlgorismeGreedy) return "greedy";
-        else return "aproximacio";
+        if (algorismeAct instanceof AlgorismeGreedy) return "greedy";
+        return "aproximacio";
     }
 
     public void setParametres(int param1, int param2) throws FormatInputNoValid{
@@ -57,6 +57,18 @@ public class CtrlSolucions extends CtrlGeneric {
             String missatge = "El tipus d'algorisme '" +tipusAlgorisme+ "' no existeix al sistema";
             throw new FormatInputNoValid(missatge);
         }
+    }
+
+    /**
+     * L'usuari vol saber si existeix una solucio amb un nom determinat
+     * @param nomSolucio nom de la solucio
+     * @return retorna true si la solucio existeix, false altrament
+     */
+    public Boolean existeixSolucio(String nomSolucio){
+        for (Solucio sol : solucions){
+            if(sol.getNom().equals(nomSolucio)) return true;
+        }
+        return false;
     }
 
     /**
@@ -98,7 +110,7 @@ public class CtrlSolucions extends CtrlGeneric {
             if (s.getNom().equals(nomSolucio)){
                 trobat = true;
                 if (s.trobarProducte(prod1) && s.trobarProducte(prod2)) {
-                    solMod = new SolucioModificada(s.getSolucio(), nomSolucio, s.getProdPrestatge());
+                    solMod = new SolucioModificada(s.getSolucio(), nomSolucio);
                     solMod.intercanvia(prod1, prod2);
                     iterator.remove();
                     break;
@@ -139,6 +151,18 @@ public class CtrlSolucions extends CtrlGeneric {
         }
     }
 
+    /**
+     * pre: l'usuari crida aquesta funcio
+     * post: Retorna un vector amb els noms de totes les solucions
+     */
+    public ArrayList<String> getSolucionsNom(){
+        ArrayList<String> result = new ArrayList<String>();
+        for (Solucio s: solucions){
+            result.add(s.getNom());
+        }
+        return result;
+    }
+
     // Obtenir totes les solucions
     public void mostrarSolucions() {
         if (solucions.isEmpty()) {
@@ -149,6 +173,7 @@ public class CtrlSolucions extends CtrlGeneric {
             for (Solucio s: solucions) s.mostrarSolucio();
         }
     }
+
 
     // Obtenir una solucio especifica
     public void mostrarSolucio(String nomSol) throws NomSolucioNoValid {
