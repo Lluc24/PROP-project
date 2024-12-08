@@ -54,7 +54,7 @@ public class VistaAfegirProducte extends VistaControladors {
                     "ComboBox: Aqui veuras tots el productes dins de cataleg, pot seleccionar un per afegir una restriccio\n" +
                     "Afegir Restriccio: Despres de seleccionar un producte, clica aquest boto per afegir una restriccio\n" +
                     "Afegir Similituds: Començaras un proces per afegir una similitud, per cada producte indicat. Un cop donades, amb es podra editar la similitud amb el producte indicat\n" +
-                    "Canvi Nom: Permet cambiar el nom del producte" +
+                    "Canvi Nom: Permet cambiar el nom del producte\n" +
                     "Finalitzar: Afegiras el producte de manera definitiva, no podras fer us d'aquest boto fins que el producte tingui nom i totes les similituds estiguin donades\n";
             super.executar();
         } else {
@@ -102,13 +102,13 @@ public class VistaAfegirProducte extends VistaControladors {
     public void botoAccionat (String textBoto) {
         if (textBoto.equals(textBotoAfegir)) {
             String seleccionat = (String) opcions.getSelectedItem();
-            if (!seleccionat.isEmpty() && seleccionat != null) {
+            if (seleccionat != null && !seleccionat.isEmpty()) {
                 AfegirRestriccio(seleccionat);
             }
         } else if (textBoto.equals(textBotoMostrar)) {
             if (Simis_DONE) {
                 String seleccionat = (String) opcions.getSelectedItem();
-                if (!seleccionat.isEmpty() && seleccionat != null) {
+                if (seleccionat != null && !seleccionat.isEmpty() ) {
                     EditarSimilitud(seleccionat);
                 }
             } else {
@@ -153,7 +153,8 @@ public class VistaAfegirProducte extends VistaControladors {
         int index = 0;
         boolean trobat = false;
         while(!trobat) {
-            if (productes[index] == prodSeleccionat) trobat = true;
+            if (productes[index].equals(prodSeleccionat)) trobat = true;
+            ++index;
         }
 
         //Canviem la similitud
@@ -238,7 +239,7 @@ public class VistaAfegirProducte extends VistaControladors {
     private String getNomUsuari() {
         String message = "Afegeix el nom del producte que vols afegir";
         String result = JOptionPane.showInputDialog(frameVista, message, "Afegir Nom", JOptionPane.QUESTION_MESSAGE);
-        if (!result.isEmpty() && result != null ) {
+        if (result != null && !result.isEmpty()) {
             JOptionPane.showMessageDialog(frameVista,
                     "Si us plau, introdueix un nombre per el producte",
                     "Error Input",
@@ -254,7 +255,7 @@ public class VistaAfegirProducte extends VistaControladors {
                 " amb el producte "+producteSeleccionat+"\n" +
                 "**RECORDA: 0 < Similitud < 100. HA DE SER UN DECIMAL**";
         result = JOptionPane.showInputDialog(frameVista, message, "Afegir Similitud", JOptionPane.QUESTION_MESSAGE);
-        if (!result.isEmpty() && result != null) {
+        if (result != null && !result.isEmpty()) {
             try {
                 ret = Double.parseDouble(result);
             } catch (NumberFormatException e) {

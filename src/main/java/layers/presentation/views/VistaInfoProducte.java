@@ -41,7 +41,9 @@ public class VistaInfoProducte extends VistaControladors {
         }
     }
 
+    @Override
     public void inicialitzarComponents() {
+        super.inicialitzarComponents();
 
         //Label nom producte
         labelNom_prod = new JLabel("PRODUCTE: "+nom_prod);
