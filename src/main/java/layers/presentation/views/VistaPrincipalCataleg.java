@@ -27,8 +27,8 @@ public class VistaPrincipalCataleg extends VistaControladors {
                     "ComboBox: Et mostra tots el productes del cataleg, pot seleccionar un\n" +
                     "Enrere: Et permet anar a l'anterior vista\n" +
                     "Sortir: Finalitzar l'aplicacio\n";
-            super.executar();
             primeraVegada = false;
+            super.executar();
         }else frameVista.setVisible(true);
     }
 
