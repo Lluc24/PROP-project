@@ -42,7 +42,7 @@ public class TestCtrlSolucions {
      */
     @Test
     public void getAlgorismeActTest() {
-        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof Aproximacio);
+        assertEquals("Verificar algorismeAct", "aproximacio", gs.getAlgorismeAct());
     }
 
     /**
@@ -76,7 +76,7 @@ public class TestCtrlSolucions {
             System.out.println(e.getMessage());
         }
 
-        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof AlgorismeGreedy);
+        assertEquals("Verificar algorismeAct", "greedy", gs.getAlgorismeAct());
     }
 
     /**
@@ -89,7 +89,7 @@ public class TestCtrlSolucions {
 
         assertEquals("Verificar solucions", solucions, gs.getSolucions());
         assertEquals("Verificar cataleg", c, gs.getCataleg());
-        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof Aproximacio);
+        assertEquals("Verificar algorismeAct", "aproximacio", gs.getAlgorismeAct());
     }
 
     /**
@@ -104,7 +104,7 @@ public class TestCtrlSolucions {
             System.out.println(e.getMessage());
         }
 
-        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof Aproximacio);
+        assertEquals("Verificar algorismeAct", "aproximacio", gs.getAlgorismeAct());
     }
 
     /**
@@ -119,7 +119,7 @@ public class TestCtrlSolucions {
             System.out.println(e.getMessage());
         }
 
-        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof AlgorismeGreedy);
+        assertEquals("Verificar algorismeAct", "greedy", gs.getAlgorismeAct());
     }
 
     /**
@@ -136,7 +136,7 @@ public class TestCtrlSolucions {
             System.out.println(e.getMessage());
         }
 
-        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof AlgorismeBT);
+        assertEquals("Verificar algorismeAct","backtracking", gs.getAlgorismeAct());
     }
 
     /**
@@ -151,7 +151,7 @@ public class TestCtrlSolucions {
             System.out.println(e.getMessage());
         }
 
-        assertTrue("Verificar algorismeAct", gs.getAlgorismeAct() instanceof Aproximacio);
+        assertEquals("Verificar algorismeAct", "aproximacio", gs.getAlgorismeAct());
     }
 
     /**
@@ -180,7 +180,8 @@ public class TestCtrlSolucions {
         }
 
         assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
-        assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar numero de prestatges",1, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar numero de productes",2, gs.getSolucions().getFirst().getSolucio().getFirst().size());
         assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
     }
 
@@ -215,7 +216,8 @@ public class TestCtrlSolucions {
         }
 
         assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
-        assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar numero de prestatges",1, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar numero de productes",2, gs.getSolucions().getFirst().getSolucio().getFirst().size());
         assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
     }
 
@@ -252,7 +254,8 @@ public class TestCtrlSolucions {
         }
 
         assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
-        assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar numero de prestatges",1, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar numero de productes",2, gs.getSolucions().getFirst().getSolucio().getFirst().size());
         assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
     }
 
@@ -292,10 +295,12 @@ public class TestCtrlSolucions {
 
         assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
         assertEquals("Verificar nom","Solucio2", gs.getSolucions().get(1).getNom());
-        assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
-        assertEquals("Verificar els primer elements de les solucions",gs.getSolucions().get(1).getSolucio().getFirst(), gs.getSolucions().getFirst().getSolucio().getFirst());
-        assertEquals("Verificar els segons elements de les solucions",gs.getSolucions().get(1).getSolucio().get(1), gs.getSolucions().getFirst().getSolucio().get(1));
-        assertEquals("Verificar mida Solucio",2, gs.getSolucions().get(1).getSolucio().size());
+        assertEquals("Verificar numero de prestatges",1, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar numero de productes",2, gs.getSolucions().getFirst().getSolucio().getFirst().size());
+        assertEquals("Verificar els primer elements de les solucions",gs.getSolucions().get(1).getSolucio().getFirst().getFirst(), gs.getSolucions().getFirst().getSolucio().getFirst().getFirst());
+        assertEquals("Verificar els segons elements de les solucions",gs.getSolucions().get(1).getSolucio().getFirst().get(1), gs.getSolucions().getFirst().getSolucio().getFirst().get(1));
+        assertEquals("Verificar numero de prestatges",1, gs.getSolucions().get(1).getSolucio().size());
+        assertEquals("Verificar numero de productes",2, gs.getSolucions().get(1).getSolucio().getFirst().size());
         assertEquals("Verificar mida solucions",2, gs.getSolucions().size());
     }
 
@@ -339,10 +344,11 @@ public class TestCtrlSolucions {
         Solucio solFi = gs.getSolucions().getFirst();
 
         assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
-        assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar numero de prestatges",1, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar numero de productes",2, gs.getSolucions().getFirst().getSolucio().getFirst().size());
         assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
-        assertEquals("Verificar primer intercanvi", "p1", solFi.getSolucio().get(0));
-        assertEquals("Verificar segon intercanvi", "p0", solFi.getSolucio().get(1));
+        assertEquals("Verificar primer intercanvi", "p1", solFi.getSolucio().getFirst().get(0));
+        assertEquals("Verificar segon intercanvi", "p0", solFi.getSolucio().getFirst().get(1));
     }
 
     /**
@@ -385,10 +391,11 @@ public class TestCtrlSolucions {
         Solucio solFi = gs.getSolucions().getFirst();
 
         assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
-        assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar numero de prestatges",1, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar numero de productes",2, gs.getSolucions().getFirst().getSolucio().getFirst().size());
         assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
-        assertEquals("Verificar primer intercanvi", "p0", solFi.getSolucio().get(0));
-        assertEquals("Verificar segon intercanvi", "p1", solFi.getSolucio().get(1));
+        assertEquals("Verificar primer intercanvi", "p0", solFi.getSolucio().getFirst().get(0));
+        assertEquals("Verificar segon intercanvi", "p1", solFi.getSolucio().getFirst().get(1));
     }
 
     /**
@@ -455,7 +462,8 @@ public class TestCtrlSolucions {
         }
 
         assertEquals("Verificar nom","Solucio1", gs.getSolucions().getFirst().getNom());
-        assertEquals("Verificar mida Solucio",2, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar numero de prestatges",1, gs.getSolucions().getFirst().getSolucio().size());
+        assertEquals("Verificar numero de productes",2, gs.getSolucions().getFirst().getSolucio().getFirst().size());
         assertEquals("Verificar mida solucions",1, gs.getSolucions().size());
     }
 }
