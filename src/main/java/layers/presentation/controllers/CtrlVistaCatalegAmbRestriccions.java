@@ -3,6 +3,9 @@ import layers.domain.controllers.*;
 import layers.domain.excepcions.FormatInputNoValid;
 import layers.domain.excepcions.ProducteNoValid;
 import layers.domain.utils.Pair;
+import layers.presentation.views.*;
+
+import java.util.Objects;
 
 public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
@@ -51,11 +54,11 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
     public void canviaVista(String nomVista) {
 
 
-        if (nomVista == "AfegirProductes") {
+        if (Objects.equals(nomVista, "AfegirProductes")) {
             vistaAfegProd.executar();
         }
 
-        else if (nomVista == "ConsultarRestriccions") {
+        else if (Objects.equals(nomVista, "ConsultarRestriccions")) {
             vistaConsRest.executar();
         }
 
@@ -66,7 +69,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
     public void canviarVista(String nomVista, String nomProd) {
 
-        if (nomVista == "InfoProducte") {
+        if (Objects.equals(nomVista, "InfoProducte")) {
             this.vistaInfoProd = new VistaInfoProducte(this, nomProd);
             this.prodAct = nomProd;
             vistaInfoProd.executar();
@@ -93,10 +96,10 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
                 System.out.println(e.getMessage());
             }
 
-            for (int i = 0; i < restriccionsArray.length; ++i) {
+            for (String s : restriccionsArray) {
 
                 try {
-                    ctrl.setRestrConsecNom(nomProd, restriccionsArray[i]);
+                    ctrl.setRestrConsecNom(nomProd, s);
                 } catch (ProducteNoValid e) {
                     System.out.println(e.getMessage());
                 }
@@ -121,10 +124,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
     }
 
-    /**
-     *
-     * @param
-     */
+
     public void editarSimilitud(String nomProd, String nomProd2, String simil) {
 
         double similDouble = Double.parseDouble(simil);
@@ -170,7 +170,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         return ctrl.getSimilituds_array(prodAct);
     }
 
-    public String[] getProductes {
+    public String[] getProductes() {
         return ctrl.getProductes_array();
     }
 
