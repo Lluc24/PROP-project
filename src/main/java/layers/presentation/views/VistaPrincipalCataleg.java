@@ -89,7 +89,7 @@ public class VistaPrincipalCataleg extends VistaControladors {
     }
 
     public void canviVistaConsultarRest() {
-        controlVista.canviaVista("ConsultarRestriccions");
+        controlVista.canviarVista("ConsultarRestriccions");
     }
 
     public void canviaVistaInfoProd(String prod) {

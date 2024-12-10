@@ -21,18 +21,6 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
     //Mètodes
 
-    /*
-    public CtrlVistaCatalegAmbRestriccions(CtrlGeneric ctrlGeneric) {
-        super(ctrlGeneric);
-
-        ctrl = (CtrlCatalegAmbRestriccions) ctrlGeneric;
-        vistaPrincCat = new VistaPrincipalCataleg(this);
-        vistaAfegProd = new VistaAfegirProducte(this);
-        vistaInfoProd = new VistaInfoProducte(this);
-        vistaConsRest = new VistaConsultarRest(this);
-    }
-    */
-
     /** Constructora
      * @param ctrlCat Singleton del controlador de catàleg amb restriccions
      */
@@ -41,13 +29,13 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         this.ctrl = ctrlCat;
         vistaPrincCat = new VistaPrincipalCataleg(this);
         vistaAfegProd = new VistaAfegirProducte(this);
-        //vistaInfoProd = new VistaInfoProducte(this);
+        //vistaInfoProd = new VistaInfoProducte(this, null);
+        vistaInfoProd = null;
         vistaConsRest = new VistaConsultarRest(this);
     }
 
     /**
      * Canvia la vista actual a la vista indicada pel nom.
-     * Si ja existeix una vista, aquesta es tanca abans de mostrar la nova.
      *
      * @param nomVista El nom de la vista a la qual es vol canviar.
      */
@@ -67,6 +55,13 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         }
     }
 
+    /**
+     * Canvia la vista actual a la vista indicada pel nom.
+     * Canvia a una vista on es requereix el nom d'un producte.
+     *
+     * @param nomVista El nom de la vista a la qual es vol canviar.
+     * @param nomProd El nom del producte.
+     */
     public void canviarVista(String nomVista, String nomProd) {
 
         if (Objects.equals(nomVista, "InfoProducte")) {
@@ -77,6 +72,15 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         }
     }
 
+    /**
+     * Afegeix un producte al catàleg, juntament amb les seves similituds i restriccions.
+     * Si no hi ha cap producte existent al catàleg, només s'afegeix el nom del producte.
+     * En cas contrari, es defineixen les similituds i les restriccions proporcionades.
+     *
+     * @param nomProd El nom del producte a afegir.
+     * @param similituds Un array de valors que representen les similituds del nou producte amb els productes existents. Els valors han d'estar ordenats segons l'ordre dels productes al catàleg.
+     * @param restriccionsArray Un array de noms de productes amb els quals el nou producte té restriccions de consecutivitat.
+     */
     public void afegirProducte(String nomProd, String[] similituds, String[] restriccionsArray) {
 
         if (getNumProd() == 0) {
@@ -124,7 +128,13 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
     }
 
-
+    /**
+     * Modifica la similitud entre dos productes.
+     *
+     * @param nomProd El nom del producte del que es vol modificar la similitud.
+     * @param nomProd2 El nom del producte amb el qual es vol modificar la similitud.
+     * @param simil La nova similitud.
+     */
     public void editarSimilitud(String nomProd, String nomProd2, String simil) {
 
         double similDouble = Double.parseDouble(simil);
@@ -138,7 +148,12 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
     }
 
-
+    /**
+     * Afegeix una restricció de consecutivitat entre dos productes al catàleg.
+     *
+     * @param prod1 El nom del primer producte implicat en la restricció.
+     * @param prod2 El nom del segon producte implicat en la restricció.
+     */
     public void afegirRestriccio(String prod1, String prod2) {
 
         try {
@@ -148,7 +163,12 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         }
     }
 
-
+    /**
+     * Elimina una restricció de consecutivitat entre dos productes al catàleg.
+     *
+     * @param prod1 El nom del primer producte implicat en la restricció.
+     * @param prod2 El nom del segon producte implicat en la restricció.
+     */
     public void eliminarRestriccio(String prod1, String prod2) {
 
         try {
@@ -166,23 +186,50 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
 
 
+    /**
+     * Obté les similituds del producte actual amb la resta de productes del catàleg.
+     *
+     * @return Un array de strings que representa les similituds del producte actual amb altres productes. Si no hi ha un producte actiu, el resultat pot ser buit.
+     */
     public String[] getSimilituds() {
         return ctrl.getSimilituds_array(prodAct);
     }
 
+    /**
+     * Obté tots els noms dels productes existents al catàleg.
+     *
+     * @return Un array de strings que conté els noms de tots els productes actualment registrats al catàleg.
+     */
     public String[] getProductes() {
         return ctrl.getProductes_array();
     }
 
+    /**
+     * Obté el nombre total de productes actualment registrats al catàleg.
+     *
+     * @return El nombre de productes presents al catàleg.
+     */
     public int getNumProd() {
         return ctrl.num_prod_act();
     }
 
+    /**
+     * Verifica si un producte amb un nom específic existeix al catàleg.
+     *
+     * @param nomProd El nom del producte a buscar.
+     * @return True si el producte existeix al catàleg, false en cas contrari.
+     */
     public boolean findProd(String nomProd) {
         return ctrl.find_prod(nomProd);
     }
 
 
+    /**
+     * Converteix un array de strings que representen similituds en un array de pairs (producte, similitud).
+     *
+     * @param similituds Un array de strings que conté els valors de similitud en format numèric, un per cada producte existent al catàleg.
+     * @return Un array de pairs, on cada pair conté el nom del producte (String) i el valor de la similitud (Double).
+     */
     private Pair<String, Double>[] stringV_a_pairV(String[] similituds) {
 
         //int numProd = getNumProd();
@@ -190,8 +237,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         Pair<String, Double>[] llistaSim = new Pair[numProd];
 
         for (int i = 0; i < numProd; ++i) {
-            llistaSim[i].first = ctrl.getNomProd_index(i);
-            llistaSim[i].second = Double.parseDouble(similituds[i]);
+            llistaSim[i] = new Pair<>(ctrl.getNomProd_index(i), Double.parseDouble(similituds[i]));
         }
 
         return llistaSim;
@@ -353,6 +399,19 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
     }
 
+    */
+
+
+    /*
+    public CtrlVistaCatalegAmbRestriccions(CtrlGeneric ctrlGeneric) {
+        super(ctrlGeneric);
+
+        ctrl = (CtrlCatalegAmbRestriccions) ctrlGeneric;
+        vistaPrincCat = new VistaPrincipalCataleg(this);
+        vistaAfegProd = new VistaAfegirProducte(this);
+        vistaInfoProd = new VistaInfoProducte(this);
+        vistaConsRest = new VistaConsultarRest(this);
+    }
     */
 
 }
