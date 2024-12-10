@@ -3,46 +3,43 @@ import layers.domain.controllers.*;
 import layers.domain.excepcions.FormatInputNoValid;
 import layers.domain.excepcions.ProducteNoValid;
 import layers.domain.utils.Pair;
-import layers.presentation.views.VistaGeneric;
-
-import java.util.Map;
 
 public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
 
     //Atributs
-    private Map<String, VistaGeneric> vistesCataleg; //vistes en un map on la Key és el nom de la vista
-    private VistaGeneric vistaActual;
     private CtrlCatalegAmbRestriccions ctrl;
+    private VistaPrincipalCataleg vistaPrincCat;
+    private VistaAfegirProducte vistaAfegProd;
+    private VistaInfoProducte vistaInfoProd;
+    private VistaConsultarRest vistaConsRest;
+    private String prodAct = null;
+
 
     //Mètodes
 
-    /** Constructora
-     * @param ctrlGeneric Singleton del controlador de catàleg amb restriccions
-     */
-
+    /*
     public CtrlVistaCatalegAmbRestriccions(CtrlGeneric ctrlGeneric) {
         super(ctrlGeneric);
 
         ctrl = (CtrlCatalegAmbRestriccions) ctrlGeneric;
+        vistaPrincCat = new VistaPrincipalCataleg(this);
+        vistaAfegProd = new VistaAfegirProducte(this);
+        vistaInfoProd = new VistaInfoProducte(this);
+        vistaConsRest = new VistaConsultarRest(this);
+    }
+    */
 
-        //ctrlCataleg = ctrlGeneric; //singleton de cataleg
+    /** Constructora
+     * @param ctrlCat Singleton del controlador de catàleg amb restriccions
+     */
+    public CtrlVistaCatalegAmbRestriccions(CtrlCatalegAmbRestriccions ctrlCat) {
 
-        /*  R.I.P
-        this.vistesCataleg = new HashMap<>();
-
-        vistesCataleg.put("VistaInicialCataleg", new VistaInicialCataleg(this));
-        vistesCataleg.put("VistaInfoProducte", new VistaInfoProducte(this));
-        vistesCataleg.put("VistaEditarProducte", new VistaEditarProducte(this));
-        vistesCataleg.put("VistaAfegirProducte", new VistaAfegirProducte(this));
-        vistesCataleg.put("VistaEliminarProducte", new VistaEliminarProducte(this));
-        vistesCataleg.put("VistaVeureRestriccions", new VistaVeureRestriccions(this));
-        vistesCataleg.put("VistaAfegirRestriccio", new VistaAfegirRestriccio(this));
-        vistesCataleg.put("VistaEliminarRestriccio", new VistaEliminarRestriccio(this));
-        vistesCataleg.put("VistaEditarSimilitud", new VistaEditarSimilitud(this));
-
-        this.vistaActual = null; //substituir per vista inicial, si hi ha
-        */
+        this.ctrl = ctrlCat;
+        vistaPrincCat = new VistaPrincipalCataleg(this);
+        vistaAfegProd = new VistaAfegirProducte(this);
+        //vistaInfoProd = new VistaInfoProducte(this);
+        vistaConsRest = new VistaConsultarRest(this);
     }
 
     /**
@@ -52,39 +49,208 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
      * @param nomVista El nom de la vista a la qual es vol canviar.
      */
     public void canviaVista(String nomVista) {
-        if (vistaActual != null) {
-            //vistaActual.ocultar();
+
+
+        if (nomVista == "AfegirProductes") {
+            vistaAfegProd.executar();
         }
 
-        VistaGeneric novaVista = vistesCataleg.get(nomVista);
-        if (novaVista != null) {
-            vistaActual = novaVista;
-            //vistaActual.mostrar();
-        } else {
+        else if (nomVista == "ConsultarRestriccions") {
+            vistaConsRest.executar();
+        }
+
+        else {
             System.err.println("No s'ha trobat la vista amb nom: " + nomVista); //substituir per excepció després
         }
     }
 
-    //Incloure mètodes per rellançar les vistes un cop actualitzada la informació
+    public void canviarVista(String nomVista, String nomProd) {
+
+        if (nomVista == "InfoProducte") {
+            this.vistaInfoProd = new VistaInfoProducte(this, nomProd);
+            this.prodAct = nomProd;
+            vistaInfoProd.executar();
+
+        }
+    }
+
+    public void afegirProducte(String nomProd, String[] similituds, String[] restriccionsArray) {
+
+        if (getNumProd() == 0) {
+            try {
+                ctrl.afegir_producte(nomProd);
+            } catch (ProducteNoValid e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        else {
+            try {
+                ctrl.afegir_producte(nomProd, stringV_a_pairV(similituds));
+            } catch (ProducteNoValid e) {
+                System.out.println(e.getMessage());
+            } catch (FormatInputNoValid e) {
+                System.out.println(e.getMessage());
+            }
+
+            for (int i = 0; i < restriccionsArray.length; ++i) {
+
+                try {
+                    ctrl.setRestrConsecNom(nomProd, restriccionsArray[i]);
+                } catch (ProducteNoValid e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+
+        }
+
+    }
 
     /**
-     * Obté la informació del catàleg i la retorna com a cadena de text.
-     * Aquesta cadena serà utilitzada per mostrar la informació a la vista.
+     * Elimina un producte del catàleg.
      *
-     * @return Una cadena amb la informació del catàleg.
+     * @param nomProd El nom del producte que es vol eliminar.
      */
+    public void eliminarProducte(String nomProd) {
+
+        try {
+            ctrl.eliminar_producte_nom(nomProd);
+        } catch (ProducteNoValid e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    /**
+     *
+     * @param
+     */
+    public void editarSimilitud(String nomProd, String nomProd2, String simil) {
+
+        double similDouble = Double.parseDouble(simil);
+        try {
+            ctrl.editar_similitud(nomProd, nomProd2, similDouble);
+        } catch (FormatInputNoValid e) {
+            System.out.println(e.getMessage());
+        } catch (ProducteNoValid e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+
+    public void afegirRestriccio(String prod1, String prod2) {
+
+        try {
+            ctrl.setRestrConsecNom(prod1, prod2);
+        } catch (ProducteNoValid e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+    public void eliminarRestriccio(String prod1, String prod2) {
+
+        try {
+            ctrl.remRestrConsecNom(prod1, prod2);
+        } catch (ProducteNoValid e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+    @Override
+    public void executar() {
+        vistaPrincCat.executar();
+    }
+
+
+
+    public String[] getSimilituds() {
+        return ctrl.getSimilituds_array(prodAct);
+    }
+
+    public String[] getProductes {
+        return ctrl.getProductes_array();
+    }
+
+    public int getNumProd() {
+        return ctrl.num_prod_act();
+    }
+
+    public boolean findProd(String nomProd) {
+        return ctrl.find_prod(nomProd);
+    }
+
+
+    private Pair<String, Double>[] stringV_a_pairV(String[] similituds) {
+
+        //int numProd = getNumProd();
+        int numProd = similituds.length;
+        Pair<String, Double>[] llistaSim = new Pair[numProd];
+
+        for (int i = 0; i < numProd; ++i) {
+            llistaSim[i].first = ctrl.getNomProd_index(i);
+            llistaSim[i].second = Double.parseDouble(similituds[i]);
+        }
+
+        return llistaSim;
+    }
+
+
+
+
+    //Legacy
+
+    /*
+    public void editarProducte(String str) {
+
+        //Opció 1: nova funció de catàleg
+        //ctrlCataleg.editar_prod(str);
+
+        //Opció 2: eliminar i afegir un nou amb les modificacions
+
+
+        String nomProd = decodificar_producte(str);
+
+        try {
+            ctrl.eliminar_producte_nom(nomProd);
+        } catch (ProducteNoValid e) {
+            System.out.println(e.getMessage());
+        }
+
+        if (ctrl.num_prod_act() == 0) {
+            try {
+                ctrl.afegir_producte(nomProd);
+            } catch (ProducteNoValid e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        else {
+
+            //decodificació de paràmetres
+
+            try {
+                ctrl.afegir_producte(nomProd); //afegir paràmetres
+            } catch (ProducteNoValid e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+
+
+
+    }
+
+
     public String[][] infoCataleg() {
 
         return decodificar_cataleg(ctrl.cataleg_a_String());
 
     }
 
-    /**
-     * Obté la informació d'un producte específic.
-     *
-     * @param nomProd El nom del producte per obtenir la seva informació.
-     * @return Una cadena amb la informació del producte, o null si el producte no és vàlid (no hauria de passar).
-     */
+
     public String infoProducte(String nomProd) {
 
         try {
@@ -96,11 +262,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         return null;
     }
 
-    /**
-     * Afegeix un producte al catàleg.
-     *
-     * @param str Les dades del producte que es vol afegir, codificat en un string.
-     */
+
     public void afegirProducte(String str) {
 
         String[] infoProd = decodificar_producte(str);
@@ -139,95 +301,12 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
     }
 
-    /**
-     * Elimina un producte del catàleg.
-     *
-     * @param str El nom del producte que es vol eliminar.
-     */
-    public void eliminarProducte(String str) {
 
-        String[] nomProd = decodificar_producte(str);
-
-        try {
-            ctrl.eliminar_producte_nom(nomProd[0]);
-        } catch (ProducteNoValid e) {
-            System.out.println(e.getMessage());
-        }
-
-    }
-
-    //No es canvia els noms, només els productes
-    /**
-     * Edita les dades d'un producte existent al catàleg.
-     *
-     * @param str Les noves dades del producte que es vol editar, codificat en un string.
-     */
-    public void editarProducte(String str) {
-
-        //Opció 1: nova funció de catàleg
-        //ctrlCataleg.editar_prod(str);
-
-        //Opció 2: eliminar i afegir un nou amb les modificacions
-
-        /*
-        String nomProd = decodificar_producte(str);
-
-        try {
-            ctrl.eliminar_producte_nom(nomProd);
-        } catch (ProducteNoValid e) {
-            System.out.println(e.getMessage());
-        }
-
-        if (ctrl.num_prod_act() == 0) {
-            try {
-                ctrl.afegir_producte(nomProd);
-            } catch (ProducteNoValid e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
-        else {
-
-            //decodificació de paràmetres
-
-            try {
-                ctrl.afegir_producte(nomProd); //afegir paràmetres
-            } catch (ProducteNoValid e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
-        */
-
-
-    }
-
-    /**
-     *
-     * @param str
-     */
-    public void editarSimilitud(String str) {
-
-        //determinar flux
-
-    }
-
-    /**
-     * Mostra les restriccions associades als productes.
-     * Retorna la informació en forma de cadena per ser mostrada a la vista.
-     *
-     * @return Una cadena amb la informació de les restriccions.
-     */
     public String veureRestriccions() {
 
         return ctrl.restr_a_String(); //editar per retornar un string que es decodifiqui a la vista
     }
 
-    /**
-     * Afegeix una restricció entre dos productes.
-     *
-     * @param str Un string que conté els noms dels dos productes als quals es vol afegir la restricció.
-     */
     public void afegirRestriccio(String str) {
 
         String[] nomProds = decodificar_producte(str);
@@ -239,11 +318,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         }
     }
 
-    /**
-     * Elimina una restricció entre dos productes.
-     *
-     * @param str Un string que conté els noms dels dos productes dels quals es vol eliminar la restricció.
-     */
+
     public void eliminarRestriccio(String str) {
 
         String[] nomProds = decodificar_producte(str);
@@ -255,13 +330,9 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         }
     }
 
+    //Decodificacions
 
-    @Override
-    public void executar() {
-        System.out.println("Metode executar de CtrlVistaCatalegAmbRestriccions");
-    }
-
-    public String[][] decodificar_cataleg(String str){
+    private String[][] decodificar_cataleg(String str){
 
         String[] decodificacio_primaria = str.split(";");
 
@@ -276,11 +347,13 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         return decodificacio;
     }
 
-
     private String[] decodificar_producte(String str) {
 
         return str.split(",");
 
     }
+
+    */
+
 }
 
