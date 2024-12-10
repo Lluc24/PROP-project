@@ -1,6 +1,5 @@
 package layers.presentation.views;
 
-import layers.presentation.controllers.CtrlPreSolucions;
 import layers.presentation.controllers.CtrlVistaCatalegAmbRestriccions;
 
 import javax.swing.*;
@@ -10,26 +9,27 @@ public class VistaPrincipalCataleg extends VistaControladors {
     private CtrlVistaCatalegAmbRestriccions controlVista;
     protected Boto botoMenuRestriccion;
     protected String textBotoMenuRestriccions = "Menu Restriccions";
+
+    Boolean primeraVegada = true;
     
     public VistaPrincipalCataleg(CtrlVistaCatalegAmbRestriccions cps) {
         controlVista = cps;
     }
 
     public void executar() {
-        if (primeraVegada) {
-            titolFrame = "Vista Principal del Cataleg";
-            ajuda = "Estas a la vista principal del cataleg. Des d'aquesta vista " +
-                    "podras veure els productes del cataleg, seleccionar-los, o anar el menu per afegir-ne mes" +
-                    "com tambe anar a menu de restriccions\n " +
-                    "Afegir Productes: Aniras a la vista per afegir un producte\n" +
-                    "Consultar Producte: Aniras a la vista per veure la informacio del producte seleccionat\n" +
-                    "Consultar Restriccions: Aniras al menu de restriccions, per consultarlas i editar les\n" +
-                    "ComboBox: Et mostra tots el productes del cataleg, pot seleccionar un\n" +
-                    "Enrere: Et permet anar a l'anterior vista\n" +
-                    "Sortir: Finalitzar l'aplicacio\n";
-            primeraVegada = false;
-            super.executar();
-        }else frameVista.setVisible(true);
+        titolFrame = "Vista Principal del Cataleg";
+        ajuda = "Estas a la vista principal del cataleg. Des d'aquesta vista " +
+                "podras veure els productes del cataleg, seleccionar-los, o anar el menu per afegir-ne mes" +
+                "com tambe anar a menu de restriccions\n " +
+                "Afegir Productes: Aniras a la vista per afegir un producte\n" +
+                "Consultar Producte: Aniras a la vista per veure la informacio del producte seleccionat\n" +
+                "Consultar Restriccions: Aniras al menu de restriccions, per consultarlas i editar les\n" +
+                "ComboBox: Et mostra tots el productes del cataleg, pot seleccionar un\n" +
+                "Enrere: Et permet anar a l'anterior vista\n" +
+                "Sortir: Finalitzar l'aplicacio\n";
+        primeraVegada = false;
+        super.executar();
+
     }
 
     @Override
@@ -89,7 +89,7 @@ public class VistaPrincipalCataleg extends VistaControladors {
     }
 
     public void canviVistaConsultarRest() {
-        controlVista.canviarVista("ConsultarRestriccions");
+        controlVista.canviaVista("ConsultarRestriccions");
     }
 
     public void canviaVistaInfoProd(String prod) {
