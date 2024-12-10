@@ -487,20 +487,33 @@ public class CtrlCataleg extends CtrlGeneric{
 
     }
 
-    public String producte_a_String(String nomProd) throws ProducteNoValid {
-
-         //idem que cataleg_a_String (obviament sense punt i coma (;))
-        return null;
+    /**
+     * Funcio de transformacio de els productes del cataleg, per ús en la presentació
+     * @return Arrays de string amb els noms dels productes
+     */
+    public String[] getProductes_array() {
+        String[] ret = new String[Cataleg_Productes.size()];
+        for (int i = 0; i < Cataleg_Productes.size(); ++i) {
+            ret[i] = Cataleg_Productes.get(i).getNom();
+        }
+        return ret;
     }
 
-    public String cataleg_a_String() {
-
-         //format: "Nomprod1,Nomprod2,Similitud,NomProd3,Similitud;NomProd2,NomProd1,Similitud,NomProd3,Similitud;..." (sense les "), (primer es dóna
-         //el nom del producte a registrar, després el nom de la resta de productes i la similitud amb aquest, to separat per comes. Quan es dóna l'ultima
-         //similitud d'aquell producte i es vol escriure el nom del següent producte a registrar, es separa amb punt i coma.
-        //NO S'INCLOU LA SIMILITUD DEL PRODUCTE AMB SI MATEIX
-         return null;
+    /**
+     * Funcio de transformacio de les similituds dels productes del cataleg, per ús en la presentació
+     * @return Arrays de string amb les similituds dels productes amb producte nom_prod
+     */
+    public String[] getSimilituds_array(String nom_prod) {
+        String[] ret = new String[Cataleg_Productes.size()];
+        Producte prod = getProd_nom(nom_prod);
+        ArrayList<Double> simis = prod.getSimilituds();
+        for (int i = 0; i < Cataleg_Productes.size(); ++i) {
+            ret[i] = ""+simis.get(i);
+        }
+        return ret;
     }
+
+
 
 
 
