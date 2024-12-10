@@ -78,6 +78,9 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
         System.out.println("ctrlSols->getSolucio(" + s + ")");
     }
 
+    /**
+     * L'usuari vol gestionar l'algorisme actual
+     */
     public void canviarAlgorisme(){
         vistaGestioAlgorisme.executar();
     }
@@ -91,8 +94,9 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
     }
 
     /**
-     * @param nom nom d'una solucio
-     * @return retorna cert si al sistema existeix una solucio amb nom igual a nom. Fals altrament.
+     * L'algorisme actual és de tipus greedy i l'usuari vol canviar-ne els paràmetres
+     * @param idx index del producte amb el que comencar a buscar la millor solucio
+     * @param iter numero d'iteracions fins a tornar una solucio
      */
     public void setParametres(int idx, int iter){
         try {

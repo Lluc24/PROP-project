@@ -66,20 +66,12 @@ public class Solucio {
             for (int j = 0; j < solucio.get(i).size(); ++j) {
                 if (j == 0) {
                     System.out.println();
-                    System.out.println("------------------------------------------");
-                    System.out.print("| ");
                 }
-                System.out.print(solucio.get(i).get(j));
-
-                if (j != solucio.get(i).size() - 1) {
-                    System.out.print(" | ");
-                } else {
-                    System.out.println(" |");
-                    System.out.println("------------------------------------------");
-                }
+                System.out.print(solucio.get(i).get(j) + " ");
             }
         }
         if (solucio.size() == 0) System.out.println("la solucio no te cap producte");
+        else System.out.println();
     }
 
     /**
