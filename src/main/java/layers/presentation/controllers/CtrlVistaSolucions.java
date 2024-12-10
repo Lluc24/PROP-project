@@ -5,6 +5,7 @@ import layers.domain.controllers.CtrlSolucions;
 import layers.domain.excepcions.FormatInputNoValid;
 import layers.domain.excepcions.NomSolucioNoValid;
 import layers.presentation.views.VistaGestioAlgorisme;
+import layers.presentation.views.VistaInfoSolucio;
 import layers.presentation.views.VistaPrincipalSolucions;
 
 import java.util.ArrayList;
@@ -13,12 +14,15 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
     private CtrlSolucions ctrlSolucions = null;
     private VistaPrincipalSolucions vistaPplSols;
     private VistaGestioAlgorisme vistaGestioAlgorisme;
+    private VistaInfoSolucio vistaInfoSolucio;
 
     //Constructora
     public CtrlVistaSolucions(CtrlSolucions cs) {
         this.ctrlSolucions = cs;
         vistaPplSols = new VistaPrincipalSolucions(this);
         vistaGestioAlgorisme = new VistaGestioAlgorisme(this);
+        vistaInfoSolucio = new VistaInfoSolucio();
+        //vistaInfoSolucio = new VistaInfoSolucio(this);
     }
 
     @Override
@@ -74,8 +78,12 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
      * @param s nom de la solucio especifica que vol mostrar
      */
     public void mostrarSolucio(String s){
-        //ctrlSolucions.mostrarSolucio(s);
-        System.out.println("ctrlSols->getSolucio(" + s + ")");
+        try {
+            ArrayList<ArrayList<String>> solList = ctrlSolucions.getSolucio(s);
+        }catch (NomSolucioNoValid e) {
+            System.out.println(e.getMessage());
+        }
+        //vistaInfoSolucio.executar(this,solList);
     }
 
     /**

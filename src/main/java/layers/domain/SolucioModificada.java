@@ -22,7 +22,7 @@ public class SolucioModificada extends Solucio {
      * @param prod2 nom del segon producte
      * @author Eulalia Peiret Santacana
      */
-    public void intercanvia (String prod1, String prod2) throws IntercanviNoValid{
+    public void intercanvia (String prod1, String prod2) throws IntercanviNoValid {
         if (prod1.equals(prod2)) {
             String missatge = "No pots intercanviar un producte amb ell mateix";
             throw new IntercanviNoValid(missatge);
@@ -43,16 +43,25 @@ public class SolucioModificada extends Solucio {
                 }
             }
         }
+    }
 
-        // Verifica que hagi trobat els 2 productes
-        if (index1i != -1 && index2i != -1) {
-            String producte1 = solucio.get(index1i).get(index1j);
-            solucio.get(index1i).set(index1j, solucio.get(index2i).get(index2j));
-            solucio.get(index2i).set(index2j, producte1);
-        }
-        else {
-            String missatge = "No existeix algun dels dos productes en la solucio";
+    /**
+     *
+     * @Class SolucioModificada
+     * Intercanvia els productes amb els index indicats si els dos estan en la solució
+     * @author Eulalia Peiret Santacana
+     */
+    public void intercanvia (int index1i, int index1j, int index2i,int index2j) throws IntercanviNoValid{
+        if (index1i == index2i && index1j == index2j) {
+            String missatge = "No pots intercanviar un producte amb ell mateix";
             throw new IntercanviNoValid(missatge);
         }
+        else if(!(this.existeixPosicio(index1i,index1j)) || !(this.existeixPosicio(index2i,index2j))){
+            String missatge = "No hi ha cap producte en les posicions indicades";
+            throw new IntercanviNoValid(missatge);
+        }
+        String producte1 = solucio.get(index1i).get(index1j);
+        solucio.get(index1i).set(index1j, solucio.get(index2i).get(index2j));
+        solucio.get(index2i).set(index2j, producte1);
     }
 }

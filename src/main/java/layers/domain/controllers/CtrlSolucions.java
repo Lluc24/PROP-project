@@ -71,6 +71,19 @@ public class CtrlSolucions extends CtrlGeneric {
         return false;
     }
 
+    public ArrayList<ArrayList<String>> getSolucio(String nomSolucio) throws NomSolucioNoValid{
+        if (this.existeixSolucio(nomSolucio)){
+            for (Solucio sol : solucions){
+                if(sol.getNom().equals(nomSolucio)) return sol.getSolucio();
+            }
+        }
+        else {
+            String missatge = "Ja existeix una solucio amb nom '" +nomSolucio+ "'";
+            throw new NomSolucioNoValid(missatge);
+        }
+        return new ArrayList<ArrayList<String>>();
+    }
+
     /**
      * pre: l'usuari crida a aquesta funcio quan vol crear una nova solucio
      * post: s'ha creat una nova instància de solucio resolta amb algorismeAct
@@ -119,9 +132,43 @@ public class CtrlSolucions extends CtrlGeneric {
                     String missatge = "No existeix cap dels productes a la solucio amb nom '" +nomSolucio+ "'";;
                     if (s.trobarProducte(prod2)) missatge = "No existeix " +prod1+ " a la solucio amb nom '" +nomSolucio+ "'";
                     else if (s.trobarProducte(prod1)) missatge = "No existeix " +prod2+ " a la solucio '" +nomSolucio+ "'";
-                    throw new NomSolucioNoValid(missatge);
+                    throw new IntercanviNoValid(missatge);
                 }
 
+            }
+        }
+        if (!trobat){
+            String missatge = "No existeix una solucio amb nom '" +nomSolucio+ "'";
+            throw new NomSolucioNoValid(missatge);
+        }
+        else {
+            solucions.add(solMod);
+        }
+    }
+
+    /**
+     *L'usuari crida a aquesta funcio quan vol intercanviar dos productes d'una solucio. proporciona els index dels productes dins la solucio
+     * @param nomSolucio
+     */
+    public void modificarSolucio (int index1i, int index1j, int index2i,int index2j, String nomSolucio) throws IntercanviNoValid, NomSolucioNoValid, FormatInputNoValid {
+        boolean trobat = false;
+        //ArrayList<Solucio> solucionsTemp = new ArrayList<>(solucions);
+        Iterator<Solucio> iterator = solucions.iterator();
+        SolucioModificada solMod = null;
+        while (iterator.hasNext()){
+            Solucio s = iterator.next();
+            if (s.getNom().equals(nomSolucio)){
+                trobat = true;
+                if (s.existeixPosicio(index1i,index1j) && s.existeixPosicio(index2i,index2j)) {
+                    solMod = new SolucioModificada(s.getSolucio(), nomSolucio);
+                    solMod.intercanvia(index1i, index1j,index2i,index2j);
+                    iterator.remove();
+                    break;
+                }
+                else {
+                    String missatge = "No existeix algun dels productes a la solucio amb nom '" +nomSolucio+ "'";
+                    throw new IntercanviNoValid(missatge);
+                }
             }
         }
         if (!trobat){

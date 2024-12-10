@@ -1,6 +1,7 @@
 package layers.domain;
 
 import layers.domain.excepcions.FormatInputNoValid;
+import layers.domain.excepcions.IntercanviNoValid;
 import layers.domain.excepcions.NomSolucioNoValid;
 
 import java.util.ArrayList;
@@ -87,5 +88,24 @@ public class Solucio {
             }
         }
         return false;
+    }
+
+    /**
+     * Retorna cert si existeix un producte en la posicio indicada
+     * @param i fila de la matriu
+     * @param j columne de la matriu
+     * @return cert si existeix producte en solucio[i][j], fals en cas contrari
+     */
+    public boolean existeixPosicio(int i, int j){
+        if(i >= solucio.size()){
+            return false;
+        }
+        else if(i+1 == solucio.size() && j >= solucio.getLast().size()){
+           return false;
+        }
+        else if (j >= solucio.getFirst().size()) {
+            return false;
+        }
+        return true;
     }
 }
