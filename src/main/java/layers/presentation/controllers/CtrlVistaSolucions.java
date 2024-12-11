@@ -8,7 +8,6 @@ import layers.presentation.views.VistaGestioAlgorisme;
 import layers.presentation.views.VistaInfoSolucio;
 import layers.presentation.views.VistaPrincipalSolucions;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class CtrlVistaSolucions extends CtrlVistaGeneric {
@@ -85,8 +84,11 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
             System.out.println(e.getMessage());
         }
         //vistaInfoSolucio.executar(this,solList);
-
-        ctrlSolucions.carregaSolucio("/home/lali/Escritorio/q5/prop/","test1");
+        try {
+            ctrlSolucions.carregaSolucions("/home/lali/Escritorio/q5/prop/", "test1.txt");
+        }catch (FormatInputNoValid e){
+            System.err.println(e.getMessage());
+        }
 
     }
 
@@ -95,7 +97,11 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
      */
     public void canviarAlgorisme(){
         vistaGestioAlgorisme.executar();
-        ctrlSolucions.guardaSolucio("/home/lali/Escritorio/q5/prop/", "test1");
+        try {
+            ctrlSolucions.guardaSolucio("/home/lali/Escritorio/q5/prop/", "test1.txt");
+        }catch (FormatInputNoValid e){
+            System.err.println(e.getMessage());
+        }
     }
 
     /**
@@ -117,5 +123,13 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
         }catch (FormatInputNoValid e){
             System.out.println(e.getMessage());
         }
+    }
+
+    public void guardarSolucions(String path, String nomArxiu) throws FormatInputNoValid{
+        ctrlSolucions.guardaSolucio(path, nomArxiu);
+    }
+
+    public void carregarSolucions(String path, String nomArxiu) throws FormatInputNoValid{
+        ctrlSolucions.carregaSolucions(path,nomArxiu);
     }
 }

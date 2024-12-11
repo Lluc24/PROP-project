@@ -55,9 +55,9 @@ public class CtrlPersistenciaSolucio {
      * @return Contingut del arxiu com cadena de text.
      * @throws IOException si hi ha error al llegir l'arxiu.
      */
-    public String cargarArchivo(String path, String nombre) throws IOException {
+    public String carregarArxiu(String path, String nombre) throws IOException ,FormatInputNoValid {
         if (!esArxiuValid(path, nombre)) {
-            throw new IOException("L'arxiu no es valid o no es pot llegir.");
+            throw new FormatInputNoValid("L'arxiu '" +nombre+ "' no es valid o no es pot llegir.");
         }
 
         // Llegir contingut del arxiu
@@ -71,28 +71,37 @@ public class CtrlPersistenciaSolucio {
      * @param path  Ruta del arxiu.
      * @param nombre Nom del arxiu.
      */
-    public void procesarDatosArchivo(String path, String nombre) throws IOException, NomSolucioNoValid, FormatInputNoValid {
-        String contenido = cargarArchivo(path, nombre);
-        // Dividimo el contingut en lineas
+    public void processarDadesArxiu(String path, String nombre) throws NomSolucioNoValid, FormatInputNoValid {
+        if(!directoriCorrecte(path)){
+            String missatge = "El path '" +path+ "' no es correcte";
+            throw new FormatInputNoValid(missatge);
+        }
+        String contenido = null;
+        try {
+            contenido = carregarArxiu(path, nombre);
+        }catch (IOException e){
+            throw new FormatInputNoValid("L'arxiu '" +nombre+ "' falla.");
+        }
+        // Dividim el contingut en lineas
         String[] lineas = contenido.split("\\n");
         int index = 0;
 
         while (index < lineas.length) {
-            // Si hi ha linea buida vol dir nova solucio
+            // Si hi ha mes d'una nova linea buida entre solucio
             if (lineas[index].isEmpty()) {
                 index++;
                 continue;
             }
 
-            // Convertimos la línea a boolean usando Boolean.parseBoolean
+            // Convertim la linea a boolean
             boolean modificada = Boolean.parseBoolean(lineas[index].trim());
             index++;
 
-            // Leer la segunda línea como nomSolucio
+            // Llegir la segona linea com nomSolucio
             String nomSolucio = lineas[index].trim();
             index++;
 
-            // Leer las siguientes líneas hasta encontrar una línea vacía
+            // Llegir les seguents linies fins trobar una linea buida
             ArrayList<ArrayList<String>> sol = new ArrayList<>();
 
             while (index < lineas.length && !lineas[index].isEmpty()) {
@@ -102,7 +111,7 @@ public class CtrlPersistenciaSolucio {
                 index++;
             }
 
-            // Llamar a carregaSolucio
+            // Crida a carregaSolucio
             ctrlSolucions.carregaSolucio(modificada, nomSolucio, sol) ;
             //carregaSolucio(modificada, nomSolucio, sol);
             // Saltar línea vacía
@@ -110,7 +119,17 @@ public class CtrlPersistenciaSolucio {
         }
     }
 
-    public void guardarSolucio(String contingut, String path, String nomArxiu) {
+    /**
+     * L'usuari vol guardar les solucions del sistema a un arxiu
+     * @param contingut totes les dades de les solucions en el format correcte
+     * @param path lloc on es vol guardar
+     * @param nomArxiu nom del arxiu on es vol guardar
+     */
+    public void guardarSolucio(String contingut, String path, String nomArxiu) throws FormatInputNoValid {
+        if(!directoriCorrecte(path)){
+            String missatge = "El path '" +path+ "' no es correcte";
+            throw new FormatInputNoValid(missatge);
+        }
         File archivo = new File(path, nomArxiu);
         try (FileWriter writer = new FileWriter(archivo)) {
             writer.write(contingut);
@@ -118,4 +137,11 @@ public class CtrlPersistenciaSolucio {
             System.err.println(e.getMessage());
         }
     }
+
+    public boolean directoriCorrecte(String path) {
+        File directori = new File(path);
+        // Comprovar si el directori existeix, es valid i es pot escriure
+        return (directori.exists() && directori.isDirectory() && directori.canWrite());
+    }
+
 }

@@ -6,7 +6,6 @@ import layers.domain.excepcions.IntercanviNoValid;
 import layers.domain.excepcions.NomSolucioNoValid;
 import layers.persistence.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -255,16 +254,18 @@ public class CtrlSolucions extends CtrlGeneric {
      * @param path on hi ha el fitxer
      * @param nomArxiu nom del fitxer amb les solucions
      */
-    public void carregaSolucio(String path, String nomArxiu){
-        // Processar les dades del fitxer
+    public void carregaSolucions(String path, String nomArxiu) throws FormatInputNoValid{
+        String s = null;
         try {
-        ctrlPersistenciaSolucio.procesarDatosArchivo(path, nomArxiu);
-        } catch (IOException e) {
-            System.err.println("S'ha produït un error: " + e.getMessage());
-        } catch (FormatInputNoValid e){
-            System.err.println("S'ha produït un error: " + e.getMessage());
-        }catch(NomSolucioNoValid e){
-            System.err.println("S'ha produït un error: " + e.getMessage());
+            ctrlPersistenciaSolucio.processarDadesArxiu(path, nomArxiu);
+        }catch (FormatInputNoValid e){
+            s = e.getMessage();
+        }catch (NomSolucioNoValid e){
+            s = e.getMessage();
+        }
+        if (s != null){
+            solucions.clear();
+            throw new FormatInputNoValid(s);
         }
     }
 
@@ -284,6 +285,10 @@ public class CtrlSolucions extends CtrlGeneric {
         else {
             s = new Solucio(sol, nomSolucio);
         }
+        if (existeixSolucio(s.getNom())){
+            String missatge = "El contingut del arxiu no es compatible amb el programa";
+            throw new NomSolucioNoValid(missatge);
+        }
         solucions.add(s);
         System.out.println("solucio afegida: "+ nomSolucio);
     }
@@ -293,7 +298,7 @@ public class CtrlSolucions extends CtrlGeneric {
      * @param path on es trova el fitxer
      * @param nomArxiu nom del fitxer amb les solucions
      */
-    public void guardaSolucio(String path, String nomArxiu){
+    public void guardaSolucio(String path, String nomArxiu) throws FormatInputNoValid{
         StringBuilder contenido = new StringBuilder();
 
         for (Solucio solucio : solucions) {
