@@ -8,6 +8,7 @@ import layers.presentation.views.VistaGestioAlgorisme;
 import layers.presentation.views.VistaInfoSolucio;
 import layers.presentation.views.VistaPrincipalSolucions;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class CtrlVistaSolucions extends CtrlVistaGeneric {
@@ -84,6 +85,9 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
             System.out.println(e.getMessage());
         }
         //vistaInfoSolucio.executar(this,solList);
+
+        ctrlSolucions.carregaSolucio("/home/lali/Escritorio/q5/prop/","test1");
+
     }
 
     /**
@@ -91,6 +95,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
      */
     public void canviarAlgorisme(){
         vistaGestioAlgorisme.executar();
+        ctrlSolucions.guardaSolucio("/home/lali/Escritorio/q5/prop/", "test1");
     }
 
     /**
