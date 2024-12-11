@@ -30,22 +30,29 @@ public class VistaAfegirProducte extends VistaControladors {
     private String textBotoCanviNom = "Canvia Nom";
     private Boto BotoCanviNom;
 
+    Boolean primeraVegada = true;
+
     public VistaAfegirProducte (CtrlVistaCatalegAmbRestriccions cps) {
         controlVista = cps;
     }
 
     public void executar() {
-        primeraVegada = false;
-        titolFrame = "Afegir Producte";
-        ajuda = "Estas a la vista per afegir un nou producte\n" +
-                "Label: Aqui veuras el nom que li has donat al producte, recorda no pot ser el nom d'un producte existent\n" +
-                "ComboBox: Aqui veuras tots el productes dins de cataleg, pot seleccionar un per afegir una restriccio\n" +
-                "Afegir Restriccio: Despres de seleccionar un producte, clica aquest boto per afegir una restriccio\n" +
-                "Afegir Similituds: Començaras un proces per afegir una similitud, per cada producte indicat. Un cop donades, amb es podra editar la similitud amb el producte indicat\n" +
-                "Canvi Nom: Permet cambiar el nom del producte\n" +
-                "Afegir producte: Afegiras el producte de manera definitiva, no podras fer us d'aquest boto fins que el producte tingui nom i totes les similituds estiguin donades\n";
+        if (primeraVegada) {
+            primeraVegada = false;
+            titolFrame = "Afegir Producte";
+            ajuda = "Estas a la vista per afegir un nou producte\n" +
+                    "Label: Aqui veuras el nom que li has donat al producte, recorda no pot ser el nom d'un producte existent\n" +
+                    "ComboBox: Aqui veuras tots el productes dins de cataleg, pot seleccionar un per afegir una restriccio\n" +
+                    "Afegir Restriccio: Despres de seleccionar un producte, clica aquest boto per afegir una restriccio\n" +
+                    "Afegir Similituds: Començaras un proces per afegir una similitud, per cada producte indicat. Un cop donades, amb es podra editar la similitud amb el producte indicat\n" +
+                    "Canvi Nom: Permet cambiar el nom del producte\n" +
+                    "Afegir producte: Afegiras el producte de manera definitiva, no podras fer us d'aquest boto fins que el producte tingui nom i totes les similituds estiguin donades\n";
 
-        super.executar();
+            super.executar();
+        } else {
+            frameVista.setVisible(true);
+            actualitzarComponents();
+        }
 
     }
 
@@ -96,6 +103,32 @@ public class VistaAfegirProducte extends VistaControladors {
         BotoCanviNom.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(BotoCanviNom);
         add(Box.createRigidArea(new Dimension(0,10)));
+
+        opcions.removeAllItems();
+        for (String item : productes) {
+            opcions.addItem(item);
+        }
+    }
+
+    private void actualitzarComponents() {
+        te_nom = false;
+        nom_prod = "INSEREIX_NOM";
+        labelNomProd.setText(nom_prod);
+        Simis_DONE = false;
+
+        //Inicialitzar vectors
+        int mida_cataleg = controlVista.getNumProd();
+        productes = controlVista.getProductes();
+        similituds = new ArrayList<>();
+        restriccions = new ArrayList<>();
+
+
+        afegirNom();
+        if (!Simis_DONE) textBotoMostrar = "Afegir Similituds";
+        else textBotoMostrar = "Editar Similitud";
+        botoMostrar.setText(textBotoMostrar);
+
+
 
         opcions.removeAllItems();
         for (String item : productes) {
@@ -235,12 +268,11 @@ public class VistaAfegirProducte extends VistaControladors {
     }
 
     private void AvisSortir() {
-        if (!te_nom || !Simis_DONE) {
-            JOptionPane.showMessageDialog(frameVista,
-                    "CAUTION: No has afegit el producte si surts perdras tota la informacio del producte ",
-                    "Error Input",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+        JOptionPane.showMessageDialog(frameVista,
+                "CAUTION: Has d'afegir el producte, si surts perdras tota la informacio del producte ",
+                "Error Input",
+                JOptionPane.ERROR_MESSAGE);
+
     }
 
 
