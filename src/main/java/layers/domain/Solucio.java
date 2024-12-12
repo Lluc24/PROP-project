@@ -6,6 +6,7 @@ import layers.domain.excepcions.NomSolucioNoValid;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 
 public class Solucio {
     // Atributs
@@ -36,12 +37,20 @@ public class Solucio {
                     Collections.reverse(aux.get(i));
                 }
             }
+            if (!matriuValida(aux)) {
+                String missatge = "La matriu de productes no es valida";
+                throw new FormatInputNoValid(missatge);
+            }
             this.solucio = aux;
         }
     }
 
     //Constructora
-    public Solucio(ArrayList<ArrayList<String>> s, String n) {
+    public Solucio(ArrayList<ArrayList<String>> s, String n) throws FormatInputNoValid {
+        if (!matriuValida(s)) {
+            String missatge = "La matriu de productes no es valida";
+            throw new FormatInputNoValid(missatge);
+        }
         this.nom = n;
         this.solucio = s;
     }
@@ -105,6 +114,36 @@ public class Solucio {
         }
         else if (j >= solucio.getFirst().size()) {
             return false;
+        }
+        return true;
+    }
+
+    /**
+     * Comprova que la matriu de productes no tingui productes repetits i tingui la estructura correcte
+     */
+    private boolean matriuValida(ArrayList<ArrayList<String>> matriu){
+        // Crear un HashSet perque torni fals si intentes afegir un element que ja existeix
+        HashSet<String> valoresUnicos = new HashSet<>();
+
+        //mira si hi ha un prestatge mes curt que l'altre i no es l'ultim
+        if (!matriu.isEmpty()){
+            for (int i = 0; i < matriu.size(); i++) {
+                if (i < matriu.size() - 2){
+                   if (matriu.get(i).size() !=  matriu.get(i+1).size()) return false;
+                }
+                else if (i == matriu.size() - 2){
+                    if (matriu.get(i).size() <  matriu.get(i+1).size()) return false;
+                }
+
+                for (String valor : matriu.get(i)) {
+                    // Si el valor ya está en el conjunt, torna fals
+                    if (!valoresUnicos.add(valor)) {
+                        return false;
+                    }
+                }
+
+
+            }
         }
         return true;
     }

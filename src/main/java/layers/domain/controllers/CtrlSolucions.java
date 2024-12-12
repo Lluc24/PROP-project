@@ -277,7 +277,7 @@ public class CtrlSolucions extends CtrlGeneric {
      * @throws NomSolucioNoValid
      * @throws FormatInputNoValid
      */
-    public void carregaSolucio(boolean modificada, String nomSolucio, ArrayList<ArrayList<String>> sol)throws NomSolucioNoValid, FormatInputNoValid{
+    public void carregaSolucio(boolean modificada, String nomSolucio, ArrayList<ArrayList<String>> sol) throws NomSolucioNoValid, FormatInputNoValid{
         Solucio s = null;
         if (modificada){
             s = new SolucioModificada(sol, nomSolucio);
