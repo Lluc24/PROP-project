@@ -85,7 +85,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
      * @param s nom de la solucio especifica que vol mostrar
      */
     public void mostrarSolucio(String s){
-        List<List<String>> solList;
+        List<List<String>> solList = new ArrayList<>();
         try {
             ArrayList<ArrayList<String>> solArrayList= ctrlSolucions.getSolucio(s);
             solList = new ArrayList<>(solArrayList);

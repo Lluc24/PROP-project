@@ -83,11 +83,14 @@ public class VistaPrincipal extends VistaGenerica {
 
     @Override
     protected void botoAccionat(String textBoto) {
-        if (textBoto.equals(textBotoCataleg) || textBoto.equals(textBotoRestriccions)) {
+        if (textBoto.equals(textBotoCataleg)) {
             ctrlVistaCatalegAmbRestriccions.executar();
         }
         else if (textBoto.equals(textBotoSolucions)) {
             ctrlVistaSolucions.executar();
+        }
+        else if (textBoto.equals(textBotoRestriccions)) {
+            ctrlVistaCatalegAmbRestriccions.executar();
         }
         else if (textBoto.equals(textBotoSortir)) {
             sortir();
