@@ -92,13 +92,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         }
 
         else {
-            try {
-                ctrl.afegir_producte(nomProd, stringV_a_pairV(similituds));
-            } catch (ProducteNoValid e) {
-                System.out.println(e.getMessage());
-            } catch (FormatInputNoValid e) {
-                System.out.println(e.getMessage());
-            }
+            ctrl.afegir_producte_aux(nomProd, similituds);
 
             for (String s : restriccionsArray) {
 
@@ -220,25 +214,6 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
      */
     public boolean findProd(String nomProd) {
         return ctrl.find_prod(nomProd);
-    }
-
-    /**
-     * Converteix un array de strings que representen similituds en un array de pairs (producte, similitud).
-     *
-     * @param similituds Un array de strings que conté els valors de similitud en format numèric, un per cada producte existent al catàleg.
-     * @return Un array de pairs, on cada pair conté el nom del producte (String) i el valor de la similitud (Double).
-     */
-    private Pair<String, Double>[] stringV_a_pairV(String[] similituds) {
-
-        //int numProd = getNumProd();
-        int numProd = similituds.length;
-        Pair<String, Double>[] llistaSim = new Pair[numProd];
-
-        for (int i = 0; i < numProd; ++i) {
-            llistaSim[i] = new Pair<>(ctrl.getNomProd_index(i), Double.parseDouble(similituds[i]));
-        }
-
-        return llistaSim;
     }
 
     /**

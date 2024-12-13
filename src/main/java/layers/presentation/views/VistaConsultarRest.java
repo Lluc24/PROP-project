@@ -98,6 +98,7 @@ public class VistaConsultarRest extends VistaControladors {
 
         if (result == JOptionPane.YES_OPTION) {
             ctrl.eliminarRestriccio(seleccio);
+            actualitzarComponents();
         }
 
     }
@@ -113,7 +114,10 @@ public class VistaConsultarRest extends VistaControladors {
         if (prod1 != null) {
             String prod2 = getNomProducte2();
 
-            if (prod2 != null) ctrl.afegirRestriccio(prod1, prod2);
+            if (prod2 != null) {
+                ctrl.afegirRestriccio(prod1, prod2);
+                actualitzarComponents();
+            }
         }
 
     }
@@ -186,8 +190,20 @@ public class VistaConsultarRest extends VistaControladors {
                         "Confirmacio eliminar",
                         JOptionPane.YES_NO_OPTION);
 
-                if (result == JOptionPane.YES_OPTION) ctrl.eliminarRestriccio(prod1, prod2);
+                if (result == JOptionPane.YES_OPTION) {
+                    ctrl.eliminarRestriccio(prod1, prod2);
+                    actualitzarComponents();
+                }
             }
+        }
+    }
+
+    private void actualitzarComponents() {
+
+        String[] restriccions = ctrl.getAllRestriccions();
+        opcions.removeAllItems();
+        for (String item : restriccions) {
+            opcions.addItem(item);
         }
     }
 

@@ -478,5 +478,40 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
         return pairs;
     }
 
+    /**
+     * Funció auxiliar pel pas entre capa de domini i presentació. Busca afegir un producte al catàleg.
+     *
+     * @param nomProd Nom del producte a afegir.
+     * @param similituds Similituds amb els altres productes en format string.
+     */
+    public void afegir_producte_aux(String nomProd, String[] similituds) {
+
+        try {
+            afegir_producte(nomProd, stringV_a_pairV(similituds));
+        } catch (ProducteNoValid e) {
+            System.out.println(e.getMessage());
+        } catch (FormatInputNoValid e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Converteix un array de strings que representen similituds en un array de pairs (producte, similitud).
+     *
+     * @param similituds Un array de strings que conté els valors de similitud en format numèric, un per cada producte existent al catàleg.
+     * @return Un array de pairs, on cada pair conté el nom del producte (String) i el valor de la similitud (Double).
+     */
+    private Pair<String, Double>[] stringV_a_pairV(String[] similituds) {
+
+        //int numProd = getNumProd();
+        int numProd = similituds.length;
+        Pair<String, Double>[] llistaSim = new Pair[numProd];
+
+        for (int i = 0; i < numProd; ++i) {
+            llistaSim[i] = new Pair<>(getNomProd_index(i), Double.parseDouble(similituds[i]));
+        }
+
+        return llistaSim;
+    }
 }
 
