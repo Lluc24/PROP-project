@@ -22,7 +22,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
     //Mètodes
 
     /** Constructora
-     * @param ctrlCat Singleton del controlador de catàleg amb restriccions
+     * @param ctrlCat Singleton del controlador de catàleg amb restriccions.
      */
     public CtrlVistaCatalegAmbRestriccions(CtrlCatalegAmbRestriccions ctrlCat) {
 
