@@ -417,10 +417,65 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
         if (!hihaRestr) System.out.println("No hi ha restriccions");
     }
 
+    /**
+     * Converteix les restriccions en una llista de strings de text.
+     * Cada string representa una parella de productes amb format "producte1;producte2".
+     *
+     * @return Un array de strings amb les restriccions.
+     */
+    public String[] restr_a_String() {
 
-    public String restr_a_String() {
-        //codificació a implementar
-        return null;
+        ArrayList<Pair<Integer, Integer>> pairs = getArrayRestr();
+
+        ArrayList<Pair<String, String>> pairsString = getStringId(pairs);
+
+        String[] restr = new String[pairsString.size()];
+
+        for (int i = 0; i < pairsString.size(); i++) {
+            Pair<String, String> pair = pairsString.get(i);
+            restr[i] = pair.first + ";" + pair.second;
+        }
+
+        return restr;
+    }
+
+    /**
+     * Converteix una llista de parelles d'índexs de productes a parelles amb els seus noms.
+     *
+     * @param pairs Llista de parelles d'índexs.
+     * @return Llista de parelles amb els noms dels productes.
+     */
+    private ArrayList<Pair<String, String>> getStringId(ArrayList<Pair<Integer, Integer>> pairs) {
+
+        ArrayList<Pair<String, String>> pairsString = new ArrayList<>();
+
+        for (Pair<Integer, Integer> pair : pairs) {
+            String firstString = getNomProd_index(pair.first);
+            String secondString = getNomProd_index(pair.second);
+            pairsString.add(new Pair<>(firstString, secondString));
+        }
+
+        return pairsString;
+
+    }
+
+    /**
+     * Obté les restriccions com a llista de parelles d'índexs de productes que no poden ser consecutius.
+     *
+     * @return Llista de parelles d'índexs de productes.
+     */
+    private ArrayList<Pair<Integer, Integer>> getArrayRestr() {
+        ArrayList<Pair<Integer, Integer>> pairs = new ArrayList<>();
+
+        for (int i = 0; i < noConsecutius.size(); i++) {
+            for (int j = i + 1; j < noConsecutius.get(i).size(); j++) {
+                if (noConsecutius.get(i).get(j)) {
+                    pairs.add(new Pair<>(i, j));
+                }
+            }
+        }
+
+        return pairs;
     }
 
 }

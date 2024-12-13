@@ -185,7 +185,6 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
     }
 
 
-
     /**
      * Obté les similituds del producte actual amb la resta de productes del catàleg.
      *
@@ -223,7 +222,6 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         return ctrl.find_prod(nomProd);
     }
 
-
     /**
      * Converteix un array de strings que representen similituds en un array de pairs (producte, similitud).
      *
@@ -243,8 +241,51 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         return llistaSim;
     }
 
+    /**
+     * Obté totes les restriccions disponibles en format de cadena de text.
+     *
+     * @return Un array de strings amb les restriccions.
+     */
+    public String[] getAllRestriccions() {
+        return ctrl.restr_a_String();
+    }
 
+    /**
+     * Elimina una restricció especificada per una string de text que conté els noms dels productes.
+     *
+     * @param str String que representa la restricció (format: "producte1;producte2").
+     */
+    public void eliminarRestriccio(String str) {
 
+        String[] nomProds = decodificar_producte(str);
+
+        try {
+            ctrl.remRestrConsecNom(nomProds[0], nomProds[1]);
+        } catch (ProducteNoValid e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Decodifica una cadena de text que conté dos noms de productes separats per un punt i coma.
+     *
+     * @param str Cadena amb el format "producte1;producte2".
+     * @return Un array amb els dos noms dels productes.
+     */
+    private String[] decodificar_producte(String str) {
+
+        return str.split(";");
+    }
+
+    /**
+     * Valida si el nom del producte especificat existeix al sistema.
+     *
+     * @param nomProd Nom del producte a validar.
+     * @return True si el producte existeix, false en cas contrari.
+     */
+    public boolean valida_nom(String nomProd) {
+        return ctrl.find_prod(nomProd);
+    }
 
     //Legacy
 
@@ -365,17 +406,6 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
     }
 
 
-    public void eliminarRestriccio(String str) {
-
-        String[] nomProds = decodificar_producte(str);
-
-        try {
-            ctrl.remRestrConsecNom(nomProds[0], nomProds[1]);
-        } catch (ProducteNoValid e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
     //Decodificacions
 
     private String[][] decodificar_cataleg(String str){
@@ -391,12 +421,6 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         }
 
         return decodificacio;
-    }
-
-    private String[] decodificar_producte(String str) {
-
-        return str.split(",");
-
     }
 
     */
