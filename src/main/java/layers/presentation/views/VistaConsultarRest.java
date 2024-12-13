@@ -18,7 +18,7 @@ public class VistaConsultarRest extends VistaControladors {
 
     public void executar() {
         titolFrame = "Gestionar Restriccions";
-        ajuda = ajuda = "Estas a la vista de gestio de restriccions. Des d'aquesta vista pots gestionar les restriccions disponibles " +
+        ajuda = "Estas a la vista de gestio de restriccions. Des d'aquesta vista pots gestionar les restriccions disponibles " +
                 "utilitzant els botons corresponents.\n" +
                 "Afegir Restriccio: Permet afegir una nova restriccio introduint dos productes.\n" +
                 "Eliminar Seleccionada: Elimina la restriccio actualment seleccionada del llistat.\n" +
@@ -46,7 +46,7 @@ public class VistaConsultarRest extends VistaControladors {
         textBotoAfegir = "Afegir Restriccio";
         botoAfegir.setText(textBotoAfegir);
 
-        //botó eliminar
+        //botó eliminar per nom
         botoEliminarRest = new Boto(textBotoEliminarRest);
         botoEliminarRest.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(botoEliminarRest);
