@@ -89,11 +89,6 @@ public class VistaPrincipalSolucions extends VistaControladors {
             }
             else {
                 ctrlVistaSolucions.mostrarSolucio(solucioSeleccionada);
-                ArrayList<String> solsIni = ctrlVistaSolucions.getSolucions();
-                opcions.removeAllItems();
-                for (int i = 0; i < solsIni.size(); ++i){
-                    opcions.addItem(solsIni.get(i));
-                }
             }
         }
         else {

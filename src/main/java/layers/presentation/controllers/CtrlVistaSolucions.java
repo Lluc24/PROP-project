@@ -3,26 +3,28 @@ package layers.presentation.controllers;
 import layers.domain.controllers.CtrlGeneric;
 import layers.domain.controllers.CtrlSolucions;
 import layers.domain.excepcions.FormatInputNoValid;
+import layers.domain.excepcions.IntercanviNoValid;
 import layers.domain.excepcions.NomSolucioNoValid;
 import layers.presentation.views.VistaGestioAlgorisme;
 import layers.presentation.views.VistaInfoSolucio;
 import layers.presentation.views.VistaPrincipalSolucions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CtrlVistaSolucions extends CtrlVistaGeneric {
     private CtrlSolucions ctrlSolucions = null;
     private VistaPrincipalSolucions vistaPplSols;
     private VistaGestioAlgorisme vistaGestioAlgorisme;
     private VistaInfoSolucio vistaInfoSolucio;
+    String solucioVisualitzant;
 
     //Constructora
     public CtrlVistaSolucions(CtrlSolucions cs) {
         this.ctrlSolucions = cs;
         vistaPplSols = new VistaPrincipalSolucions(this);
         vistaGestioAlgorisme = new VistaGestioAlgorisme(this);
-        vistaInfoSolucio = new VistaInfoSolucio();
-        //vistaInfoSolucio = new VistaInfoSolucio(this);
+        vistaInfoSolucio = new VistaInfoSolucio(this);
     }
 
     @Override
@@ -83,18 +85,15 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
      * @param s nom de la solucio especifica que vol mostrar
      */
     public void mostrarSolucio(String s){
+        List<List<String>> solList;
         try {
-            ArrayList<ArrayList<String>> solList = ctrlSolucions.getSolucio(s);
+            ArrayList<ArrayList<String>> solArrayList= ctrlSolucions.getSolucio(s);
+            solList = new ArrayList<>(solArrayList);
         }catch (NomSolucioNoValid e) {
             System.out.println(e.getMessage());
         }
-        //vistaInfoSolucio.executar(this,solList);
-        try {
-            ctrlSolucions.carregaSolucions("/home/lali/Escritorio/q5/prop/", "test1.txt");
-        }catch (FormatInputNoValid e){
-            System.err.println(e.getMessage());
-        }
-
+        solucioVisualitzant = s;
+        vistaInfoSolucio.executar(solList);
     }
 
     /**
@@ -151,5 +150,25 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
      */
     public void carregarSolucions(String path, String nomArxiu) throws FormatInputNoValid{
         ctrlSolucions.carregaSolucions(path,nomArxiu);
+    }
+
+    public void intercanviarProductes(int index1i, int index1j, int index2i,int index2j){
+        try{
+            ctrlSolucions.modificarSolucio(index1i, index1j, index2i, index2j, solucioVisualitzant);
+        }catch(IntercanviNoValid e){
+            System.err.println(e.getMessage());
+        }catch (NomSolucioNoValid e){
+            System.err.println(e.getMessage());
+        }catch (FormatInputNoValid e){
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void eliminarSolucio(){
+        try {
+            ctrlSolucions.eliminarSolucio(solucioVisualitzant);
+        }catch (NomSolucioNoValid e){
+            System.err.println(e.getMessage());
+        }
     }
 }
