@@ -179,7 +179,15 @@ public class VistaConsultarRest extends VistaControladors {
         if (prod1 != null) {
             String prod2 = getNomProducte2();
 
-            if (prod2 != null) ctrl.eliminarRestriccio(prod1, prod2);
+            if (prod2 != null) {
+
+                int result = JOptionPane.showConfirmDialog(frameVista,
+                        "Vols eliminar la restriccio?",
+                        "Confirmacio eliminar",
+                        JOptionPane.YES_NO_OPTION);
+
+                if (result == JOptionPane.YES_OPTION) ctrl.eliminarRestriccio(prod1, prod2);
+            }
         }
     }
 
