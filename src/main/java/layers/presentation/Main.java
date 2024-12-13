@@ -1,5 +1,4 @@
 package layers.presentation;
-import layers.presentation.views.VistaInfoSolucio;
 import layers.presentation.views.VistaPrincipal;
 import layers.presentation.controllers.CtrlPresentacio;
 import layers.presentation.controllers.CtrlVistaGeneric;
