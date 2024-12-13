@@ -487,6 +487,32 @@ public class CtrlCataleg extends CtrlGeneric{
 
     }
 
+    /**
+     * Funcio de transformacio de els productes del cataleg, per ús en la presentació
+     * @return Arrays de string amb els noms dels productes
+     */
+    public String[] getProductes_array() {
+        String[] ret = new String[Cataleg_Productes.size()];
+        for (int i = 0; i < Cataleg_Productes.size(); ++i) {
+            ret[i] = Cataleg_Productes.get(i).getNom();
+        }
+        return ret;
+    }
+
+    /**
+     * Funcio de transformacio de les similituds dels productes del cataleg, per ús en la presentació
+     * @return Arrays de string amb les similituds dels productes amb producte nom_prod
+     */
+    public String[] getSimilituds_array(String nom_prod) {
+        String[] ret = new String[Cataleg_Productes.size()];
+        Producte prod = getProd_nom(nom_prod);
+        ArrayList<Double> simis = prod.getSimilituds();
+        for (int i = 0; i < Cataleg_Productes.size(); ++i) {
+            ret[i] = ""+simis.get(i);
+        }
+        return ret;
+    }
+
 
 
 

@@ -417,5 +417,11 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
         if (!hihaRestr) System.out.println("No hi ha restriccions");
     }
 
+
+    public String restr_a_String() {
+        //codificació a implementar
+        return null;
+    }
+
 }
 
