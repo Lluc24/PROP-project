@@ -1,17 +1,19 @@
 package layers.domain;
 
 import layers.domain.excepcions.FormatInputNoValid;
+import layers.domain.excepcions.IntercanviNoValid;
 import layers.domain.excepcions.NomSolucioNoValid;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 
 public class Solucio {
     // Atributs
     protected ArrayList<ArrayList<String>> solucio;
     protected String nom;
 
-    // Constructora
+    // Constructores
     public Solucio(ArrayList<String> s, String n, int p) throws FormatInputNoValid{
         if (p <= 0) {
             String missatge = "El numero de productes per prestatgeria ha de ser minim 1";
@@ -35,12 +37,20 @@ public class Solucio {
                     Collections.reverse(aux.get(i));
                 }
             }
+            if (!matriuValida(aux)) {
+                String missatge = "La matriu de productes no es valida";
+                throw new FormatInputNoValid(missatge);
+            }
             this.solucio = aux;
         }
     }
 
-    //Constructora
-    public Solucio(ArrayList<ArrayList<String>> s, String n) {
+
+    public Solucio(ArrayList<ArrayList<String>> s, String n) throws FormatInputNoValid {
+        if (!matriuValida(s)) {
+            String missatge = "La matriu de productes no es valida";
+            throw new FormatInputNoValid(missatge);
+        }
         this.nom = n;
         this.solucio = s;
     }
@@ -56,9 +66,7 @@ public class Solucio {
 
     //Metodes addicionals
     /**
-     * @Class Solucio
      * Mostra el nom dels productes d'una solucio en ordre.
-     * @author Eulalia Peiret Santacana
      */
     public void mostrarSolucio() {
         System.out.print(nom+": ");
@@ -66,27 +74,19 @@ public class Solucio {
             for (int j = 0; j < solucio.get(i).size(); ++j) {
                 if (j == 0) {
                     System.out.println();
-                    System.out.println("------------------------------------------");
-                    System.out.print("| ");
                 }
-                System.out.print(solucio.get(i).get(j));
-
-                if (j != solucio.get(i).size() - 1) {
-                    System.out.print(" | ");
-                } else {
-                    System.out.println(" |");
-                    System.out.println("------------------------------------------");
-                }
+                System.out.print(solucio.get(i).get(j) + " ");
             }
         }
         if (solucio.size() == 0) System.out.println("la solucio no te cap producte");
+        else System.out.println();
     }
 
     /**
-     * @Class Solucio
+     * Comprova si un producte forma part de la solucio
+     *
      * @param nomProducte: el nom d'un producte
      * @return retorna true si hi ha un producte amb nom nomProducte a la solució. Fals en cas contrari.
-     * @author Eulalia Peiret Santacana
      */
     public boolean trobarProducte(String nomProducte){
         for (int i = 0; i < solucio.size(); ++i) {
@@ -95,5 +95,55 @@ public class Solucio {
             }
         }
         return false;
+    }
+
+    /**
+     * Retorna cert si existeix un producte en la posicio indicada
+     *
+     * @param i fila de la matriu
+     * @param j columne de la matriu
+     * @return cert si existeix producte en solucio[i][j], fals en cas contrari
+     */
+    public boolean existeixPosicio(int i, int j){
+        if(i >= solucio.size()){
+            return false;
+        }
+        else if(i+1 == solucio.size() && j >= solucio.getLast().size()){
+           return false;
+        }
+        else if (j >= solucio.getFirst().size()) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Comprova que la matriu de productes no tingui productes repetits i tingui la estructura correcte
+     */
+    private boolean matriuValida(ArrayList<ArrayList<String>> matriu){
+        // Crear un HashSet perque torni fals si intentes afegir un element que ja existeix
+        HashSet<String> valoresUnicos = new HashSet<>();
+
+        //mira si hi ha un prestatge mes curt que l'altre i no es l'ultim
+        if (!matriu.isEmpty()){
+            for (int i = 0; i < matriu.size(); i++) {
+                if (i < matriu.size() - 2){
+                   if (matriu.get(i).size() !=  matriu.get(i+1).size()) return false;
+                }
+                else if (i == matriu.size() - 2){
+                    if (matriu.get(i).size() <  matriu.get(i+1).size()) return false;
+                }
+
+                for (String valor : matriu.get(i)) {
+                    // Si el valor ya está en el conjunt, torna fals
+                    if (!valoresUnicos.add(valor)) {
+                        return false;
+                    }
+                }
+
+
+            }
+        }
+        return true;
     }
 }

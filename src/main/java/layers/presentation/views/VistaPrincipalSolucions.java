@@ -49,7 +49,8 @@ public class VistaPrincipalSolucions extends VistaControladors {
         etiquetaTriar.setText(textEtiquetaTriar);
         textBotoAfegir = "Crear solucio";
         botoAfegir.setText(textBotoAfegir);
-        botoMostrar.setText("Mostrar solucio");
+        textBotoMostrar = "Mostrar solucio";
+        botoMostrar.setText(textBotoMostrar);
 
         //Inicialitzem el ComboBox amb totes les opcions
         ArrayList<String> solsIni = ctrlVistaSolucions.getSolucions();
@@ -78,9 +79,17 @@ public class VistaPrincipalSolucions extends VistaControladors {
         else if (textBoto.equals(textBotoAlgorisme)) {
             ctrlVistaSolucions.canviarAlgorisme();
         }
-        else if (textBoto.equals(textBotoMostrar)) {
+        else if (textBoto.equals(textBotoMostrar)) {System.out.println("1");
             String solucioSeleccionada = (String) opcions.getSelectedItem();
-            ctrlVistaSolucions.mostrarSolucio(solucioSeleccionada);
+            if (solucioSeleccionada == null) {
+                JOptionPane.showMessageDialog(frameVista,
+                        "No hi ha cap solucio al sistema.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                ctrlVistaSolucions.mostrarSolucio(solucioSeleccionada);
+            }
         }
         else {
             super.botoAccionat(textBoto);
@@ -143,7 +152,7 @@ public class VistaPrincipalSolucions extends VistaControladors {
 
         if (inputNumber < 1) {
             JOptionPane.showMessageDialog(frameVista,
-                    "Si us plau, introdueix un numero enter positiu valid .",
+                    "Si us plau, introdueix un numero enter positiu valid.",
                     "Error d'entrada",
                     JOptionPane.ERROR_MESSAGE);
             return insertaProdPrestatge();

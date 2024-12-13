@@ -73,11 +73,4 @@ public class VistaControladors extends VistaGenerica {
         add(Box.createRigidArea(new Dimension(0, 10)));
     }
 
-    @Override
-    protected void itemAccionat(String textItem) {
-        if (textItem.equals(textItemSortir)) {
-            super.tornar();
-        }
-        else super.itemAccionat(textItem);
-    }
 }
