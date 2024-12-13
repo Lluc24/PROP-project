@@ -7,7 +7,7 @@ import java.util.*;
 
 public class SolucioModificada extends Solucio {
 
-    // Constructor
+    // Constructora
     public SolucioModificada(ArrayList<ArrayList<String>> s, String n) throws FormatInputNoValid {
         super(s, n);
         this.solucio = s;
@@ -15,12 +15,10 @@ public class SolucioModificada extends Solucio {
     }
 
     /**
-     *
-     * @Class SolucioModificada
      * Intercanvia els productes prod1 i prod2 si els dos estan en la solució
+     *
      * @param prod1 nom del primer producte
      * @param prod2 nom del segon producte
-     * @author Eulalia Peiret Santacana
      */
     public void intercanvia (String prod1, String prod2) throws IntercanviNoValid {
         if (prod1.equals(prod2)) {
@@ -46,10 +44,13 @@ public class SolucioModificada extends Solucio {
     }
 
     /**
-     *
-     * @Class SolucioModificada
      * Intercanvia els productes amb els index indicats si els dos estan en la solució
-     * @author Eulalia Peiret Santacana
+     *
+     * @param index1i fila del primer poroducte
+     * @param index1j columna del primer poroducte
+     * @param index2i fila del segon poroducte
+     * @param index2j columna del segon poroducte
+     * @throws IntercanviNoValid si els productes en les posicions indicades no es poden intercanviar per algun motiu
      */
     public void intercanvia (int index1i, int index1j, int index2i,int index2j) throws IntercanviNoValid{
         if (index1i == index2i && index1j == index2j) {

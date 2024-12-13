@@ -13,7 +13,7 @@ public class Solucio {
     protected ArrayList<ArrayList<String>> solucio;
     protected String nom;
 
-    // Constructora
+    // Constructores
     public Solucio(ArrayList<String> s, String n, int p) throws FormatInputNoValid{
         if (p <= 0) {
             String missatge = "El numero de productes per prestatgeria ha de ser minim 1";
@@ -45,7 +45,7 @@ public class Solucio {
         }
     }
 
-    //Constructora
+
     public Solucio(ArrayList<ArrayList<String>> s, String n) throws FormatInputNoValid {
         if (!matriuValida(s)) {
             String missatge = "La matriu de productes no es valida";
@@ -66,9 +66,7 @@ public class Solucio {
 
     //Metodes addicionals
     /**
-     * @Class Solucio
      * Mostra el nom dels productes d'una solucio en ordre.
-     * @author Eulalia Peiret Santacana
      */
     public void mostrarSolucio() {
         System.out.print(nom+": ");
@@ -85,10 +83,10 @@ public class Solucio {
     }
 
     /**
-     * @Class Solucio
+     * Comprova si un producte forma part de la solucio
+     *
      * @param nomProducte: el nom d'un producte
      * @return retorna true si hi ha un producte amb nom nomProducte a la solució. Fals en cas contrari.
-     * @author Eulalia Peiret Santacana
      */
     public boolean trobarProducte(String nomProducte){
         for (int i = 0; i < solucio.size(); ++i) {
@@ -101,6 +99,7 @@ public class Solucio {
 
     /**
      * Retorna cert si existeix un producte en la posicio indicada
+     *
      * @param i fila de la matriu
      * @param j columne de la matriu
      * @return cert si existeix producte en solucio[i][j], fals en cas contrari

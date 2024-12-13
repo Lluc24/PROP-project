@@ -120,7 +120,8 @@ public class CtrlPersistenciaSolucio {
     }
 
     /**
-     * L'usuari vol guardar les solucions del sistema a un arxiu
+     * L'usuari vol guardar les solucions del sistema a un arxiu.
+     *
      * @param contingut totes les dades de les solucions en el format correcte
      * @param path lloc on es vol guardar
      * @param nomArxiu nom del arxiu on es vol guardar
@@ -138,10 +139,15 @@ public class CtrlPersistenciaSolucio {
         }
     }
 
-    public boolean directoriCorrecte(String path) {
+    /**
+     * Es vol saber si un directori es valid.
+     *
+     * @param path path del directori.
+     * @return true si el directori es valid i s'hi pot escriure, false altrament.
+     */
+    private boolean directoriCorrecte(String path) {
         File directori = new File(path);
         // Comprovar si el directori existeix, es valid i es pot escriure
         return (directori.exists() && directori.isDirectory() && directori.canWrite());
     }
-
 }

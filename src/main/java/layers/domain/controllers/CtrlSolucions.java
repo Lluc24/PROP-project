@@ -64,6 +64,7 @@ public class CtrlSolucions extends CtrlGeneric {
 
     /**
      * L'usuari vol saber si existeix una solucio amb un nom determinat
+     *
      * @param nomSolucio nom de la solucio
      * @return retorna true si la solucio existeix, false altrament
      */
@@ -111,7 +112,8 @@ public class CtrlSolucions extends CtrlGeneric {
     }
 
     /**
-     *L'usuari crida a aquesta funcio quan vol intercanviar dos productes d'una solucio
+     * L'usuari crida a aquesta funcio quan vol intercanviar dos productes d'una solucio
+     *
      * @param prod1 nom d'un producte a intercanviar
      * @param prod2 nom d'un producte a intercanviar
      * @param nomSolucio nom de la solucio a modificar
@@ -151,6 +153,7 @@ public class CtrlSolucions extends CtrlGeneric {
 
     /**
      *L'usuari crida a aquesta funcio quan vol intercanviar dos productes d'una solucio. proporciona els index dels productes dins la solucio
+     *
      * @param nomSolucio
      */
     public void modificarSolucio (int index1i, int index1j, int index2i,int index2j, String nomSolucio) throws IntercanviNoValid, NomSolucioNoValid, FormatInputNoValid {
@@ -185,6 +188,7 @@ public class CtrlSolucions extends CtrlGeneric {
 
     /**
      * L'usuari vol eliminar una solucio del sistema
+     *
      * @param nomSolucio el nom de la solucio que es vol eliminar
      * @throws NomSolucioNoValid si no existeix cap solucio amb el nom indicat
      */
@@ -230,6 +234,7 @@ public class CtrlSolucions extends CtrlGeneric {
 
     /**
      * Mostra per terminal una solucio especifica
+     *
      * @param nomSol nom de la solucio que es vol mostrar
      * @throws NomSolucioNoValid si no hi ha cap solucio amb el nom indicat
      */
@@ -251,6 +256,7 @@ public class CtrlSolucions extends CtrlGeneric {
 
     /**
      * L'usuari vol carregar solucions al del sistema des d'un fitxer
+     *
      * @param path on hi ha el fitxer
      * @param nomArxiu nom del fitxer amb les solucions
      */
@@ -271,6 +277,7 @@ public class CtrlSolucions extends CtrlGeneric {
 
     /**
      * El sistema te informacio sobre una solucio i vol carregar-la al sistema
+     *
      * @param modificada indica si la solucio esta modificada
      * @param nomSolucio indica el nom de la solucio
      * @param sol distribucio dels productes de la solucio
@@ -295,6 +302,7 @@ public class CtrlSolucions extends CtrlGeneric {
 
     /**
      * L'usuari vol guardar totes les solucions del sistema en un fitxer
+     *
      * @param path on es trova el fitxer
      * @param nomArxiu nom del fitxer amb les solucions
      */

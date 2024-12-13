@@ -32,6 +32,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
 
     /**
      * La vista vol saber les solucions actuals al sistema
+     *
      * @return retorna un vector amb els noms de les solucions
      */
     public ArrayList<String> getSolucions() {
@@ -40,6 +41,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
 
     /**
      * La vista vol saber de quin tipus és l'algorisme actual
+     *
      * @return retorna el tipus del algorisme
      */
     public String getAlgorismeAct(){
@@ -48,6 +50,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
 
     /**
      * La vista vol afegir una nova solucio al sistema
+     *
      * @param nom nom de la nova solucio
      * @param prodPrest numero de productes per prestatge de la nova solucio
      */
@@ -63,6 +66,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
 
     /**
      * La vista vol canviar l'algorisme actual
+     *
      * @param tipusAlgorisme el tipus del nou algorisme que vol com a actual
      */
     public void gestioAlgorisme(String tipusAlgorisme){
@@ -75,6 +79,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
 
     /**
      * La vista vol mostrar una solucio especifica
+     *
      * @param s nom de la solucio especifica que vol mostrar
      */
     public void mostrarSolucio(String s){
@@ -114,6 +119,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
 
     /**
      * L'algorisme actual és de tipus greedy i l'usuari vol canviar-ne els paràmetres
+     *
      * @param idx index del producte amb el que comencar a buscar la millor solucio
      * @param iter numero d'iteracions fins a tornar una solucio
      */
@@ -125,10 +131,24 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
         }
     }
 
+    /**
+     * L'usuari vol guardar les solucions actuals del sistema en un fitxer.
+     *
+     * @param path lloc on esta el fitxer
+     * @param nomArxiu nom del fitxer on es vol guardar
+     * @throws FormatInputNoValid si algun dels paràmetres passats no son valids, es llença l'exepcio
+     */
     public void guardarSolucions(String path, String nomArxiu) throws FormatInputNoValid{
         ctrlSolucions.guardaSolucio(path, nomArxiu);
     }
 
+    /**
+     * L'usuari vol carregar les solucions des d'un fitxer al sistema.
+     *
+     * @param path lloc on esta el fitxer
+     * @param nomArxiu nom del fitxer on es vol guardar
+     * @throws FormatInputNoValid si algun dels paràmetres passats no son valids, es llença l'exepcio
+     */
     public void carregarSolucions(String path, String nomArxiu) throws FormatInputNoValid{
         ctrlSolucions.carregaSolucions(path,nomArxiu);
     }
