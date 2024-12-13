@@ -8,15 +8,20 @@ public abstract class BotoGeneric extends JButton {
     protected int width = 100;
     protected int height = 20;
 
-    public BotoGeneric(int width, int height, String text) {
-        super(text);
-        this.width = width;
-        this.height = height;
+    public BotoGeneric() {
+        super();
         inicialitzarBoto();
     }
 
     public BotoGeneric(String text) {
         super(text);
+        inicialitzarBoto();
+    }
+
+    public BotoGeneric(int width, int height, String text) {
+        super(text);
+        this.width = width;
+        this.height = height;
         inicialitzarBoto();
     }
 

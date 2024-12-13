@@ -9,6 +9,7 @@ import java.awt.event.*;
 import java.util.Locale;
 
 public abstract class VistaGenerica extends JPanel {
+
     protected int width = 800;
     protected int height = 600;
 
@@ -151,6 +152,10 @@ public abstract class VistaGenerica extends JPanel {
     }
 
     protected class Boto extends BotoGeneric {
+        public Boto() {
+            super();
+        }
+
         public Boto(String text) {
             super(text);
         }
