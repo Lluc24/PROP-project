@@ -19,12 +19,11 @@ public class VistaAfegirProducte extends VistaControladors {
     private ArrayList<String> similituds;
     private ArrayList<String> restriccions;
     private String[] productes;
-    private int index_restriccions = 0;
     private String nom_prod = "INSEREIX NOM";
 
     private JLabel labelNomProd;
 
-    private String textBotoFinalitzar = "Afegir Canvis";
+    private String textBotoFinalitzar = "Guardar";
     private Boto BotoFinalitzar;
 
     private String textBotoCanviNom = "Canvia Nom";
@@ -46,20 +45,19 @@ public class VistaAfegirProducte extends VistaControladors {
                     "Afegir Restriccio: Despres de seleccionar un producte, clica aquest boto per afegir una restriccio\n" +
                     "Afegir Similituds: Començaras un proces per afegir una similitud, per cada producte indicat. Un cop donades, amb es podra editar la similitud amb el producte indicat\n" +
                     "Canvi Nom: Permet cambiar el nom del producte\n" +
-                    "Afegir producte: Afegiras el producte de manera definitiva, no podras fer us d'aquest boto fins que el producte tingui nom i totes les similituds estiguin donades\n";
+                    "Guardar: Afegiras el producte de manera definitiva, no podras fer us d'aquest boto fins que el producte tingui nom i totes les similituds estiguin donades\n";
 
             super.executar();
         } else {
             frameVista.setVisible(true);
             actualitzarComponents();
+
         }
 
     }
 
     @Override
     public void inicialitzarComponents() {
-        super.inicialitzarComponents();
-
         te_nom = false;
         Simis_DONE = false;
 
@@ -69,19 +67,16 @@ public class VistaAfegirProducte extends VistaControladors {
         similituds = new ArrayList<>();
         restriccions = new ArrayList<>();
 
-        labelNomProd = new JLabel(nom_prod);
+        labelNomProd = new JLabel("PRODUCTE "+nom_prod);
         labelNomProd.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(labelNomProd);
         add(Box.createRigidArea(new Dimension(0,10)));
         //Capuramos nombre del producto
         afegirNom();
 
-        if (mida_cataleg == 0) {
-            Simis_DONE = true;
-            botoAccionat(textBotoFinalitzar);
-        }
+        super.inicialitzarComponents();
 
-        textEtiquetaTriar = "Quin producte vols seleccionar";
+        textEtiquetaTriar = "PRODUCTES DINS DEL CATALEG";
         etiquetaTriar.setText(textEtiquetaTriar);
 
         //Setear botones de vista controlador
@@ -92,17 +87,19 @@ public class VistaAfegirProducte extends VistaControladors {
         else textBotoMostrar = "Editar Similitud";
         botoMostrar.setText(textBotoMostrar);
 
-        //Setear boto finalitzar
-        BotoFinalitzar = new Boto(textBotoFinalitzar);
-        BotoFinalitzar.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        add(BotoFinalitzar);
-        add(Box.createRigidArea(new Dimension(0, 10)));
-
         //Boto Canviar nom
         BotoCanviNom = new Boto(textBotoCanviNom);
         BotoCanviNom.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(BotoCanviNom);
         add(Box.createRigidArea(new Dimension(0,10)));
+
+        //Setear boto finalitzar
+        BotoFinalitzar = new Boto(textBotoFinalitzar);
+        BotoFinalitzar.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        BotoFinalitzar.setBackground(Color.GREEN);
+        add(BotoFinalitzar);
+        add(Box.createRigidArea(new Dimension(0, 10)));
+        add(Box.createVerticalGlue());
 
         opcions.removeAllItems();
         for (String item : productes) {
@@ -158,7 +155,6 @@ public class VistaAfegirProducte extends VistaControladors {
             canviaNom();
         } else if (textBoto.equals(textBotoTornar)) {
             AvisSortir();
-            super.botoAccionat(textBoto);
         } else if (textBoto.equals(textItemSortir)) {
             AvisSortir();
             super.botoAccionat(textBoto);
@@ -194,9 +190,18 @@ public class VistaAfegirProducte extends VistaControladors {
     }
 
     private void AfegirRestriccio(String prodSeleccionat) {
-        restriccions.add(prodSeleccionat);
-        ++index_restriccions;
+        boolean trobat = false;
+        for (String item : restriccions) {
+            if (item.equals(prodSeleccionat)) trobat = true;
+        }
+        if (trobat) {
+            String message = "Ya has añadido restriccion entre " + nom_prod + " y " + prodSeleccionat;
+            JOptionPane.showMessageDialog(frameVista, message, "Afegir Restriccio", JOptionPane.ERROR_MESSAGE);
+        } else {
+            restriccions.add(prodSeleccionat);
+        }
     }
+
 
     private void afegirNom() {
         String nom = null;
@@ -214,7 +219,7 @@ public class VistaAfegirProducte extends VistaControladors {
             }
         }
         nom_prod = nom;
-        labelNomProd.setText(nom_prod);
+        labelNomProd.setText("PRODUCTE: "+nom_prod);
     }
 
     private void canviaNom() {
@@ -230,7 +235,7 @@ public class VistaAfegirProducte extends VistaControladors {
             }
         }
         nom_prod = nom;
-        labelNomProd.setText(nom);
+        labelNomProd.setText("PRODUCTE: "+nom);
     }
 
     private void finalizar() {
@@ -245,12 +250,6 @@ public class VistaAfegirProducte extends VistaControladors {
             }
             String message = "No has afegit totes les informacio del producte\n" + falta_nom + "\n" + falta_Simis;
             JOptionPane.showMessageDialog(frameVista, message, "Error Input", JOptionPane.ERROR_MESSAGE);
-        } else if (controlVista.getNumProd() == 0) {
-            String[] buit ={};
-            controlVista.afegirProducte(nom_prod,buit, buit);
-            String message = "El producte ja s'afegit\n Ja que es el primer producte no necesitem mes informacio";
-            JOptionPane.showMessageDialog(frameVista, message, "Producte Afegit", JOptionPane.INFORMATION_MESSAGE);
-            frameVista.dispose();
         } else {
             String[] restriccionsArray = new String[restriccions.size()];
             for (int i = 0; i < restriccions.size(); ++i){
@@ -268,10 +267,14 @@ public class VistaAfegirProducte extends VistaControladors {
     }
 
     private void AvisSortir() {
-        JOptionPane.showMessageDialog(frameVista,
-                "CAUTION: Has d'afegir el producte, si surts perdras tota la informacio del producte ",
-                "Error Input",
-                JOptionPane.ERROR_MESSAGE);
+        int  result = JOptionPane.showConfirmDialog(frameVista,
+                "CAUTION: Has d'afegir el producte, si surts perdras tota la informacio del producte\n" +
+                        "Estas segur que vols tornar ?",
+                "Estas segur?",
+                JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.YES_OPTION) {
+            super.botoAccionat(textBotoTornar);
+        }
 
     }
 
@@ -290,7 +293,7 @@ public class VistaAfegirProducte extends VistaControladors {
     }
 
     private String getSimilitud(String producteSeleccionat) {
-        Boolean numValid = false;
+        boolean numValid = false;
         String result = null;
         while (!numValid) {
             double ret = -1;

@@ -44,13 +44,13 @@ public class VistaInfoProducte extends VistaControladors {
 
     @Override
     public void inicialitzarComponents() {
-        super.inicialitzarComponents();
-
         //Label nom producte
         labelNom_prod = new JLabel("PRODUCTE: "+nom_prod);
         labelNom_prod.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(labelNom_prod);
         add(Box.createRigidArea(new Dimension(0,10)));
+
+        super.inicialitzarComponents();
 
         //Boto eliminar
         textBotoAfegir = "ELIMINAR PRODUCTE";
@@ -61,6 +61,7 @@ public class VistaInfoProducte extends VistaControladors {
         //Boto editar
         textBotoMostrar = "EDITAR PRODUCTE";
         botoMostrar.setText(textBotoMostrar);
+        add(Box.createVerticalGlue());
 
         //ComboBox
         String[] productes = controlVista.getProductes();

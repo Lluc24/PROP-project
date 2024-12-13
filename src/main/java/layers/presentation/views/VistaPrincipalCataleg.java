@@ -45,11 +45,11 @@ public class VistaPrincipalCataleg extends VistaControladors {
         etiquetaTriar.setText(textEtiquetaTriar);
 
         //Boto Afegir productes
-        textBotoAfegir = "Afegir Productes";
+        textBotoAfegir = "Afegir Producte";
         botoAfegir.setText(textBotoAfegir);
 
         //Boto mostrar Producte
-        textBotoMostrar = "Mostrar Producte";
+        textBotoMostrar = "Mostrar Productes";
         botoMostrar.setText(textBotoMostrar);
 
         //Boto Consultar Restriccions
@@ -79,7 +79,20 @@ public class VistaPrincipalCataleg extends VistaControladors {
     @Override
     public void botoAccionat (String textBoto) {
         if (textBoto.equals(textBotoAfegir)) {
-            canviVistaAfegirProducte();
+            int mida = controlVista.getNumProd();
+            if (mida == 0) {
+                //Pedir nombre
+                String nom = getNomUsuari();
+                String[] buit = {};
+                //AñadirProducto
+                controlVista.afegirProducte(nom, buit, buit);
+                String message = "El producte ja s'afegit\n Ja que es el primer producte no necesitem mes informacio";
+                JOptionPane.showMessageDialog(frameVista, message, "Producte Afegit", JOptionPane.INFORMATION_MESSAGE);
+                actualitzarComponents();
+            } else {
+                canviVistaAfegirProducte();
+                actualitzarComponents();
+            }
         } else if (textBoto.equals(textBotoMostrar)) {
             String prodSeleccionat = (String) opcions.getSelectedItem();
             if (prodSeleccionat == null || prodSeleccionat.isEmpty()) {
@@ -107,6 +120,19 @@ public class VistaPrincipalCataleg extends VistaControladors {
 
     public void canviaVistaInfoProd(String prod) {
         controlVista.canviarVista("InfoProducte", prod);
+    }
+
+    private String getNomUsuari() {
+        String message = "Afegeix el nom del producte que vols afegir";
+        String result = JOptionPane.showInputDialog(frameVista, message, "Afegir Nom", JOptionPane.QUESTION_MESSAGE);
+        if (result == null || result.isEmpty()) {
+            JOptionPane.showMessageDialog(frameVista,
+                    "Si us plau, introdueix un nombre per el producte",
+                    "Error Input",
+                    JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+        return result;
     }
 
 }
