@@ -18,14 +18,14 @@ public class VistaInfoProducte extends VistaControladors {
     private JLabel labelNom_prod;
 
 
-    public VistaInfoProducte(CtrlVistaCatalegAmbRestriccions cps, String nom_prod) {
+    public VistaInfoProducte(CtrlVistaCatalegAmbRestriccions cps) {
         controlVista = cps;
-        this.nom_prod = nom_prod;
     }
 
-    public void executar() {
+    public void executar(String nom) {
         if (primeraVegada) {
-            titolFrame = "Vista Info producte: " +nom_prod;
+            this.nom_prod = nom;
+            titolFrame = "Vista Info producte";
             ajuda = "Estas a la vista de informacio del producte "+nom_prod+" aqui pots" +
                     "consultar les seves similituds amb la resta de productes" +
                     ", editar alguna d'aquestes similituds i eliminar el producte\n" +
@@ -35,6 +35,7 @@ public class VistaInfoProducte extends VistaControladors {
                     "Enrere: Et permet anar a l'anterior vista\n" +
                     "Sortir: Finalitzar l'aplicacio\n";
             super.executar();
+            actualitzarComponents();
             frameVista.setVisible(true);
         } else {
             actualitzarComponents();
@@ -80,6 +81,9 @@ public class VistaInfoProducte extends VistaControladors {
     }
 
     public void actualitzarComponents() {
+
+        labelNom_prod.setText("PRODUCTE: "+nom_prod);
+
         String[] productes = controlVista.getProductes();
         String[] similituds = controlVista.getSimilituds();
         String[] Prod_Simi = new String[productes.length];
