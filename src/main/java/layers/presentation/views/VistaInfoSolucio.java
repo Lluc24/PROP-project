@@ -35,6 +35,10 @@ public class VistaInfoSolucio extends VistaGenerica {
     Pair<Integer, Integer> producte1Seleccionat = new Pair<Integer, Integer>(-1, -1);
     Pair<Integer, Integer> producte2Seleccionat = new Pair<Integer, Integer>(-1, -1);
 
+    private int files;
+    private int columnes;
+    private int columnesUltimaFila;
+
     protected CtrlVistaSolucions ctrlVistaSolucions;
 
     protected List<List<String>> productes;
@@ -55,6 +59,8 @@ public class VistaInfoSolucio extends VistaGenerica {
     protected String textBotoCanviEstatGeneralEnVisualitzar = "Mode Editar";
     protected String textBotoCanviEstatGeneralEnEditar = "Mode Visualitzar";
     protected Boto botoCanviEstatGeneral;
+    protected String textBotoEliminarSolucio = "Eliminar i Sortir";
+    protected Boto botoEliminarSolucio;
 
     protected JPanel panelEdicio;
 
@@ -77,23 +83,36 @@ public class VistaInfoSolucio extends VistaGenerica {
     protected String textBotoSegonProducteEnSeleccionat = "Confirmar producte2";
     protected Boto botoSegonProducte;
 
-
-    public void executar(CtrlVistaGeneric ctrl, List<List<String>> productes) {
+    public VistaInfoSolucio(CtrlVistaSolucions ctrl) {
         ctrlVistaSolucions = (CtrlVistaSolucions) ctrl;
+    }
+
+    public void executar(List<List<String>> productes) {
         //this.productes = productes;
         this.productes = new ArrayList<List<String>>();
         List<String> l1 = new ArrayList<String>();
         l1.add("ous"); l1.add("llet"); l1.add("peix");
         List<String> l2 = new ArrayList<String>();
-        l2.add("pa"); l2.add("farina"); l2.add("oli");
+        l2.add("pa"); l2.add("farina");
         this.productes.add(l1); this.productes.add(l2);
         titolFrame = "Informacio de la solucio";
         ajuda = "No hi ha";
+
+        files = this.productes.size();
+        if (files > 0) {
+            columnes = this.productes.getFirst().size();
+            columnesUltimaFila = this.productes.getLast().size();
+        }
+        else {
+            columnes = 0;
+            columnesUltimaFila = 0;
+        }
 
         super.executar();
     }
 
     protected void inicialitzarComponents() {
+
         width = 1000;
         height = 600;
         teBotoTornar = true;
@@ -113,7 +132,7 @@ public class VistaInfoSolucio extends VistaGenerica {
         add(etiquetaTitol);
 
         // Inicialitzem la taula amb els productes
-        modelTaula = new ModelTaula(productes); // Model que gestiona l'ED de la taula
+        modelTaula = new ModelTaula(); // Model que gestiona l'ED de la taula
         taulaCataleg = new JTable(modelTaula);
 
         taulaCataleg.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); // Perque el width no s'ajusti automaticament
@@ -136,6 +155,9 @@ public class VistaInfoSolucio extends VistaGenerica {
         botoCanviEstatGeneral = new Boto();
         botoCanviEstatGeneral.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(botoCanviEstatGeneral);
+        botoEliminarSolucio = new Boto(textBotoEliminarSolucio);
+        botoEliminarSolucio.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(botoEliminarSolucio);
 
         // A partir d'aqui vindra el panel d'edicio (visible sii estatEditar = true). Afegim una separacio
         add(Box.createRigidArea(new Dimension(0, 15)));
@@ -277,6 +299,11 @@ public class VistaInfoSolucio extends VistaGenerica {
             return;
         }
 
+        if (celaFantasma(fila, columna)) {
+            System.err.println("Casella fantasma");
+            return;
+        }
+
         estatProducte1 = EstatProducte.SELECCIONAT;
         actualitzaProducte1Seleccionat(fila, columna);
         botoPrimerProducte.setText(textBotoPrimerProducteEnSeleccionat);
@@ -331,6 +358,11 @@ public class VistaInfoSolucio extends VistaGenerica {
             return;
         }
 
+        if (celaFantasma(fila, columna)) {
+            System.err.println("Casella fantasma");
+            return;
+        }
+
         producte1Seleccionat.first = fila;
         producte1Seleccionat.second = columna;
         String producte = (String) taulaCataleg.getValueAt(fila, columna);
@@ -372,6 +404,11 @@ public class VistaInfoSolucio extends VistaGenerica {
         err = String.format(errEstatTemplate, "canviEstatProducte2ASeleccionat", "estatProducte2", estatProducte2, EstatProducte.SELECCIONAR);
         if (estatProducte2 != EstatProducte.SELECCIONAR) {
             System.err.println(err);
+            return;
+        }
+
+        if (celaFantasma(fila, columna)) {
+            System.err.println("Casella fantasma");
             return;
         }
 
@@ -436,12 +473,21 @@ public class VistaInfoSolucio extends VistaGenerica {
             return;
         }
 
+        if (celaFantasma(fila, columna)) {
+            System.err.println("Casella fantasma");
+            return;
+        }
+
         producte2Seleccionat.first = fila;
         producte2Seleccionat.second = columna;
         String producte = (String) taulaCataleg.getValueAt(fila, columna);
         etiquetaSegonProducte.setText(producte);
     }
 
+    private boolean celaFantasma(int fila, int columna) {
+        if (fila == files - 1) return columna >= columnesUltimaFila;
+        else return false;
+    }
 
     protected void botoAccionat(String textBoto) {
         if (textBoto.equals(textBotoCanviEstatGeneralEnVisualitzar)) {
@@ -461,6 +507,14 @@ public class VistaInfoSolucio extends VistaGenerica {
         }
         else if (textBoto.equals(textBotoSegonProducteEnSeleccionat)) {
             canviEstatProducte2AConfirmat();
+        }
+        else if (textBoto.equals(textBotoIntercanviar)) {
+            ctrlVistaSolucions.intercanviarProductes(producte1Seleccionat.first, producte1Seleccionat.second,
+                    producte2Seleccionat.first, producte2Seleccionat.second);
+        }
+        else if (textBoto.equals(textBotoEliminarSolucio)) {
+            ctrlVistaSolucions.eliminarSolucio();
+            sortir();
         }
         else {
             super.botoAccionat(textBoto);
@@ -502,14 +556,8 @@ public class VistaInfoSolucio extends VistaGenerica {
     }
 
     protected class ModelTaula extends AbstractTableModel {
-        private final List<List<String>> matriu;
-        private final int files;
-        private final int columnes;
 
-        ModelTaula(List<List<String>> mat) {
-            matriu = mat;
-            files = mat.size();
-            columnes = files > 0 ? mat.getFirst().size() : 0;
+        ModelTaula() {
         }
 
         public int getColumnCount() {
@@ -525,11 +573,12 @@ public class VistaInfoSolucio extends VistaGenerica {
         }
 
         public Object getValueAt(int row, int col) {
-            return matriu.get(row).get(col);
+            if (celaFantasma(row, col)) return "";
+            return productes.get(row).get(col);
         }
 
         public void setValueAt(Object value, int row, int col) {
-            matriu.get(row).set(col, (String) value);
+            productes.get(row).set(col, (String) value);
             fireTableCellUpdated(row, col);
         }
     }
