@@ -10,7 +10,7 @@ public class VistaGestioAlgorisme extends VistaGenerica {
 
     protected String textEtiquetaInfo = "L'algorisme actual es de tipus ";
     protected JLabel etiquetaInfo;
-    protected String textEtiquetaTriar = "Vols canviarlo? Selecciona el que prefereixis:";
+    protected String textEtiquetaTriar = "Vols canviar-lo? Selecciona el que prefereixis:";
     protected JLabel etiquetaTriar;
 
     protected String textBotoAproximacio = "Aproximacio";
@@ -91,30 +91,29 @@ public class VistaGestioAlgorisme extends VistaGenerica {
     protected void botoAccionat(String textBoto) {
         if (textBoto.equals(textBotoAproximacio)) {
             ctrlVistaSolucions.gestioAlgorisme("aproximacio");
-            textEtiquetaInfo = "L'algorisme actual és de tipus aproximacio";
+            textEtiquetaInfo = "L'algorisme actual es de tipus aproximacio";
             etiquetaInfo.setText(textEtiquetaInfo);
         } else if (textBoto.equals(textBotoGreedy)) {
             int idx = insertaIdx();
-            int iteracions = insertaIteracions();
-            if (idx >= 0 && iteracions >= 0) {
-                ctrlVistaSolucions.gestioAlgorisme("greedy");
-                ctrlVistaSolucions.setParametres(idx, iteracions);
-                textEtiquetaInfo = "L'algorisme actual és de tipus greedy (idx = " + idx + ", iteracions = " + iteracions + ")";
-                etiquetaInfo.setText(textEtiquetaInfo);
+            if (idx >= 0) {
+                int iteracions = insertaIteracions();
+                if (iteracions >= 0) {
+                    ctrlVistaSolucions.gestioAlgorisme("greedy");
+                    ctrlVistaSolucions.setParametres(idx, iteracions);
+                    textEtiquetaInfo = "L'algorisme actual es de tipus greedy (idx = " + idx + ", iteracions = " + iteracions + ")";
+                    etiquetaInfo.setText(textEtiquetaInfo);
+                }
             }
 
         } else if (textBoto.equals(textBotoBacktracking)) {
             ctrlVistaSolucions.gestioAlgorisme("algorismeBT");
-            textEtiquetaInfo = "L'algorisme actual és de tipus backtracking";
+            textEtiquetaInfo = "L'algorisme actual es de tipus backtracking";
             etiquetaInfo.setText(textEtiquetaInfo);
-        } else {
-            super.botoAccionat(textBoto);
         }
-    }
-
-    @Override
-    protected void itemAccionat(String textItem) {
-        super.itemAccionat(textItem);
+        else {
+            super.botoAccionat(textBoto);
+            tornar();
+        }
     }
 
     /**
