@@ -1,10 +1,6 @@
 package layers.presentation.controllers;
 
 import layers.domain.controllers.CtrlDomini;
-import layers.domain.controllers.CtrlSolucions;
-import layers.domain.controllers.CtrlCatalegAmbRestriccions;
-import layers.presentation.controllers.CtrlVistaSolucions;
-import layers.presentation.controllers.CtrlVistaCatalegAmbRestriccions;
 
 public class CtrlPresentacio {
     private static CtrlPresentacio instancia = null;

@@ -59,7 +59,7 @@ public class VistaInfoSolucio extends VistaGenerica {
     protected String textBotoCanviEstatGeneralEnVisualitzar = "Mode Editar";
     protected String textBotoCanviEstatGeneralEnEditar = "Mode Visualitzar";
     protected Boto botoCanviEstatGeneral;
-    protected String textBotoEliminarSolucio = "Eliminar solucio";
+    protected String textBotoEliminarSolucio = "Eliminar i Sortir";
     protected Boto botoEliminarSolucio;
 
     protected JPanel panelEdicio;
@@ -93,15 +93,15 @@ public class VistaInfoSolucio extends VistaGenerica {
         List<String> l1 = new ArrayList<String>();
         l1.add("ous"); l1.add("llet"); l1.add("peix");
         List<String> l2 = new ArrayList<String>();
-        l2.add("pa"); l2.add("farina"); l2.add("oli");
+        l2.add("pa"); l2.add("farina");
         this.productes.add(l1); this.productes.add(l2);
         titolFrame = "Informacio de la solucio";
         ajuda = "No hi ha";
 
-        files = productes.size();
+        files = this.productes.size();
         if (files > 0) {
-            columnes = productes.getFirst().size();
-            columnesUltimaFila = productes.getLast().size();
+            columnes = this.productes.getFirst().size();
+            columnesUltimaFila = this.productes.getLast().size();
         }
         else {
             columnes = 0;
@@ -112,6 +112,7 @@ public class VistaInfoSolucio extends VistaGenerica {
     }
 
     protected void inicialitzarComponents() {
+
         width = 1000;
         height = 600;
         teBotoTornar = true;
@@ -298,7 +299,10 @@ public class VistaInfoSolucio extends VistaGenerica {
             return;
         }
 
-        if (celaFantasma(fila, columna)) return;
+        if (celaFantasma(fila, columna)) {
+            System.err.println("Casella fantasma");
+            return;
+        }
 
         estatProducte1 = EstatProducte.SELECCIONAT;
         actualitzaProducte1Seleccionat(fila, columna);
@@ -354,7 +358,10 @@ public class VistaInfoSolucio extends VistaGenerica {
             return;
         }
 
-        if (celaFantasma(fila, columna)) return;
+        if (celaFantasma(fila, columna)) {
+            System.err.println("Casella fantasma");
+            return;
+        }
 
         producte1Seleccionat.first = fila;
         producte1Seleccionat.second = columna;
@@ -400,7 +407,10 @@ public class VistaInfoSolucio extends VistaGenerica {
             return;
         }
 
-        if (celaFantasma(fila, columna)) return;
+        if (celaFantasma(fila, columna)) {
+            System.err.println("Casella fantasma");
+            return;
+        }
 
         String estatProducte1Desitjat = EstatProducte.INICIAL + " o " + EstatProducte.CONFIRMAT;
         err = String.format(errEstatTemplate, "canviEstatProducte2ASeleccionat", "estatProducte1", estatProducte1, estatProducte1Desitjat);
@@ -463,7 +473,10 @@ public class VistaInfoSolucio extends VistaGenerica {
             return;
         }
 
-        if (celaFantasma(fila, columna)) return;
+        if (celaFantasma(fila, columna)) {
+            System.err.println("Casella fantasma");
+            return;
+        }
 
         producte2Seleccionat.first = fila;
         producte2Seleccionat.second = columna;
@@ -475,7 +488,6 @@ public class VistaInfoSolucio extends VistaGenerica {
         if (fila == files - 1) return columna >= columnesUltimaFila;
         else return false;
     }
-
 
     protected void botoAccionat(String textBoto) {
         if (textBoto.equals(textBotoCanviEstatGeneralEnVisualitzar)) {
@@ -502,6 +514,7 @@ public class VistaInfoSolucio extends VistaGenerica {
         }
         else if (textBoto.equals(textBotoEliminarSolucio)) {
             ctrlVistaSolucions.eliminarSolucio();
+            sortir();
         }
         else {
             super.botoAccionat(textBoto);
