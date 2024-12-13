@@ -287,6 +287,16 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         return ctrl.find_prod(nomProd);
     }
 
+    /**
+     * Canvia el nom a un producte.
+     *
+     * @param nomAnterior Nom anterior del producte.
+     * @param nomNou Nou nom del producte.
+     */
+    public void canviarNom(String nomAnterior, String nomNou) {
+        //ctrl.canviar_nom(nomAnterior, nomNou);
+    }
+
     //Legacy
 
     /*

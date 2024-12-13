@@ -4,6 +4,7 @@ import layers.presentation.controllers.CtrlVistaGeneric;
 import layers.presentation.controllers.CtrlVistaSolucions;
 
 import javax.swing.*;
+import java.util.List;
 
 public class VistaInfoSolucio extends VistaGenerica {
     protected CtrlVistaSolucions ctrlVistaSolucions;
@@ -11,8 +12,12 @@ public class VistaInfoSolucio extends VistaGenerica {
     protected String textEtiquetaProductes = "Productes de la solucio";
     protected JLabel etiquetaProductes;
 
-    protected void executar(CtrlVistaGeneric ctrl) {
-        ctrlVistaSolucions = (CtrlVistaSolucions) ctrl;
+    //Constructora
+    public VistaInfoSolucio(CtrlVistaSolucions ctrl){
+        ctrlVistaSolucions = ctrl;
+    }
+
+    protected void executar(List<List<String>> solList) {
         titolFrame = "Informacio de la solucio";
         ajuda = "No hi ha";
 
