@@ -34,22 +34,23 @@ public class VistaInfoProducte extends VistaControladors {
                     "ComboBox: Et mostra les similituds amb la resta de productes, en pot seleccionar una\n" +
                     "Enrere: Et permet anar a l'anterior vista\n" +
                     "Sortir: Finalitzar l'aplicacio\n";
-            frameVista.setVisible(true);
             super.executar();
+            frameVista.setVisible(true);
         } else {
+            actualitzarComponents();
             frameVista.setVisible(true);
         }
     }
 
     @Override
     public void inicialitzarComponents() {
-        super.inicialitzarComponents();
-
         //Label nom producte
         labelNom_prod = new JLabel("PRODUCTE: "+nom_prod);
         labelNom_prod.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(labelNom_prod);
         add(Box.createRigidArea(new Dimension(0,10)));
+
+        super.inicialitzarComponents();
 
         //Boto eliminar
         textBotoAfegir = "ELIMINAR PRODUCTE";
@@ -60,6 +61,7 @@ public class VistaInfoProducte extends VistaControladors {
         //Boto editar
         textBotoMostrar = "EDITAR PRODUCTE";
         botoMostrar.setText(textBotoMostrar);
+        add(Box.createVerticalGlue());
 
         //ComboBox
         String[] productes = controlVista.getProductes();
@@ -69,11 +71,27 @@ public class VistaInfoProducte extends VistaControladors {
             Prod_Simi[i] = productes[i]+" -> "+similituds[i];
         }
 
+        String prodSame = nom_prod+" -> 0.0";
         opcions.removeAllItems();
         for (String item : Prod_Simi) {
-            opcions.addItem(item);
+            if (!item.equals(prodSame)) opcions.addItem(item);
         }
 
+    }
+
+    public void actualitzarComponents() {
+        String[] productes = controlVista.getProductes();
+        String[] similituds = controlVista.getSimilituds();
+        String[] Prod_Simi = new String[productes.length];
+        for (int i = 0; i < productes.length; ++i) {
+            Prod_Simi[i] = productes[i]+" -> "+similituds[i];
+        }
+
+        String prodSame = nom_prod+" -> 0.0";
+        opcions.removeAllItems();
+        for (String item : Prod_Simi) {
+            if (!item.equals(prodSame)) opcions.addItem(item);
+        }
     }
 
     @Override
@@ -97,42 +115,44 @@ public class VistaInfoProducte extends VistaControladors {
         }
     }
 
-    private double Input_Similitud(String producteSeleccionat, String result) {
-        double ret = -1;
-        String message = "Quina sera la nova similtud del producte "+nom_prod+
-                " amb el producte "+producteSeleccionat+"\n" +
-                "**RECORDA: 0 < Similitud < 100. HA DE SER UN DECIMAL**";
-        result = JOptionPane.showInputDialog(frameVista, message, "Editar Similitud", JOptionPane.QUESTION_MESSAGE);
-        if (!result.equals("NO_INPUT")) {
-            try {
-                ret = Double.parseDouble(result);
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(frameVista,
-                            "Si us plau, introdueix un numero del 1 al 100",
+    private String Input_Similitud(String producteSeleccionat) {
+        Boolean numValid = false;
+        String result = null;
+        while (!numValid) {
+            double ret = -1;
+            String message = "Quina sera la  similtud del producte " + nom_prod +
+                    " amb el producte " + producteSeleccionat + "\n" +
+                    "**RECORDA: 0 < Similitud < 100. HA DE SER UN DECIMAL**";
+            result = JOptionPane.showInputDialog(frameVista, message, "Afegir Similitud", JOptionPane.QUESTION_MESSAGE);
+            if (result != null && !result.isEmpty()) {
+                try {
+                    ret = Double.parseDouble(result);
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(frameVista,
+                            "Entrada no valida\n Si us plau, introdueix un numero del 1 al 100",
                             "Error Input",
                             JOptionPane.ERROR_MESSAGE);
-                return -1.0;
+
+                }
+            }
+
+            if (ret > 0 && ret <= 100) {
+                numValid = true;
+            } else {
+                JOptionPane.showMessageDialog(frameVista,
+                        "Si us plau, introdueix un numero del 1 al 100",
+                        "Error Input",
+                        JOptionPane.ERROR_MESSAGE);
             }
         }
-        return ret;
+        return result;
 
     }
 
     private void EditarSimi(String producteSeleccionat) {
-        boolean ok = false;
-        String result = "NO_INPUT";
-        while(!ok) {
-           double d = Input_Similitud(producteSeleccionat, result);
-           if (d > 0 && d <= 100) {
-               ok = true;
-           } else {
-               JOptionPane.showMessageDialog(frameVista,
-                       "Si us plau, introdueix un numero del 1 al 100",
-                       "Error Input",
-                       JOptionPane.ERROR_MESSAGE);
-           }
-        }
+        String result = Input_Similitud(producteSeleccionat);
         controlVista.editarSimilitud(nom_prod, producteSeleccionat, result);
+        actualitzarComponents();
     }
 
     public void Eliminar() {
