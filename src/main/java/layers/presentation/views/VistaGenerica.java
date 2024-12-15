@@ -24,6 +24,8 @@ public abstract class VistaGenerica extends JPanel {
             "lluc.santamaria@estudiantat.upc.edu\n" +
             "Eulalia Peiret Santacana\n" +
             "eulalia.peiret@estudiantat.upc.edu\n" +
+            "Efrain Tito Cortes\n" +
+            "efrain.tito@estudiantat.upc.edu\n" +
             "Afegiu-vos aqui";
 
 
