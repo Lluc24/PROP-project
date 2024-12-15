@@ -14,16 +14,16 @@ import java.util.List;
 
 public class VistaInfoSolucio extends VistaGenerica {
 
-    String errEstatTemplate = "Error %s: L'%s es %s pero hauria de ser %s";
+    private String errEstatTemplate = "Error %s: L'%s es %s pero hauria de ser %s";
 
-    enum EstatGeneral {
+    private enum EstatGeneral {
         INICIAL,
         VISUALITZAR,
         EDITAR,
     }
     private EstatGeneral estatGeneral;
 
-    enum EstatProducte {    // Nomes si estatGeneral = EDITAR
+    private enum EstatProducte {    // Nomes si estatGeneral = EDITAR
         INICIAL,
         SELECCIONAR,
         SELECCIONAT,
@@ -32,14 +32,14 @@ public class VistaInfoSolucio extends VistaGenerica {
     private EstatProducte estatProducte1;
     private EstatProducte estatProducte2;
 
-    Pair<Integer, Integer> producte1Seleccionat = new Pair<Integer, Integer>(-1, -1);
-    Pair<Integer, Integer> producte2Seleccionat = new Pair<Integer, Integer>(-1, -1);
+    private Pair<Integer, Integer> producte1Seleccionat = new Pair<Integer, Integer>(-1, -1);
+    private Pair<Integer, Integer> producte2Seleccionat = new Pair<Integer, Integer>(-1, -1);
 
     private int files;
     private int columnes;
     private int columnesUltimaFila;
 
-    protected CtrlVistaSolucions ctrlVistaSolucions;
+    private final CtrlVistaSolucions ctrlVistaSolucions;
 
     protected List<List<String>> productes;
 
@@ -557,7 +557,7 @@ public class VistaInfoSolucio extends VistaGenerica {
 
     protected class ModelTaula extends AbstractTableModel {
 
-        ModelTaula() {
+        public ModelTaula() {
         }
 
         public int getColumnCount() {
