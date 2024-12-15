@@ -177,9 +177,6 @@ public class AlgorismeGreedy extends Algorisme {
                 }
 
                 //Fase 2
-                int numProdFase2 = (numProd - configuracioActual.size()) - numProdFase1;
-                //j = numProd - numProdFase2;
-                //k = 0;
                 boolean trobat = false;
 
                 while (j < numProd && !trobat) {
@@ -204,7 +201,6 @@ public class AlgorismeGreedy extends Algorisme {
                                 maxSimilitudRest = similitud;
                             }
                         }
-                        //++k;
                     }
                     ++j;
                 }
