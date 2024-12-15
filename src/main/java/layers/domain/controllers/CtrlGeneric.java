@@ -1,4 +1,4 @@
 package layers.domain.controllers;
 
-public class CtrlGeneric {
+public abstract class CtrlGeneric {
 }
