@@ -417,5 +417,101 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
         if (!hihaRestr) System.out.println("No hi ha restriccions");
     }
 
+    /**
+     * Converteix les restriccions en una llista de strings de text.
+     * Cada string representa una parella de productes amb format "producte1;producte2".
+     *
+     * @return Un array de strings amb les restriccions.
+     */
+    public String[] restr_a_String() {
+
+        ArrayList<Pair<Integer, Integer>> pairs = getArrayRestr();
+
+        ArrayList<Pair<String, String>> pairsString = getStringId(pairs);
+
+        String[] restr = new String[pairsString.size()];
+
+        for (int i = 0; i < pairsString.size(); i++) {
+            Pair<String, String> pair = pairsString.get(i);
+            restr[i] = pair.first + ";" + pair.second;
+        }
+
+        return restr;
+    }
+
+    /**
+     * Converteix una llista de parelles d'índexs de productes a parelles amb els seus noms.
+     *
+     * @param pairs Llista de parelles d'índexs.
+     * @return Llista de parelles amb els noms dels productes.
+     */
+    private ArrayList<Pair<String, String>> getStringId(ArrayList<Pair<Integer, Integer>> pairs) {
+
+        ArrayList<Pair<String, String>> pairsString = new ArrayList<>();
+
+        for (Pair<Integer, Integer> pair : pairs) {
+            String firstString = getNomProd_index(pair.first);
+            String secondString = getNomProd_index(pair.second);
+            pairsString.add(new Pair<>(firstString, secondString));
+        }
+
+        return pairsString;
+
+    }
+
+    /**
+     * Obté les restriccions com a llista de parelles d'índexs de productes que no poden ser consecutius.
+     *
+     * @return Llista de parelles d'índexs de productes.
+     */
+    private ArrayList<Pair<Integer, Integer>> getArrayRestr() {
+        ArrayList<Pair<Integer, Integer>> pairs = new ArrayList<>();
+
+        for (int i = 0; i < noConsecutius.size(); i++) {
+            for (int j = i + 1; j < noConsecutius.get(i).size(); j++) {
+                if (noConsecutius.get(i).get(j)) {
+                    pairs.add(new Pair<>(i, j));
+                }
+            }
+        }
+
+        return pairs;
+    }
+
+    /**
+     * Funció auxiliar pel pas entre capa de domini i presentació. Busca afegir un producte al catàleg.
+     *
+     * @param nomProd Nom del producte a afegir.
+     * @param similituds Similituds amb els altres productes en format string.
+     */
+    public void afegir_producte_aux(String nomProd, String[] similituds) {
+
+        try {
+            afegir_producte(nomProd, stringV_a_pairV(similituds));
+        } catch (ProducteNoValid e) {
+            System.out.println(e.getMessage());
+        } catch (FormatInputNoValid e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Converteix un array de strings que representen similituds en un array de pairs (producte, similitud).
+     *
+     * @param similituds Un array de strings que conté els valors de similitud en format numèric, un per cada producte existent al catàleg.
+     * @return Un array de pairs, on cada pair conté el nom del producte (String) i el valor de la similitud (Double).
+     */
+    private Pair<String, Double>[] stringV_a_pairV(String[] similituds) {
+
+        //int numProd = getNumProd();
+        int numProd = similituds.length;
+        Pair<String, Double>[] llistaSim = new Pair[numProd];
+
+        for (int i = 0; i < numProd; ++i) {
+            llistaSim[i] = new Pair<>(getNomProd_index(i), Double.parseDouble(similituds[i]));
+        }
+
+        return llistaSim;
+    }
 }
 
