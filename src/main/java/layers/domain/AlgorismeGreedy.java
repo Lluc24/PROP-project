@@ -107,6 +107,7 @@ public class AlgorismeGreedy extends Algorisme {
 
         int numProd = matriuSimilituds.length;
 
+        ArrayList<Integer> millorConfiguracioArrList = new ArrayList<>();
         int[] millorConfiguracio = new int[matriuSimilituds.length];
 
         if (numProd <= 0) {
@@ -253,22 +254,22 @@ public class AlgorismeGreedy extends Algorisme {
 
                 if (!solucioBruta && millorSolucioBruta) {
                     maxSimilitudTotal = similitudTotal;
-                    for (int j = 0; j < configuracioActual.size(); j++) {
-                        millorConfiguracio[j] = configuracioActual.get(j);
-                    }
+                    millorConfiguracioArrList = configuracioActual;
                     millorSolucioBruta = false;
                 }
 
                 else if (similitudTotal > maxSimilitudTotal && !(solucioBruta && !millorSolucioBruta)) {
                     maxSimilitudTotal = similitudTotal;
-                    for (int j = 0; j < configuracioActual.size(); j++) {
-                        millorConfiguracio[j] = configuracioActual.get(j);
-                    }
+                    millorConfiguracioArrList = configuracioActual;
                 }
             }
 
             //actualitzem el producte inicial per a la següent iteració
             indexInicial = (indexInicial + 1) % numProd;
+        }
+
+        for (int j = 0; j < millorConfiguracioArrList.size(); j++) {
+            millorConfiguracio[j] = millorConfiguracioArrList.get(j);
         }
 
         return millorConfiguracio;
