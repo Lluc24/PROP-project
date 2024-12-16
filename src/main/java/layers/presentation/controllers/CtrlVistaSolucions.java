@@ -17,7 +17,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
     private VistaPrincipalSolucions vistaPplSols;
     private VistaGestioAlgorisme vistaGestioAlgorisme;
     private VistaInfoSolucio vistaInfoSolucio;
-    String solucioVisualitzant;
+    private String solucioVisualitzant;
 
     //Constructora
     public CtrlVistaSolucions(CtrlSolucions cs) {
@@ -85,6 +85,12 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
      * @param s nom de la solucio especifica que vol mostrar
      */
     public void mostrarSolucio(String s){
+        try {
+            carregarSolucions("/home/lali/Escritorio/q5/prop/","test1.txt");
+        }catch (FormatInputNoValid e){
+            System.err.println(e.getMessage());
+        }
+
         List<List<String>> solList = new ArrayList<>();
         try {
             ArrayList<ArrayList<String>> solArrayList= ctrlSolucions.getSolucio(s);
@@ -101,8 +107,9 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
      */
     public void canviarAlgorisme(){
         vistaGestioAlgorisme.executar();
+
         try {
-            ctrlSolucions.guardaSolucio("/home/lali/Escritorio/q5/prop/", "test1.txt");
+            guardarSolucions("/home/lali/Escritorio/q5/prop/", "test1.txt");
         }catch (FormatInputNoValid e){
             System.err.println(e.getMessage());
         }

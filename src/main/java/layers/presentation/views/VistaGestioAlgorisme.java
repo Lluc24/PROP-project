@@ -8,21 +8,21 @@ import java.awt.*;
 public class VistaGestioAlgorisme extends VistaGenerica {
     private CtrlVistaSolucions ctrlVistaSolucions;
 
-    protected String textEtiquetaInfo = "L'algorisme actual es de tipus ";
-    protected JLabel etiquetaInfo;
-    protected String textEtiquetaTriar = "Vols canviar-lo? Selecciona el que prefereixis:";
-    protected JLabel etiquetaTriar;
+    private String textEtiquetaInfo = "L'algorisme actual es de tipus ";
+    private JLabel etiquetaInfo;
+    private String textEtiquetaTriar = "Vols canviar-lo? Selecciona el que prefereixis:";
+    private JLabel etiquetaTriar;
 
-    protected String textBotoAproximacio = "Aproximacio";
-    protected Boto botoAproximacio;
+    private String textBotoAproximacio = "Aproximacio";
+    private Boto botoAproximacio;
 
-    protected String textBotoGreedy = "Greedy";
-    protected Boto botoGreedy;
+    private String textBotoGreedy = "Greedy";
+    private Boto botoGreedy;
 
-    protected String textBotoBacktracking = "Backtracking";
-    protected Boto botoBacktracking;
+    private String textBotoBacktracking = "Backtracking";
+    private Boto botoBacktracking;
 
-    Boolean primeraVegada = true;
+    private Boolean primeraVegada = true;
 
     public VistaGestioAlgorisme(CtrlVistaSolucions ctrl) {
         ctrlVistaSolucions = ctrl;
