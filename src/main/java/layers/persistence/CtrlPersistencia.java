@@ -6,7 +6,7 @@ import layers.domain.controllers.CtrlSolucions;
 public class CtrlPersistencia {
     private static CtrlPersistencia instancia = null;
     private static CtrlPersistenciaSolucio ctrlPersistenciaSolucio = null;
-    //private static CtrlPersistenciaCataleg ctrlPersistenciaCataleg = null;
+    private static CtrlPersistenciaCataleg ctrlPersistenciaCataleg = null;
 
     private CtrlPersistencia(){}
 
@@ -19,9 +19,12 @@ public class CtrlPersistencia {
         return instancia;
     }
 
-    //public CtrlPersistenciaCataleg getCtrlPersistenciaCataleg() {
-    //   return ctrlPersistenciaCataleg;
-    //}
+
+    public CtrlPersistenciaCataleg getCtrlPersistenciaCataleg() {
+       return ctrlPersistenciaCataleg;
+    }
+
+
 
     public CtrlPersistenciaSolucio getCtrlPersistenciaSolucio() {
         return ctrlPersistenciaSolucio;

@@ -274,7 +274,7 @@ public class VistaAfegirProducte extends VistaControladors {
             controlVista.afegirProducte(nom_prod, similitudsArray, restriccionsArray); //Retorna String, String[], String[]
             String message = "El producte ja s'afegit";
             JOptionPane.showMessageDialog(frameVista, message, "Producte Afegit", JOptionPane.INFORMATION_MESSAGE);
-            frameVista.dispose();
+            controlVista.canviaVista("PrincipalCataleg");
         }
     }
 
