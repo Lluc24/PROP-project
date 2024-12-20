@@ -35,7 +35,7 @@ public class CtrlCataleg extends CtrlGeneric{
 
      /** Un Array List Representa el conjunt de productes es troben din del sistema */
      protected ArrayList<Producte> Cataleg_Productes;
-     private CtrlPersistenciaCataleg ctrlPersistenciaCataleg;
+     protected CtrlPersistenciaCataleg ctrlPersistenciaCataleg;
 
      // Constructor
 

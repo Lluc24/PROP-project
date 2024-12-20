@@ -516,13 +516,14 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 
 
     public void guardarCataleg(String path, String nomArxiu) throws FormatInputNoValid {
-        //super();
 
-        /*
+        StringBuilder contingut = guardarCataleg();
+
         contingut.append("\n");
 
         contingut.append(convertirMatriu(getMatrRestrConsec()));
-        */
+
+        ctrlPersistenciaCataleg.guardar(contingut.toString(), path, nomArxiu);
     }
 
     private String convertirMatriu(boolean[][] matriu) {
@@ -544,7 +545,8 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 
 
     public void carregaCataleg(String[] productes, double[][] similituds, int[][] restriccions) throws FormatInputNoValid {
-        //super(productes, similituds);
+
+        carregaCataleg(productes, similituds);
 
         for (int i = 0; i < restriccions.length; i++) {
             for (int j = i; j < restriccions.length; j++) {
