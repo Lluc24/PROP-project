@@ -17,6 +17,11 @@ public class VistaInfoProducte extends VistaControladors {
 
     private JLabel labelNom_prod;
 
+    private Boto BotoCanviarNom;
+    private String textBotoCanviarNom = "ELIMINAR PRODUCTE";
+
+    private String textCancelat = "CANCELADO";
+
 
     public VistaInfoProducte(CtrlVistaCatalegAmbRestriccions cps) {
         controlVista = cps;
@@ -38,7 +43,7 @@ public class VistaInfoProducte extends VistaControladors {
             actualitzarComponents();
             frameVista.setVisible(true);
         } else {
-            actualitzarComponents();
+                actualitzarComponents();
             frameVista.setVisible(true);
         }
     }
@@ -53,16 +58,23 @@ public class VistaInfoProducte extends VistaControladors {
 
         super.inicialitzarComponents();
 
-        //Boto eliminar
-        textBotoAfegir = "ELIMINAR PRODUCTE";
-        botoAfegir.setText(textBotoAfegir);
-        botoAfegir.setBackground(Color.RED);
-        botoAfegir.setForeground(Color.WHITE);
-
         //Boto editar
         textBotoMostrar = "EDITAR PRODUCTE";
         botoMostrar.setText(textBotoMostrar);
+
+        //Boto eliminar
+        textBotoAfegir = "CANVIAR NOM";
+        botoAfegir.setText(textBotoAfegir);
+
+
+        BotoCanviarNom = new Boto(textBotoCanviarNom);
+        BotoCanviarNom.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(BotoCanviarNom);
+        BotoCanviarNom.setBackground(Color.RED);
+        BotoCanviarNom.setForeground(Color.WHITE);
+        add(Box.createRigidArea(new Dimension(0,10)));
         add(Box.createVerticalGlue());
+
 
         //ComboBox
         String[] productes = controlVista.getProductes();
@@ -77,6 +89,7 @@ public class VistaInfoProducte extends VistaControladors {
         for (String item : Prod_Simi) {
             if (!item.equals(prodSame)) opcions.addItem(item);
         }
+
 
     }
 
@@ -100,7 +113,7 @@ public class VistaInfoProducte extends VistaControladors {
 
     @Override
     protected void botoAccionat(String textBoto) {
-        if (textBoto.equals(textBotoAfegir)) {
+        if (textBoto.equals(textBotoCanviarNom)) {
             Eliminar();
         } else if (textBoto.equals(textBotoMostrar)) {
             String seleccionat = (String) opcions.getSelectedItem();
@@ -114,6 +127,10 @@ public class VistaInfoProducte extends VistaControladors {
                 String producteSelecionat = parts[0];
                 EditarSimi(producteSelecionat);
             }
+            actualitzarComponents();
+        } else if (textBoto.equals(textBotoAfegir)) {
+            canviaNom();
+            actualitzarComponents();
         } else {
             super.botoAccionat(textBoto);
         }
@@ -138,6 +155,8 @@ public class VistaInfoProducte extends VistaControladors {
                             JOptionPane.ERROR_MESSAGE);
 
                 }
+            } else if (result == null) {
+                return null;
             }
 
             if (ret > 0 && ret <= 100) {
@@ -155,11 +174,13 @@ public class VistaInfoProducte extends VistaControladors {
 
     private void EditarSimi(String producteSeleccionat) {
         String result = Input_Similitud(producteSeleccionat);
-        controlVista.editarSimilitud(nom_prod, producteSeleccionat, result);
-        actualitzarComponents();
+        if (result != null) {
+            controlVista.editarSimilitud(nom_prod, producteSeleccionat, result);
+            actualitzarComponents();
+        }
     }
 
-    public void Eliminar() {
+    private void Eliminar() {
         int result = JOptionPane.showConfirmDialog(frameVista,
                         "Estas segur que vols eliminar el producte "+nom_prod,
                         "Eliminar Producte", JOptionPane.YES_NO_OPTION);
@@ -167,5 +188,51 @@ public class VistaInfoProducte extends VistaControladors {
             controlVista.eliminarProducte(nom_prod);
             frameVista.dispose();
         }
+    }
+
+    private void canviaNom() {
+        String nou_nom = afegirNom();
+        if (nou_nom != null ) {
+            controlVista.canviarNom(nom_prod, nou_nom);
+            nom_prod = nou_nom;
+        }
+    }
+
+    private String getNomUsuari() {
+        String message = "Afegeix el nom del producte que vols afegir";
+        String result = JOptionPane.showInputDialog(frameVista, message, "Afegir Nom", JOptionPane.QUESTION_MESSAGE);
+        if (result == null) {
+            result = textCancelat;
+        } else if (result.isEmpty()) {
+            JOptionPane.showMessageDialog(frameVista,
+                    "Si us plau, introdueix un nombre per el producte",
+                    "Error Input",
+                    JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+        return result;
+    }
+
+    private String afegirNom() {
+        String nom = null;
+        boolean te_nom = false;
+        while (!te_nom) {
+            nom = getNomUsuari();
+            if (nom != null) {
+                if (nom != textCancelat) {
+                    if (!controlVista.findProd(nom)) {
+                        te_nom = true;
+                    } else {
+                        JOptionPane.showMessageDialog(frameVista,
+                                "Aquest nom ja esta sent utilitzat per un altre producte",
+                                "Error Input",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    return null;
+                }
+            }
+        }
+        return nom;
     }
 }
