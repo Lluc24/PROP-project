@@ -3,13 +3,13 @@ package layers.presentation.controllers;
 import layers.domain.controllers.CtrlGeneric;
 
 public abstract class CtrlVistaGeneric {
-    CtrlGeneric ctrl = null;
+    protected CtrlGeneric ctrl = null;
 
-    public CtrlVistaGeneric(CtrlGeneric ctrlGeneric) {
+    protected CtrlVistaGeneric(CtrlGeneric ctrlGeneric) {
         this.ctrl = ctrlGeneric;
     }
 
-    public CtrlVistaGeneric() {
+    protected CtrlVistaGeneric() {
     }
 
     public void executar() {

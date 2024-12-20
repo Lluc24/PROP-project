@@ -14,16 +14,16 @@ import java.util.List;
 
 public class VistaInfoSolucio extends VistaGenerica {
 
-    String errEstatTemplate = "Error %s: L'%s es %s pero hauria de ser %s";
+    private String errEstatTemplate = "Error %s: L'%s es %s pero hauria de ser %s";
 
-    enum EstatGeneral {
+    private enum EstatGeneral {
         INICIAL,
         VISUALITZAR,
         EDITAR,
     }
     private EstatGeneral estatGeneral;
 
-    enum EstatProducte {    // Nomes si estatGeneral = EDITAR
+    private enum EstatProducte {    // Nomes si estatGeneral = EDITAR
         INICIAL,
         SELECCIONAR,
         SELECCIONAT,
@@ -32,18 +32,19 @@ public class VistaInfoSolucio extends VistaGenerica {
     private EstatProducte estatProducte1;
     private EstatProducte estatProducte2;
 
-    Pair<Integer, Integer> producte1Seleccionat = new Pair<Integer, Integer>(-1, -1);
-    Pair<Integer, Integer> producte2Seleccionat = new Pair<Integer, Integer>(-1, -1);
+    private Pair<Integer, Integer> producte1Seleccionat = new Pair<Integer, Integer>(-1, -1);
+    private Pair<Integer, Integer> producte2Seleccionat = new Pair<Integer, Integer>(-1, -1);
 
     private int files;
     private int columnes;
     private int columnesUltimaFila;
 
-    protected CtrlVistaSolucions ctrlVistaSolucions;
+    private final CtrlVistaSolucions ctrlVistaSolucions;
 
     protected List<List<String>> productes;
 
-    protected String textEtiquetaTitol = "Productes de la solucio";
+    protected String templateTextEtiquetaTitol = "Productes de la solucio %s";
+    protected String nomSolucio;
     protected JLabel etiquetaTitol;
 
     protected JScrollPane scrollPane;
@@ -87,7 +88,8 @@ public class VistaInfoSolucio extends VistaGenerica {
         ctrlVistaSolucions = (CtrlVistaSolucions) ctrl;
     }
 
-    public void executar(List<List<String>> productes) {
+    public void executar(List<List<String>> productes, String nomSolcuio) {
+        this.nomSolucio = nomSolcuio;
         //this.productes = productes;
         this.productes = new ArrayList<List<String>>();
         List<String> l1 = new ArrayList<String>();
@@ -127,6 +129,7 @@ public class VistaInfoSolucio extends VistaGenerica {
         add(Box.createVerticalGlue());
 
         // Inicialitzem l'etiqueta descriptiva
+        String textEtiquetaTitol = String.format(templateTextEtiquetaTitol, nomSolucio);
         etiquetaTitol = new JLabel(textEtiquetaTitol);
         etiquetaTitol.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(etiquetaTitol);
@@ -557,7 +560,7 @@ public class VistaInfoSolucio extends VistaGenerica {
 
     protected class ModelTaula extends AbstractTableModel {
 
-        ModelTaula() {
+        public ModelTaula() {
         }
 
         public int getColumnCount() {
