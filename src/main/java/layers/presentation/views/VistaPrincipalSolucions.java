@@ -101,6 +101,23 @@ public class VistaPrincipalSolucions extends VistaControladors {
         }
     }
 
+    @Override
+    protected void itemAccionat(String textItem) {
+        if (textItem.equals(textItemSortir)) {
+            int result = JOptionPane.showConfirmDialog(frameVista,
+                    "Estas segur que vols sortir de l'aplicacio?",
+                    "Sortir de l'aplicacio",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (result == JOptionPane.YES_OPTION) {
+                System.out.println("Fins la proxima!");
+                ctrlVistaSolucions.sortirAplicacio();
+            }
+        } else {
+            super.itemAccionat(textItem);
+        }
+    }
+
     /**
      * L'usuari vol crear una nova solucio i ha d'indicar-ne el nom
      * @return Retorna el nom que ha escrit l'usuari. Si ha abortat durant la operacio, retorna null

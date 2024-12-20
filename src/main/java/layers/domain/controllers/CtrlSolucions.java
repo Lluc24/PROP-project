@@ -333,4 +333,11 @@ public class CtrlSolucions extends CtrlGeneric {
         String c = contenido.toString();
         ctrlPersistenciaSolucio.guardar(c, path, nomArxiu);
     }
+
+    public boolean esModificada(String nomSolucio){
+        for (Solucio sol : solucions){
+            if(sol.getNom().equals(nomSolucio)) return sol instanceof SolucioModificada;
+        }
+        return false;
+    }
 }
