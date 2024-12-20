@@ -78,6 +78,8 @@ public class VistaConsultarRest extends VistaControladors {
             }
         } else if (textBoto.equals(textBotoEliminarRest)) {
             eliminar_restr_nom();
+        } else if (textBoto.equals(textBotoTornar)) {
+            ctrl.canviaVista("PrincipalCataleg");
         } else {
             super.botoAccionat(textBoto);
         }

@@ -433,7 +433,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 
         for (int i = 0; i < pairsString.size(); i++) {
             Pair<String, String> pair = pairsString.get(i);
-            restr[i] = pair.first + ";" + pair.second;
+            restr[i] = pair.first + " ; " + pair.second;
         }
 
         return restr;
@@ -512,6 +512,13 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
         }
 
         return llistaSim;
+    }
+
+
+    public void guardaCataleg(String path, String nomArxiu) throws FormatInputNoValid {
+
+
+
     }
 }
 

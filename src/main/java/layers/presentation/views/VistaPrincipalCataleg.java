@@ -10,7 +10,9 @@ public class VistaPrincipalCataleg extends VistaControladors {
     protected Boto botoMenuRestriccion;
     protected String textBotoMenuRestriccions = "Menu Restriccions";
 
-    Boolean primeraVegada = true;
+    private Boolean primeraVegada = true;
+
+    private String textCancelat = "CANCELAT";
     
     public VistaPrincipalCataleg(CtrlVistaCatalegAmbRestriccions cps) {
         controlVista = cps;
@@ -83,12 +85,14 @@ public class VistaPrincipalCataleg extends VistaControladors {
             if (mida == 0) {
                 //Pedir nombre
                 String nom = getNomUsuari();
-                String[] buit = {};
-                //AñadirProducto
-                controlVista.afegirProducte(nom, buit, buit);
-                String message = "El producte ja s'afegit\n Ja que es el primer producte no necesitem mes informacio";
-                JOptionPane.showMessageDialog(frameVista, message, "Producte Afegit", JOptionPane.INFORMATION_MESSAGE);
-                actualitzarComponents();
+                if (!nom.equals(textCancelat)) {
+                    String[] buit = {};
+                    //AñadirProducto
+                    controlVista.afegirProducte(nom, buit, buit);
+                    String message = "El producte ja s'ha afegit\nAl ser el primer producte no necesitem mes informacio";
+                    JOptionPane.showMessageDialog(frameVista, message, "Producte Afegit", JOptionPane.INFORMATION_MESSAGE);
+                    actualitzarComponents();
+                }
             } else {
                 canviVistaAfegirProducte();
                 actualitzarComponents();
@@ -127,7 +131,9 @@ public class VistaPrincipalCataleg extends VistaControladors {
     private String getNomUsuari() {
         String message = "Afegeix el nom del producte que vols afegir";
         String result = JOptionPane.showInputDialog(frameVista, message, "Afegir Nom", JOptionPane.QUESTION_MESSAGE);
-        if (result == null || result.isEmpty()) {
+        if (result == null) {
+            return textCancelat;
+        } else if (result.isEmpty()) {
             JOptionPane.showMessageDialog(frameVista,
                     "Si us plau, introdueix un nombre per el producte",
                     "Error Input",
