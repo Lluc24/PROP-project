@@ -109,10 +109,30 @@ public class VistaGestioAlgorisme extends VistaGenerica {
             ctrlVistaSolucions.gestioAlgorisme("algorismeBT");
             textEtiquetaInfo = "L'algorisme actual es de tipus backtracking";
             etiquetaInfo.setText(textEtiquetaInfo);
+        }else if (textBoto.equals(textBotoTornar)){
+            ctrlVistaSolucions.controlVistes(0);
         }
         else {
             super.botoAccionat(textBoto);
             tornar();
+        }
+    }
+
+    @Override
+    protected void itemAccionat(String textItem) {
+        if (textItem.equals(textItemSortir)) {
+            int result = JOptionPane.showConfirmDialog(frameVista,
+                    "Estas segur que vols sortir de l'aplicacio?",
+                    "Sortir de l'aplicacio",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (result == JOptionPane.YES_OPTION) {
+                System.out.println("Fins la proxima!");
+                ctrlVistaSolucions.sortirAplicacio();
+            }
+        }
+        else {
+            super.itemAccionat(textItem);
         }
     }
 

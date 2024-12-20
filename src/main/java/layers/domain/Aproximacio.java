@@ -104,13 +104,13 @@ public class Aproximacio extends Algorisme {
         boolean acabat = false;
         while (!acabat) {
             // Obtenim les posicions i, j tals que:
-            // Tota aresta a l'equerra d'i te menor pes que l'aresta de la posicio pivot
+            // Tota aresta a l'esquerra d'i te menor pes que l'aresta de la posicio pivot
             // Tota aresta a la dreta de j te major pes que l'aresta de la posicio pivot
             while (similituds[arestes.get(i).first][arestes.get(i).second] < pivot) ++i;
             while (similituds[arestes.get(j).first][arestes.get(j).second] > pivot) --j;
             if (i >= j) acabat = true;
             else {
-                // Intercambiem les posicions i, j
+                // Intercanviem les posicions i, j
                 Pair<Integer, Integer> aux = arestes.get(i);
                 arestes.set(i, arestes.get(j));
                 arestes.set(j, aux);
