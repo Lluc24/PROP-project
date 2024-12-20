@@ -16,6 +16,11 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
     private VistaInfoProducte vistaInfoProd;
     private VistaConsultarRest vistaConsRest;
     private String prodAct = null;
+    private enum EstatVista {
+        noInicialitzada,
+        noVisible,
+        esVisible
+    }
 
 
     //Mètodes
@@ -268,7 +273,8 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
      * @param nomNou Nou nom del producte.
      */
     public void canviarNom(String nomAnterior, String nomNou) {
-        //ctrl.canviar_nom(nomAnterior, nomNou);
+        ctrl.canviar_nom(nomAnterior, nomNou);
+        prodAct = nomNou;
     }
 
     //Legacy

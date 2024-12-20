@@ -51,13 +51,15 @@ public class CtrlPersistenciaCataleg extends CtrlPersistenciaGeneric {
 
                 ArrayList<String> producteList = new ArrayList<>();
                 while (index < linies.length && !linies[index].trim().isEmpty()) {
-                    producteList.add(linies[index].trim());
+                    String prod = linies[index].trim();
+                    if (prod.contains(";")) throw new FormatInputNoValid("Els productes no poden contenir el caracter especial ';'.");
+                    producteList.add(prod);
                     index++;
                 }
 
                 //de llista a vector
                 numProductes = producteList.size();
-                productes = producteList.toArray(new String[0]);
+                producteList.toArray(new String[0]);
 
                 /*
                 if (numProductes == 0) {
