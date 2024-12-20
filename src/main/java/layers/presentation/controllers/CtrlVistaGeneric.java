@@ -19,4 +19,8 @@ public abstract class CtrlVistaGeneric {
     public void netejar() {
         return;
     }
+
+    public abstract void importar(String path, String nomFitxer);
+
+    public abstract void exportar(String path, String nomFitxer);
 }

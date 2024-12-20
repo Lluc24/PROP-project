@@ -3,6 +3,7 @@ package layers.presentation.views;
 import layers.presentation.controllers.CtrlVistaGeneric;
 import layers.presentation.controllers.CtrlVistaCatalegAmbRestriccions;
 import layers.presentation.controllers.CtrlVistaSolucions;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.*;
 import java.awt.*;
 
@@ -19,11 +20,19 @@ public class VistaPrincipal extends VistaGenerica {
     protected String textBotoSolucions = "Gestionar solucions";
     protected Boto botoSolucions;
 
-    protected String textBotoRestriccions = "Gestionar restriccions";
-    protected Boto botoRestriccions;
+    protected String textBotoExportar = "Exportar";
+    protected Boto botoExportar;
+
+    protected String textBotoImportar = "Importar";
+    protected Boto botoImportar;
 
     protected String textBotoSortir = "Sortir";
     protected Boto botoSortir;
+
+    protected String textJFileDialogImportarCataleg = "Obrir el fitxer del cataleg";
+    protected String textJFileDialogImportarSolucions = "Obrir el fitxer de les solucions";
+    protected String textJFileDialogExportarCataleg = "Guardar el fitxer del cataleg";
+    protected String textJFileDialogExportarSolucions = "Guardar el fitxer de les solucions";
 
     public void executar(CtrlVistaGeneric ctrl1, CtrlVistaGeneric ctrl2) {
         ctrlVistaCatalegAmbRestriccions = (CtrlVistaCatalegAmbRestriccions)ctrl1;
@@ -67,10 +76,16 @@ public class VistaPrincipal extends VistaGenerica {
         add(botoSolucions);
         add(Box.createRigidArea(new Dimension(0, 10)));
 
-        // Inicialitzem el boto Gestionar restriccions
-        botoRestriccions = new Boto(textBotoRestriccions);
-        botoRestriccions.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        add(botoRestriccions);
+        // Inicialitzem el boto Importar
+        botoImportar = new Boto(textBotoImportar);
+        botoImportar.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(botoImportar);
+        add(Box.createRigidArea(new Dimension(0, 10)));
+
+        // Inicialitzem el boto Importar
+        botoExportar = new Boto(textBotoExportar);
+        botoExportar.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(botoExportar);
         add(Box.createRigidArea(new Dimension(0, 10)));
 
         // Inicialitzem el boto Sortir
@@ -89,8 +104,50 @@ public class VistaPrincipal extends VistaGenerica {
         else if (textBoto.equals(textBotoSolucions)) {
             ctrlVistaSolucions.executar();
         }
-        else if (textBoto.equals(textBotoRestriccions)) {
-            ctrlVistaCatalegAmbRestriccions.executar();
+        else if (textBoto.equals(textBotoImportar)) {
+            FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                    "TXT Files", "txt");
+
+            JFileChooser chooser = new JFileChooser();
+            chooser.setFileFilter(filter);
+            chooser.setDialogTitle(textJFileDialogImportarCataleg);
+            int returnVal = chooser.showOpenDialog(frameVista);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                String nomFitxer = chooser.getSelectedFile().getName();
+                String path = chooser.getSelectedFile().getPath();
+                String pathToFile = path.substring(0, path.length()-nomFitxer.length());
+                ctrlVistaCatalegAmbRestriccions.importar(pathToFile, nomFitxer);
+            }
+
+            chooser.setDialogTitle(textJFileDialogImportarSolucions);
+            returnVal = chooser.showOpenDialog(frameVista);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                String nomFitxer = chooser.getSelectedFile().getName();
+                String path = chooser.getSelectedFile().getPath();
+                String pathToFile = path.substring(0, path.length()-nomFitxer.length());
+                ctrlVistaSolucions.importar(pathToFile, nomFitxer);
+            }
+        }
+        else if (textBoto.equals(textBotoExportar)) {
+            JFileChooser chooser = new JFileChooser();
+
+            chooser.setDialogTitle(textJFileDialogExportarCataleg);
+            int returnVal = chooser.showSaveDialog(frameVista);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                String nomFitxer = chooser.getSelectedFile().getName();
+                String path = chooser.getSelectedFile().getPath();
+                String pathToFile = path.substring(0, path.length()-nomFitxer.length());
+                ctrlVistaCatalegAmbRestriccions.exportar(pathToFile, nomFitxer);
+            }
+
+            chooser.setDialogTitle(textJFileDialogExportarSolucions);
+            returnVal = chooser.showSaveDialog(frameVista);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                String nomFitxer = chooser.getSelectedFile().getName();
+                String path = chooser.getSelectedFile().getPath();
+                String pathToFile = path.substring(0, path.length()-nomFitxer.length());
+                ctrlVistaSolucions.exportar(pathToFile, nomFitxer);
+            }
         }
         else if (textBoto.equals(textBotoSortir)) {
             sortir();
