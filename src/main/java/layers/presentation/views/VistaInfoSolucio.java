@@ -43,7 +43,8 @@ public class VistaInfoSolucio extends VistaGenerica {
 
     protected List<List<String>> productes;
 
-    protected String textEtiquetaTitol = "Productes de la solucio";
+    protected String templateTextEtiquetaTitol = "Productes de la solucio %s";
+    protected String nomSolucio;
     protected JLabel etiquetaTitol;
 
     protected JScrollPane scrollPane;
@@ -87,7 +88,8 @@ public class VistaInfoSolucio extends VistaGenerica {
         ctrlVistaSolucions = (CtrlVistaSolucions) ctrl;
     }
 
-    public void executar(List<List<String>> productes) {
+    public void executar(List<List<String>> productes, String nomSolcuio) {
+        this.nomSolucio = nomSolcuio;
         //this.productes = productes;
         this.productes = new ArrayList<List<String>>();
         List<String> l1 = new ArrayList<String>();
@@ -127,6 +129,7 @@ public class VistaInfoSolucio extends VistaGenerica {
         add(Box.createVerticalGlue());
 
         // Inicialitzem l'etiqueta descriptiva
+        String textEtiquetaTitol = String.format(templateTextEtiquetaTitol, nomSolucio);
         etiquetaTitol = new JLabel(textEtiquetaTitol);
         etiquetaTitol.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(etiquetaTitol);

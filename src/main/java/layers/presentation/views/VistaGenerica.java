@@ -137,6 +137,14 @@ public abstract class VistaGenerica extends JPanel {
         frameVista.dispose();
     }
 
+    protected void ocultar() {
+        frameVista.setVisible(false);
+    }
+
+    protected void mostrar() {
+        frameVista.setVisible(true);
+    }
+
     protected void botoAccionat(String textBoto) {
         if (textBoto.equals(textBotoTornar)) tornar();
     }
