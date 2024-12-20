@@ -2,6 +2,7 @@ package layers.presentation.controllers;
 import layers.domain.controllers.*;
 import layers.domain.excepcions.FormatInputNoValid;
 import layers.domain.excepcions.ProducteNoValid;
+import layers.domain.utils.Pair;
 import layers.presentation.views.*;
 
 import java.util.Objects;
@@ -11,18 +12,12 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
     //Atributs
     private CtrlCatalegAmbRestriccions ctrl;
-    private VistaPrincipalCataleg vistaPrincCat; //vista 0
-    private VistaAfegirProducte vistaAfegProd; //vista 1
-    private VistaInfoProducte vistaInfoProd; //vista 2
-    private VistaConsultarRest vistaConsRest; //vista 3
+    private VistaPrincipalCataleg vistaPrincCat;
+    private VistaAfegirProducte vistaAfegProd;
+    private VistaInfoProducte vistaInfoProd;
+    private VistaConsultarRest vistaConsRest;
     private String prodAct = null;
-    private enum EstatVista {
-        noInicialitzada,
-        noVisible,
-        esVisible
-    }
 
-    EstatVista[] controlVistes = {EstatVista.noInicialitzada,EstatVista.noInicialitzada,EstatVista.noInicialitzada,EstatVista.noInicialitzada};
 
     //Mètodes
 
@@ -35,6 +30,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         vistaPrincCat = new VistaPrincipalCataleg(this);
         vistaAfegProd = new VistaAfegirProducte(this);
         vistaInfoProd = new VistaInfoProducte(this);
+        //vistaInfoProd = null;
         vistaConsRest = new VistaConsultarRest(this);
     }
 
@@ -47,17 +43,10 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
 
         if (Objects.equals(nomVista, "AfegirProductes")) {
-            controlVistes(1);
             vistaAfegProd.executar();
         }
 
-        if (Objects.equals(nomVista, "PrincipalCataleg")) {
-            controlVistes(0);
-            vistaPrincCat.executar();
-        }
-
         else if (Objects.equals(nomVista, "ConsultarRestriccions")) {
-            controlVistes(3);
             vistaConsRest.executar();
         }
 
@@ -76,8 +65,8 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
     public void canviarVista(String nomVista, String nomProd) {
 
         if (Objects.equals(nomVista, "InfoProducte")) {
+            //this.vistaInfoProd = new VistaInfoProducte(this);
             this.prodAct = nomProd;
-            controlVistes(2);
             vistaInfoProd.executar(nomProd);
 
         }
@@ -186,7 +175,6 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
     @Override
     public void executar() {
-        controlVistes(0);
         vistaPrincCat.executar();
     }
 
@@ -261,7 +249,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
      */
     private String[] decodificar_producte(String str) {
 
-        return str.split(" ; ");
+        return str.split(";");
     }
 
     /**
@@ -281,84 +269,9 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
      * @param nomNou Nou nom del producte.
      */
     public void canviarNom(String nomAnterior, String nomNou) {
-        ctrl.canviar_nom(nomAnterior, nomNou);
         prodAct = nomNou;
+        ctrl.canviar_nom(nomAnterior, nomNou);
     }
-
-
-
-    private void mostrarVista(int numVista){
-        if (numVista == 0){
-            vistaPrincCat.mostrar();
-        }
-        else if (numVista == 1){
-            vistaAfegProd.mostrar();
-        }
-        else if (numVista == 2){
-            vistaInfoProd.mostrar();
-        }
-        else if (numVista == 3){
-            vistaConsRest.mostrar();
-        }
-    }
-
-    private void ocultarVista(int numVista){
-        if (numVista == 0){
-            vistaPrincCat.ocultar();
-        }
-        else if (numVista == 1){
-            vistaAfegProd.ocultar();
-        }
-        else if (numVista == 2){
-            vistaInfoProd.ocultar();
-        }
-        else if (numVista == 3){
-            vistaConsRest.ocultar();
-        }
-    }
-
-
-    private void controlVistes(int numVista) {
-        for(int i = 0; i < 4; ++i){
-            if (controlVistes[i] == EstatVista.noInicialitzada){
-                if (i == numVista) controlVistes[i] = EstatVista.esVisible;
-            }
-            else {
-                if (i == numVista) {
-                    mostrarVista(numVista);
-                    controlVistes[i] = EstatVista.esVisible;
-                }
-                else {
-                    ocultarVista(i);
-                    controlVistes[i] = EstatVista.noVisible;
-                }
-            }
-        }
-
-    }
-
-    /**
-     * L'usuari vol guardar el catàleg actual del sistema en un fitxer.
-     *
-     * @param path lloc on està el fitxer
-     * @param nomArxiu nom del fitxer on es vol guardar
-     * @throws FormatInputNoValid si algun dels paràmetres passats no és vàlid, es llença l'excepció
-     */
-    public void guardarCataleg(String path, String nomArxiu) throws FormatInputNoValid {
-        ctrl.guardaCataleg(path, nomArxiu);
-    }
-
-    /**
-     * L'usuari vol carregar el catàleg des d'un fitxer al sistema.
-     *
-     * @param path lloc on està el fitxer
-     * @param nomArxiu nom del fitxer on es vol guardar
-     * @throws FormatInputNoValid si algun dels paràmetres passats no és vàlid, es llença l'excepció
-     */
-    public void carregarCataleg(String path, String nomArxiu) throws FormatInputNoValid{
-        ctrl.carregaCataleg(path,nomArxiu);
-    }
-
 
     //Legacy
 
