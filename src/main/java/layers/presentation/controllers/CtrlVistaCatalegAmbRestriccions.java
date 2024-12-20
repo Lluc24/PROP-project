@@ -11,10 +11,10 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
     //Atributs
     private CtrlCatalegAmbRestriccions ctrl;
-    private VistaPrincipalCataleg vistaPrincCat;
-    private VistaAfegirProducte vistaAfegProd;
-    private VistaInfoProducte vistaInfoProd;
-    private VistaConsultarRest vistaConsRest;
+    private VistaPrincipalCataleg vistaPrincCat; //vista 0
+    private VistaAfegirProducte vistaAfegProd; //vista 1
+    private VistaInfoProducte vistaInfoProd; //vista 2
+    private VistaConsultarRest vistaConsRest; //vista 3
     private String prodAct = null;
     private enum EstatVista {
         noInicialitzada,
@@ -22,6 +22,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         esVisible
     }
 
+    EstatVista[] controlVistes = {EstatVista.noInicialitzada,EstatVista.noInicialitzada,EstatVista.noInicialitzada,EstatVista.noInicialitzada};
 
     //Mètodes
 
@@ -275,6 +276,58 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
     public void canviarNom(String nomAnterior, String nomNou) {
         ctrl.canviar_nom(nomAnterior, nomNou);
         prodAct = nomNou;
+    }
+
+
+
+    private void mostrarVista(int numVista){
+        if (numVista == 0){
+            vistaPrincCat.mostrar();
+        }
+        else if (numVista == 1){
+            vistaAfegProd.mostrar();
+        }
+        else if (numVista == 2){
+            vistaInfoProd.mostrar();
+        }
+        else if (numVista == 3){
+            vistaConsRest.mostrar();
+        }
+    }
+
+    private void ocultarVista(int numVista){
+        if (numVista == 0){
+            vistaPrincCat.ocultar();
+        }
+        else if (numVista == 1){
+            vistaAfegProd.ocultar();
+        }
+        else if (numVista == 2){
+            vistaInfoProd.ocultar();
+        }
+        else if (numVista == 3){
+            vistaConsRest.ocultar();
+        }
+    }
+
+
+    private void controlVistes(int numVista) {
+        for(int i = 0; i < 4; ++i){
+            if (controlVistes[i] == EstatVista.noInicialitzada){
+                if (i == numVista) controlVistes[i] = EstatVista.esVisible;
+            }
+            else {
+                if (i == numVista) {
+                    mostrarVista(numVista);
+                    controlVistes[i] = EstatVista.esVisible;
+                }
+                else {
+                    ocultarVista(i);
+                    controlVistes[i] = EstatVista.noVisible;
+                }
+            }
+        }
+
     }
 
     //Legacy
