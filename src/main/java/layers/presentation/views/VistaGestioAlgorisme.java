@@ -116,6 +116,23 @@ public class VistaGestioAlgorisme extends VistaGenerica {
         }
     }
 
+    @Override
+    protected void itemAccionat(String textItem) {
+        if (textItem.equals(textItemSortir)) {
+            int result = JOptionPane.showConfirmDialog(frameVista,
+                    "Estas segur que vols sortir de l'aplicacio?",
+                    "Sortir de l'aplicacio",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (result == JOptionPane.YES_OPTION) {
+                System.out.println("Fins la proxima!");
+                ctrlVistaSolucions.sortirAplicacio();
+            }
+        } else {
+            super.itemAccionat(textItem);
+        }
+    }
+
     /**
      * L'usuari vol que l'algorisme sigui de tipus greedy i ha d'indicar el index del producte
      * pel que es vol començar a calcular la solucio.

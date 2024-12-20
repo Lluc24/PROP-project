@@ -1,5 +1,6 @@
 package layers.presentation.controllers;
 
+import layers.domain.SolucioModificada;
 import layers.domain.controllers.CtrlGeneric;
 import layers.domain.controllers.CtrlSolucions;
 import layers.domain.excepcions.FormatInputNoValid;
@@ -29,6 +30,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
 
     @Override
     public void executar() {
+        mostrarVistaPrincipal();
         vistaPplSols.executar();
     }
 
@@ -99,13 +101,18 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
             System.out.println(e.getMessage());
         }
         solucioVisualitzant = s;
-        vistaInfoSolucio.executar(solList);
+        boolean mod = ctrlSolucions.esModificada(s);
+        if (mod) s = (s + " - Modificada");
+        else s = (s + " - Original");
+        mostrarVistaInfoSolucio();
+        vistaInfoSolucio.executar(solList, s);
     }
 
     /**
      * L'usuari vol gestionar l'algorisme actual
      */
     public void canviarAlgorisme(){
+        mostrarVistaGestioAlgorisme();
         vistaGestioAlgorisme.executar();
 
       //  try {
@@ -178,4 +185,27 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
             System.err.println(e.getMessage());
         }
     }
+
+    private void mostrarVistaPrincipal() {
+        vistaGestioAlgorisme.mostrar();
+        vistaInfoSolucio.ocultar();
+        vistaPplSols.mostrar();
+    }
+
+    private void mostrarVistaGestioAlgorisme() {
+        vistaPplSols.ocultar();
+        vistaInfoSolucio.ocultar();
+        vistaGestioAlgorisme.mostrar();
+    }
+
+    private void mostrarVistaInfoSolucio() {
+        vistaPplSols.ocultar();
+        vistaInfoSolucio.mostrar();
+        vistaGestioAlgorisme.ocultar();
+    }
+
+    public void sortirAplicacio() {
+        System.exit(0);
+    }
+
 }
