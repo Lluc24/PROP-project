@@ -35,7 +35,6 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         vistaPrincCat = new VistaPrincipalCataleg(this);
         vistaAfegProd = new VistaAfegirProducte(this);
         vistaInfoProd = new VistaInfoProducte(this);
-        //vistaInfoProd = null;
         vistaConsRest = new VistaConsultarRest(this);
     }
 
@@ -48,10 +47,17 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
 
         if (Objects.equals(nomVista, "AfegirProductes")) {
+            controlVistes(1);
             vistaAfegProd.executar();
         }
 
+        if (Objects.equals(nomVista, "PrincipalCataleg")) {
+            controlVistes(0);
+            vistaPrincCat.executar();
+        }
+
         else if (Objects.equals(nomVista, "ConsultarRestriccions")) {
+            controlVistes(3);
             vistaConsRest.executar();
         }
 
@@ -70,8 +76,8 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
     public void canviarVista(String nomVista, String nomProd) {
 
         if (Objects.equals(nomVista, "InfoProducte")) {
-            //this.vistaInfoProd = new VistaInfoProducte(this);
             this.prodAct = nomProd;
+            controlVistes(2);
             vistaInfoProd.executar(nomProd);
 
         }
@@ -180,6 +186,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
     @Override
     public void executar() {
+        controlVistes(0);
         vistaPrincCat.executar();
     }
 
@@ -254,7 +261,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
      */
     private String[] decodificar_producte(String str) {
 
-        return str.split(";");
+        return str.split(" ; ");
     }
 
     /**
@@ -329,6 +336,29 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         }
 
     }
+
+    /**
+     * L'usuari vol guardar el catàleg actual del sistema en un fitxer.
+     *
+     * @param path lloc on està el fitxer
+     * @param nomArxiu nom del fitxer on es vol guardar
+     * @throws FormatInputNoValid si algun dels paràmetres passats no és vàlid, es llença l'excepció
+     */
+    public void guardarCataleg(String path, String nomArxiu) throws FormatInputNoValid {
+        ctrl.guardaCataleg(path, nomArxiu);
+    }
+
+    /**
+     * L'usuari vol carregar el catàleg des d'un fitxer al sistema.
+     *
+     * @param path lloc on està el fitxer
+     * @param nomArxiu nom del fitxer on es vol guardar
+     * @throws FormatInputNoValid si algun dels paràmetres passats no és vàlid, es llença l'excepció
+     */
+    public void carregarCataleg(String path, String nomArxiu) throws FormatInputNoValid{
+        ctrl.carregaCataleg(path,nomArxiu);
+    }
+
 
     //Legacy
 
