@@ -109,6 +109,8 @@ public class VistaGestioAlgorisme extends VistaGenerica {
             ctrlVistaSolucions.gestioAlgorisme("algorismeBT");
             textEtiquetaInfo = "L'algorisme actual es de tipus backtracking";
             etiquetaInfo.setText(textEtiquetaInfo);
+        }else if (textBoto.equals(textBotoTornar)){
+            ctrlVistaSolucions.controlVistes(0);
         }
         else {
             super.botoAccionat(textBoto);
@@ -128,7 +130,8 @@ public class VistaGestioAlgorisme extends VistaGenerica {
                 System.out.println("Fins la proxima!");
                 ctrlVistaSolucions.sortirAplicacio();
             }
-        } else {
+        }
+        else {
             super.itemAccionat(textItem);
         }
     }
