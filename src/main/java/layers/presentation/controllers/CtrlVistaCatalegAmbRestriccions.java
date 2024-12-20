@@ -51,7 +51,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
             vistaAfegProd.executar();
         }
 
-        if (Objects.equals(nomVista, "PrincipalCataleg")) {
+        else if (Objects.equals(nomVista, "PrincipalCataleg")) {
             controlVistes(0);
             vistaPrincCat.executar();
         }
@@ -59,6 +59,12 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         else if (Objects.equals(nomVista, "ConsultarRestriccions")) {
             controlVistes(3);
             vistaConsRest.executar();
+        }
+
+        else if (Objects.equals(nomVista, "VistaPrincipal")) {
+            controlVistes[0] = EstatVista.noVisible;
+            vistaPrincCat.ocultar();
+            //vistaPrincipal.setVisisble
         }
 
         else {
