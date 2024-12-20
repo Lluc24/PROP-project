@@ -6,6 +6,8 @@ import layers.domain.controllers.CtrlSolucions;
 import layers.domain.excepcions.FormatInputNoValid;
 import layers.domain.excepcions.IntercanviNoValid;
 import layers.domain.excepcions.NomSolucioNoValid;
+import layers.persistence.CtrlPersistenciaGeneric;
+import layers.persistence.CtrlPersistenciaSolucio;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,6 +23,7 @@ import static org.mockito.Mockito.*;
 public class TestCtrlSolucions {
     private CtrlSolucions gs;
     private CtrlCataleg c;
+    private CtrlPersistenciaSolucio cps;
     private ArrayList<Double> similituds0 = new ArrayList<>();
     private ArrayList<Double> similituds1 = new ArrayList<>();
     private ArrayList<String> productes = new ArrayList<String>();
