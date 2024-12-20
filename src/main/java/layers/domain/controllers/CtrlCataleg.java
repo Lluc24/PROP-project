@@ -285,7 +285,7 @@ public class CtrlCataleg extends CtrlGeneric{
      */
      public String getNomProd_index(int index_in) {
          if (!valida_index(index_in)) {
-             System.err.println("El index no es valid");
+             System.err.println("GetNomProd_index: El index no es valid");
              return null; //Exception
          }
          return Cataleg_Productes.get(index_in).getNom();
@@ -298,7 +298,7 @@ public class CtrlCataleg extends CtrlGeneric{
      */
      public Producte getProd_index(int index_in) {
          if (!valida_index(index_in)) {
-             System.err.println("El index no es valid");
+             System.err.println("GetProd_index: El index no es valid");
              return null; //Exception
          }
          return Cataleg_Productes.get(index_in);
@@ -311,7 +311,7 @@ public class CtrlCataleg extends CtrlGeneric{
      public Producte getProd_nom(String nom_in) {
           int index_out = get_index_prod(nom_in);
           if (index_out == -1) {
-              System.err.println("El index no es valid");
+              System.err.println("GetProd_nom: El index no es valid");
               return null; //Exception
           }
           else return Cataleg_Productes.get(index_out);
@@ -364,7 +364,7 @@ public class CtrlCataleg extends CtrlGeneric{
         if (valida_index(index_prod)) {
             return Cataleg_Productes.get(index_prod).getSimilituds();
         } else {
-            System.err.println("El index no es valid");
+            System.err.println("GetAllSimilituds_index: El index no es valid");
             return null; //Exception
         }
     }
@@ -513,7 +513,19 @@ public class CtrlCataleg extends CtrlGeneric{
         return ret;
     }
 
-
+    /**
+     * Funcio per canviar el nom de un producte
+     * @param nom_prod Nom del producte el cual es vol canviar el nom
+     * @param nou_nom Nou nom del producte
+     */
+    public void canviar_nom(String nom_prod, String nou_nom) {
+        Producte prod = getProd_nom(nom_prod);
+        if (prod != null) {
+            prod.setNom(nou_nom);
+        } else {
+            System.err.println("Error canviar nom, producte null");
+        }
+    }
 
 
 
