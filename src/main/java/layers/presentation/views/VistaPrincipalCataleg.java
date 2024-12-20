@@ -102,9 +102,11 @@ public class VistaPrincipalCataleg extends VistaControladors {
                         JOptionPane.ERROR_MESSAGE);
             } else {
                 canviaVistaInfoProd(prodSeleccionat);
+                actualitzarComponents();
             }
         } else if (textBoto.equals(textBotoMenuRestriccions)) {
             canviVistaConsultarRest();
+            actualitzarComponents();
         } else {
             super.botoAccionat(textBoto);
         }

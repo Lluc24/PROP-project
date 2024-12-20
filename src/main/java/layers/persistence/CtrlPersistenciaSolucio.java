@@ -29,40 +29,10 @@ import java.util.Arrays;
  * @author Eulalia Peiret
  */
 
-public class CtrlPersistenciaSolucio {
-    CtrlSolucions ctrlSolucions = null;
+public class CtrlPersistenciaSolucio extends CtrlPersistenciaGeneric {
+    private static CtrlSolucions ctrlSolucions = null;
     public CtrlPersistenciaSolucio(CtrlSolucions cs){
         ctrlSolucions = cs;
-    }
-
-    /**
-     * Metode per verificar si l'arxiu existeix i si es accesible.
-     *
-     * @param path  Ruta del arxiu.
-     * @param nombre Nom del arxiu.
-     * @return true si l'arxiu es valid; false en cas contrari.
-     */
-    public boolean esArxiuValid(String path, String nombre) {
-        File archivo = new File(path, nombre);
-        return archivo.exists() && archivo.isFile() && archivo.canRead();
-    }
-
-    /**
-     * Metode per carregar dades des d'un arxiu si l'arxiu es valid.
-     *
-     * @param path  Ruta del arxiu.
-     * @param nombre Nom del arxiu.
-     * @return Contingut del arxiu com cadena de text.
-     * @throws IOException si hi ha error al llegir l'arxiu.
-     */
-    public String carregarArxiu(String path, String nombre) throws IOException ,FormatInputNoValid {
-        if (!esArxiuValid(path, nombre)) {
-            throw new FormatInputNoValid("L'arxiu '" +nombre+ "' no es valid o no es pot llegir.");
-        }
-
-        // Llegir contingut del arxiu
-        String rutaCompleta = Paths.get(path, nombre).toString();
-        return new String(Files.readAllBytes(Paths.get(rutaCompleta)));
     }
 
     /**
@@ -71,17 +41,17 @@ public class CtrlPersistenciaSolucio {
      * @param path  Ruta del arxiu.
      * @param nombre Nom del arxiu.
      */
+    @Override
     public void processarDadesArxiu(String path, String nombre) throws NomSolucioNoValid, FormatInputNoValid {
-        if(!directoriCorrecte(path)){
-            String missatge = "El path '" +path+ "' no es correcte";
-            throw new FormatInputNoValid(missatge);
-        }
+        super.processarDadesArxiu(path, nombre);
+
         String contenido = null;
         try {
             contenido = carregarArxiu(path, nombre);
         }catch (IOException e){
             throw new FormatInputNoValid("L'arxiu '" +nombre+ "' falla.");
         }
+
         // Dividim el contingut en lineas
         String[] lineas = contenido.split("\\n");
         int index = 0;
@@ -113,41 +83,9 @@ public class CtrlPersistenciaSolucio {
 
             // Crida a carregaSolucio
             ctrlSolucions.carregaSolucio(modificada, nomSolucio, sol) ;
-            //carregaSolucio(modificada, nomSolucio, sol);
+
             // Saltar línea vacía
             index++;
         }
-    }
-
-    /**
-     * L'usuari vol guardar les solucions del sistema a un arxiu.
-     *
-     * @param contingut totes les dades de les solucions en el format correcte
-     * @param path lloc on es vol guardar
-     * @param nomArxiu nom del arxiu on es vol guardar
-     */
-    public void guardarSolucio(String contingut, String path, String nomArxiu) throws FormatInputNoValid {
-        if(!directoriCorrecte(path)){
-            String missatge = "El path '" +path+ "' no es correcte";
-            throw new FormatInputNoValid(missatge);
-        }
-        File archivo = new File(path, nomArxiu);
-        try (FileWriter writer = new FileWriter(archivo)) {
-            writer.write(contingut);
-        }catch (IOException e){
-            System.err.println(e.getMessage());
-        }
-    }
-
-    /**
-     * Es vol saber si un directori es valid.
-     *
-     * @param path path del directori.
-     * @return true si el directori es valid i s'hi pot escriure, false altrament.
-     */
-    private boolean directoriCorrecte(String path) {
-        File directori = new File(path);
-        // Comprovar si el directori existeix, es valid i es pot escriure
-        return (directori.exists() && directori.isDirectory() && directori.canWrite());
     }
 }

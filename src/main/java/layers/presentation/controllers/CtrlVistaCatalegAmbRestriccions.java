@@ -28,8 +28,8 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         this.ctrl = ctrlCat;
         vistaPrincCat = new VistaPrincipalCataleg(this);
         vistaAfegProd = new VistaAfegirProducte(this);
-        //vistaInfoProd = new VistaInfoProducte(this, null);
-        vistaInfoProd = null;
+        vistaInfoProd = new VistaInfoProducte(this);
+        //vistaInfoProd = null;
         vistaConsRest = new VistaConsultarRest(this);
     }
 
@@ -64,9 +64,9 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
     public void canviarVista(String nomVista, String nomProd) {
 
         if (Objects.equals(nomVista, "InfoProducte")) {
-            this.vistaInfoProd = new VistaInfoProducte(this, nomProd);
+            //this.vistaInfoProd = new VistaInfoProducte(this);
             this.prodAct = nomProd;
-            vistaInfoProd.executar();
+            vistaInfoProd.executar(nomProd);
 
         }
     }

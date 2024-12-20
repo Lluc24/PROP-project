@@ -17,7 +17,7 @@ public class VistaControladors extends VistaGenerica {
 
     protected JComboBox<String> opcions;
 
-    Boolean primeraVegada = true;
+    protected Boolean primeraVegada = true;
 
     //Constructora
     public VistaControladors() {

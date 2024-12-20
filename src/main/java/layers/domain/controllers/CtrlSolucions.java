@@ -21,7 +21,6 @@ public class CtrlSolucions extends CtrlGeneric {
         this.solucions = new ArrayList<Solucio>();
         this.cataleg = c;
         this.algorismeAct = new Aproximacio(); //per defecte, el algorismeAct és d'aproximació
-        this.ctrlPersistenciaSolucio = new CtrlPersistenciaSolucio(this);
     }
 
     //Getters i setters
@@ -38,6 +37,10 @@ public class CtrlSolucions extends CtrlGeneric {
 
     public void setParametres(int param1, int param2) throws FormatInputNoValid{
         algorismeAct = new AlgorismeGreedy(param1, param2);
+    }
+
+    public void setCtrlPersistenciaSolucio(CtrlPersistenciaSolucio cps){
+        ctrlPersistenciaSolucio = cps;
     }
 
     //Mètodes addicionals
@@ -263,6 +266,7 @@ public class CtrlSolucions extends CtrlGeneric {
     public void carregaSolucions(String path, String nomArxiu) throws FormatInputNoValid{
         String s = null;
         try {
+            solucions.clear();
             ctrlPersistenciaSolucio.processarDadesArxiu(path, nomArxiu);
         }catch (FormatInputNoValid e){
             s = e.getMessage();
@@ -273,6 +277,7 @@ public class CtrlSolucions extends CtrlGeneric {
             solucions.clear();
             throw new FormatInputNoValid(s);
         }
+        System.err.println("ESTIC AQUI CTRL SOLUCIONS");
     }
 
     /**
@@ -326,6 +331,6 @@ public class CtrlSolucions extends CtrlGeneric {
             contenido.append("\n");
         }
         String c = contenido.toString();
-        ctrlPersistenciaSolucio.guardarSolucio(c, path, nomArxiu);
+        ctrlPersistenciaSolucio.guardar(c, path, nomArxiu);
     }
 }

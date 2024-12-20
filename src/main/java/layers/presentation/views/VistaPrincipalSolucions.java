@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public class VistaPrincipalSolucions extends VistaControladors {
     private CtrlVistaSolucions ctrlVistaSolucions;
 
-    protected String textBotoAlgorisme = "Canviar l'algorisme actual";
-    protected Boto botoAlgorisme;
+    private String textBotoAlgorisme = "Canviar l'algorisme actual";
+    private Boto botoAlgorisme;
 
     //Constructora
     public VistaPrincipalSolucions(CtrlVistaSolucions ctrl){
@@ -89,6 +89,11 @@ public class VistaPrincipalSolucions extends VistaControladors {
             }
             else {
                 ctrlVistaSolucions.mostrarSolucio(solucioSeleccionada);
+                opcions.removeAllItems();
+                ArrayList<String> noms = ctrlVistaSolucions.getSolucions();
+                for (String nom : noms) {
+                    opcions.addItem(nom);
+                }
             }
         }
         else {
