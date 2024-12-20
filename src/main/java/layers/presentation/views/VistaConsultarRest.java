@@ -204,6 +204,9 @@ public class VistaConsultarRest extends VistaControladors {
         }
     }
 
+    /**
+     * Torna a carregar els elements de la vista.
+     */
     private void actualitzarComponents() {
 
         String[] restriccions = ctrl.getAllRestriccions();

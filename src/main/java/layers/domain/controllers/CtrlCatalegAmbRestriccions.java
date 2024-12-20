@@ -514,7 +514,13 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
         return llistaSim;
     }
 
-
+    /**
+     * Guarda en el fitxer indicat tota la informació del catàleg. Inclou nom de productes, matriu de similituds i matriu de restriccions.
+     *
+     * @param path lloc on està el fitxer
+     * @param nomArxiu nom del fitxer on es vol guardar
+     * @throws FormatInputNoValid si algun dels paràmetres passats no és vàlid, es llença l'excepció
+     */
     public void guardarCataleg(String path, String nomArxiu) throws FormatInputNoValid {
 
         StringBuilder contingut = guardarCataleg();
@@ -526,6 +532,12 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
         ctrlPersistenciaCataleg.guardar(contingut.toString(), path, nomArxiu);
     }
 
+    /**
+     * Converteix una matriu de bools en una de strings separats per espais on true és 1 i false és 0. Les files es separen per salt de línia.
+     *
+     * @param matriu Matriu a convertir.
+     * @return La matriu en format string.
+     */
     private String convertirMatriu(boolean[][] matriu) {
         StringBuilder resultat = new StringBuilder();
 
@@ -543,7 +555,14 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
         return resultat.toString();
     }
 
-
+    /**
+     * Carrega del fitxer indicat tota la informació del catàleg. Inclou nom de productes, matriu de similituds i matriu de restriccions.
+     *
+     * @param productes Nom dels productes en un ordre determinat.
+     * @param similituds Matriu de les similituds entre els productes en l'ordre en el que es donen.
+     * @param restriccions Matriu de les restriccions entre els productes en l'ordre en el que es donen.
+     * @throws FormatInputNoValid si algun dels paràmetres passats no és vàlid, es llença l'excepció
+     */
     public void carregaCataleg(String[] productes, double[][] similituds, int[][] restriccions) throws FormatInputNoValid {
 
         carregaCataleg(productes, similituds);

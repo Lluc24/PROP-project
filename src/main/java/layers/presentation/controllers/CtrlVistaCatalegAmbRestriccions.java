@@ -285,8 +285,11 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         prodAct = nomNou;
     }
 
-
-
+    /**
+     * Mostra la vista corresponent.
+     *
+     * @param numVista Identificador de la vista a mostrar.
+     */
     private void mostrarVista(int numVista){
         if (numVista == 0){
             vistaPrincCat.mostrar();
@@ -302,6 +305,11 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         }
     }
 
+    /**
+     * Oculta la vista corresponent.
+     *
+     * @param numVista Identificador de la vista a ocultar.
+     */
     private void ocultarVista(int numVista){
         if (numVista == 0){
             vistaPrincCat.ocultar();
@@ -317,7 +325,11 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         }
     }
 
-
+    /**
+     * Mostra la vista corresponent i amaga la resta.
+     *
+     * @param numVista Identificador de la vista a mostrar.
+     */
     private void controlVistes(int numVista) {
         for(int i = 0; i < 4; ++i){
             if (controlVistes[i] == EstatVista.noInicialitzada){
