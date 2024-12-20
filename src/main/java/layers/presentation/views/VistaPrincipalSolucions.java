@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+
 public class VistaPrincipalSolucions extends VistaControladors {
     private CtrlVistaSolucions ctrlVistaSolucions;
 
@@ -132,10 +133,24 @@ public class VistaPrincipalSolucions extends VistaControladors {
         if (input == null) {
             return input;
         }
-
         if(ctrlVistaSolucions.existeixSolucio(input)) {
             JOptionPane.showMessageDialog(frameVista,
                     "Ja existeix una solucio amb aquest nom al sistema.",
+                    "Error d'entrada",
+                    JOptionPane.ERROR_MESSAGE);
+            return insertaNom();
+        }
+        else if (input.isBlank()) {
+            JOptionPane.showMessageDialog(null,
+                    "El nom de la solucio no pot estar buit o contenir nomes espais.",
+                    "Error d'entrada",
+                    JOptionPane.ERROR_MESSAGE);
+            return insertaNom();
+        }
+
+        if (input.contains(" ")) {
+            JOptionPane.showMessageDialog(null,
+                    "El nom de la solucio no pot tenir espais.",
                     "Error d'entrada",
                     JOptionPane.ERROR_MESSAGE);
             return insertaNom();

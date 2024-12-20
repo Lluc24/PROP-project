@@ -212,6 +212,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
             vistaPplSols.ocultar();
         }
         else if (numVista == 1){
+            System.out.println("oculto!!!");
             vistaInfoSolucio.ocultar();
         }
         else if (numVista == 2){
@@ -220,16 +221,16 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
     }
 
     public void controlVistes(int numVista){
-        for(int i = 0; i < 3; ++i){
+        for(int i = 0; i < 3; i++){
             if (controlVistes[i] == EstatVista.noInicialitzada){
                 if (i == numVista) controlVistes[i] = EstatVista.esVisible;
             }
             else {
-                if (i == numVista) {
+                if (i == numVista && controlVistes[i] != EstatVista.esVisible) {
                     mostrarVista(numVista);
                     controlVistes[i] = EstatVista.esVisible;
                 }
-                else {
+                else if (i != numVista && controlVistes[i] == EstatVista.esVisible){
                     ocultarVista(i);
                     controlVistes[i] = EstatVista.noVisible;
                 }
