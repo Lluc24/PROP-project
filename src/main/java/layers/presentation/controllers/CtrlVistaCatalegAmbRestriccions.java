@@ -345,7 +345,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
      * @throws FormatInputNoValid si algun dels paràmetres passats no és vàlid, es llença l'excepció
      */
     public void guardarCataleg(String path, String nomArxiu) throws FormatInputNoValid {
-        ctrl.guardaCataleg(path, nomArxiu);
+        //ctrl.guardaCataleg(path, nomArxiu);
     }
 
     /**
@@ -356,7 +356,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
      * @throws FormatInputNoValid si algun dels paràmetres passats no és vàlid, es llença l'excepció
      */
     public void carregarCataleg(String path, String nomArxiu) throws FormatInputNoValid{
-        ctrl.carregaCataleg(path,nomArxiu);
+        //ctrl.carregaCataleg(path,nomArxiu);
     }
 
 

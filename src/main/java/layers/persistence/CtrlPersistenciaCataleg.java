@@ -119,6 +119,6 @@ public class CtrlPersistenciaCataleg extends CtrlPersistenciaGeneric {
             }
         }
 
-        //ctrlCat.carregaCataleg(productes, similituds, restriccions);
+        ctrlCat.carregaCataleg(productes, similituds, restriccions);
     }
 }

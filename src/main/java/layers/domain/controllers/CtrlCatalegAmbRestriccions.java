@@ -515,10 +515,45 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
     }
 
 
-    public void guardaCataleg(String path, String nomArxiu) throws FormatInputNoValid {
+    public void guardarCataleg(String path, String nomArxiu) throws FormatInputNoValid {
+        //super();
 
+        /*
+        contingut.append("\n");
+
+        contingut.append(convertirMatriu(getMatrRestrConsec()));
+        */
+    }
+
+    private String convertirMatriu(boolean[][] matriu) {
+        StringBuilder resultat = new StringBuilder();
+
+        for (int i = 0; i < matriu.length; i++) {
+            for (int j = 0; j < matriu[i].length; j++) {
+                if (matriu[i][j]) resultat.append("1");
+                else resultat.append("0");
+                if (j < matriu[i].length - 1) {
+                    resultat.append(" "); //afegir espai entre elements de la fila
+                }
+            }
+            resultat.append("\n"); //afegir salt de línia després de cada fila
+        }
+
+        return resultat.toString();
+    }
+
+
+    public void carregaCataleg(String[] productes, double[][] similituds, int[][] restriccions) throws FormatInputNoValid {
+        //super(productes, similituds);
+
+        for (int i = 0; i < restriccions.length; i++) {
+            for (int j = i; j < restriccions.length; j++) {
+                if (restriccions[i][j] == 1) setRestrConsecId(i, j);
+            }
+        }
 
 
     }
+
 }
 
