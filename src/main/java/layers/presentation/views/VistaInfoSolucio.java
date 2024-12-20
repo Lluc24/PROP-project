@@ -512,6 +512,10 @@ public class VistaInfoSolucio extends VistaGenerica {
         else return false;
     }
 
+    protected void tornar() {
+        ctrlVistaSolucions.controlVistes(0);
+    }
+
     protected void botoAccionat(String textBoto) {
         if (textBoto.equals(textBotoCanviEstatGeneralEnVisualitzar)) {
             canviEstatGeneralAEditar();
