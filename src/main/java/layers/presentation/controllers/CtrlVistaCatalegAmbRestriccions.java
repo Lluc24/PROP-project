@@ -7,11 +7,10 @@ import layers.presentation.views.*;
 import java.util.Objects;
 
 public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
-    public void importar(String s1, String s2) throws FormatInputNoValid {}
-    public void exportar(String s1, String s2) throws FormatInputNoValid {}
 
     //Atributs
     private CtrlCatalegAmbRestriccions ctrl;
+    private VistaPrincipal vistaPrinc;
     private VistaPrincipalCataleg vistaPrincCat; //vista 0
     private VistaAfegirProducte vistaAfegProd; //vista 1
     private VistaInfoProducte vistaInfoProd; //vista 2
@@ -37,6 +36,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         vistaAfegProd = new VistaAfegirProducte(this);
         vistaInfoProd = new VistaInfoProducte(this);
         vistaConsRest = new VistaConsultarRest(this);
+        vistaPrinc = null;
     }
 
     /**
@@ -65,7 +65,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         else if (Objects.equals(nomVista, "VistaPrincipal")) {
             controlVistes[0] = EstatVista.noVisible;
             vistaPrincCat.ocultar();
-            //vistaPrincipal.setVisisble
+            vistaPrinc.setVisible(true);
         }
 
         else {
@@ -193,7 +193,11 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
 
     public void executar(VistaPrincipal vistaPrincipal) {
+        if (vistaPrinc == null) {
+            this.vistaPrinc = vistaPrincipal;
+        }
         controlVistes(0);
+        vistaPrinc.setVisible(false);
         vistaPrincCat.executar();
     }
 
@@ -360,22 +364,24 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
      * L'usuari vol guardar el catàleg actual del sistema en un fitxer.
      *
      * @param path lloc on està el fitxer
-     * @param nomArxiu nom del fitxer on es vol guardar
+     * @param nomFitxer nom del fitxer on es vol guardar
      * @throws FormatInputNoValid si algun dels paràmetres passats no és vàlid, es llença l'excepció
      */
-    public void guardarCataleg(String path, String nomArxiu) throws FormatInputNoValid {
-        ctrl.guardarCataleg(path, nomArxiu);
+    @Override
+    public void exportar(String path, String nomFitxer) throws FormatInputNoValid {
+        ctrl.guardarCataleg(path, nomFitxer);
     }
 
     /**
      * L'usuari vol carregar el catàleg des d'un fitxer al sistema.
      *
      * @param path lloc on està el fitxer
-     * @param nomArxiu nom del fitxer on es vol guardar
+     * @param nomFitxer nom del fitxer on es vol guardar
      * @throws FormatInputNoValid si algun dels paràmetres passats no és vàlid, es llença l'excepció
      */
-    public void carregarCataleg(String path, String nomArxiu) throws FormatInputNoValid{
-        ctrl.carregarCataleg(path,nomArxiu);
+    @Override
+    public void importar(String path, String nomFitxer) throws FormatInputNoValid{
+        ctrl.carregarCataleg(path,nomFitxer);
     }
 
 
