@@ -538,6 +538,8 @@ public class VistaInfoSolucio extends VistaGenerica {
         else if (textBoto.equals(textBotoIntercanviar)) {
             ctrlVistaSolucions.intercanviarProductes(producte1Seleccionat.first, producte1Seleccionat.second,
                     producte2Seleccionat.first, producte2Seleccionat.second);
+            taulaCataleg.repaint();
+            canviEstatGeneralAVisualitzar();
         }
         else if (textBoto.equals(textBotoEliminarSolucio)) {
             ctrlVistaSolucions.eliminarSolucio();

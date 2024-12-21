@@ -57,7 +57,10 @@ public abstract class VistaGenerica extends JPanel {
     }
 
     protected void inicialitzarComponents() {
+        // En cas que la vista ja fos inicialitzada, netegem els components
         super.removeAll();
+        if (frameVista != null) frameVista.dispose();
+
         // Inicialitzem el frame principal
         frameVista = new JFrame(titolFrame);
         frameVista.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
