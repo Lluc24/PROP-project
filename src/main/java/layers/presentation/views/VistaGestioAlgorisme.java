@@ -88,6 +88,11 @@ public class VistaGestioAlgorisme extends VistaGenerica {
     }
 
     @Override
+    public void tornar(){
+        ctrlVistaSolucions.controlVistes(0);
+    }
+
+    @Override
     protected void botoAccionat(String textBoto) {
         if (textBoto.equals(textBotoAproximacio)) {
             ctrlVistaSolucions.gestioAlgorisme("aproximacio");
@@ -112,7 +117,6 @@ public class VistaGestioAlgorisme extends VistaGenerica {
         }
         else {
             super.botoAccionat(textBoto);
-            tornar();
         }
     }
 
