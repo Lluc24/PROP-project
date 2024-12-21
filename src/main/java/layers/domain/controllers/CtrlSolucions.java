@@ -331,7 +331,7 @@ public class CtrlSolucions extends CtrlGeneric {
             contenido.append("\n");
         }
         String c = contenido.toString();
-        ctrlPersistenciaSolucio.guardar(c, path, nomArxiu);
+        ctrlPersistenciaSolucio.exportar(c, path, nomArxiu);
     }
 
     public boolean esModificada(String nomSolucio){

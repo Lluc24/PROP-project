@@ -529,7 +529,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 
         contingut.append(convertirMatriu(getMatrRestrConsec()));
 
-        ctrlPersistenciaCataleg.guardar(contingut.toString(), path, nomArxiu);
+        ctrlPersistenciaCataleg.exportar(contingut.toString(), path, nomArxiu);
     }
 
     /**

@@ -39,21 +39,22 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
 
     }
 
-    @Override
-    public void executar() {
-        controlVistes(0);
-        vistaPplSols.executar();
-    }
+   // @Override
+   // public void executar() {
+     //   controlVistes(0);
+   //     vistaPplSols.executar();
+ //   }
 
-   /*
-    @Override
+
+
     public void executar(VistaPrincipal vs) {
-        vs.ocultar();
+        vistaPrincipal = vs;
+        vistaPrincipal.ocultar();
         controlVistes(0);
         vistaPplSols.executar();
     }
 
-    */
+
 
     /**
      * La vista vol saber les solucions actuals al sistema
