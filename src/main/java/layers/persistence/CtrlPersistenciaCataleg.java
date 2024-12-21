@@ -90,7 +90,7 @@ public class CtrlPersistenciaCataleg extends CtrlPersistenciaGeneric {
                 ArrayList<String> producteList = new ArrayList<>();
                 while (index < linies.length && !linies[index].trim().isEmpty()) {
                     String prod = linies[index].trim();
-                    if (!prod.matches("[a-zA-Z0-9]+")) throw new FormatInputNoValid("Els noms dels productes contenen caracters que no son lletres o numeros.");
+                    if (!prod.matches("[a-zA-Z0-9]+")) throw new FormatInputNoValid("Els noms dels productes contenen caracters que no son lletres o numeros. Linia: " + (index + 1));
                     producteList.add(prod);
                     index++;
                 }
@@ -118,11 +118,11 @@ public class CtrlPersistenciaCataleg extends CtrlPersistenciaGeneric {
                         try {
                             double valor = Double.parseDouble(valors[j]);
                             if (valor < 0 || valor > 100) {
-                                throw new FormatInputNoValid("El valor de la matriu de similituds no esta entre 0 i 100.");
+                                throw new FormatInputNoValid("El valor '" + valors[j] + "' de la matriu de similituds no esta entre 0 i 100. Linia: " + (index + 1));
                             }
                             similituds[i][j] = valor;
                         } catch (NumberFormatException e) {
-                            throw new FormatInputNoValid("El valor '" + valors[j] + "' no es pot convertir a un número.");
+                            throw new FormatInputNoValid("El valor '" + valors[j] + "' no es pot convertir a un numero. Linia: " + (index + 1));
                         }
                     }
                     index++;
@@ -147,11 +147,11 @@ public class CtrlPersistenciaCataleg extends CtrlPersistenciaGeneric {
                         try {
                             int valor = Integer.parseInt(valors[j]);
                             if (valor != 0 && valor != 1) {
-                                throw new FormatInputNoValid("Els valors de la matriu de restriccions nomes poden ser 0 o 1.");
+                                throw new FormatInputNoValid("El valor '" + valors[j] + "' de la matriu de restriccions no es 0 o 1. Linia: " + (index + 1));
                             }
                             restriccions[i][j] = valor;
                         } catch (NumberFormatException e) {
-                            throw new FormatInputNoValid("El valor '" + valors[j] + "' no es pot convertir a un enter.");
+                            throw new FormatInputNoValid("El valor '" + valors[j] + "' no es pot convertir a un enter. Linia " + (index + 1));
                         }
                     }
                     index++;
