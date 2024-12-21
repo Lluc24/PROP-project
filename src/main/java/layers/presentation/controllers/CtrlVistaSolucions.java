@@ -1,7 +1,5 @@
 package layers.presentation.controllers;
 
-import layers.domain.SolucioModificada;
-import layers.domain.controllers.CtrlGeneric;
 import layers.domain.controllers.CtrlSolucions;
 import layers.domain.excepcions.FormatInputNoValid;
 import layers.domain.excepcions.IntercanviNoValid;
@@ -171,11 +169,12 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
     }
 
     /**
+     *L'usuari vol indtercanviar dos productes amb les seves posicions a la matriu
      *
-     * @param index1i
-     * @param index1j
-     * @param index2i
-     * @param index2j
+     * @param index1i fila primer producte
+     * @param index1j columna primer producte
+     * @param index2i fila segon producte
+     * @param index2j columna segon producte
      */
     public void intercanviarProductes(int index1i, int index1j, int index2i,int index2j){
         try{
@@ -189,6 +188,11 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
         }
     }
 
+    /**
+     * La vista ha demanat eliminar la solució que s'esta visualitzant.
+     * La funcio fa que la vista principal de solucions mostri un missatge de confirmacio si s'elimina correctament.
+     *
+     */
     public void eliminarSolucio(){
         try {
             ctrlSolucions.eliminarSolucio(solucioVisualitzant);
@@ -200,18 +204,31 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
         vistaPplSols.panelInformatiu("La solucio '" +solucioVisualitzant+ "' s'ha eliminat correctament.");
     }
 
+    /**
+     * Quan es torna d'una vista volem que la vista s'elimini
+     *
+     * @param numVista el numero identificador de la vista
+     */
     private void ocultarVista(int numVista){
+        //VistaPrincipalSoluicons
         if (numVista == 0){
             vistaPplSols.ocultar();
         }
+        //VistaInfoSolucio
         else if (numVista == 1){
             vistaInfoSolucio.ocultar();
         }
+        //VistaGestioAlgorisme
         else if (numVista == 2){
             vistaGestioAlgorisme.ocultar();
         }
     }
 
+    /**
+     * Funcio que gestiona els possibles estats de les vistes
+     *
+     * @param numVista numero identificador de cada vista
+     */
     public void controlVistes(int numVista){
         for(int i = 0; i < 3; i++) {
             if (controlVistes[i] == EstatVista.noInicialitzada) {
@@ -235,6 +252,9 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
         }
     }
 
+    /**
+     * El programa torna a la vista principal
+     */
     public void tornar(){
         vistaPrincipal.executar();
         controlVistes(3);

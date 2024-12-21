@@ -78,6 +78,11 @@ public class CtrlSolucions extends CtrlGeneric {
         return false;
     }
 
+    /**
+     * Retorna la matriu de productes d'una solucio concreta
+     *
+     * @param nomSolucio nom de la solucio que es vol obtenir
+     */
     public ArrayList<ArrayList<String>> getSolucio(String nomSolucio) throws NomSolucioNoValid{
         if (this.existeixSolucio(nomSolucio)){
             for (Solucio sol : solucions){
@@ -157,7 +162,7 @@ public class CtrlSolucions extends CtrlGeneric {
     /**
      *L'usuari crida a aquesta funcio quan vol intercanviar dos productes d'una solucio. proporciona els index dels productes dins la solucio
      *
-     * @param nomSolucio
+     * @param nomSolucio nom de la solucio a modificar
      */
     public void modificarSolucio (int index1i, int index1j, int index2i,int index2j, String nomSolucio) throws IntercanviNoValid, NomSolucioNoValid, FormatInputNoValid {
         boolean trobat = false;
@@ -223,7 +228,9 @@ public class CtrlSolucions extends CtrlGeneric {
         return result;
     }
 
-    // Obtenir totes les solucions
+    /**
+     * Mostra per terminal totes les solucions actuals del sistema
+     */
     public void mostrarSolucions() {
         if (solucions.isEmpty()) {
             System.out.println("No hi ha solucions a mostrar");
@@ -334,6 +341,10 @@ public class CtrlSolucions extends CtrlGeneric {
         ctrlPersistenciaSolucio.exportar(c, path, nomArxiu);
     }
 
+    /**
+     * @param nomSolucio nom d'una solucio del sistema
+     * @return si la solucio ha estat modificada, retorna true. False en cas contrari.
+     */
     public boolean esModificada(String nomSolucio){
         for (Solucio sol : solucions){
             if(sol.getNom().equals(nomSolucio)) return sol instanceof SolucioModificada;
