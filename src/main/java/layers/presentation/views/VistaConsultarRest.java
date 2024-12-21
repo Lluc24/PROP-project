@@ -428,7 +428,13 @@ public class VistaConsultarRest extends VistaControladors {
 
     }
 
-
+    /**
+     * Comprova si l'item està al menu.
+     *
+     * @param menu menu on es cerca.
+     * @param nomItem nom del item.
+     * @return True si està, false en cas contrari.
+     */
     private boolean menuTeItem(Menu menu, String nomItem) {
         for (int i = 0; i < menu.getItemCount(); i++) {
             MenuItem item = menu.getItem(i);
