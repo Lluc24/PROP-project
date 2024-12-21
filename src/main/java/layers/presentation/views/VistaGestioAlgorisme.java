@@ -117,7 +117,7 @@ public class VistaGestioAlgorisme extends VistaGenerica {
     }
 
     @Override
-    protected void sortirSistema(String textItem) {
+    protected void sortirSistema() {
         ctrlVistaSolucions.sortirSistema();
     }
 

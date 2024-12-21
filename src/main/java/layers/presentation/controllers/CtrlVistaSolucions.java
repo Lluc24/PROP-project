@@ -53,7 +53,10 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
         vistaPplSols.executar();
     }
 
-
+    @Override
+    public void sortirSistema(){
+        System.exit(0);
+    }
 
     /**
      * La vista vol saber les solucions actuals al sistema
