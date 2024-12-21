@@ -243,7 +243,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
         System.out.println(" ");
     }
 
-    /** Override de afegir_producte(String new_nom, Pair<String, Double>[] llista_simi) throws ProducteNoValid, FormatInputNoValid */
+    /** Override de afegir_producte() */
     @Override
     public void afegir_producte(String new_nom, Pair<String, Double>[] llista_simi) throws ProducteNoValid, FormatInputNoValid {
 
