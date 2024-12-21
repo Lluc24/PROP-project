@@ -14,7 +14,7 @@ public class CtrlPersistencia {
         if (instancia == null){
             instancia = new CtrlPersistencia();
             ctrlPersistenciaSolucio = new CtrlPersistenciaSolucio(cs);
-            //ctrlPersistenciaCataleg = new CtrlPersistenciaCataleg(cg);
+            ctrlPersistenciaCataleg = new CtrlPersistenciaCataleg(cg);
         }
         return instancia;
     }

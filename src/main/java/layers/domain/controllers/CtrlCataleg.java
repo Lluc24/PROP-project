@@ -562,7 +562,7 @@ public class CtrlCataleg extends CtrlGeneric{
                 }
             } else {
                 //Creamos pair de productes
-                Pair<String, Double>[] simis = new Pair[p-1];
+                Pair<String, Double>[] simis = new Pair[p];
                 for (int i = 0; i < p; ++i) {
                     Pair<String, Double> new_pair = new Pair<>(productes[i], similituds[p][i]);
                     simis[i] = new_pair;
@@ -605,6 +605,7 @@ public class CtrlCataleg extends CtrlGeneric{
 
         int mida = num_prod_act();
         double[][] matriuSimis = new double[mida][mida];
+        matriuSimis = getMatriuSimilituds();
 
         //Afegim el productes
         for (int i = 0; i < mida; ++i) {
