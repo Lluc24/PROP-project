@@ -469,25 +469,25 @@ public class VistaInfoSolucio extends VistaGenerica {
     protected void actualitzaProducte2Seleccionat() {
         String err = String.format(errEstatTemplate, "actualitzaProducte2Seleccionat", "estatGeneral", estatGeneral, EstatGeneral.EDITAR);
         if (estatGeneral != EstatGeneral.EDITAR) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
         err = String.format(errEstatTemplate, "actualitzaProducte2Seleccionat", "estatProducte2", estatProducte2, EstatProducte.SELECCIONAT);
         if (estatProducte2 != EstatProducte.SELECCIONAT) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
         String estatProducte1Desitjat = EstatProducte.INICIAL + " o " + EstatProducte.CONFIRMAT;
         err = String.format(errEstatTemplate, "actualitzaProducte2Seleccionat", "estatProducte1", estatProducte1, estatProducte1Desitjat);
         if (estatProducte1 != EstatProducte.INICIAL && estatProducte1 != EstatProducte.CONFIRMAT) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
         if (celaFantasma(filaSeleccionada, columnaSeleccionada)) {
-            System.err.println("Casella fantasma");
+            mostrarOptionPane("Casella fantasma en actualitzaProducte2Seleccionat", true);
             return;
         }
 
@@ -506,8 +506,8 @@ public class VistaInfoSolucio extends VistaGenerica {
 
     private boolean celaFantasma(int fila, int columna) {
         if (fila == -1 || columna == -1) {
-            String errTemplate = "celaFantasma en la casella (%d, %d) no funciona%n";
-            System.err.printf(errTemplate, fila, columna);
+            String err = "celaFantasma en la casella (" + fila + ", " + columna + ") no funciona";
+            mostrarOptionPane(err, true);
             return false;
         }
 
