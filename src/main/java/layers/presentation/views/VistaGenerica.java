@@ -143,7 +143,7 @@ public abstract class VistaGenerica extends JPanel {
     }
 
     public void ocultar() {
-        tornar();
+        frameVista.dispose();
     }
 
     public void mostrar() {
