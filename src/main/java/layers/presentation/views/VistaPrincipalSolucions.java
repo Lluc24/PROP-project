@@ -67,6 +67,11 @@ public class VistaPrincipalSolucions extends VistaControladors {
     }
 
     @Override
+    public void tornar(){
+        ctrlVistaSolucions.tornar();
+    }
+
+    @Override
     protected void botoAccionat(String textBoto) {
         if (textBoto.equals(textBotoAfegir)) {
             int alg = confirmacioAlgorisme();
@@ -75,6 +80,7 @@ public class VistaPrincipalSolucions extends VistaControladors {
                 if (!nom.equals(null)) {
                     int prodPrestatge = insertaProdPrestatge();
                     if (prodPrestatge > 0) {
+                        panelInformatiu("La solucio '" +nom+ "'s'ha afegit correctament");
                         ctrlVistaSolucions.afegeixSolucio(nom, prodPrestatge);
                         opcions.addItem(nom);
                         opcions.setSelectedItem(nom);
@@ -85,7 +91,7 @@ public class VistaPrincipalSolucions extends VistaControladors {
         else if (textBoto.equals(textBotoAlgorisme)) {
             ctrlVistaSolucions.canviarAlgorisme();
         }
-        else if (textBoto.equals(textBotoMostrar)) {System.out.println("1");
+        else if (textBoto.equals(textBotoMostrar)) {
             String solucioSeleccionada = (String) opcions.getSelectedItem();
             if (solucioSeleccionada == null) {
                 JOptionPane.showMessageDialog(frameVista,
@@ -203,5 +209,12 @@ public class VistaPrincipalSolucions extends VistaControladors {
         }
         else result = -1;
         return result;
+    }
+
+    public void panelInformatiu(String text){
+        JOptionPane.showMessageDialog(frameVista,
+                text,
+                "Confirmacio de l'accio",
+                JOptionPane.INFORMATION_MESSAGE);
     }
 }

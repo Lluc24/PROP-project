@@ -29,7 +29,6 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
     }
     EstatVista[] controlVistes = {EstatVista.noInicialitzada,EstatVista.noInicialitzada,EstatVista.noInicialitzada};
 
-
     //Constructora
     public CtrlVistaSolucions(CtrlSolucions cs) {
         this.ctrlSolucions = cs;
@@ -39,18 +38,11 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
 
     }
 
-   // @Override
-   // public void executar() {
-     //   controlVistes(0);
-   //     vistaPplSols.executar();
- //   }
-
-
     public void executar(VistaPrincipal vs) {
         vistaPrincipal = vs;
+        vistaPplSols.executar();
         vistaPrincipal.ocultar();
         controlVistes(0);
-        vistaPplSols.executar();
     }
 
     @Override
@@ -111,12 +103,6 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
      * @param s nom de la solucio especifica que vol mostrar
      */
     public void mostrarSolucio(String s){
-       // try {
-       //     carregarSolucions("/home/lali/Escritorio/q5/prop/","test1.txt");
-       // }catch (FormatInputNoValid e){
-       //     System.err.println(e.getMessage());
-       // }
-
         List<List<String>> solList = new ArrayList<>();
         try {
             ArrayList<ArrayList<String>> solArrayList= ctrlSolucions.getSolucio(s);
@@ -128,22 +114,16 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
         boolean mod = ctrlSolucions.esModificada(s);
         if (mod) s = (s + " - Modificada");
         else s = (s + " - Original");
-        controlVistes(1);
         vistaInfoSolucio.executar(solList, s);
+        controlVistes(1);
     }
 
     /**
      * L'usuari vol gestionar l'algorisme actual
      */
     public void canviarAlgorisme(){
-        controlVistes(2);
         vistaGestioAlgorisme.executar();
-
-      //  try {
-        //     guardarSolucions("/home/lali/Escritorio/q5/prop/", "test1.txt");
-       // }catch (FormatInputNoValid e){
-         //   System.err.println(e.getMessage());
-       // }
+        controlVistes(2);
     }
 
     /**
@@ -190,6 +170,13 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
         ctrlSolucions.carregaSolucions(path,nomArxiu);
     }
 
+    /**
+     *
+     * @param index1i
+     * @param index1j
+     * @param index2i
+     * @param index2j
+     */
     public void intercanviarProductes(int index1i, int index1j, int index2i,int index2j){
         try{
             ctrlSolucions.modificarSolucio(index1i, index1j, index2i, index2j, solucioVisualitzant);
@@ -208,18 +195,9 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
         }catch (NomSolucioNoValid e){
             System.err.println(e.getMessage());
         }
-    }
-
-    private void mostrarVista(int numVista){
-        if (numVista == 0){
-            vistaPplSols.mostrar();
-        }
-        else if (numVista == 1){
-            vistaInfoSolucio.mostrar();
-        }
-        else if (numVista == 2){
-            vistaGestioAlgorisme.mostrar();
-        }
+        vistaInfoSolucio.ocultar();
+        vistaPplSols.executar();
+        vistaPplSols.panelInformatiu("La solucio '" +solucioVisualitzant+ "' s'ha eliminat correctament.");
     }
 
     private void ocultarVista(int numVista){
@@ -235,16 +213,16 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
     }
 
     public void controlVistes(int numVista){
-        for(int i = 0; i < 3; i++){
-            if (controlVistes[i] == EstatVista.noInicialitzada){
-                if (i == numVista) controlVistes[i] = EstatVista.esVisible;
-            }
-            else {
-                if (i == numVista && controlVistes[i] != EstatVista.esVisible) {
-                    //mostrarVista(numVista);
+        for(int i = 0; i < 3; i++) {
+            if (controlVistes[i] == EstatVista.noInicialitzada) {
+                if (i == numVista){
                     controlVistes[i] = EstatVista.esVisible;
                 }
-                else if (i != numVista && controlVistes[i] == EstatVista.esVisible){
+            } else {
+                if (i == numVista && controlVistes[i] != EstatVista.esVisible) {
+                    if (i == 0) vistaPplSols.executar();
+                    controlVistes[i] = EstatVista.esVisible;
+                } else if (i != numVista && controlVistes[i] == EstatVista.esVisible) {
                     ocultarVista(i);
                     controlVistes[i] = EstatVista.noVisible;
                 }
@@ -258,7 +236,8 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
     }
 
     public void tornar(){
+        vistaPrincipal.executar();
         controlVistes(3);
-        vistaPrincipal.mostrar();
     }
 }
+
