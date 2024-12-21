@@ -90,13 +90,13 @@ public class VistaInfoSolucio extends VistaGenerica {
 
     public void executar(List<List<String>> productes, String nomSolcuio) {
         this.nomSolucio = nomSolcuio;
-        //this.productes = productes;
-        this.productes = new ArrayList<List<String>>();
-        List<String> l1 = new ArrayList<String>();
-        l1.add("ous"); l1.add("llet"); l1.add("peix");
-        List<String> l2 = new ArrayList<String>();
-        l2.add("pa"); l2.add("farina");
-        this.productes.add(l1); this.productes.add(l2);
+        this.productes = productes;
+//        this.productes = new ArrayList<List<String>>();
+//        List<String> l1 = new ArrayList<String>();
+//        l1.add("ous"); l1.add("llet"); l1.add("peix");
+//        List<String> l2 = new ArrayList<String>();
+//        l2.add("pa"); l2.add("farina");
+//        this.productes.add(l1); this.productes.add(l2);
         titolFrame = "Informacio de la solucio";
         ajuda = "No hi ha";
 
@@ -242,19 +242,26 @@ public class VistaInfoSolucio extends VistaGenerica {
         etiquetaEstatGeneral.setText(textEtiquetaEstatGeneralEnEditar);
         botoCanviEstatGeneral.setText(textBotoCanviEstatGeneralEnEditar);
 
-        estatProducte1 = EstatProducte.INICIAL;
-        estatProducte2 = EstatProducte.INICIAL;
-
-        etiquetaPrimerProducte.setText(textEtiquetaProducteEnInicial);
-        botoPrimerProducte.setText(textBotoPrimerProducteEnInicial);
-        botoPrimerProducte.setVisible(true);
-        etiquetaSegonProducte.setText(textEtiquetaProducteEnInicial);
-        botoSegonProducte.setText(textBotoSegonProducteEnInicial);
-        botoSegonProducte.setVisible(true);
+        canviEstatProducte1AInicial();
+        canviEstatProducte2AInicial();
 
         botoIntercanviar.setVisible(false);
 
         panelEdicio.setVisible(true);
+    }
+
+    protected void canviEstatProducte1AInicial() {
+        estatProducte1 = EstatProducte.INICIAL;
+        etiquetaPrimerProducte.setText(textEtiquetaProducteEnInicial);
+        botoPrimerProducte.setText(textBotoPrimerProducteEnInicial);
+        botoPrimerProducte.setVisible(true);
+    }
+
+    protected void canviEstatProducte2AInicial() {
+        estatProducte2 = EstatProducte.INICIAL;
+        etiquetaSegonProducte.setText(textEtiquetaProducteEnInicial);
+        botoSegonProducte.setText(textBotoSegonProducteEnInicial);
+        botoSegonProducte.setVisible(true);
     }
 
     protected void canviEstatProducte1ASeleccionar() {
@@ -282,7 +289,7 @@ public class VistaInfoSolucio extends VistaGenerica {
         etiquetaPrimerProducte.setText(textEtiquetaProducteEnSeleccionar);
     }
 
-    protected void canviEstatProducte1ASeleccionat(int fila, int columna) {
+    protected void canviEstatProducte1ASeleccionat() {
         String err = String.format(errEstatTemplate, "canviEstatProducte1ASeleccionar", "estatGeneral", estatGeneral, EstatGeneral.EDITAR);
         if (estatGeneral != EstatGeneral.EDITAR) {
             System.err.println(err);
@@ -302,13 +309,13 @@ public class VistaInfoSolucio extends VistaGenerica {
             return;
         }
 
-        if (celaFantasma(fila, columna)) {
+        if (celaFantasma(filaSeleccionada, filaSeleccionada)) {
             System.err.println("Casella fantasma");
             return;
         }
 
         estatProducte1 = EstatProducte.SELECCIONAT;
-        actualitzaProducte1Seleccionat(fila, columna);
+        actualitzaProducte1Seleccionat();
         botoPrimerProducte.setText(textBotoPrimerProducteEnSeleccionat);
         botoPrimerProducte.setVisible(true);
     }
@@ -341,7 +348,7 @@ public class VistaInfoSolucio extends VistaGenerica {
         }
     }
 
-    protected void actualitzaProducte1Seleccionat(int fila, int columna) {
+    protected void actualitzaProducte1Seleccionat() {
         String err = String.format(errEstatTemplate, "canviEstatProducte1AConfirmat", "estatGeneral", estatGeneral, EstatGeneral.EDITAR);
         if (estatGeneral != EstatGeneral.EDITAR) {
             System.err.println(err);
@@ -361,14 +368,14 @@ public class VistaInfoSolucio extends VistaGenerica {
             return;
         }
 
-        if (celaFantasma(fila, columna)) {
+        if (celaFantasma(filaSeleccionada, columnaSeleccionada)) {
             System.err.println("Casella fantasma");
             return;
         }
 
-        producte1Seleccionat.first = fila;
-        producte1Seleccionat.second = columna;
-        String producte = (String) taulaCataleg.getValueAt(fila, columna);
+        producte1Seleccionat.first = filaSeleccionada;
+        producte1Seleccionat.second = columnaSeleccionada;
+        String producte = (String) taulaCataleg.getValueAt(filaSeleccionada, columnaSeleccionada);
         etiquetaPrimerProducte.setText(producte);
     }
 
@@ -397,7 +404,7 @@ public class VistaInfoSolucio extends VistaGenerica {
         etiquetaSegonProducte.setText(textEtiquetaProducteEnSeleccionar);
     }
 
-    protected void canviEstatProducte2ASeleccionat(int fila, int columna) {
+    protected void canviEstatProducte2ASeleccionat() {
         String err = String.format(errEstatTemplate, "canviEstatProducte2ASeleccionat", "estatGeneral", estatGeneral, EstatGeneral.EDITAR);
         if (estatGeneral != EstatGeneral.EDITAR) {
             System.err.println(err);
@@ -410,7 +417,7 @@ public class VistaInfoSolucio extends VistaGenerica {
             return;
         }
 
-        if (celaFantasma(fila, columna)) {
+        if (celaFantasma(filaSeleccionada, columnaSeleccionada)) {
             System.err.println("Casella fantasma");
             return;
         }
@@ -423,7 +430,7 @@ public class VistaInfoSolucio extends VistaGenerica {
         }
 
         estatProducte2 = EstatProducte.SELECCIONAT;
-        actualitzaProducte2Seleccionat(fila, columna);
+        actualitzaProducte2Seleccionat();
         botoSegonProducte.setText(textBotoSegonProducteEnSeleccionat);
         botoSegonProducte.setVisible(true);
     }
@@ -456,7 +463,7 @@ public class VistaInfoSolucio extends VistaGenerica {
         }
     }
 
-    protected void actualitzaProducte2Seleccionat(int fila, int columna) {
+    protected void actualitzaProducte2Seleccionat() {
         String err = String.format(errEstatTemplate, "actualitzaProducte2Seleccionat", "estatGeneral", estatGeneral, EstatGeneral.EDITAR);
         if (estatGeneral != EstatGeneral.EDITAR) {
             System.err.println(err);
@@ -476,20 +483,37 @@ public class VistaInfoSolucio extends VistaGenerica {
             return;
         }
 
-        if (celaFantasma(fila, columna)) {
+        if (celaFantasma(filaSeleccionada, columnaSeleccionada)) {
             System.err.println("Casella fantasma");
             return;
         }
 
-        producte2Seleccionat.first = fila;
-        producte2Seleccionat.second = columna;
-        String producte = (String) taulaCataleg.getValueAt(fila, columna);
+        producte2Seleccionat.first = filaSeleccionada;
+        producte2Seleccionat.second = columnaSeleccionada;
+        String producte = (String) taulaCataleg.getValueAt(filaSeleccionada, columnaSeleccionada);
         etiquetaSegonProducte.setText(producte);
     }
 
+    private boolean algunProducteEnSeleccio() {
+        if (estatProducte1 == EstatProducte.SELECCIONAR) return true;
+        if (estatProducte1 == EstatProducte.SELECCIONAT) return true;
+        if (estatProducte2 == EstatProducte.SELECCIONAR) return true;
+        return estatProducte2 == EstatProducte.SELECCIONAT;
+    }
+
     private boolean celaFantasma(int fila, int columna) {
+        if (fila == -1 || columna == -1) {
+            String errTemplate = "celaFantasma en la casella (%d, %d) no funciona%n";
+            System.err.printf(errTemplate, fila, columna);
+            return false;
+        }
+
         if (fila == files - 1) return columna >= columnesUltimaFila;
         else return false;
+    }
+
+    protected void tornar() {
+        ctrlVistaSolucions.controlVistes(0);
     }
 
     protected void botoAccionat(String textBoto) {
@@ -514,6 +538,8 @@ public class VistaInfoSolucio extends VistaGenerica {
         else if (textBoto.equals(textBotoIntercanviar)) {
             ctrlVistaSolucions.intercanviarProductes(producte1Seleccionat.first, producte1Seleccionat.second,
                     producte2Seleccionat.first, producte2Seleccionat.second);
+            taulaCataleg.repaint();
+            canviEstatGeneralAVisualitzar();
         }
         else if (textBoto.equals(textBotoEliminarSolucio)) {
             ctrlVistaSolucions.eliminarSolucio();
@@ -528,18 +554,32 @@ public class VistaInfoSolucio extends VistaGenerica {
         if (filaSeleccionada != -1 && columnaSeleccionada != -1) {
             System.out.println("Casella seleccionada: (" + filaSeleccionada + ", " + columnaSeleccionada + ")");
 
+            if (algunProducteEnSeleccio() && celaFantasma(filaSeleccionada, columnaSeleccionada)) {
+                JOptionPane.showMessageDialog(frameVista,
+                        "Has clicat una casella buida",
+                        "Casella invalida",
+                        JOptionPane.WARNING_MESSAGE);
+                if (estatProducte1 == EstatProducte.SELECCIONAR || estatProducte1 == EstatProducte.SELECCIONAT) {
+                    canviEstatProducte1AInicial();
+                }
+                if (estatProducte2 == EstatProducte.SELECCIONAR || estatProducte2 == EstatProducte.SELECCIONAT) {
+                    canviEstatProducte2AInicial();
+                }
+
+            }
+
             if (estatProducte1 == EstatProducte.SELECCIONAR) {
-                canviEstatProducte1ASeleccionat(filaSeleccionada, columnaSeleccionada);
+                canviEstatProducte1ASeleccionat();
             }
             else if (estatProducte1 == EstatProducte.SELECCIONAT) {
-                actualitzaProducte1Seleccionat(filaSeleccionada, columnaSeleccionada);
+                actualitzaProducte1Seleccionat();
             }
 
             if (estatProducte2 == EstatProducte.SELECCIONAR) {
-                canviEstatProducte2ASeleccionat(filaSeleccionada, columnaSeleccionada);
+                canviEstatProducte2ASeleccionat();
             }
             else if (estatProducte2 == EstatProducte.SELECCIONAT) {
-                actualitzaProducte2Seleccionat(filaSeleccionada, columnaSeleccionada);
+                actualitzaProducte2Seleccionat();
             }
         }
     }
@@ -593,6 +633,7 @@ public class VistaInfoSolucio extends VistaGenerica {
 
             if (!lsm.isSelectionEmpty() && !e.getValueIsAdjusting()) {
                 int leadSelection = lsm.getLeadSelectionIndex();
+                System.out.println("Fila clicada: " + leadSelection);
                 setFilaSeleccionada(leadSelection);
             }
         }
@@ -605,6 +646,7 @@ public class VistaInfoSolucio extends VistaGenerica {
 
             if (!lsm.isSelectionEmpty() && !e.getValueIsAdjusting()) {
                 int leadSelection = lsm.getLeadSelectionIndex();
+                System.out.println("Columna clicada: " + leadSelection);
                 setColumnaSeleccionada(leadSelection);
             }
         }

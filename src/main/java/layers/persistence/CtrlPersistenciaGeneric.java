@@ -40,7 +40,7 @@ public class CtrlPersistenciaGeneric {
      * @return Contingut del arxiu com cadena de text.
      * @throws IOException si hi ha error al llegir l'arxiu.
      */
-    protected String carregarArxiu(String path, String nombre) throws IOException ,FormatInputNoValid {
+    protected String importar(String path, String nombre) throws IOException ,FormatInputNoValid {
         if (!esArxiuValid(path, nombre)) {
             throw new FormatInputNoValid("L'arxiu '" +nombre+ "' no es valid o no es pot llegir.");
         }
@@ -70,7 +70,7 @@ public class CtrlPersistenciaGeneric {
      * @param path lloc on es vol guardar
      * @param nomArxiu nom del arxiu on es vol guardar
      */
-    public void guardar(String contingut, String path, String nomArxiu) throws FormatInputNoValid {
+    public void exportar(String contingut, String path, String nomArxiu) throws FormatInputNoValid {
         if(!directoriCorrecte(path)){
             String missatge = "El path '" +path+ "' no es correcte";
             throw new FormatInputNoValid(missatge);

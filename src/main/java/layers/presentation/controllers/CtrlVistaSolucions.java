@@ -8,6 +8,7 @@ import layers.domain.excepcions.IntercanviNoValid;
 import layers.domain.excepcions.NomSolucioNoValid;
 import layers.presentation.views.VistaGestioAlgorisme;
 import layers.presentation.views.VistaInfoSolucio;
+import layers.presentation.views.VistaPrincipal;
 import layers.presentation.views.VistaPrincipalSolucions;
 
 import java.sql.Array;
@@ -19,6 +20,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
     private VistaPrincipalSolucions vistaPplSols;
     private VistaGestioAlgorisme vistaGestioAlgorisme;
     private VistaInfoSolucio vistaInfoSolucio;
+    private VistaPrincipal vistaPrincipal;
     private String solucioVisualitzant;
     private enum EstatVista {
         noInicialitzada,
@@ -37,11 +39,21 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
 
     }
 
-    @Override
-    public void executar() {
+   // @Override
+   // public void executar() {
+     //   controlVistes(0);
+   //     vistaPplSols.executar();
+ //   }
+
+
+    public void executar(VistaPrincipal vs) {
+        vistaPrincipal = vs;
+        vistaPrincipal.ocultar();
         controlVistes(0);
         vistaPplSols.executar();
     }
+
+
 
     /**
      * La vista vol saber les solucions actuals al sistema
@@ -160,7 +172,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
      * @param nomArxiu nom del fitxer on es vol guardar
      * @throws FormatInputNoValid si algun dels paràmetres passats no son valids, es llença l'exepcio
      */
-    public void guardarSolucions(String path, String nomArxiu) throws FormatInputNoValid{
+    public void exportar(String path, String nomArxiu) throws FormatInputNoValid{
         ctrlSolucions.guardaSolucio(path, nomArxiu);
     }
 
@@ -171,7 +183,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
      * @param nomArxiu nom del fitxer on es vol guardar
      * @throws FormatInputNoValid si algun dels paràmetres passats no son valids, es llença l'exepcio
      */
-    public void carregarSolucions(String path, String nomArxiu) throws FormatInputNoValid{
+    public void importar(String path, String nomArxiu) throws FormatInputNoValid{
         ctrlSolucions.carregaSolucions(path,nomArxiu);
     }
 
@@ -212,6 +224,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
             vistaPplSols.ocultar();
         }
         else if (numVista == 1){
+            System.out.println("oculto!!!");
             vistaInfoSolucio.ocultar();
         }
         else if (numVista == 2){
@@ -220,16 +233,16 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
     }
 
     public void controlVistes(int numVista){
-        for(int i = 0; i < 3; ++i){
+        for(int i = 0; i < 3; i++){
             if (controlVistes[i] == EstatVista.noInicialitzada){
                 if (i == numVista) controlVistes[i] = EstatVista.esVisible;
             }
             else {
-                if (i == numVista) {
+                if (i == numVista && controlVistes[i] != EstatVista.esVisible) {
                     mostrarVista(numVista);
                     controlVistes[i] = EstatVista.esVisible;
                 }
-                else {
+                else if (i != numVista && controlVistes[i] == EstatVista.esVisible){
                     ocultarVista(i);
                     controlVistes[i] = EstatVista.noVisible;
                 }
@@ -246,4 +259,8 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
         System.exit(0);
     }
 
+    public void tornar(){
+        controlVistes(3);
+        vistaPrincipal.mostrar();
+    }
 }
