@@ -5,7 +5,7 @@ import layers.presentation.controllers.CtrlVistaSolucions;
 import javax.swing.*;
 import java.awt.*;
 
-public class VistaControladors extends VistaGenerica {
+public abstract class VistaControladors extends VistaGenerica {
     protected String textEtiquetaTriar = "Quina funcionalitat vols realitzar?";
     protected JLabel etiquetaTriar;
 
@@ -37,6 +37,7 @@ public class VistaControladors extends VistaGenerica {
             super.executar();
         }
     }
+
 
     @Override
     protected void inicialitzarComponents() {

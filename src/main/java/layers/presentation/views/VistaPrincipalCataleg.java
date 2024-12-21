@@ -40,6 +40,11 @@ public class VistaPrincipalCataleg extends VistaControladors {
     }
 
     @Override
+    public void sortirSistema() {
+        controlVista.sortirSistema();
+    }
+
+    @Override
     public void inicialitzarComponents() {
         super.inicialitzarComponents();
         //Etiqueta de triar
@@ -84,8 +89,8 @@ public class VistaPrincipalCataleg extends VistaControladors {
             int mida = controlVista.getNumProd();
             if (mida == 0) {
                 //Pedir nombre
-                String nom = getNomUsuari();
-                if (!nom.equals(textCancelat)) {
+                String nom = afegirNom();
+                if (nom != null) {
                     String[] buit = {};
                     //AñadirProducto
                     controlVista.afegirProducte(nom, buit, buit);
@@ -111,6 +116,8 @@ public class VistaPrincipalCataleg extends VistaControladors {
         } else if (textBoto.equals(textBotoMenuRestriccions)) {
             canviVistaConsultarRest();
             actualitzarComponents();
+        } else if (textBoto.equals(textBotoTornar)) {
+            controlVista.canviaVista("VistaPrincipal");
         } else {
             super.botoAccionat(textBoto);
         }
@@ -129,18 +136,47 @@ public class VistaPrincipalCataleg extends VistaControladors {
     }
 
     private String getNomUsuari() {
-        String message = "Afegeix el nom del producte que vols afegir";
+        String message = "Afegeix el nom del producte que vols afegir\nCAUTION: Nomes ha de incloure lletre o numeros";
         String result = JOptionPane.showInputDialog(frameVista, message, "Afegir Nom", JOptionPane.QUESTION_MESSAGE);
         if (result == null) {
-            return textCancelat;
+            result = textCancelat;
         } else if (result.isEmpty()) {
             JOptionPane.showMessageDialog(frameVista,
                     "Si us plau, introdueix un nombre per el producte",
                     "Error Input",
                     JOptionPane.ERROR_MESSAGE);
             return null;
+        } else if (!result.matches("[a-zA-Z0-9]+")){
+            JOptionPane.showMessageDialog(frameVista,
+                    "El nom nomes pot estar format per lletres o numeros",
+                    "Error Input",
+                    JOptionPane.ERROR_MESSAGE);
+            return null;
         }
         return result;
+    }
+
+    private String afegirNom() {
+        String nom = null;
+        boolean te_nom = false;
+        while (!te_nom) {
+            nom = getNomUsuari();
+            if (nom != null) {
+                if (nom != textCancelat) {
+                    if (!controlVista.findProd(nom)) {
+                        te_nom = true;
+                    } else {
+                        JOptionPane.showMessageDialog(frameVista,
+                                "Aquest nom ja esta sent utilitzat per un altre producte",
+                                "Error Input",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    return null;
+                }
+            }
+        }
+        return nom;
     }
 
 }

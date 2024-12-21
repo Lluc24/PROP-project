@@ -53,7 +53,10 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
         vistaPplSols.executar();
     }
 
-
+    @Override
+    public void sortirSistema(){
+        System.exit(0);
+    }
 
     /**
      * La vista vol saber les solucions actuals al sistema
@@ -224,7 +227,6 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
             vistaPplSols.ocultar();
         }
         else if (numVista == 1){
-            System.out.println("oculto!!!");
             vistaInfoSolucio.ocultar();
         }
         else if (numVista == 2){
@@ -239,7 +241,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
             }
             else {
                 if (i == numVista && controlVistes[i] != EstatVista.esVisible) {
-                    mostrarVista(numVista);
+                    //mostrarVista(numVista);
                     controlVistes[i] = EstatVista.esVisible;
                 }
                 else if (i != numVista && controlVistes[i] == EstatVista.esVisible){
@@ -253,10 +255,6 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
             else if (controlVistes[i] == EstatVista.noVisible) System.out.print("no visible, ");
             else System.out.print("no inicialitzada, ");
         }
-    }
-
-    public void sortirAplicacio() {
-        System.exit(0);
     }
 
     public void tornar(){
