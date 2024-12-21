@@ -185,8 +185,8 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
     }
 
 
-    @Override
-    public void executar() {
+
+    public void executar(VistaPrincipal vistaPrincipal) {
         controlVistes(0);
         vistaPrincCat.executar();
     }

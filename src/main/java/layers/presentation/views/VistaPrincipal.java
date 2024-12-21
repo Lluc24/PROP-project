@@ -100,10 +100,10 @@ public class VistaPrincipal extends VistaGenerica {
     @Override
     protected void botoAccionat(String textBoto) {
         if (textBoto.equals(textBotoCataleg)) {
-            ctrlVistaCatalegAmbRestriccions.executar();
+            ctrlVistaCatalegAmbRestriccions.executar(this);
         }
         else if (textBoto.equals(textBotoSolucions)) {
-            ctrlVistaSolucions.executar();
+            ctrlVistaSolucions.executar(this);
         }
         else if (textBoto.equals(textBotoImportar)) {
             FileNameExtensionFilter filter = new FileNameExtensionFilter(
