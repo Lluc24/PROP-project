@@ -40,6 +40,11 @@ public class VistaPrincipalCataleg extends VistaControladors {
     }
 
     @Override
+    public void sortirSistema() {
+        controlVista.sortirSistema();
+    }
+
+    @Override
     public void inicialitzarComponents() {
         super.inicialitzarComponents();
         //Etiqueta de triar

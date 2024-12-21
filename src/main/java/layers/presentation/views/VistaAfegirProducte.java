@@ -59,6 +59,11 @@ public class VistaAfegirProducte extends VistaControladors {
     }
 
     @Override
+    public void sortirSistema() {
+        controlVista.sortirSistema();
+    }
+
+    @Override
     public void inicialitzarComponents() {
         te_nom = false;
         Simis_DONE = false;
