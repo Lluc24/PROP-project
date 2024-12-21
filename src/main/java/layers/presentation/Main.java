@@ -12,8 +12,8 @@ public class Main {
                     CtrlVistaGeneric ctrlVistaSolucions = ctrlPresentacio.getCtrlVistaSolucions();
                     CtrlVistaGeneric ctrlVistaCatalegAmbRestriccions = ctrlPresentacio.getCtrlVistaCatalegAmbRestriccions();
 
-                    VistaPrincipal vistaPrincipal = new VistaPrincipal();
-                    vistaPrincipal.executar(ctrlVistaCatalegAmbRestriccions, ctrlVistaSolucions);
+                    VistaPrincipal vistaPrincipal = new VistaPrincipal(ctrlVistaCatalegAmbRestriccions, ctrlVistaSolucions);
+                    vistaPrincipal.executar();
                 }
             }
         );
