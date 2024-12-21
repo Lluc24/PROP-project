@@ -97,6 +97,9 @@ public class VistaPrincipalSolucions extends VistaControladors {
                 }
             }
         }
+        else if (textBoto.equals(textBotoTornar)){
+            ctrlVistaSolucions.tornar();
+        }
         else {
             super.botoAccionat(textBoto);
         }

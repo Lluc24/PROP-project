@@ -8,6 +8,7 @@ import layers.domain.excepcions.IntercanviNoValid;
 import layers.domain.excepcions.NomSolucioNoValid;
 import layers.presentation.views.VistaGestioAlgorisme;
 import layers.presentation.views.VistaInfoSolucio;
+import layers.presentation.views.VistaPrincipal;
 import layers.presentation.views.VistaPrincipalSolucions;
 
 import java.sql.Array;
@@ -19,6 +20,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
     private VistaPrincipalSolucions vistaPplSols;
     private VistaGestioAlgorisme vistaGestioAlgorisme;
     private VistaInfoSolucio vistaInfoSolucio;
+    private VistaPrincipal vistaPrincipal;
     private String solucioVisualitzant;
     private enum EstatVista {
         noInicialitzada,
@@ -42,6 +44,16 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
         controlVistes(0);
         vistaPplSols.executar();
     }
+
+   /*
+    @Override
+    public void executar(VistaPrincipal vs) {
+        vs.ocultar();
+        controlVistes(0);
+        vistaPplSols.executar();
+    }
+
+    */
 
     /**
      * La vista vol saber les solucions actuals al sistema
@@ -247,4 +259,8 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
         System.exit(0);
     }
 
+    public void tornar(){
+        controlVistes(3);
+        vistaPrincipal.mostrar();
+    }
 }
