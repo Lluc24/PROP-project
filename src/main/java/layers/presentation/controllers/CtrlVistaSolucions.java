@@ -46,7 +46,6 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
  //   }
 
 
-
     public void executar(VistaPrincipal vs) {
         vistaPrincipal = vs;
         vistaPrincipal.ocultar();
@@ -173,7 +172,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
      * @param nomArxiu nom del fitxer on es vol guardar
      * @throws FormatInputNoValid si algun dels paràmetres passats no son valids, es llença l'exepcio
      */
-    public void guardarSolucions(String path, String nomArxiu) throws FormatInputNoValid{
+    public void exportar(String path, String nomArxiu) throws FormatInputNoValid{
         ctrlSolucions.guardaSolucio(path, nomArxiu);
     }
 
@@ -184,7 +183,7 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
      * @param nomArxiu nom del fitxer on es vol guardar
      * @throws FormatInputNoValid si algun dels paràmetres passats no son valids, es llença l'exepcio
      */
-    public void carregarSolucions(String path, String nomArxiu) throws FormatInputNoValid{
+    public void importar(String path, String nomArxiu) throws FormatInputNoValid{
         ctrlSolucions.carregaSolucions(path,nomArxiu);
     }
 
