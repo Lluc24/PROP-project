@@ -216,4 +216,11 @@ public class VistaConsultarRest extends VistaControladors {
         }
     }
 
+    /**
+     * Tanca l'aplicació.
+     */
+    public void sortirSistema() {
+        ctrl.sortirSistema();
+    }
+
 }

@@ -59,6 +59,11 @@ public class VistaAfegirProducte extends VistaControladors {
     }
 
     @Override
+    public void sortirSistema() {
+        controlVista.sortirSistema();
+    }
+
+    @Override
     public void inicialitzarComponents() {
         te_nom = false;
         Simis_DONE = false;
@@ -207,6 +212,8 @@ public class VistaAfegirProducte extends VistaControladors {
             JOptionPane.showMessageDialog(frameVista, message, "Afegir Restriccio", JOptionPane.ERROR_MESSAGE);
         } else {
             restriccions.add(prodSeleccionat);
+            String message = "La restriccio amb "+prodSeleccionat+ " s'ha afegit";
+            JOptionPane.showMessageDialog(frameVista, message, "Restriccio afegida", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -235,19 +242,27 @@ public class VistaAfegirProducte extends VistaControladors {
     }
 
     private void canviaNom() {
-        String nom = getNomUsuari();
-        if (nom != null) {
-            if (!controlVista.findProd(nom)) {
-                te_nom = true;
-            } else {
-                JOptionPane.showMessageDialog(frameVista,
-                        "Aquest nom ja esta sent utilitzat per un altre producte",
-                        "Error Input",
-                        JOptionPane.ERROR_MESSAGE);
+        boolean done = false;
+        while (!done) {
+            String nom = getNomUsuari();
+            if (nom != null) {
+                if (!nom.equals(textCancelat)) {
+                    if (!controlVista.findProd(nom)) {
+                        done = true;
+                        te_nom = true;
+                        nom_prod = nom;
+                        labelNomProd.setText("PRODUCTE: " + nom);
+                    } else {
+                        JOptionPane.showMessageDialog(frameVista,
+                                "Aquest nom ja esta sent utilitzat per un altre producte",
+                                "Error Input",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    return;
+                }
             }
         }
-        nom_prod = nom;
-        labelNomProd.setText("PRODUCTE: "+nom);
     }
 
     private void finalizar() {
@@ -285,20 +300,26 @@ public class VistaAfegirProducte extends VistaControladors {
                 "Estas segur?",
                 JOptionPane.YES_NO_OPTION);
         if (result == JOptionPane.YES_OPTION) {
-            super.botoAccionat(textBotoTornar);
+            controlVista.canviaVista("PrincipalCataleg");
         }
 
     }
 
 
     private String getNomUsuari() {
-        String message = "Afegeix el nom del producte que vols afegir";
+        String message = "Afegeix el nom del producte que vols afegir\nCAUTION: Nomes ha de incloure lletre o numeros";
         String result = JOptionPane.showInputDialog(frameVista, message, "Afegir Nom", JOptionPane.QUESTION_MESSAGE);
         if (result == null) {
             result = textCancelat;
         } else if (result.isEmpty()) {
             JOptionPane.showMessageDialog(frameVista,
                     "Si us plau, introdueix un nombre per el producte",
+                    "Error Input",
+                    JOptionPane.ERROR_MESSAGE);
+            return null;
+        } else if (!result.matches("[a-zA-Z0-9]+")){
+            JOptionPane.showMessageDialog(frameVista,
+                    "El nom nomes pot estar format per lletres o numeros",
                     "Error Input",
                     JOptionPane.ERROR_MESSAGE);
             return null;
