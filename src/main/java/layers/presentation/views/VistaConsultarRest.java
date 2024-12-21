@@ -9,36 +9,88 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Classe 'VistaConsultarRest'
+ *
+ * Vista per gestionar les restriccions entre productes en el catàleg.
+ * Aquesta classe permet a l'usuari consultar, afegir, eliminar restriccions i desfer l'última operació.
+ * Utilitza el controlador 'CtrlVistaCatalegAmbRestriccions' per interactuar amb la lògica del sistema.
+ *
+ * @see CtrlVistaCatalegAmbRestriccions
+ *
+ * @author Efrain Tito Cortés
+ * @version 2.2
+ *
+ * <p><b>Informació:</b></p>
+ * Aquesta vista permet gestionar les restriccions entre productes mitjançant els següents botons:
+ * <ul>
+ *     <li><b>Consultar per Nom:</b> Permet consultar les restriccions d'un producte i eliminar-ne.</li>
+ *     <li><b>Afegir Restricció:</b> Permet afegir una nova restricció entre dos productes existents.</li>
+ *     <li><b>Eliminar Seleccionada:</b> Permet eliminar la restricció seleccionada de la llista.</li>
+ *     <li><b>Desfer:</b> Permet desfer l'última operació de restricció realitzada.</li>
+ * </ul>
+ */
 public class VistaConsultarRest extends VistaControladors {
+
+    //Atributs
+    /** Controlador de la vista per gestionar les operacions del catàleg amb restriccions. */
     private CtrlVistaCatalegAmbRestriccions ctrl;
 
+    /** Botó per consultar les restriccions d'un producte mitjançant el seu nom. */
     protected Boto botoConsultarNom;
+
+    /** Text que apareix al botó de consulta per nom. */
     protected String textBotoConsultRest = "Consultar Per Nom";
 
+    /** Text que es mostrarà a l'etiqueta d'informació. */
     protected String textEtiquetaInfo = "";
+
+    /** Etiqueta gràfica que mostra l'últim canvi fet per l'usuari. */
     protected JLabel etiquetaInfo;
 
+    /** Llista amb els productes implicats en les darreres operacions. */
     private ArrayList<String> Producte1;
+
+    /** Llista complementària amb els productes implicats en les darreres operacions. */
     private ArrayList<String> Producte2;
+
+    /** Llista que emmagatzema les últimes operacions realitzades. */
     private ArrayList<String> ultOperacio;
 
+    /** Text que apareix a l'element de menú per desfer una acció. */
     protected String textItemDesfer = "Desfer";
+
+    /** Element de menú que permet desfer l'última operació realitzada. */
     protected Item menuItemDesfer;
 
+    /** Indica si és la primera vegada que s'executa la vista. */
     Boolean primeraVegada = true;
 
+
+    //Constructora
+    /**
+     * Constructor de VistaConsultarRest.
+     *
+     * @param controlador Controlador associat per gestionar les operacions de restriccions.
+     */
     public VistaConsultarRest(CtrlVistaCatalegAmbRestriccions controlador) {
         this.ctrl = controlador;
     }
 
+
+    //Mètodes
+    /**
+     * Executa la vista de consultes de restriccions.
+     */
     public void executar() {
         if(primeraVegada) {
             titolFrame = "Gestionar Restriccions";
             ajuda = "Estas a la vista de gestio de restriccions. Des d'aquesta vista pots gestionar les restriccions disponibles " +
                     "utilitzant els botons corresponents.\n" +
-                    "Afegir Restriccio: Permet afegir una nova restriccio introduint dos productes.\n" +
+                    "Afegir Restriccio: Permet afegir una nova restricció entre dos productes existents.\n" +
                     "Eliminar Seleccionada: Elimina la restriccio actualment seleccionada del llistat.\n" +
-                    "Eliminar Per Nom: Permet eliminar una restriccio indicant manualment els noms dels productes afectats.\n" +
+                    "Consultar per Nom: Permet consultar les restriccions indicant manualment el nom del producte, i eliminar-les.\n" +
+                    "Fitxer -> Desfer: Permet desfer l'ultima operacio realitzada, que s'indica a la vista.\n" +
                     "Sortir: Finalitza l'aplicacio.";
 
             primeraVegada = false;
@@ -47,12 +99,18 @@ public class VistaConsultarRest extends VistaControladors {
             ultOperacio = new ArrayList<>();
             super.executar();
         } else {
+            Producte1 = new ArrayList<>();
+            Producte2 = new ArrayList<>();
+            ultOperacio = new ArrayList<>();
             frameVista.setVisible(true);
             actualitzarComponents();
         }
 
     }
 
+    /**
+     * Inicialitza els components de la vista.
+     */
     @Override
     public void inicialitzarComponents() {
 
@@ -99,6 +157,11 @@ public class VistaConsultarRest extends VistaControladors {
 
     }
 
+    /**
+     * Gestiona les accions associades als elements del menú.
+     *
+     * @param textItem Text de l'element seleccionat.
+     */
     @Override
     public void itemAccionat(String textItem) {
         if (textItem.equals(textItemDesfer)) {
@@ -110,6 +173,11 @@ public class VistaConsultarRest extends VistaControladors {
 
     }
 
+    /**
+     * Gestiona les accions associades als botons.
+     *
+     * @param textBoto Text del botó seleccionat.
+     */
     @Override
     public void botoAccionat(String textBoto) {
         if (textBoto.equals(textBotoAfegir)) {
@@ -166,7 +234,7 @@ public class VistaConsultarRest extends VistaControladors {
 
         if (ctrl.getNumProd() < 2) {
             JOptionPane.showMessageDialog(frameVista,
-                    "Hi ha menys de dos productes al cataleg.",
+                    "Hi ha menys de dos productes al cataleg",
                     "Productes insuficients",
                     JOptionPane.ERROR_MESSAGE);
         }

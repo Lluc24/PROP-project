@@ -15,7 +15,7 @@ import java.util.Iterator;
  * @see CtrlCataleg
  *
  * @author Efrain Tito Cortés
- * @version 1,1
+ * @version 3,1
  *
  * <p><b>Informació:</b></p>
  * Manté una matriu de mida igual al nombre de productes al catàleg i les restriccions entre ells per determinar quins productes no poden ser consecutius en la solució.
@@ -28,7 +28,6 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
      * Els índexs de la matriu corresponen amb els índexs dels productes.
      * La mida és sempre igual al nombre de productes al catàleg. És quadrada.
      */
-
     private ArrayList<ArrayList<Boolean>> noConsecutius;
 
     //Constructora
@@ -43,7 +42,6 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
     }
 
     //Mètodes
-
     /**
      * Obté la mida actual de la matriu de restriccions consecutives (nombre de productes).
      *
@@ -130,6 +128,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
      *
      * @param nom1 El nom del primer producte.
      * @param nom2 El nom del segon producte.
+     * @throws ProducteNoValid Si algun dels productes no és vàlid (el seu índex no es troba al catàleg).
      */
     public void setRestrConsecNom(String nom1, String nom2) throws ProducteNoValid{
         boolean noms_valids = true;
@@ -150,6 +149,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
      *
      * @param nom1 El nom del primer producte.
      * @param nom2 El nom del segon producte.
+     * @throws ProducteNoValid Si algun dels productes no és vàlid (el seu índex no es troba al catàleg).
      */
     public void remRestrConsecNom(String nom1, String nom2) throws ProducteNoValid {
         boolean noms_valids = true;
@@ -162,7 +162,6 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 
         if (!getRestrConsecID(index1, index2)) {
             System.out.println("No existeix aquesta restricció entre "+ nom1+" i "+nom2);
-            return;
         } else {
             remRestrConsecId(index1, index2);
         }
@@ -503,7 +502,6 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
      */
     private Pair<String, Double>[] stringV_a_pairV(String[] similituds) {
 
-        //int numProd = getNumProd();
         int numProd = similituds.length;
         Pair<String, Double>[] llistaSim = new Pair[numProd];
 
@@ -561,9 +559,8 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
      * @param productes Nom dels productes en un ordre determinat.
      * @param similituds Matriu de les similituds entre els productes en l'ordre en el que es donen.
      * @param restriccions Matriu de les restriccions entre els productes en l'ordre en el que es donen.
-     * @throws FormatInputNoValid si algun dels paràmetres passats no és vàlid, es llença l'excepció
      */
-    public void carregaCataleg(String[] productes, double[][] similituds, int[][] restriccions) throws FormatInputNoValid {
+    public void carregaCataleg(String[] productes, double[][] similituds, int[][] restriccions) {
 
         noConsecutius.clear();
 
@@ -588,8 +585,6 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 
         ArrayList<String> restric = new ArrayList<>();
 
-
-
         for (int i = 0; i < noConsecutius.get(index).size(); ++i) {
             if (!noConsecutius.get(index).get(i) && index != i) {
                 restric.add(getNomProd_index(i));
@@ -608,8 +603,6 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
     public String[] getProdRestrConsec(int index) {
 
         ArrayList<String> restric = new ArrayList<>();
-
-
 
         for (int i = 0; i < noConsecutius.get(index).size(); ++i) {
             if (noConsecutius.get(index).get(i) && index != i) {

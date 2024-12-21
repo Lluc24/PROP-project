@@ -10,7 +10,7 @@ import layers.domain.excepcions.FormatInputNoValid;
  * @see Algorisme
  *
  * @author Efrain Tito Cortés
- * @version 3,0
+ * @version 4,1
  *
  * <p><b>Informació:</b></p>
  * Per al mètode 'solucionar', cal passar com a paràmetre una matriu de similituds, on l'element [i][j]
