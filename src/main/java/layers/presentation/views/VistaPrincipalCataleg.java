@@ -56,7 +56,7 @@ public class VistaPrincipalCataleg extends VistaControladors {
         botoAfegir.setText(textBotoAfegir);
 
         //Boto mostrar Producte
-        textBotoMostrar = "Mostrar Productes";
+        textBotoMostrar = "Mostrar Producte";
         botoMostrar.setText(textBotoMostrar);
 
         //Boto Consultar Restriccions

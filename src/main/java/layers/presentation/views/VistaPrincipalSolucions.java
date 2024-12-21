@@ -1,8 +1,5 @@
 package layers.presentation.views;
 
-import layers.domain.excepcions.NomSolucioNoValid;
-import layers.presentation.controllers.CtrlVistaGeneric;
-import layers.presentation.controllers.CtrlVistaCatalegAmbRestriccions;
 import layers.presentation.controllers.CtrlVistaSolucions;
 import javax.swing.*;
 import java.awt.*;
@@ -67,6 +64,11 @@ public class VistaPrincipalSolucions extends VistaControladors {
     }
 
     @Override
+    public void tornar(){
+        ctrlVistaSolucions.tornar();
+    }
+
+    @Override
     protected void botoAccionat(String textBoto) {
         if (textBoto.equals(textBotoAfegir)) {
             int alg = confirmacioAlgorisme();
@@ -75,6 +77,7 @@ public class VistaPrincipalSolucions extends VistaControladors {
                 if (!nom.equals(null)) {
                     int prodPrestatge = insertaProdPrestatge();
                     if (prodPrestatge > 0) {
+                        panelInformatiu("La solucio '" +nom+ "'s'ha afegit correctament");
                         ctrlVistaSolucions.afegeixSolucio(nom, prodPrestatge);
                         opcions.addItem(nom);
                         opcions.setSelectedItem(nom);
@@ -85,7 +88,7 @@ public class VistaPrincipalSolucions extends VistaControladors {
         else if (textBoto.equals(textBotoAlgorisme)) {
             ctrlVistaSolucions.canviarAlgorisme();
         }
-        else if (textBoto.equals(textBotoMostrar)) {System.out.println("1");
+        else if (textBoto.equals(textBotoMostrar)) {
             String solucioSeleccionada = (String) opcions.getSelectedItem();
             if (solucioSeleccionada == null) {
                 JOptionPane.showMessageDialog(frameVista,
@@ -114,6 +117,7 @@ public class VistaPrincipalSolucions extends VistaControladors {
 
     /**
      * L'usuari vol crear una nova solucio i ha d'indicar-ne el nom
+     *
      * @return Retorna el nom que ha escrit l'usuari. Si ha abortat durant la operacio, retorna null
      */
     private String insertaNom(){
@@ -153,6 +157,7 @@ public class VistaPrincipalSolucions extends VistaControladors {
 
     /**
      * L'usuari vol crear una nova solucio i ha d'indicar el numero de productes per prestatge
+     *
      * @return Retorna el numero que ha escrit l'usuari. Si ha abortat durant la operacio, retorna null
      */
     private int insertaProdPrestatge(){
@@ -191,6 +196,9 @@ public class VistaPrincipalSolucions extends VistaControladors {
         return inputNumber;
     }
 
+    /**
+     * El sistema demana confirmacio al usuari de que vol resoldre una solucio amb l'algorisme actual.
+     */
     private int confirmacioAlgorisme() {
         String alg = ctrlVistaSolucions.getAlgorismeAct();
         int result = JOptionPane.showConfirmDialog(frameVista,
@@ -203,5 +211,17 @@ public class VistaPrincipalSolucions extends VistaControladors {
         }
         else result = -1;
         return result;
+    }
+
+    /**
+     * El sistema mostra un panel informatiu
+     *
+     * @param text el text del panel
+     */
+    public void panelInformatiu(String text){
+        JOptionPane.showMessageDialog(frameVista,
+                text,
+                "Confirmacio de l'accio",
+                JOptionPane.INFORMATION_MESSAGE);
     }
 }
