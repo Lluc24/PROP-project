@@ -32,6 +32,11 @@ public class VistaPrincipalSolucions extends VistaControladors {
                     "Gestionar algorisme: Permet crear una nova solucio.\n";
         }
         super.executar();
+        ArrayList<String> solsIni = ctrlVistaSolucions.getSolucions();
+        opcions.removeAllItems();
+        for (int i = 0; i < solsIni.size(); ++i){
+            opcions.addItem(solsIni.get(i));
+        }
     }
 
     @Override
@@ -97,29 +102,14 @@ public class VistaPrincipalSolucions extends VistaControladors {
                 }
             }
         }
-        else if (textBoto.equals(textBotoTornar)){
-            ctrlVistaSolucions.tornar();
-        }
         else {
             super.botoAccionat(textBoto);
         }
     }
 
     @Override
-    protected void itemAccionat(String textItem) {
-        if (textItem.equals(textItemSortir)) {
-            int result = JOptionPane.showConfirmDialog(frameVista,
-                    "Estas segur que vols sortir de l'aplicacio?",
-                    "Sortir de l'aplicacio",
-                    JOptionPane.YES_NO_OPTION);
-
-            if (result == JOptionPane.YES_OPTION) {
-                System.out.println("Fins la proxima!");
-                ctrlVistaSolucions.sortirAplicacio();
-            }
-        } else {
-            super.itemAccionat(textItem);
-        }
+    protected void sortirSistema(){
+        ctrlVistaSolucions.sortirSistema();
     }
 
     /**
