@@ -356,7 +356,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
                     mostrarVista(numVista);
                     controlVistes[i] = EstatVista.esVisible;
                 }
-                else {
+                else if (controlVistes[i] != EstatVista.noVisible){
                     ocultarVista(i);
                     controlVistes[i] = EstatVista.noVisible;
                 }
