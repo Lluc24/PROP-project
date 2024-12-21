@@ -1,6 +1,7 @@
 package layers.presentation.controllers;
 
 import layers.domain.controllers.CtrlGeneric;
+import layers.domain.excepcions.FormatInputNoValid;
 
 public abstract class CtrlVistaGeneric {
     protected CtrlGeneric ctrl = null;
@@ -20,7 +21,7 @@ public abstract class CtrlVistaGeneric {
         return;
     }
 
-    public abstract void importar(String path, String nomFitxer);
+    public abstract void importar(String path, String nomFitxer) throws FormatInputNoValid;
 
-    public abstract void exportar(String path, String nomFitxer);
+    public abstract void exportar(String path, String nomFitxer) throws FormatInputNoValid;
 }

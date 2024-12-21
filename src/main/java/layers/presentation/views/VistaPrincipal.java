@@ -1,5 +1,6 @@
 package layers.presentation.views;
 
+import layers.domain.excepcions.FormatInputNoValid;
 import layers.presentation.controllers.CtrlVistaGeneric;
 import layers.presentation.controllers.CtrlVistaCatalegAmbRestriccions;
 import layers.presentation.controllers.CtrlVistaSolucions;
@@ -116,7 +117,14 @@ public class VistaPrincipal extends VistaGenerica {
                 String nomFitxer = chooser.getSelectedFile().getName();
                 String path = chooser.getSelectedFile().getPath();
                 String pathToFile = path.substring(0, path.length()-nomFitxer.length());
-                ctrlVistaCatalegAmbRestriccions.importar(pathToFile, nomFitxer);
+                try {
+                    ctrlVistaCatalegAmbRestriccions.importar(pathToFile, nomFitxer);
+                } catch (FormatInputNoValid e) {
+                    JOptionPane.showMessageDialog(frameVista,
+                            "El format del fitxer " + nomFitxer + " es invalid",
+                            "Format incorrecte",
+                            JOptionPane.WARNING_MESSAGE);
+                }
             }
 
             chooser.setDialogTitle(textJFileDialogImportarSolucions);
@@ -125,7 +133,14 @@ public class VistaPrincipal extends VistaGenerica {
                 String nomFitxer = chooser.getSelectedFile().getName();
                 String path = chooser.getSelectedFile().getPath();
                 String pathToFile = path.substring(0, path.length()-nomFitxer.length());
-                ctrlVistaSolucions.importar(pathToFile, nomFitxer);
+                try {
+                    ctrlVistaSolucions.importar(pathToFile, nomFitxer);
+                } catch (FormatInputNoValid e) {
+                    JOptionPane.showMessageDialog(frameVista,
+                            "El format del fitxer " + nomFitxer + " es invalid",
+                            "Error al importar",
+                            JOptionPane.WARNING_MESSAGE);
+                }
             }
         }
         else if (textBoto.equals(textBotoExportar)) {
@@ -137,7 +152,14 @@ public class VistaPrincipal extends VistaGenerica {
                 String nomFitxer = chooser.getSelectedFile().getName();
                 String path = chooser.getSelectedFile().getPath();
                 String pathToFile = path.substring(0, path.length()-nomFitxer.length());
-                ctrlVistaCatalegAmbRestriccions.exportar(pathToFile, nomFitxer);
+                try {
+                    ctrlVistaCatalegAmbRestriccions.exportar(pathToFile, nomFitxer);
+                } catch (FormatInputNoValid e) {
+                    JOptionPane.showMessageDialog(frameVista,
+                            "No es pot exportar a fitxer. Comprova que el path " + path + " sigui valid",
+                            "Error a l'exportar",
+                            JOptionPane.WARNING_MESSAGE);
+                }
             }
 
             chooser.setDialogTitle(textJFileDialogExportarSolucions);
@@ -146,7 +168,14 @@ public class VistaPrincipal extends VistaGenerica {
                 String nomFitxer = chooser.getSelectedFile().getName();
                 String path = chooser.getSelectedFile().getPath();
                 String pathToFile = path.substring(0, path.length()-nomFitxer.length());
-                ctrlVistaSolucions.exportar(pathToFile, nomFitxer);
+                try {
+                    ctrlVistaSolucions.exportar(pathToFile, nomFitxer);
+                } catch (FormatInputNoValid e) {
+                    JOptionPane.showMessageDialog(frameVista,
+                            "No es pot exportar a fitxer. Comprova que el path " + path + " sigui valid",
+                            "Error a l'exportar",
+                            JOptionPane.WARNING_MESSAGE);
+                }
             }
         }
         else if (textBoto.equals(textBotoSortir)) {
