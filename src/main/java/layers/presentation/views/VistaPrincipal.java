@@ -21,19 +21,49 @@ public class VistaPrincipal extends VistaGenerica {
     protected String textBotoSolucions = "Gestionar solucions";
     protected Boto botoSolucions;
 
-    protected String textBotoExportar = "Exportar";
-    protected Boto botoExportar;
+    protected String textBotoExportarCataleg = "Exportar cataleg";
+    protected Boto botoExportarCataleg;
 
-    protected String textBotoImportar = "Importar";
-    protected Boto botoImportar;
+    protected String textBotoExportarSolucions = "Exportar solucions";
+    protected Boto botoExportarSolucions;
+
+    protected String textBotoImportarCataleg = "Importar cataleg";
+    protected Boto botoImportarCataleg;
+
+    protected String textBotoImportarSolucions = "Importar solucions";
+    protected Boto botoImportarSolucions;
 
     protected String textBotoSortir = "Sortir";
     protected Boto botoSortir;
 
-    protected String textJFileDialogImportarCataleg = "Obrir el fitxer del cataleg";
-    protected String textJFileDialogImportarSolucions = "Obrir el fitxer de les solucions";
-    protected String textJFileDialogExportarCataleg = "Guardar el fitxer del cataleg";
-    protected String textJFileDialogExportarSolucions = "Guardar el fitxer de les solucions";
+//    protected String titolGuiaImportarCataleg = "Guia per importar cataleg";
+//    protected String textGuiaImportarCataleg = "A continuacio s'obrira un JFileChooser per\n" +
+//            "escollir el fitxer del cataleg";
+//    protected String titolGuiaImportarSolucions = "Guia per importar solucions";
+//    protected String textGuiaImportarSolucions = "A continuacio s'obrira un JFileChooser per\n" +
+//            "escollir el fitxer de les solucions";
+    protected String titolImportarOK = "Importacio correcta";
+    protected String templateTextImportarOK = "El fitxer %s s'ha importat correctament.\n" +
+            "Les estructures de dades s'han actualitzat";
+    protected String titolImportarKO = "Error d'importacio";
+    protected String textImportarKO = "No s'ha pogut importar el fitxer";
+
+//    protected String titolGuiaExportarCataleg = "Guia per exportar cataleg";
+//    protected String textGuiaExportarCataleg = "A continuacio s'obrira un primer JFileChooser per\n" +
+//            "guardar el fitxer de cataleg";
+//    protected String titolGuiaExportarSolucions = "Guia per exportar solucions";
+//    protected String textGuiaExportarSolucions = "A continuacio s'obrira un segon JFileChooser per\n" +
+//            "guardar el fitxer de les solucions";
+    protected String titolExportarOK = "Exportacio correcta";
+    protected String templateTextExportarOK = "El fitxer %s s'ha exportat correctament";
+    protected String titolExportarKO = "Error d'exportacio";
+    protected String textExportarKO = "No s'ha pogut exportar el fitxer";
+
+
+    protected String titolJFileDialogImportarCataleg = "Obrir el fitxer del cataleg";
+    protected String titolJFileDialogImportarSolucions = "Obrir el fitxer de les solucions";
+    protected String titolJFileDialogExportarCataleg = "Guardar el fitxer del cataleg";
+    protected String titolJFileDialogExportarSolucions = "Guardar el fitxer de les solucions";
 
     public VistaPrincipal(CtrlVistaGeneric ctrl1, CtrlVistaGeneric ctrl2) {
         ctrlVistaCatalegAmbRestriccions = (CtrlVistaCatalegAmbRestriccions) ctrl1;
@@ -78,19 +108,31 @@ public class VistaPrincipal extends VistaGenerica {
         botoSolucions = new Boto(textBotoSolucions);
         botoSolucions.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(botoSolucions);
+        add(Box.createRigidArea(new Dimension(0, 40)));
+
+        // Inicialitzem el boto Importar cataleg
+        botoImportarCataleg = new Boto(textBotoImportarCataleg);
+        botoImportarCataleg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(botoImportarCataleg);
         add(Box.createRigidArea(new Dimension(0, 10)));
 
-        // Inicialitzem el boto Importar
-        botoImportar = new Boto(textBotoImportar);
-        botoImportar.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        add(botoImportar);
+        // Inicialitzem el boto Importar solucions
+        botoImportarSolucions = new Boto(textBotoImportarSolucions);
+        botoImportarSolucions.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(botoImportarSolucions);
         add(Box.createRigidArea(new Dimension(0, 10)));
 
-        // Inicialitzem el boto Importar
-        botoExportar = new Boto(textBotoExportar);
-        botoExportar.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        add(botoExportar);
+        // Inicialitzem el boto Exportar cataleg
+        botoExportarCataleg = new Boto(textBotoExportarCataleg);
+        botoExportarCataleg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(botoExportarCataleg);
         add(Box.createRigidArea(new Dimension(0, 10)));
+
+        // Inicialitzem el boto Exportar solucions
+        botoExportarSolucions = new Boto(textBotoExportarSolucions);
+        botoExportarSolucions.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(botoExportarSolucions);
+        add(Box.createRigidArea(new Dimension(0, 40)));
 
         // Inicialitzem el boto Sortir
         botoSortir = new Boto(textBotoSortir);
@@ -113,77 +155,134 @@ public class VistaPrincipal extends VistaGenerica {
         else if (textBoto.equals(textBotoSolucions)) {
             ctrlVistaSolucions.executar(this);
         }
-        else if (textBoto.equals(textBotoImportar)) {
+        else if (textBoto.equals(textBotoImportarCataleg)) {
             FileNameExtensionFilter filter = new FileNameExtensionFilter(
                     "TXT Files", "txt");
-
             JFileChooser chooser = new JFileChooser();
             chooser.setFileFilter(filter);
-            chooser.setDialogTitle(textJFileDialogImportarCataleg);
+            chooser.setDialogTitle(titolJFileDialogImportarCataleg);
             int returnVal = chooser.showOpenDialog(frameVista);
             if (returnVal == JFileChooser.APPROVE_OPTION) {
+
                 String nomFitxer = chooser.getSelectedFile().getName();
                 String path = chooser.getSelectedFile().getPath();
-                String pathToFile = path.substring(0, path.length()-nomFitxer.length());
+                String pathToFile = path.substring(0, path.length() - nomFitxer.length());
                 try {
                     ctrlVistaCatalegAmbRestriccions.importar(pathToFile, nomFitxer);
+                    JOptionPane.showMessageDialog(
+                            frameVista,
+                            String.format(templateTextImportarOK, nomFitxer),
+                            titolImportarOK,
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
                 } catch (FormatInputNoValid e) {
                     JOptionPane.showMessageDialog(frameVista,
-                            "El format del fitxer " + nomFitxer + " es invalid",
-                            "Format incorrecte",
-                            JOptionPane.WARNING_MESSAGE);
+                            e.getMessage(),
+                            titolImportarKO,
+                            JOptionPane.ERROR_MESSAGE);
                 }
             }
-
-            chooser.setDialogTitle(textJFileDialogImportarSolucions);
-            returnVal = chooser.showOpenDialog(frameVista);
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-                String nomFitxer = chooser.getSelectedFile().getName();
-                String path = chooser.getSelectedFile().getPath();
-                String pathToFile = path.substring(0, path.length()-nomFitxer.length());
-                try {
-                    ctrlVistaSolucions.importar(pathToFile, nomFitxer);
-                } catch (FormatInputNoValid e) {
-                    JOptionPane.showMessageDialog(frameVista,
-                            "El format del fitxer " + nomFitxer + " es invalid",
-                            "Error al importar",
-                            JOptionPane.WARNING_MESSAGE);
-                }
+            else {
+                JOptionPane.showMessageDialog(frameVista,
+                        textImportarKO,
+                        titolImportarKO,
+                        JOptionPane.ERROR_MESSAGE);
             }
         }
-        else if (textBoto.equals(textBotoExportar)) {
+        else if (textBoto.equals(textBotoImportarSolucions)) {
+            FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                    "TXT Files", "txt");
             JFileChooser chooser = new JFileChooser();
-
-            chooser.setDialogTitle(textJFileDialogExportarCataleg);
-            int returnVal = chooser.showSaveDialog(frameVista);
+            chooser.setFileFilter(filter);
+            chooser.setDialogTitle(titolJFileDialogImportarSolucions);
+            int returnVal = chooser.showOpenDialog(frameVista);
             if (returnVal == JFileChooser.APPROVE_OPTION) {
+
                 String nomFitxer = chooser.getSelectedFile().getName();
                 String path = chooser.getSelectedFile().getPath();
-                String pathToFile = path.substring(0, path.length()-nomFitxer.length());
+                String pathToFile = path.substring(0, path.length() - nomFitxer.length());
                 try {
-                    ctrlVistaCatalegAmbRestriccions.exportar(pathToFile, nomFitxer);
+                    ctrlVistaSolucions.importar(pathToFile, nomFitxer);
+                    JOptionPane.showMessageDialog(
+                            frameVista,
+                            String.format(templateTextImportarOK, nomFitxer),
+                            titolImportarOK,
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
                 } catch (FormatInputNoValid e) {
                     JOptionPane.showMessageDialog(frameVista,
-                            "No es pot exportar a fitxer. Comprova que el path " + path + " sigui valid",
-                            "Error a l'exportar",
-                            JOptionPane.WARNING_MESSAGE);
+                            e.getMessage(),
+                            titolImportarKO,
+                            JOptionPane.ERROR_MESSAGE);
                 }
             }
-
-            chooser.setDialogTitle(textJFileDialogExportarSolucions);
-            returnVal = chooser.showSaveDialog(frameVista);
+            else {
+                JOptionPane.showMessageDialog(frameVista,
+                        textImportarKO,
+                        titolImportarKO,
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else if (textBoto.equals(textBotoExportarCataleg)) {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setDialogTitle(titolJFileDialogExportarCataleg);
+            int returnVal = chooser.showSaveDialog(frameVista);
             if (returnVal == JFileChooser.APPROVE_OPTION) {
+
                 String nomFitxer = chooser.getSelectedFile().getName();
                 String path = chooser.getSelectedFile().getPath();
-                String pathToFile = path.substring(0, path.length()-nomFitxer.length());
+                String pathToFile = path.substring(0, path.length() - nomFitxer.length());
                 try {
-                    ctrlVistaSolucions.exportar(pathToFile, nomFitxer);
+                    ctrlVistaCatalegAmbRestriccions.exportar(pathToFile, nomFitxer);
+                    JOptionPane.showMessageDialog(
+                            frameVista,
+                            String.format(templateTextExportarOK, nomFitxer),
+                            titolExportarOK,
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
                 } catch (FormatInputNoValid e) {
                     JOptionPane.showMessageDialog(frameVista,
-                            "No es pot exportar a fitxer. Comprova que el path " + path + " sigui valid",
-                            "Error a l'exportar",
-                            JOptionPane.WARNING_MESSAGE);
+                            e.getMessage(),
+                            titolExportarKO,
+                            JOptionPane.ERROR_MESSAGE);
                 }
+            }
+            else {
+                JOptionPane.showMessageDialog(frameVista,
+                        textExportarKO,
+                        titolExportarKO,
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else if (textBoto.equals(textBotoExportarSolucions)) {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setDialogTitle(titolJFileDialogExportarSolucions);
+            int returnVal = chooser.showSaveDialog(frameVista);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+                String nomFitxer = chooser.getSelectedFile().getName();
+                String path = chooser.getSelectedFile().getPath();
+                String pathToFile = path.substring(0, path.length() - nomFitxer.length());
+                try {
+                    ctrlVistaSolucions.exportar(pathToFile, nomFitxer);
+                    JOptionPane.showMessageDialog(
+                            frameVista,
+                            String.format(templateTextExportarOK, nomFitxer),
+                            titolExportarOK,
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                } catch (FormatInputNoValid e) {
+                    JOptionPane.showMessageDialog(frameVista,
+                            e.getMessage(),
+                            titolExportarKO,
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            else {
+                JOptionPane.showMessageDialog(frameVista,
+                        textExportarKO,
+                        titolExportarKO,
+                        JOptionPane.ERROR_MESSAGE);
             }
         }
         else if (textBoto.equals(textBotoSortir)) {
