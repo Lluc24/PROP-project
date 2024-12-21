@@ -65,7 +65,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         else if (Objects.equals(nomVista, "VistaPrincipal")) {
             controlVistes[0] = EstatVista.noVisible;
             vistaPrincCat.ocultar();
-            vistaPrinc.setVisible(true);
+            vistaPrinc.mostrar();
         }
 
         else {
@@ -191,13 +191,18 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
     }
 
 
-
+    /**
+     * Amaga la vista principal i fa visible la vista principal de catàleg.
+     *
+     * @param vistaPrincipal instància de la vista principal.
+     */
     public void executar(VistaPrincipal vistaPrincipal) {
         if (vistaPrinc == null) {
             this.vistaPrinc = vistaPrincipal;
         }
         controlVistes(0);
-        vistaPrinc.setVisible(false);
+        vistaPrinc.ocultar();
+        //vistaPrinc.setVisible(false);
         vistaPrincCat.executar();
     }
 
