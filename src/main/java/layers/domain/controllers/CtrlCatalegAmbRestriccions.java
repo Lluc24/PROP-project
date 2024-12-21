@@ -514,11 +514,67 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
         return llistaSim;
     }
 
+    /**
+     * Guarda en el fitxer indicat tota la informació del catàleg. Inclou nom de productes, matriu de similituds i matriu de restriccions.
+     *
+     * @param path lloc on està el fitxer
+     * @param nomArxiu nom del fitxer on es vol guardar
+     * @throws FormatInputNoValid si algun dels paràmetres passats no és vàlid, es llença l'excepció
+     */
+    public void guardarCataleg(String path, String nomArxiu) throws FormatInputNoValid {
 
-    public void guardaCataleg(String path, String nomArxiu) throws FormatInputNoValid {
+        StringBuilder contingut = guardarCataleg();
 
+        contingut.append("\n");
+
+        contingut.append(convertirMatriu(getMatrRestrConsec()));
+
+        ctrlPersistenciaCataleg.guardar(contingut.toString(), path, nomArxiu);
+    }
+
+    /**
+     * Converteix una matriu de bools en una de strings separats per espais on true és 1 i false és 0. Les files es separen per salt de línia.
+     *
+     * @param matriu Matriu a convertir.
+     * @return La matriu en format string.
+     */
+    private String convertirMatriu(boolean[][] matriu) {
+        StringBuilder resultat = new StringBuilder();
+
+        for (int i = 0; i < matriu.length; i++) {
+            for (int j = 0; j < matriu[i].length; j++) {
+                if (matriu[i][j]) resultat.append("1");
+                else resultat.append("0");
+                if (j < matriu[i].length - 1) {
+                    resultat.append(" "); //afegir espai entre elements de la fila
+                }
+            }
+            resultat.append("\n"); //afegir salt de línia després de cada fila
+        }
+
+        return resultat.toString();
+    }
+
+    /**
+     * Carrega del fitxer indicat tota la informació del catàleg. Inclou nom de productes, matriu de similituds i matriu de restriccions.
+     *
+     * @param productes Nom dels productes en un ordre determinat.
+     * @param similituds Matriu de les similituds entre els productes en l'ordre en el que es donen.
+     * @param restriccions Matriu de les restriccions entre els productes en l'ordre en el que es donen.
+     * @throws FormatInputNoValid si algun dels paràmetres passats no és vàlid, es llença l'excepció
+     */
+    public void carregaCataleg(String[] productes, double[][] similituds, int[][] restriccions) throws FormatInputNoValid {
+
+        carregaCataleg(productes, similituds);
+
+        for (int i = 0; i < restriccions.length; i++) {
+            for (int j = i; j < restriccions.length; j++) {
+                if (restriccions[i][j] == 1) setRestrConsecId(i, j);
+            }
+        }
 
 
     }
+
 }
 

@@ -52,20 +52,14 @@ public class CtrlPersistenciaCataleg extends CtrlPersistenciaGeneric {
                 ArrayList<String> producteList = new ArrayList<>();
                 while (index < linies.length && !linies[index].trim().isEmpty()) {
                     String prod = linies[index].trim();
-                    if (prod.contains(";")) throw new FormatInputNoValid("Els productes no poden contenir el caracter especial ';'.");
+                    if (!prod.matches("[a-zA-Z0-9]+")) throw new FormatInputNoValid("Els noms dels productes contenen caracters que no son lletres o numeros.");
                     producteList.add(prod);
                     index++;
                 }
 
                 //de llista a vector
                 numProductes = producteList.size();
-                producteList.toArray(new String[0]);
-
-                /*
-                if (numProductes == 0) {
-                    throw new FormatInputNoValid("No s'han trobat productes a l'arxiu.");
-                }
-                */
+                productes = producteList.toArray(new String[0]);
 
                 fase = 2; //canviem a similituds
 
@@ -79,13 +73,13 @@ public class CtrlPersistenciaCataleg extends CtrlPersistenciaGeneric {
                     }
                     String[] valors = linies[index].trim().split("\\s+");
                     if (valors.length != numProductes) {
-                        throw new FormatInputNoValid("La matriu de similituds no és quadrada.");
+                        throw new FormatInputNoValid("La matriu de similituds no es quadrada.");
                     }
 
                     for (int j = 0; j < numProductes; j++) {
                         double valor = Double.parseDouble(valors[j]);
                         if (valor < 0 || valor > 100) {
-                            throw new FormatInputNoValid("El valor de la matriu de similituds no està entre 0 i 100.");
+                            throw new FormatInputNoValid("El valor de la matriu de similituds no esta entre 0 i 100.");
                         }
                         similituds[i][j] = valor;
                     }
@@ -110,7 +104,7 @@ public class CtrlPersistenciaCataleg extends CtrlPersistenciaGeneric {
                     for (int j = 0; j < numProductes; j++) {
                         int valor = Integer.parseInt(valors[j]);
                         if (valor != 0 && valor != 1) {
-                            throw new FormatInputNoValid("Els valors de la matriu de restriccions només poden ser 0 o 1.");
+                            throw new FormatInputNoValid("Els valors de la matriu de restriccions nomes poden ser 0 o 1.");
                         }
                         restriccions[i][j] = valor;
                     }
@@ -119,6 +113,6 @@ public class CtrlPersistenciaCataleg extends CtrlPersistenciaGeneric {
             }
         }
 
-        //ctrlCat.carregaCataleg(productes, similituds, restriccions);
+        ctrlCat.carregaCataleg(productes, similituds, restriccions);
     }
 }

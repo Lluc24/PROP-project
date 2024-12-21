@@ -1,7 +1,6 @@
 package layers.domain.controllers;
 
-import layers.persistence.CtrlPersistencia;
-import layers.persistence.CtrlPersistenciaSolucio;
+import layers.persistence.*;
 
 public class CtrlDomini{
     private static CtrlDomini instancia = null;
@@ -11,7 +10,7 @@ public class CtrlDomini{
 
     private CtrlDomini(){}
 
-    public static CtrlDomini getCtrlDomini(){
+    public static CtrlDomini getCtrlDomini() {
         if (instancia == null){
             instancia = new CtrlDomini();
             ctrlCatalegAmbRestriccions = new CtrlCatalegAmbRestriccions();
@@ -19,6 +18,8 @@ public class CtrlDomini{
             ctrlPersistencia = CtrlPersistencia.getCtrlPersistencia(ctrlSolucions, ctrlCatalegAmbRestriccions);
             CtrlPersistenciaSolucio cps = ctrlPersistencia.getCtrlPersistenciaSolucio();
             ctrlSolucions.setCtrlPersistenciaSolucio(cps);
+            CtrlPersistenciaCataleg cpc = ctrlPersistencia.getCtrlPersistenciaCataleg();
+            ctrlCatalegAmbRestriccions.setCtrlPersistenciaCataleg(cpc);
         }
         return instancia;
     }
