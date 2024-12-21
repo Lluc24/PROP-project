@@ -115,10 +115,10 @@ public class VistaConsultarRest extends VistaControladors {
      */
     private void afegirRestriccio() {
 
-        String prod1 = getNomProducte1();
+        String prod1 = getNomProducte(0);
 
         if (prod1 != null) {
-            String prod2 = getNomProducte2();
+            String prod2 = getNomProducte(1);
 
             if (prod2 != null) {
                 ctrl.afegirRestriccio(prod1, prod2);
@@ -133,9 +133,24 @@ public class VistaConsultarRest extends VistaControladors {
      *
      * @return El nom del producte 1, o null si no és vàlid o no existeix.
      */
-    private String getNomProducte1() {
-        String message = "Introdueix el nom d'un dels productes";
-        String result = JOptionPane.showInputDialog(frameVista, message, "Introduir nom", JOptionPane.QUESTION_MESSAGE);
+    private String getNomProducte(int num) {
+        String message;
+        if (num == 0) {
+            message = "Introdueix el nom d'un dels productes";
+        } else {
+            message = "Introdueix el nom de l'altre producte";
+        }
+        JComboBox<String> comboBox2 = new JComboBox<>(ctrl.getProductes());
+
+        String result = null;
+        int ok = JOptionPane.showConfirmDialog(frameVista, comboBox2, message, JOptionPane.OK_CANCEL_OPTION);
+        if (ok == JOptionPane.OK_OPTION) {
+            result = (String) comboBox2.getSelectedItem();
+            System.out.println(result);
+        }
+
+        return result;
+        /*
         if (result == null || result.isEmpty()) {
             JOptionPane.showMessageDialog(frameVista,
                     "Si us plau, introdueix un nom",
@@ -151,32 +166,10 @@ public class VistaConsultarRest extends VistaControladors {
             return null;
         }
         return result;
+
+         */
     }
 
-    /**
-     * Demana a l'usuari que introdueixi el nom del segon producte i valida la seva existència.
-     *
-     * @return El nom del producte 2, o null si no és vàlid o no existeix.
-     */
-    private String getNomProducte2() {
-        String message = "Introdueix el nom de l'altre producte";
-        String result = JOptionPane.showInputDialog(frameVista, message, "Introduir nom", JOptionPane.QUESTION_MESSAGE);
-        if (result == null || result.isEmpty()) {
-            JOptionPane.showMessageDialog(frameVista,
-                    "Si us plau, introdueix un nom",
-                    "Error Input",
-                    JOptionPane.ERROR_MESSAGE);
-            return null;
-        }
-        if (!ctrl.valida_nom(result)) {
-            JOptionPane.showMessageDialog(frameVista,
-                    "El producte no existeix",
-                    "Error Input",
-                    JOptionPane.ERROR_MESSAGE);
-            return null;
-        }
-        return result;
-    }
 
     /**
      * Elimina una restricció entre dos productes especificats per l'usuari.
@@ -184,10 +177,10 @@ public class VistaConsultarRest extends VistaControladors {
      */
     private void eliminar_restr_nom() {
 
-        String prod1 = getNomProducte1();
+        String prod1 = getNomProducte(0);
 
         if (prod1 != null) {
-            String prod2 = getNomProducte2();
+            String prod2 = getNomProducte(1);
 
             if (prod2 != null) {
 
