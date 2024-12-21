@@ -28,7 +28,7 @@ public class VistaPrincipalCataleg extends VistaControladors {
                     "Consultar Producte: Aniras a la vista per veure la informacio del producte seleccionat\n" +
                     "Consultar Restriccions: Aniras al menu de restriccions, per consultarlas i editar les\n" +
                     "ComboBox: Et mostra tots el productes del cataleg, pot seleccionar un\n" +
-                    "Enrere: Et permet anar a l'anterior vista\n" +
+                    "Tornar: Et permet anar a l'anterior vista\n" +
                     "Sortir: Finalitzar l'aplicacio\n";
             primeraVegada = false;
             super.executar();

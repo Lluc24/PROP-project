@@ -47,9 +47,12 @@ public class VistaAfegirProducte extends VistaControladors {
                     "Label: Aqui veuras el nom que li has donat al producte, recorda no pot ser el nom d'un producte existent\n" +
                     "ComboBox: Aqui veuras tots el productes dins de cataleg, pot seleccionar un per afegir una restriccio\n" +
                     "Afegir Restriccio: Despres de seleccionar un producte, clica aquest boto per afegir una restriccio\n" +
-                    "Afegir Similituds: Començaras un proces per afegir una similitud, per cada producte indicat. Un cop donades, amb es podra editar la similitud amb el producte indicat\n" +
+                    "Afegir Similituds: Començaras un proces per afegir una similitud, per cada producte indicat. Un cop donades, aquest boto pasa a ser Editar Similituds\n" +
+                    "Editar Similituds: Un cop selecciones un producte podras editar la similitud d'aquest producte amb el que estas creant" +
                     "Canvi Nom: Permet cambiar el nom del producte\n" +
-                    "Guardar: Afegiras el producte de manera definitiva, no podras fer us d'aquest boto fins que el producte tingui nom i totes les similituds estiguin donades\n";
+                    "Guardar: Afegiras el producte de manera definitiva, no podras fer us d'aquest boto fins que el producte tingui nom i totes les similituds estiguin donades\n" +
+                    "Tornar: Et permet anar a l'anterior vista, recorda perdras la informacio del producte si no la guardas\n" +
+                    "Sortir: Finalitzar l'aplicacio\n";
 
             super.executar();
         } else {
