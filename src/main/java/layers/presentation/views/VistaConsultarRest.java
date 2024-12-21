@@ -4,11 +4,26 @@ import layers.presentation.controllers.CtrlVistaCatalegAmbRestriccions;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class VistaConsultarRest extends VistaControladors {
     private CtrlVistaCatalegAmbRestriccions ctrl;
-    protected Boto botoEliminarRest;
-    protected String textBotoEliminarRest = "Eliminar Per Nom";
+
+    protected Boto botoConsultarNom;
+    protected String textBotoConsultRest = "Consultar Per Nom";
+
+    protected String textEtiquetaInfo = "";
+    protected JLabel etiquetaInfo;
+
+    private ArrayList<String> Producte1;
+    private ArrayList<String> Producte2;
+    private ArrayList<String> ultOperacio;
+
+    protected String textItemDesfer = "Desfer";
+    protected Item menuItemDesfer;
 
     Boolean primeraVegada = true;
 
@@ -27,8 +42,12 @@ public class VistaConsultarRest extends VistaControladors {
                     "Sortir: Finalitza l'aplicacio.";
 
             primeraVegada = false;
+            Producte1 = new ArrayList<>();
+            Producte2 = new ArrayList<>();
+            ultOperacio = new ArrayList<>();
             super.executar();
         } else {
+            frameVista.setVisible(true);
             actualitzarComponents();
         }
 
@@ -36,32 +55,57 @@ public class VistaConsultarRest extends VistaControladors {
 
     @Override
     public void inicialitzarComponents() {
+
         super.inicialitzarComponents();
 
-        textEtiquetaTriar = "Afegeix una restriccio o elimina la seleccionada";
+        textEtiquetaTriar = "Consulta o afegeix una restriccio o elimina la seleccionada";
         etiquetaTriar.setText(textEtiquetaTriar);
 
         //botó eliminar seleccionada
         textBotoMostrar = "Eliminar Seleccionada";
         botoMostrar.setText(textBotoMostrar);
 
-
         //botó afegir
         textBotoAfegir = "Afegir Restriccio";
         botoAfegir.setText(textBotoAfegir);
 
-        //botó eliminar per nom
-        botoEliminarRest = new Boto(textBotoEliminarRest);
-        botoEliminarRest.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        add(botoEliminarRest);
+        //botó consultar per nom
+        botoConsultarNom = new Boto(textBotoConsultRest);
+        botoConsultarNom.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(botoConsultarNom);
         add(Box.createRigidArea(new Dimension(0,10)));
         add(Box.createVerticalGlue());
+
+        if (ultOperacio.isEmpty())  {
+            textEtiquetaInfo = "";
+        }
+        else {
+            textEtiquetaInfo = "Ultima operacio enregistrada: " + ultOperacio.getLast() + " restriccio entre " + Producte1.getLast() + " i " + Producte2.getLast();
+
+            //item desfer
+            menuItemDesfer = new Item(textItemDesfer);
+            menuFitxer.add(menuItemDesfer);
+        }
+        etiquetaInfo = new JLabel(textEtiquetaInfo);
+        etiquetaInfo.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        add(etiquetaInfo);
 
         //Selecció
         String[] restriccions = ctrl.getAllRestriccions();
         opcions.removeAllItems();
         for (String item : restriccions) {
             opcions.addItem(item);
+        }
+
+    }
+
+    @Override
+    public void itemAccionat(String textItem) {
+        if (textItem.equals(textItemDesfer)) {
+            desfer();
+        }
+        else {
+            super.itemAccionat(textItem);
         }
 
     }
@@ -74,13 +118,13 @@ public class VistaConsultarRest extends VistaControladors {
             String seleccio = (String) opcions.getSelectedItem();
             if (seleccio == null || seleccio.isEmpty()) {
                 JOptionPane.showMessageDialog(frameVista,
-                        "No s'ha seleccionat cap restriccio",
+                        "No s'ha seleccionat cap restriccio.",
                         "Error Input",
                         JOptionPane.ERROR_MESSAGE);
             } else {
                 eliminaRestr(seleccio);
             }
-        } else if (textBoto.equals(textBotoEliminarRest)) {
+        } else if (textBoto.equals(textBotoConsultRest)) {
             eliminar_restr_nom();
         } else if (textBoto.equals(textBotoTornar)) {
             ctrl.canviaVista("PrincipalCataleg");
@@ -96,14 +140,19 @@ public class VistaConsultarRest extends VistaControladors {
      */
     private void eliminaRestr(String seleccio) {
 
+        String[] prods = decodificar_producte(seleccio);
+
         //confirmació
         int result = JOptionPane.showConfirmDialog(frameVista,
-                "Vols eliminar la restriccio?",
+                "Vols eliminar la restriccio entre " + prods[0] + " i " + prods[1] + "?",
                 "Confirmacio eliminar",
                 JOptionPane.YES_NO_OPTION);
 
         if (result == JOptionPane.YES_OPTION) {
-            ctrl.eliminarRestriccio(seleccio);
+            ctrl.eliminarRestriccio(prods[0], prods[1]);
+            ultOperacio.add("Eliminar");
+            Producte1.add(prods[0]);
+            Producte2.add(prods[1]);
             actualitzarComponents();
         }
 
@@ -115,61 +164,165 @@ public class VistaConsultarRest extends VistaControladors {
      */
     private void afegirRestriccio() {
 
-        String prod1 = getNomProducte(0);
+        if (ctrl.getNumProd() < 2) {
+            JOptionPane.showMessageDialog(frameVista,
+                    "Hi ha menys de dos productes al cataleg.",
+                    "Productes insuficients",
+                    JOptionPane.ERROR_MESSAGE);
+        }
 
-        if (prod1 != null) {
-            String prod2 = getNomProducte(1);
+        else {
 
-            if (prod2 != null) {
-                ctrl.afegirRestriccio(prod1, prod2);
-                actualitzarComponents();
+            String prod1 = getNomProducte(null, true);
+
+            if (prod1 != null) {
+                String prod2 = getNomProducte(prod1, true);
+
+                if (prod2 != null) {
+
+                    int ok = JOptionPane.showConfirmDialog(frameVista,
+                            "Vols afegir la restriccio entre " + prod1 + " i " + prod2 + "?",
+                            "Confirmacio afegir",
+                            JOptionPane.YES_NO_OPTION);
+                    if (ok == JOptionPane.YES_OPTION) {
+                        ctrl.afegirRestriccio(prod1, prod2);
+                        ultOperacio.add("Afegir");
+                        Producte1.add(prod1);
+                        Producte2.add(prod2);
+                        actualitzarComponents();
+                    }
+
+                }
             }
         }
 
     }
 
     /**
-     * Demana a l'usuari que introdueixi el nom del primer producte i valida la seva existència.
+     * Demana a l'usuari que introdueixi el nom del producte i valida la seva existència.
      *
-     * @return El nom del producte 1, o null si no és vàlid o no existeix.
+     * @param nomProd null si és el primer cop que es demana, 1 si és el segon.
+     * @return El nom del producte, o null si no és vàlid o no existeix.
      */
-    private String getNomProducte(int num) {
+    private String getNomProducte(String nomProd, boolean afegir) {
         String message;
-        if (num == 0) {
+        JComboBox<String> comboBox2;
+        JTextField textField = new JTextField(15); // Camp de text
+
+        if (nomProd == null) {
             message = "Introdueix el nom d'un dels productes";
+            comboBox2 = new JComboBox<>(ctrl.getProductes());
         } else {
-            message = "Introdueix el nom de l'altre producte";
-        }
-        JComboBox<String> comboBox2 = new JComboBox<>(ctrl.getProductes());
 
-        String result = null;
-        int ok = JOptionPane.showConfirmDialog(frameVista, comboBox2, message, JOptionPane.OK_CANCEL_OPTION);
-        if (ok == JOptionPane.OK_OPTION) {
-            result = (String) comboBox2.getSelectedItem();
+            String[] prods;
+            if (afegir) {
+                prods = ctrl.getProdNoRestrConsec(nomProd);
+                message = "Introdueix el nom de l'altre producte";
+                if (prods.length == 0) {
+                    JOptionPane.showMessageDialog(
+                            frameVista,
+                            "Aquest producte ja te restriccions amb tots els altres",
+                            "No elegible",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                    return null;
+                }
+            }
+            else {
+                prods = ctrl.getProdRestrConsec(nomProd);
+                message = "Es mostren els productes restringits";
+                if (prods.length == 0) {
+                    JOptionPane.showMessageDialog(
+                            frameVista,
+                            "Aquest producte no te restriccions amb cap altre",
+                            "No elegible",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                    return null;
+                }
+            }
+
+            comboBox2 = new JComboBox<>(prods);
+        }
+
+        //sincronitzar el JTextField amb el JComboBox
+        comboBox2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedItem = (String) comboBox2.getSelectedItem();
+                textField.setText(selectedItem);
+            }
+        });
+
+        //ajustar l'alçada del JTextField
+        Dimension textFieldSize = new Dimension(250, 30); // Amplada i alçada personalitzada
+        textField.setPreferredSize(textFieldSize);
+        textField.setMaximumSize(textFieldSize);
+        textField.setMinimumSize(textFieldSize);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel label = new JLabel(message);
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        textField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        comboBox2.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        panel.add(label);
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(textField);
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(comboBox2);
+
+        //mostrar el JOptionPane
+        String titol = "Seleccionar Producte";
+        String[] options = {"Seleccionar", "Sortir"};
+        if (nomProd != null) {
+            if (afegir) {
+                titol = "Afegir Restriccio amb " + nomProd;
+                options[0] = "Afegir";
+            } else {
+                options[0] = "Eliminar";
+                titol = "Restriccions amb " + nomProd;
+            }
+        }
+
+        int ok = JOptionPane.showOptionDialog(
+                frameVista,
+                panel,
+                titol,
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options,
+                options[0]
+        );
+
+        if (ok == 0) {
+            String result = textField.getText().trim();
+            if (result.isEmpty()) {
+                JOptionPane.showMessageDialog(frameVista,
+                        "No s'ha introduit cap nom",
+                        "Error Input",
+                        JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+
+            if (!ctrl.valida_nom(result)) {
+                JOptionPane.showMessageDialog(frameVista,
+                        "El producte no existeix",
+                        "Error Input",
+                        JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+
             System.out.println(result);
+            return result;
         }
 
-        return result;
-        /*
-        if (result == null || result.isEmpty()) {
-            JOptionPane.showMessageDialog(frameVista,
-                    "Si us plau, introdueix un nom",
-                    "Error Input",
-                    JOptionPane.ERROR_MESSAGE);
-            return null;
-        }
-        if (!ctrl.valida_nom(result)) {
-            JOptionPane.showMessageDialog(frameVista,
-                    "El producte no existeix",
-                    "Error Input",
-                    JOptionPane.ERROR_MESSAGE);
-            return null;
-        }
-        return result;
-
-         */
+        return null;
     }
-
 
     /**
      * Elimina una restricció entre dos productes especificats per l'usuari.
@@ -177,22 +330,35 @@ public class VistaConsultarRest extends VistaControladors {
      */
     private void eliminar_restr_nom() {
 
-        String prod1 = getNomProducte(0);
+        if (ctrl.getAllRestriccions().length == 0) {
+            JOptionPane.showMessageDialog(frameVista,
+                    "No hi ha restriccions al cataleg",
+                    "Restriccions insuficients",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        else {
 
-        if (prod1 != null) {
-            String prod2 = getNomProducte(1);
+            String prod1 = getNomProducte(null, false);
 
-            if (prod2 != null) {
+            if (prod1 != null) {
+                String prod2 = getNomProducte(prod1, false);
 
-                int result = JOptionPane.showConfirmDialog(frameVista,
-                        "Vols eliminar la restriccio?",
-                        "Confirmacio eliminar",
-                        JOptionPane.YES_NO_OPTION);
+                if (prod2 != null) {
 
-                if (result == JOptionPane.YES_OPTION) {
-                    ctrl.eliminarRestriccio(prod1, prod2);
-                    actualitzarComponents();
+                    int result = JOptionPane.showConfirmDialog(frameVista,
+                            "Vols eliminar la restriccio entre " + prod1 + " i " + prod2 + "?",
+                            "Confirmacio eliminar",
+                            JOptionPane.YES_NO_OPTION);
+
+                    if (result == JOptionPane.YES_OPTION) {
+                        ctrl.eliminarRestriccio(prod1, prod2);
+                        ultOperacio.add("Eliminar");
+                        Producte1.add(prod1);
+                        Producte2.add(prod2);
+                        actualitzarComponents();
+                    }
                 }
+
             }
         }
     }
@@ -207,6 +373,32 @@ public class VistaConsultarRest extends VistaControladors {
         for (String item : restriccions) {
             opcions.addItem(item);
         }
+
+        if (ultOperacio.isEmpty()) {
+            menuFitxer.remove(menuItemDesfer);
+            textEtiquetaInfo = "";
+            etiquetaInfo.setText(textEtiquetaInfo);
+        }
+        else {
+            if (!menuTeItem(menuFitxer, textItemDesfer)) {
+                menuItemDesfer = new Item(textItemDesfer);
+                menuFitxer.add(menuItemDesfer);
+            }
+            textEtiquetaInfo = "Ultima operacio enregistrada: " + ultOperacio.getLast() + " restriccio entre " + Producte1.getLast() + " i " + Producte2.getLast();
+            etiquetaInfo.setText(textEtiquetaInfo);
+        }
+
+    }
+
+    /**
+     * Decodifica una cadena de text que conté dos noms de productes separats per un punt i coma.
+     *
+     * @param str Cadena amb el format "producte1 ; producte2".
+     * @return Un array amb els dos noms dels productes.
+     */
+    private String[] decodificar_producte(String str) {
+
+        return str.split(" ; ");
     }
 
     /**
@@ -215,6 +407,36 @@ public class VistaConsultarRest extends VistaControladors {
     @Override
     public void sortirSistema() {
         ctrl.sortirSistema();
+    }
+
+    /**
+     * Desfà l'última operació, sigui eliminació o afegit.
+     */
+    private void desfer() {
+        if (!ultOperacio.isEmpty()) {
+            if (Objects.equals(ultOperacio.getLast(), "Afegir")) {
+                ctrl.eliminarRestriccio(Producte1.getLast(), Producte2.getLast());
+
+            } else if (Objects.equals(ultOperacio.getLast(), "Eliminar")) {
+                ctrl.afegirRestriccio(Producte1.getLast(), Producte2.getLast());
+            }
+            ultOperacio.removeLast();
+            Producte1.removeLast();
+            Producte2.removeLast();
+            actualitzarComponents();
+        }
+
+    }
+
+
+    private boolean menuTeItem(Menu menu, String nomItem) {
+        for (int i = 0; i < menu.getItemCount(); i++) {
+            MenuItem item = menu.getItem(i);
+            if (item != null && nomItem.equals(item.getLabel())) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

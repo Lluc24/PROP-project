@@ -253,33 +253,6 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
     }
 
     /**
-     * Elimina una restricció especificada per una string de text que conté els noms dels productes.
-     *
-     * @param str String que representa la restricció (format: "producte1;producte2").
-     */
-    public void eliminarRestriccio(String str) {
-
-        String[] nomProds = decodificar_producte(str);
-
-        try {
-            ctrl.remRestrConsecNom(nomProds[0], nomProds[1]);
-        } catch (ProducteNoValid e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    /**
-     * Decodifica una cadena de text que conté dos noms de productes separats per un punt i coma.
-     *
-     * @param str Cadena amb el format "producte1;producte2".
-     * @return Un array amb els dos noms dels productes.
-     */
-    private String[] decodificar_producte(String str) {
-
-        return str.split(" ; ");
-    }
-
-    /**
      * Valida si el nom del producte especificat existeix al sistema.
      *
      * @param nomProd Nom del producte a validar.
@@ -386,6 +359,26 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
     @Override
     public void importar(String path, String nomFitxer) throws FormatInputNoValid{
         ctrl.carregarCataleg(path,nomFitxer);
+    }
+
+    /**
+     * Obté tots els productes amb els que el producte indicat no té restriccions.
+     *
+     * @param nomProd nom del producte.
+     * @return Un String[] amb els noms dels productes amb els que no té restriccions.
+     */
+    public String[] getProdNoRestrConsec(String nomProd) {
+        return ctrl.getProdNoRestrConsec(ctrl.get_index_prod(nomProd));
+    }
+
+    /**
+     * Obté tots els productes amb els que el producte indicat té restriccions.
+     *
+     * @param nomProd nom del producte.
+     * @return Un String[] amb els noms dels productes amb els que té restriccions.
+     */
+    public String[] getProdRestrConsec(String nomProd) {
+        return ctrl.getProdRestrConsec(ctrl.get_index_prod(nomProd));
     }
 
 }

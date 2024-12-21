@@ -419,7 +419,7 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 
     /**
      * Converteix les restriccions en una llista de strings de text.
-     * Cada string representa una parella de productes amb format "producte1;producte2".
+     * Cada string representa una parella de productes amb format "producte1 ; producte2".
      *
      * @return Un array de strings amb les restriccions.
      */
@@ -565,6 +565,8 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
      */
     public void carregaCataleg(String[] productes, double[][] similituds, int[][] restriccions) throws FormatInputNoValid {
 
+        noConsecutius.clear();
+
         carregaCataleg(productes, similituds);
 
         for (int i = 0; i < restriccions.length; i++) {
@@ -574,6 +576,48 @@ public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
         }
 
 
+    }
+
+    /**
+     * Obté tots els productes amb els que el producte indicat no té restriccions.
+     *
+     * @param index id del producte al catàleg.
+     * @return Un String[] amb els noms dels productes amb els que no té restriccions.
+     */
+    public String[] getProdNoRestrConsec(int index) {
+
+        ArrayList<String> restric = new ArrayList<>();
+
+
+
+        for (int i = 0; i < noConsecutius.get(index).size(); ++i) {
+            if (!noConsecutius.get(index).get(i) && index != i) {
+                restric.add(getNomProd_index(i));
+            }
+        }
+
+        return restric.toArray(new String[0]);
+    }
+
+    /**
+     * Obté tots els productes amb els que el producte indicat té restriccions.
+     *
+     * @param index id del producte al catàleg.
+     * @return Un String[] amb els noms dels productes amb els que té restriccions.
+     */
+    public String[] getProdRestrConsec(int index) {
+
+        ArrayList<String> restric = new ArrayList<>();
+
+
+
+        for (int i = 0; i < noConsecutius.get(index).size(); ++i) {
+            if (noConsecutius.get(index).get(i) && index != i) {
+                restric.add(getNomProd_index(i));
+            }
+        }
+
+        return restric.toArray(new String[0]);
     }
 
 }
