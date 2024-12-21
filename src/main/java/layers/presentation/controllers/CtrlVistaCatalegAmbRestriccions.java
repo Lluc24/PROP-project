@@ -48,24 +48,24 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
 
         if (Objects.equals(nomVista, "AfegirProductes")) {
-            controlVistes(1);
             vistaAfegProd.executar();
+            controlVistes(1);
         }
 
         else if (Objects.equals(nomVista, "PrincipalCataleg")) {
-            controlVistes(0);
             vistaPrincCat.executar();
+            controlVistes(0);
         }
 
         else if (Objects.equals(nomVista, "ConsultarRestriccions")) {
-            controlVistes(3);
             vistaConsRest.executar();
+            controlVistes(3);
         }
 
         else if (Objects.equals(nomVista, "VistaPrincipal")) {
             controlVistes[0] = EstatVista.noVisible;
+            vistaPrinc.executar();
             vistaPrincCat.ocultar();
-            vistaPrinc.mostrar();
         }
 
         else {
@@ -84,9 +84,8 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
         if (Objects.equals(nomVista, "InfoProducte")) {
             this.prodAct = nomProd;
-            controlVistes(2);
             vistaInfoProd.executar(nomProd);
-
+            controlVistes(2);
         }
     }
 
@@ -353,7 +352,7 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
             }
             else {
                 if (i == numVista) {
-                    mostrarVista(numVista);
+                    //mostrarVista(numVista);
                     controlVistes[i] = EstatVista.esVisible;
                 }
                 else if (controlVistes[i] != EstatVista.noVisible){
