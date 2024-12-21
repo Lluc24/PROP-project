@@ -33,6 +33,8 @@ public class VistaAfegirProducte extends VistaControladors {
 
     private String textCancelat = "Cancelat";
 
+    private int ultimaSimi = 0;
+
     public VistaAfegirProducte (CtrlVistaCatalegAmbRestriccions cps) {
         controlVista = cps;
     }
@@ -67,6 +69,7 @@ public class VistaAfegirProducte extends VistaControladors {
     public void inicialitzarComponents() {
         te_nom = false;
         Simis_DONE = false;
+        ultimaSimi = 0;
 
         //Inicialitzar vectors
         int mida_cataleg = controlVista.getNumProd();
@@ -90,9 +93,13 @@ public class VistaAfegirProducte extends VistaControladors {
         textBotoAfegir = "Afegir Restriccions";
         botoAfegir.setText(textBotoAfegir);
 
-        if (!Simis_DONE) textBotoMostrar = "Afegir Similituds";
-        else textBotoMostrar = "Editar Similitud";
-        botoMostrar.setText(textBotoMostrar);
+        System.err.println(Simis_DONE);
+        if (!Simis_DONE) {
+            textBotoMostrar = "Afegir Similituds";
+            botoMostrar.setText(textBotoMostrar);
+            botoMostrar.setBackground(Color.YELLOW);
+        }
+        else canviBotoSimilituds();
 
         //Boto Canviar nom
         BotoCanviNom = new Boto(textBotoCanviNom);
@@ -119,6 +126,7 @@ public class VistaAfegirProducte extends VistaControladors {
         nom_prod = "INSEREIX_NOM";
         labelNomProd.setText(nom_prod);
         Simis_DONE = false;
+        ultimaSimi = 0;
 
         //Inicialitzar vectors
         int mida_cataleg = controlVista.getNumProd();
@@ -128,9 +136,12 @@ public class VistaAfegirProducte extends VistaControladors {
 
 
         afegirNom();
-        if (!Simis_DONE) textBotoMostrar = "Afegir Similituds";
-        else textBotoMostrar = "Editar Similitud";
-        botoMostrar.setText(textBotoMostrar);
+        if (!Simis_DONE) {
+            textBotoMostrar = "Afegir Similituds";
+            botoMostrar.setText(textBotoMostrar);
+            botoMostrar.setBackground(Color.YELLOW);
+        }
+        else canviBotoSimilituds();
 
 
 
@@ -143,17 +154,45 @@ public class VistaAfegirProducte extends VistaControladors {
     @Override
     public void botoAccionat (String textBoto) {
         if (textBoto.equals(textBotoAfegir)) {
-            String seleccionat = (String) opcions.getSelectedItem();
-            if (seleccionat != null && !seleccionat.isEmpty()) {
-                AfegirRestriccio(seleccionat);
+            //Afegir Restriccio
+            if (Simis_DONE) {
+                String seleccionat = (String) opcions.getSelectedItem();
+                if (seleccionat == null || seleccionat.isEmpty()) {
+                    JOptionPane.showMessageDialog(frameVista,
+                            "No se ha seleccionat cap producte del ComboBox",
+                            "Error Input",
+                            JOptionPane.ERROR_MESSAGE);
+                } else {
+                    String parts[] = seleccionat.split(" -> ");
+                    String producteSelecionat = parts[0];
+                    AfegirRestriccio(producteSelecionat);
+                }
+            } else {
+                String seleccionat = (String) opcions.getSelectedItem();
+                if (seleccionat != null && !seleccionat.isEmpty()) {
+                    AfegirRestriccio(seleccionat);
+                } else {
+                    JOptionPane.showMessageDialog(frameVista,
+                            "No se ha seleccionat cap producte del ComboBox",
+                            "Error Input",
+                            JOptionPane.ERROR_MESSAGE);
+                }
             }
         } else if (textBoto.equals(textBotoMostrar)) {
             if (Simis_DONE) {
                 String seleccionat = (String) opcions.getSelectedItem();
-                if (seleccionat != null && !seleccionat.isEmpty() ) {
-                    EditarSimilitud(seleccionat);
+                if (seleccionat == null || seleccionat.isEmpty()) {
+                    JOptionPane.showMessageDialog(frameVista,
+                            "No se ha seleccionat cap producte del ComboBox",
+                            "Error Input",
+                            JOptionPane.ERROR_MESSAGE);
+                } else {
+                    String parts[] = seleccionat.split(" -> ");
+                    String producteSelecionat = parts[0];
+                    EditarSimilitud(producteSelecionat);
                 }
             } else {
+                //Afegir Similituds
                 AfegirSimilituds();
             }
         } else if (textBoto.equals(textBotoFinalitzar)) {
@@ -171,18 +210,22 @@ public class VistaAfegirProducte extends VistaControladors {
     }
 
     private void AfegirSimilituds() {
-        for (int i = 0; i < productes.length; ++i) {
+
+        for (int i = ultimaSimi; i < productes.length; ++i) {
             boolean ok = false;
             String result = getSimilitud(productes[i]);
             if (result != null) {
                 similituds.add(i, result);
             } else {
+                ultimaSimi = i;
+                System.out.println("VistaAfegirProducte: Ultima similitud afegida numero "+ultimaSimi);
                 return;
             }
         }
+        ultimaSimi = productes.length;
         Simis_DONE = true;
-        textBotoMostrar = "Editar Similitud";
-        botoMostrar.setText(textBotoMostrar);
+        afegirSimisCombobox();
+        canviBotoSimilituds();
     }
 
     private void EditarSimilitud(String prodSeleccionat) {
@@ -198,6 +241,25 @@ public class VistaAfegirProducte extends VistaControladors {
             String result = getSimilitud(productes[index]);
             if (result != null) {
                 similituds.set(index,result);
+            }
+        } else {
+            System.err.println("VistaAfegirProducte: EditarSimilitud: Error Producte no trobat");
+        }
+
+        afegirSimisCombobox();
+    }
+
+    private void afegirSimisCombobox() {
+        if (Simis_DONE) {
+            String[] Prod_Simi = new String[productes.length];
+            for (int i = 0; i < productes.length; ++i) {
+                Prod_Simi[i] = productes[i]+" -> "+similituds.get(i);
+            }
+
+            String prodSame = nom_prod+" -> 0.0";
+            opcions.removeAllItems();
+            for (String item : Prod_Simi) {
+                if (!item.equals(prodSame)) opcions.addItem(item);
             }
         }
     }
@@ -303,6 +365,12 @@ public class VistaAfegirProducte extends VistaControladors {
             controlVista.canviaVista("PrincipalCataleg");
         }
 
+    }
+
+    private void canviBotoSimilituds() {
+        textBotoMostrar = "Editar Similituds";
+        botoMostrar.setText(textBotoMostrar);
+        botoMostrar.setBackground(UIManager.getColor("Button.background"));
     }
 
 

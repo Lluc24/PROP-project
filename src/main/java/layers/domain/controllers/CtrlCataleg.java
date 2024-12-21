@@ -587,14 +587,14 @@ public class CtrlCataleg extends CtrlGeneric{
      * @param path Path donat per la capa de presentacio
      * @param nomArxiu Nom del arxiu donat per la capa de presenctacio
      */
-    public void carregarCataleg(String path, String nomArxiu) {
+    public void carregarCataleg(String path, String nomArxiu) throws FormatInputNoValid {
+
         try {
             ctrlPersistenciaCataleg.processarDadesArxiu(path, nomArxiu);
         } catch (NomSolucioNoValid e) {
-            System.err.println("El nom de la solucio no es valid");
-        } catch (FormatInputNoValid e) {
-            System.err.println("El format de input no es correcte");
+            throw new FormatInputNoValid(e.getMessage());
         }
+
     }
 
     /**
