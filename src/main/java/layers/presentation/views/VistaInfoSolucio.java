@@ -92,11 +92,12 @@ public class VistaInfoSolucio extends VistaGenerica {
         this.nomSolucio = nomSolcuio;
         this.productes = productes;
         titolFrame = "Informacio de la solucio";
-        ajuda = "Estas a la vista on es mostra una solucio. Des d'aquesta vista pots provar qualsevol de les quatre funcionalitats " +
-                "utilitzant els botons correstponents i clicant els productes sobre la taula.\n" +
+        ajuda = "Estas a la vista on es mostra una solucio. Des d'aquesta vista pots provar qualsevol de les quatre \n" +
+                "funcionalitats utilitzant els botons corresponents i clicant els productes sobre la taula.\n" +
                 "Veure la solucio: Amb l'estat de visualitzar pots veure la distribucio de la prestatgeria.\n" +
                 "Editar la solucio: Permet intercanviar productes de la distribucio de la prestatgeria.\n" +
-                "Gestionar restriccions: Permet gestionar les restriccions entre productes.\n" +
+                "Eliminar la solucio: Permet eliminar la distribucio.\n" +
+                "Tornar: Permet tornar a la vista principal.\n" +
                 "Sortir: Finalitza l'aplicacio.";
 
         files = this.productes.size();
@@ -157,6 +158,9 @@ public class VistaInfoSolucio extends VistaGenerica {
         botoCanviEstatGeneral = new Boto();
         botoCanviEstatGeneral.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(botoCanviEstatGeneral);
+
+        // Inicialitzem el boto d'eliminar
+        add(Box.createRigidArea(new Dimension(0, 10)));
         botoEliminarSolucio = new Boto(textBotoEliminarSolucio);
         botoEliminarSolucio.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(botoEliminarSolucio);
@@ -217,7 +221,7 @@ public class VistaInfoSolucio extends VistaGenerica {
         String estatGeneralDesitjat = EstatGeneral.INICIAL + " o " + EstatGeneral.EDITAR;
         String err = String.format(errEstatTemplate, "canviEstatGeneralAVisualitzar", "estatGeneral", estatGeneral, estatGeneralDesitjat);
         if (estatGeneral != EstatGeneral.INICIAL && estatGeneral != EstatGeneral.EDITAR) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
@@ -232,7 +236,7 @@ public class VistaInfoSolucio extends VistaGenerica {
     protected void canviEstatGeneralAEditar() {
         String err = String.format(errEstatTemplate, "canviEstatGeneralAEditar", "estatGeneral", estatGeneral, EstatGeneral.EDITAR);
         if (estatGeneral != EstatGeneral.VISUALITZAR) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
@@ -256,30 +260,23 @@ public class VistaInfoSolucio extends VistaGenerica {
         botoPrimerProducte.setVisible(true);
     }
 
-    protected void canviEstatProducte2AInicial() {
-        estatProducte2 = EstatProducte.INICIAL;
-        etiquetaSegonProducte.setText(textEtiquetaProducteEnInicial);
-        botoSegonProducte.setText(textBotoSegonProducteEnInicial);
-        botoSegonProducte.setVisible(true);
-    }
-
     protected void canviEstatProducte1ASeleccionar() {
         String err = String.format(errEstatTemplate, "canviEstatProducte1ASeleccionar", "estatGeneral", estatGeneral, EstatGeneral.EDITAR);
         if (estatGeneral != EstatGeneral.EDITAR) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
         err = String.format(errEstatTemplate, "canviEstatProducte1ASeleccionar", "estatProducte1", estatProducte1, EstatProducte.INICIAL);
         if (estatProducte1 != EstatProducte.INICIAL) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
         String estatProducte2Desitjat = EstatProducte.INICIAL + " o " + EstatProducte.CONFIRMAT;
         err = String.format(errEstatTemplate, "canviEstatProducte1ASeleccionar", "estatProducte2", estatProducte2, estatProducte2Desitjat);
         if (estatProducte2 != EstatProducte.INICIAL && estatProducte2 != EstatProducte.CONFIRMAT) {
-            System.err.println(err);
+            mostrarOptionPane(err + "\nCal acabar la seleccio del segon producte.", false);
             return;
         }
 
@@ -289,27 +286,27 @@ public class VistaInfoSolucio extends VistaGenerica {
     }
 
     protected void canviEstatProducte1ASeleccionat() {
-        String err = String.format(errEstatTemplate, "canviEstatProducte1ASeleccionar", "estatGeneral", estatGeneral, EstatGeneral.EDITAR);
+        String err = String.format(errEstatTemplate, "canviEstatProducte1ASeleccionat", "estatGeneral", estatGeneral, EstatGeneral.EDITAR);
         if (estatGeneral != EstatGeneral.EDITAR) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
-        err = String.format(errEstatTemplate, "canviEstatProducte1ASeleccionar", "estatProducte1", estatProducte1, EstatProducte.SELECCIONAR);
+        err = String.format(errEstatTemplate, "canviEstatProducte1ASeleccionat", "estatProducte1", estatProducte1, EstatProducte.SELECCIONAR);
         if (estatProducte1 != EstatProducte.SELECCIONAR) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
         String estatProducte2Desitjat = EstatProducte.INICIAL + " o " + EstatProducte.CONFIRMAT;
-        err = String.format(errEstatTemplate, "canviEstatProducte1ASeleccionar", "estatProducte2", estatProducte1, estatProducte2Desitjat);
+        err = String.format(errEstatTemplate, "canviEstatProducte1ASeleccionat", "estatProducte2", estatProducte1, estatProducte2Desitjat);
         if (estatProducte2 != EstatProducte.INICIAL && estatProducte2 != EstatProducte.CONFIRMAT) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
         if (celaFantasma(filaSeleccionada, filaSeleccionada)) {
-            System.err.println("Casella fantasma");
+            mostrarOptionPane("Casella fantasma en canviEstatProducte1ASeleccionat", true);
             return;
         }
 
@@ -322,20 +319,20 @@ public class VistaInfoSolucio extends VistaGenerica {
     protected void canviEstatProducte1AConfirmat() {
         String err = String.format(errEstatTemplate, "canviEstatProducte1AConfirmat", "estatGeneral", estatGeneral, EstatGeneral.EDITAR);
         if (estatGeneral != EstatGeneral.EDITAR) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
         err = String.format(errEstatTemplate, "canviEstatProducte1AConfirmat", "estatProducte1", estatProducte1, EstatProducte.SELECCIONAT);
         if (estatProducte1 != EstatProducte.SELECCIONAT) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
         String estatProducte2Desitjat = EstatProducte.INICIAL + " o " + EstatProducte.CONFIRMAT;
         err = String.format(errEstatTemplate, "canviEstatProducte1AConfirmat", "estatProducte2", estatProducte1, estatProducte2Desitjat);
         if (estatProducte2 != EstatProducte.INICIAL && estatProducte2 != EstatProducte.CONFIRMAT) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
@@ -348,27 +345,27 @@ public class VistaInfoSolucio extends VistaGenerica {
     }
 
     protected void actualitzaProducte1Seleccionat() {
-        String err = String.format(errEstatTemplate, "canviEstatProducte1AConfirmat", "estatGeneral", estatGeneral, EstatGeneral.EDITAR);
+        String err = String.format(errEstatTemplate, "actualitzaProducte1Seleccionat", "estatGeneral", estatGeneral, EstatGeneral.EDITAR);
         if (estatGeneral != EstatGeneral.EDITAR) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
-        err = String.format(errEstatTemplate, "canviEstatProducte1AConfirmat", "estatProducte1", estatProducte1, EstatProducte.SELECCIONAT);
+        err = String.format(errEstatTemplate, "actualitzaProducte1Seleccionat", "estatProducte1", estatProducte1, EstatProducte.SELECCIONAT);
         if (estatProducte1 != EstatProducte.SELECCIONAT) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
         String estatProducte2Desitjat = EstatProducte.INICIAL + " o " + EstatProducte.CONFIRMAT;
-        err = String.format(errEstatTemplate, "canviEstatProducte1AConfirmat", "estatProducte2", estatProducte2, estatProducte2Desitjat);
+        err = String.format(errEstatTemplate, "actualitzaProducte1Seleccionat", "estatProducte2", estatProducte2, estatProducte2Desitjat);
         if (estatProducte2 != EstatProducte.INICIAL && estatProducte2 != EstatProducte.CONFIRMAT) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
         if (celaFantasma(filaSeleccionada, columnaSeleccionada)) {
-            System.err.println("Casella fantasma");
+            mostrarOptionPane("Casella fantasma en actualitzaProducte1Seleccionat", true);
             return;
         }
 
@@ -378,23 +375,30 @@ public class VistaInfoSolucio extends VistaGenerica {
         etiquetaPrimerProducte.setText(producte);
     }
 
+    protected void canviEstatProducte2AInicial() {
+        estatProducte2 = EstatProducte.INICIAL;
+        etiquetaSegonProducte.setText(textEtiquetaProducteEnInicial);
+        botoSegonProducte.setText(textBotoSegonProducteEnInicial);
+        botoSegonProducte.setVisible(true);
+    }
+
     protected void canviEstatProducte2ASeleccionar() {
         String err = String.format(errEstatTemplate, "canviEstatProducte2ASeleccionar", "estatGeneral", estatGeneral, EstatGeneral.EDITAR);
         if (estatGeneral != EstatGeneral.EDITAR) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
         err = String.format(errEstatTemplate, "canviEstatProducte2ASeleccionar", "estatProducte2", estatProducte2, EstatProducte.INICIAL);
         if (estatProducte2 != EstatProducte.INICIAL) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
         String estatProducte1Desitjat = EstatProducte.INICIAL + " o " + EstatProducte.CONFIRMAT;
         err = String.format(errEstatTemplate, "canviEstatProducte2ASeleccionar", "estatProducte1", estatProducte1, estatProducte1Desitjat);
         if (estatProducte1 != EstatProducte.INICIAL && estatProducte1 != EstatProducte.CONFIRMAT) {
-            System.err.println(err);
+            mostrarOptionPane(err + "\nCal acabar la seleccio del primer producte.", false);
             return;
         }
 
@@ -406,25 +410,25 @@ public class VistaInfoSolucio extends VistaGenerica {
     protected void canviEstatProducte2ASeleccionat() {
         String err = String.format(errEstatTemplate, "canviEstatProducte2ASeleccionat", "estatGeneral", estatGeneral, EstatGeneral.EDITAR);
         if (estatGeneral != EstatGeneral.EDITAR) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
         err = String.format(errEstatTemplate, "canviEstatProducte2ASeleccionat", "estatProducte2", estatProducte2, EstatProducte.SELECCIONAR);
         if (estatProducte2 != EstatProducte.SELECCIONAR) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
         if (celaFantasma(filaSeleccionada, columnaSeleccionada)) {
-            System.err.println("Casella fantasma");
+            mostrarOptionPane("Casella fantasma en canviEstatProducte2ASeleccionat", true);
             return;
         }
 
         String estatProducte1Desitjat = EstatProducte.INICIAL + " o " + EstatProducte.CONFIRMAT;
         err = String.format(errEstatTemplate, "canviEstatProducte2ASeleccionat", "estatProducte1", estatProducte1, estatProducte1Desitjat);
         if (estatProducte1 != EstatProducte.INICIAL && estatProducte1 != EstatProducte.CONFIRMAT) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
@@ -437,20 +441,20 @@ public class VistaInfoSolucio extends VistaGenerica {
     protected void canviEstatProducte2AConfirmat() {
         String err = String.format(errEstatTemplate, "canviEstatProducte2AConfirmat", "estatGeneral", estatGeneral, EstatGeneral.EDITAR);
         if (estatGeneral != EstatGeneral.EDITAR) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
         err = String.format(errEstatTemplate, "canviEstatProducte2AConfirmat", "estatProducte2", estatProducte2, EstatProducte.SELECCIONAT);
         if (estatProducte2 != EstatProducte.SELECCIONAT) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
         String estatProducte1Desitjats = EstatProducte.INICIAL + " o " + EstatProducte.CONFIRMAT;
         err = String.format(errEstatTemplate, "canviEstatProducte2AConfirmat", "estatProducte1", estatProducte1, estatProducte1Desitjats);
         if (estatProducte1 != EstatProducte.INICIAL && estatProducte1 != EstatProducte.CONFIRMAT) {
-            System.err.println(err);
+            mostrarOptionPane(err, true);
             return;
         }
 
@@ -511,8 +515,15 @@ public class VistaInfoSolucio extends VistaGenerica {
         else return false;
     }
 
+    protected void mostrarOptionPane(String missatge, boolean esError) {
+        JOptionPane.showMessageDialog(frameVista,
+                missatge,
+                esError ? "Error" : "Accio incorrecta",
+                esError ? JOptionPane.ERROR_MESSAGE : JOptionPane.WARNING_MESSAGE
+        );
+    }
+
     public void tornar() {
-        super.tornar();
         ctrlVistaSolucions.controlVistes(0);
     }
 
@@ -547,7 +558,7 @@ public class VistaInfoSolucio extends VistaGenerica {
         }
         else if (textBoto.equals(textBotoEliminarSolucio)) {
             ctrlVistaSolucions.eliminarSolucio();
-            sortir();
+            tornar();
         }
         else {
             super.botoAccionat(textBoto);

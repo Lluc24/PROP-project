@@ -219,6 +219,7 @@ public class VistaConsultarRest extends VistaControladors {
     /**
      * Tanca l'aplicació.
      */
+    @Override
     public void sortirSistema() {
         ctrl.sortirSistema();
     }

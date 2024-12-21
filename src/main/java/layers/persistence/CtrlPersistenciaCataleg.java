@@ -113,6 +113,20 @@ public class CtrlPersistenciaCataleg extends CtrlPersistenciaGeneric {
             }
         }
 
-        ctrlCat.carregaCataleg(productes, similituds, restriccions);
+        if (productes != null) {
+            System.out.println("Productes: " + Arrays.toString(productes));
+            System.out.println("Matriu de similituds:");
+            for (double[] fila : similituds) {
+                System.out.println(Arrays.toString(fila));
+            }
+            System.out.println("Matriu de restriccions:");
+            for (int[] fila : restriccions) {
+                System.out.println(Arrays.toString(fila));
+            }
+            ctrlCat.carregaCataleg(productes, similituds, restriccions);
+        } else {
+            System.out.println("Sense dades.");
+        }
+
     }
 }

@@ -35,9 +35,12 @@ public class VistaPrincipal extends VistaGenerica {
     protected String textJFileDialogExportarCataleg = "Guardar el fitxer del cataleg";
     protected String textJFileDialogExportarSolucions = "Guardar el fitxer de les solucions";
 
-    public void executar(CtrlVistaGeneric ctrl1, CtrlVistaGeneric ctrl2) {
-        ctrlVistaCatalegAmbRestriccions = (CtrlVistaCatalegAmbRestriccions)ctrl1;
-        ctrlVistaSolucions = (CtrlVistaSolucions)ctrl2;
+    public VistaPrincipal(CtrlVistaGeneric ctrl1, CtrlVistaGeneric ctrl2) {
+        ctrlVistaCatalegAmbRestriccions = (CtrlVistaCatalegAmbRestriccions) ctrl1;
+        ctrlVistaSolucions = (CtrlVistaSolucions) ctrl2;
+    }
+
+    public void executar() {
         titolFrame = "Vista Principal";
         ajuda = "Estas a la vista principal. Des d'aquesta vista pots provar qualsevol de les quatre funcionalitats " +
                 "utilitzant els botons correstponents.\n" +
