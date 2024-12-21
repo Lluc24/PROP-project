@@ -107,6 +107,7 @@ public class AlgorismeGreedy extends Algorisme {
 
         int numProd = matriuSimilituds.length;
 
+        ArrayList<Integer> millorConfiguracioArrList = new ArrayList<>();
         int[] millorConfiguracio = new int[matriuSimilituds.length];
 
         if (numProd <= 0) {
@@ -118,19 +119,20 @@ public class AlgorismeGreedy extends Algorisme {
         }
 
         double maxSimilitudTotal = -1.0;
-        //Diu si les
         boolean millorSolucioBruta = true;
-        boolean solucioBruta = false;
+        int indexInicial = producteInicial;
 
         //bucle per realitzar les diferents iteracions
         for (int iteracio = 0; iteracio < numIteracions % numProd; iteracio++) {
-            int indexInicial = producteInicial;
+
             ArrayList<Integer> configuracioActual = new ArrayList<>();
             double similitudTotal = 0.0;
             boolean[] visitats = new boolean[numProd];
 
             configuracioActual.add(indexInicial);
             visitats[indexInicial] = true;
+            boolean solucioBruta = false;
+
 
             //bucle per executar l'algorisme voraç i seleccionar el següent producte
             int actual = indexInicial;
@@ -139,48 +141,94 @@ public class AlgorismeGreedy extends Algorisme {
 
             while (i < numProd && continuar) {
 
-                double maxSimilitud = -1.0;
-                int proper = -1;
+                double maxSimilitudPref = -1.0;
+                int properPref = -1;
 
-                if (!solucioBruta) {
-                    for (int j = 0; j < numProd; j++) {
-                        if (!visitats[j] && !matriuRestrConsec[actual][j]) {
+                double maxSimilitudRest = -1.0;
+                int properRest = -1;
 
-                            double similitud = matriuSimilituds[actual][j];
-                            if (similitud > maxSimilitud) {
-                                maxSimilitud = similitud;
-                                proper = j;
+                //Variables pel procés de selecció
+                int numProdFase1 = Math.max(1, (int) Math.floor((numProd - configuracioActual.size()) / Math.E));
+
+                //Fase 1
+                int j = 0;
+                int k = 0;
+                while (k < numProdFase1) {
+                    if (!visitats[j]) {
+
+                        double similitud = matriuSimilituds[actual][j];
+
+                        //no hi ha restricció
+                        if (!matriuRestrConsec[actual][j]) {
+                            if (similitud > maxSimilitudPref) {
+                                properPref = j;
+                                maxSimilitudPref = similitud;
+                            }
+
+
+                        } else { //hi ha restricció
+                            if (similitud > maxSimilitudRest) {
+                                properRest = j;
+                                maxSimilitudRest = similitud;
+                            }
+                        }
+                        ++k;
+                    }
+                    ++j;
+                }
+
+                //Fase 2
+                boolean trobat = false;
+
+                while (j < numProd && !trobat) {
+                    if (!visitats[j]) {
+
+                        double similitud = matriuSimilituds[actual][j];
+
+                        if (!matriuRestrConsec[actual][j]) {
+                            if (similitud > maxSimilitudPref) {
+
+                                configuracioActual.add(j);
+                                properPref = j;
+                                visitats[j] = true;
+                                similitudTotal += similitud;
+                                actual = j;
+                                trobat = true;
+                            }
+
+                        } else {
+                            if (similitud > maxSimilitudRest) {
+                                properRest = j;
+                                maxSimilitudRest = similitud;
                             }
                         }
                     }
+                    ++j;
                 }
 
-                else {
-                    for (int j = 0; j < numProd; j++) {
-                        if (!visitats[j]) {
+                //cap element preferit de la fase 2 és elegible
+                if (!trobat) {
 
-                            double similitud = matriuSimilituds[actual][j];
-                            if (similitud > maxSimilitud) {
-                                maxSimilitud = similitud;
-                                proper = j;
-                            }
-                        }
+                    //hi ha element preferit a la fase 1
+                    if (properPref != -1) {
+
+                        configuracioActual.add(properPref);
+                        visitats[properPref] = true;
+                        similitudTotal += maxSimilitudPref;
+                        actual = properPref;
+
+                    } else { //no hi ha cap element preferit
+
+                        configuracioActual.add(properRest);
+                        visitats[properRest] = true;
+                        similitudTotal += maxSimilitudRest;
+                        actual = properRest;
+                        solucioBruta = true;
+
                     }
+
                 }
 
-                if (proper != -1) {
-                    configuracioActual.add(proper);
-                    visitats[proper] = true;
-                    similitudTotal += maxSimilitud;
-                    actual = proper;
-                }
-
-                else {
-                    solucioBruta = true;
-                    --i;
-                }
-
-                i++;
                 //càlcul del valor màxim possible a partir del punt actual
                 int productesRestants = numProd - configuracioActual.size();
                 double maxPossible = similitudTotal + (productesRestants + 1) * 100.0;
@@ -189,18 +237,39 @@ public class AlgorismeGreedy extends Algorisme {
                 if ((!solucioBruta && !millorSolucioBruta && maxPossible <= maxSimilitudTotal) || (solucioBruta && millorSolucioBruta && maxPossible <= maxSimilitudTotal) || (solucioBruta && !millorSolucioBruta)) {
                     continuar = false;
                 }
+
+                ++i;
+
             }
 
-            if ((!solucioBruta && millorSolucioBruta) || (similitudTotal > maxSimilitudTotal)) {
-                maxSimilitudTotal = similitudTotal;
-                for (int j = 0; j < configuracioActual.size(); j++) {
-                    millorConfiguracio[j] = configuracioActual.get(j);
+
+
+            //comparar iteració actual amb l'òptima fins al moment si està completa
+            if (configuracioActual.size() == numProd) {
+
+                //Relacionar l'últim element amb el primer
+                similitudTotal += matriuSimilituds[configuracioActual.getFirst()][configuracioActual.getLast()];
+                if (matriuRestrConsec[configuracioActual.getFirst()][configuracioActual.getLast()]) solucioBruta = true;
+
+
+                if (!solucioBruta && millorSolucioBruta) {
+                    maxSimilitudTotal = similitudTotal;
+                    millorConfiguracioArrList = configuracioActual;
+                    millorSolucioBruta = false;
                 }
-                if (!solucioBruta && millorSolucioBruta) millorSolucioBruta = false;
+
+                else if (similitudTotal > maxSimilitudTotal && !(solucioBruta && !millorSolucioBruta)) {
+                    maxSimilitudTotal = similitudTotal;
+                    millorConfiguracioArrList = configuracioActual;
+                }
             }
 
             //actualitzem el producte inicial per a la següent iteració
-            producteInicial = (indexInicial + 1) % numProd;
+            indexInicial = (indexInicial + 1) % numProd;
+        }
+
+        for (int j = 0; j < millorConfiguracioArrList.size(); j++) {
+            millorConfiguracio[j] = millorConfiguracioArrList.get(j);
         }
 
         return millorConfiguracio;

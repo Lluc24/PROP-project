@@ -1,8 +1,11 @@
 package layers.domain.controllers;
 import layers.domain.Producte;
 import layers.domain.excepcions.FormatInputNoValid;
+import layers.domain.excepcions.NomSolucioNoValid;
 import layers.domain.excepcions.ProducteNoValid;
 import layers.domain.utils.Pair;
+import layers.persistence.CtrlPersistencia;
+import layers.persistence.CtrlPersistenciaCataleg;
 
 import java.util.ArrayList;
 /**
@@ -32,6 +35,7 @@ public class CtrlCataleg extends CtrlGeneric{
 
      /** Un Array List Representa el conjunt de productes es troben din del sistema */
      protected ArrayList<Producte> Cataleg_Productes;
+     protected CtrlPersistenciaCataleg ctrlPersistenciaCataleg;
 
      // Constructor
 
@@ -62,6 +66,7 @@ public class CtrlCataleg extends CtrlGeneric{
             throw new ProducteNoValid("El producte ja esta a cataleg");
         }
 
+        //Validamos los datos que han entrado i obtenemos los indices
         Pair<Integer, Double>[] simi_index = new Pair[llista_simi.length];
         for (int i = 0; i < llista_simi.length; ++i) {
             int index_in = get_index_prod(llista_simi[i].first);
@@ -285,7 +290,7 @@ public class CtrlCataleg extends CtrlGeneric{
      */
      public String getNomProd_index(int index_in) {
          if (!valida_index(index_in)) {
-             System.err.println("El index no es valid");
+             System.err.println("GetNomProd_index: El index no es valid");
              return null; //Exception
          }
          return Cataleg_Productes.get(index_in).getNom();
@@ -298,7 +303,7 @@ public class CtrlCataleg extends CtrlGeneric{
      */
      public Producte getProd_index(int index_in) {
          if (!valida_index(index_in)) {
-             System.err.println("El index no es valid");
+             System.err.println("GetProd_index: El index no es valid");
              return null; //Exception
          }
          return Cataleg_Productes.get(index_in);
@@ -311,7 +316,7 @@ public class CtrlCataleg extends CtrlGeneric{
      public Producte getProd_nom(String nom_in) {
           int index_out = get_index_prod(nom_in);
           if (index_out == -1) {
-              System.err.println("El index no es valid");
+              System.err.println("GetProd_nom: El index no es valid");
               return null; //Exception
           }
           else return Cataleg_Productes.get(index_out);
@@ -364,7 +369,7 @@ public class CtrlCataleg extends CtrlGeneric{
         if (valida_index(index_prod)) {
             return Cataleg_Productes.get(index_prod).getSimilituds();
         } else {
-            System.err.println("El index no es valid");
+            System.err.println("GetAllSimilituds_index: El index no es valid");
             return null; //Exception
         }
     }
@@ -511,6 +516,114 @@ public class CtrlCataleg extends CtrlGeneric{
             ret[i] = ""+simis.get(i);
         }
         return ret;
+    }
+
+    /**
+     * Funcio per canviar el nom de un producte
+     * @param nom_prod Nom del producte el cual es vol canviar el nom
+     * @param nou_nom Nou nom del producte
+     */
+    public void canviar_nom(String nom_prod, String nou_nom) {
+        Producte prod = getProd_nom(nom_prod);
+        if (prod != null) {
+            prod.setNom(nou_nom);
+        } else {
+            System.err.println("Error canviar nom, producte null");
+        }
+    }
+
+
+//Metodes de persistencia
+
+    /**
+     * Metode per donar el control de persistencia de cataleg, al controlador
+     * @param cpc Controlador de persistencia de cataleg
+     */
+    public void setCtrlPersistenciaCataleg(CtrlPersistenciaCataleg cpc) {
+        this.ctrlPersistenciaCataleg = cpc;
+    }
+    /**
+     * S'ha afegeixen els productes carregats desde la capa de persistencia,
+     * es borran tots el productes preexistens
+     * @param productes Llista de productes que es vol afegir
+     * @param similituds Matriu de similituds de les similituds entre productes que es volen afegir
+     */
+    public void carregaCataleg(String[] productes, double[][] similituds) {
+        //Esborrem el cataleg actual
+        Cataleg_Productes.clear();
+
+        for (int p = 0; p < productes.length; ++p) {
+            if (p == 0) {
+                try {
+                    afegir_producte(productes[p]);
+                } catch (ProducteNoValid e) {
+                    System.err.println("El producte no es valid");
+                    return;
+                }
+            } else {
+                //Creamos pair de productes
+                Pair<String, Double>[] simis = new Pair[p-1];
+                for (int i = 0; i < p; ++i) {
+                    Pair<String, Double> new_pair = new Pair<>(productes[i], similituds[p][i]);
+                    simis[i] = new_pair;
+                }
+
+                //Afegim el nou producte
+                try {
+                    afegir_producte(productes[p], simis);
+                } catch (ProducteNoValid e) {
+                    System.err.println("El producte no es valid");
+                    return;
+                } catch (FormatInputNoValid e) {
+                    System.err.println("El format de les similituds no es valid");
+                    return;
+                }
+            }
+        }
+    }
+
+    /**
+     * Metode que passa el path i el nom del arxiu a carregar al controlador de persistencia de cataleg
+     * @param path Path donat per la capa de presentacio
+     * @param nomArxiu Nom del arxiu donat per la capa de presenctacio
+     */
+    public void carregarCataleg(String path, String nomArxiu) {
+        try {
+            ctrlPersistenciaCataleg.processarDadesArxiu(path, nomArxiu);
+        } catch (NomSolucioNoValid e) {
+            System.err.println("El nom de la solucio no es valid");
+        } catch (FormatInputNoValid e) {
+            System.err.println("El format de input no es correcte");
+        }
+    }
+
+    /**
+     * Metode que dona el contigut del cataleg, productes i la matriu de similituds
+     */
+    public StringBuilder guardarCataleg() {
+        StringBuilder contingut = new StringBuilder();
+
+        int mida = num_prod_act();
+        double[][] matriuSimis = new double[mida][mida];
+
+        //Afegim el productes
+        for (int i = 0; i < mida; ++i) {
+            contingut.append(Cataleg_Productes.get(i).getNom());
+            contingut.append("\n");
+        }
+        contingut.append("\n");
+
+        //Afegim matriu similituds
+        for (int i = 0; i < mida; ++i) {
+            for (int j = 0; j < mida; ++j) {
+                String text = String.valueOf(matriuSimis[i][j]);
+                contingut.append(text);
+                if (j < mida-1) contingut.append(" ");
+            }
+            contingut.append("\n");
+        }
+
+        return contingut;
     }
 
 
