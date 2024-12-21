@@ -92,11 +92,12 @@ public class VistaInfoSolucio extends VistaGenerica {
         this.nomSolucio = nomSolcuio;
         this.productes = productes;
         titolFrame = "Informacio de la solucio";
-        ajuda = "Estas a la vista on es mostra una solucio. Des d'aquesta vista pots provar qualsevol de les quatre funcionalitats " +
-                "utilitzant els botons correstponents i clicant els productes sobre la taula.\n" +
+        ajuda = "Estas a la vista on es mostra una solucio. Des d'aquesta vista pots provar qualsevol de les quatre \n" +
+                "funcionalitats utilitzant els botons corresponents i clicant els productes sobre la taula.\n" +
                 "Veure la solucio: Amb l'estat de visualitzar pots veure la distribucio de la prestatgeria.\n" +
                 "Editar la solucio: Permet intercanviar productes de la distribucio de la prestatgeria.\n" +
-                "Gestionar restriccions: Permet gestionar les restriccions entre productes.\n" +
+                "Eliminar la solucio: Permet eliminar la distribucio.\n" +
+                "Tornar: Permet tornar a la vista principal.\n" +
                 "Sortir: Finalitza l'aplicacio.";
 
         files = this.productes.size();
@@ -157,6 +158,9 @@ public class VistaInfoSolucio extends VistaGenerica {
         botoCanviEstatGeneral = new Boto();
         botoCanviEstatGeneral.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(botoCanviEstatGeneral);
+
+        // Inicialitzem el boto d'eliminar
+        add(Box.createRigidArea(new Dimension(0, 10)));
         botoEliminarSolucio = new Boto(textBotoEliminarSolucio);
         botoEliminarSolucio.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(botoEliminarSolucio);
@@ -547,7 +551,6 @@ public class VistaInfoSolucio extends VistaGenerica {
         }
         else if (textBoto.equals(textBotoEliminarSolucio)) {
             ctrlVistaSolucions.eliminarSolucio();
-            sortir();
         }
         else {
             super.botoAccionat(textBoto);
