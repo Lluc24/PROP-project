@@ -98,6 +98,11 @@ public class VistaPrincipal extends VistaGenerica {
     }
 
     @Override
+    protected void sortirSistema() {
+        ctrlVistaSolucions.sortirSistema();
+    }
+
+    @Override
     protected void botoAccionat(String textBoto) {
         if (textBoto.equals(textBotoCataleg)) {
             ctrlVistaCatalegAmbRestriccions.executar(this);

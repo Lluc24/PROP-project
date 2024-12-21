@@ -124,7 +124,7 @@ public abstract class VistaGenerica extends JPanel {
 
         if (result == JOptionPane.YES_OPTION) {
             System.out.println("Fins la proxima!");
-            frameVista.dispose();
+            sortirSistema();
         }
     }
 
@@ -136,12 +136,14 @@ public abstract class VistaGenerica extends JPanel {
         JOptionPane.showMessageDialog(frameVista, respecteA, textItemRespecteA, JOptionPane.INFORMATION_MESSAGE);
     }
 
-    protected void tornar() {
+    protected abstract void sortirSistema();
+
+    public void tornar() {
         frameVista.dispose();
     }
 
     public void ocultar() {
-        frameVista.setVisible(false);
+        tornar();
     }
 
     public void mostrar() {

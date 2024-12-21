@@ -91,14 +91,13 @@ public class VistaInfoSolucio extends VistaGenerica {
     public void executar(List<List<String>> productes, String nomSolcuio) {
         this.nomSolucio = nomSolcuio;
         this.productes = productes;
-//        this.productes = new ArrayList<List<String>>();
-//        List<String> l1 = new ArrayList<String>();
-//        l1.add("ous"); l1.add("llet"); l1.add("peix");
-//        List<String> l2 = new ArrayList<String>();
-//        l2.add("pa"); l2.add("farina");
-//        this.productes.add(l1); this.productes.add(l2);
         titolFrame = "Informacio de la solucio";
-        ajuda = "No hi ha";
+        ajuda = "Estas a la vista on es mostra una solucio. Des d'aquesta vista pots provar qualsevol de les quatre funcionalitats " +
+                "utilitzant els botons correstponents i clicant els productes sobre la taula.\n" +
+                "Veure la solucio: Amb l'estat de visualitzar pots veure la distribucio de la prestatgeria.\n" +
+                "Editar la solucio: Permet intercanviar productes de la distribucio de la prestatgeria.\n" +
+                "Gestionar restriccions: Permet gestionar les restriccions entre productes.\n" +
+                "Sortir: Finalitza l'aplicacio.";
 
         files = this.productes.size();
         if (files > 0) {
@@ -512,8 +511,13 @@ public class VistaInfoSolucio extends VistaGenerica {
         else return false;
     }
 
-    protected void tornar() {
+    public void tornar() {
+        super.tornar();
         ctrlVistaSolucions.controlVistes(0);
+    }
+
+    protected void sortirSistema() {
+        ctrlVistaSolucions.sortirSistema();
     }
 
     protected void botoAccionat(String textBoto) {

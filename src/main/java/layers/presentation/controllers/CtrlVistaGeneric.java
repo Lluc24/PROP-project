@@ -17,11 +17,11 @@ public abstract class CtrlVistaGeneric {
         System.out.println("Metode executar de CtrlVistaGeneric");
     }
 
-    public void netejar() {
-        return;
-    }
-
     public abstract void importar(String path, String nomFitxer) throws FormatInputNoValid;
 
     public abstract void exportar(String path, String nomFitxer) throws FormatInputNoValid;
+
+    public void sortirSistema() {
+        System.exit(0);
+    }
 }
