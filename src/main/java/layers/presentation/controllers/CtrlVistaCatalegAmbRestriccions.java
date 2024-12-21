@@ -7,7 +7,8 @@ import layers.presentation.views.*;
 import java.util.Objects;
 
 public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
-
+    public void importar(String s1, String s2) throws FormatInputNoValid {}
+    public void exportar(String s1, String s2) throws FormatInputNoValid {}
 
     //Atributs
     private CtrlCatalegAmbRestriccions ctrl;
@@ -190,8 +191,8 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
     }
 
 
-    @Override
-    public void executar() {
+
+    public void executar(VistaPrincipal vistaPrincipal) {
         controlVistes(0);
         vistaPrincCat.executar();
     }
