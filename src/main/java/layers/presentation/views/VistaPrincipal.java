@@ -58,7 +58,7 @@ public class VistaPrincipal extends VistaGenerica {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         add(Box.createVerticalGlue());
 
-        // Inicialitzem la etiqueta descriptiva
+        // Inicialitzem l'etiqueta descriptiva
         etiquetaTriar = new JLabel(textEtiquetaTriar);
         etiquetaTriar.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(etiquetaTriar);
