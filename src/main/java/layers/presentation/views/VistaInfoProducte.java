@@ -34,8 +34,9 @@ public class VistaInfoProducte extends VistaControladors {
             ajuda = "Estas a la vista de informacio del producte "+nom_prod+" aqui pots" +
                     "consultar les seves similituds amb la resta de productes" +
                     ", editar alguna d'aquestes similituds i eliminar el producte\n" +
-                    "Delete: Elimina aquest producte\n" +
-                    "Editar: Et permet editar la similitud amb el producte seleccionat del comboBox\n" +
+                    "Eliminar Producte: Elimina aquest producte\n" +
+                    "Canviar Nom: Et permet canviar el nom del producte" +
+                    "Editar Similitud: Et permet editar la similitud amb el producte seleccionat del comboBox\n" +
                     "ComboBox: Et mostra les similituds amb la resta de productes, en pot seleccionar una\n" +
                     "Enrere: Et permet anar a l'anterior vista\n" +
                     "Sortir: Finalitzar l'aplicacio\n";
