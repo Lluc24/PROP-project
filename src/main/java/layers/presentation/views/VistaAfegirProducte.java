@@ -155,29 +155,18 @@ public class VistaAfegirProducte extends VistaControladors {
     public void botoAccionat (String textBoto) {
         if (textBoto.equals(textBotoAfegir)) {
             //Afegir Restriccio
-            if (Simis_DONE) {
-                String seleccionat = (String) opcions.getSelectedItem();
-                if (seleccionat == null || seleccionat.isEmpty()) {
-                    JOptionPane.showMessageDialog(frameVista,
-                            "No se ha seleccionat cap producte del ComboBox",
-                            "Error Input",
-                            JOptionPane.ERROR_MESSAGE);
-                } else {
-                    String parts[] = seleccionat.split(" -> ");
-                    String producteSelecionat = parts[0];
-                    AfegirRestriccio(producteSelecionat);
-                }
+            String seleccionat = (String) opcions.getSelectedItem();
+            if (seleccionat == null || seleccionat.isEmpty()) {
+                JOptionPane.showMessageDialog(frameVista,
+                        "No se ha seleccionat cap producte del ComboBox",
+                        "Error Input",
+                        JOptionPane.ERROR_MESSAGE);
             } else {
-                String seleccionat = (String) opcions.getSelectedItem();
-                if (seleccionat != null && !seleccionat.isEmpty()) {
-                    AfegirRestriccio(seleccionat);
-                } else {
-                    JOptionPane.showMessageDialog(frameVista,
-                            "No se ha seleccionat cap producte del ComboBox",
-                            "Error Input",
-                            JOptionPane.ERROR_MESSAGE);
-                }
+                String parts[] = seleccionat.split(" -> ");
+                String producteSelecionat = parts[0];
+                AfegirRestriccio(producteSelecionat);
             }
+
         } else if (textBoto.equals(textBotoMostrar)) {
             if (Simis_DONE) {
                 String seleccionat = (String) opcions.getSelectedItem();
@@ -219,6 +208,7 @@ public class VistaAfegirProducte extends VistaControladors {
             } else {
                 ultimaSimi = i;
                 System.out.println("VistaAfegirProducte: Ultima similitud afegida numero "+ultimaSimi);
+                afegirSimisCombobox();
                 return;
             }
         }
@@ -250,18 +240,18 @@ public class VistaAfegirProducte extends VistaControladors {
     }
 
     private void afegirSimisCombobox() {
-        if (Simis_DONE) {
-            String[] Prod_Simi = new String[productes.length];
-            for (int i = 0; i < productes.length; ++i) {
-                Prod_Simi[i] = productes[i]+" -> "+similituds.get(i);
-            }
-
-            String prodSame = nom_prod+" -> 0.0";
-            opcions.removeAllItems();
-            for (String item : Prod_Simi) {
-                if (!item.equals(prodSame)) opcions.addItem(item);
-            }
+        String[] Prod_Simi = new String[productes.length];
+        for (int i = 0; i < productes.length; ++i) {
+            if ( i < ultimaSimi) Prod_Simi[i] = productes[i]+" -> "+similituds.get(i);
+            else Prod_Simi[i] = productes[i];
         }
+
+        String prodSame = nom_prod+" -> 0.0";
+        opcions.removeAllItems();
+        for (String item : Prod_Simi) {
+            if (!item.equals(prodSame)) opcions.addItem(item);
+        }
+
     }
 
     private void AfegirRestriccio(String prodSeleccionat) {
