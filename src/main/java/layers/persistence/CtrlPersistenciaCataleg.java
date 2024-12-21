@@ -29,7 +29,7 @@ public class CtrlPersistenciaCataleg extends CtrlPersistenciaGeneric {
         int[][] restriccions = null;
 
         try {
-            contingut = carregarArxiu(path, nombre);
+            contingut = importar(path, nombre);
         } catch (IOException e) {
             throw new FormatInputNoValid("L'arxiu '" + nombre + "' falla.");
         }

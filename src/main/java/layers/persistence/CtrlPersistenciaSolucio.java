@@ -47,7 +47,7 @@ public class CtrlPersistenciaSolucio extends CtrlPersistenciaGeneric {
 
         String contenido = null;
         try {
-            contenido = carregarArxiu(path, nombre);
+            contenido = importar(path, nombre);
         }catch (IOException e){
             throw new FormatInputNoValid("L'arxiu '" +nombre+ "' falla.");
         }
