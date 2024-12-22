@@ -12,6 +12,12 @@ public class VistaPrincipalSolucions extends VistaControladors {
     private String textBotoAlgorisme = "Canviar l'algorisme actual";
     private Boto botoAlgorisme;
 
+    protected String textItemCrear = "Crear solucio";
+    protected MenuItem menuItemCrear;
+
+    protected String textItemAlgorisme = "Canviar algorisme actual";
+    protected MenuItem menuItemAlgorisme;
+
     //Constructora
     public VistaPrincipalSolucions(CtrlVistaSolucions ctrl){
         ctrlVistaSolucions = ctrl;
@@ -54,6 +60,12 @@ public class VistaPrincipalSolucions extends VistaControladors {
         botoAfegir.setText(textBotoAfegir);
         textBotoMostrar = "Mostrar solucio";
         botoMostrar.setText(textBotoMostrar);
+
+        //Inicialitzem els items del menu
+        menuItemCrear = new Item(textItemCrear); // Item Respecte a
+        menuFitxer.add(menuItemCrear);
+        menuItemAlgorisme = new Item(textItemAlgorisme); // Item ? Ajuda
+        menuFitxer.add(menuItemAlgorisme);
 
         //Inicialitzem el ComboBox amb totes les opcions
         ArrayList<String> solsIni = ctrlVistaSolucions.getSolucions();
@@ -107,6 +119,19 @@ public class VistaPrincipalSolucions extends VistaControladors {
         }
         else {
             super.botoAccionat(textBoto);
+        }
+    }
+
+    @Override
+    protected void itemAccionat(String textItem) {
+        if (textItem.equals(textItemCrear)) {
+            botoAccionat(textBotoAfegir);
+        }
+        else if (textItem.equals(textItemAlgorisme)) {
+            botoAccionat(textBotoAlgorisme);
+        }
+        else {
+            super.itemAccionat(textItem);
         }
     }
 
