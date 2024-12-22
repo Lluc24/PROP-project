@@ -284,7 +284,6 @@ public class CtrlSolucions extends CtrlGeneric {
             solucions.clear();
             throw new FormatInputNoValid(s);
         }
-        System.err.println("ESTIC AQUI CTRL SOLUCIONS");
     }
 
     /**
