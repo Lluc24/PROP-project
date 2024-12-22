@@ -108,10 +108,10 @@ public class CtrlSolucions extends CtrlGeneric {
                 throw new NomSolucioNoValid(missatge);
             }
         }
+
         int[] solucio = null;
         double[][] similituds = cataleg.getMatriuSimilituds();
         boolean[][] matriuRestriccions = cataleg.getMatrRestrConsec();
-
         try {
             System.out.println("Crido a solucionar al algorisme");
             solucio = algorismeAct.solucionar(similituds, matriuRestriccions);
