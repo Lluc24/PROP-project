@@ -12,12 +12,12 @@ import java.util.Iterator;
 public class CtrlSolucions extends CtrlGeneric {
     // Llista de solucions
     private ArrayList<Solucio> solucions;//llista de solucions que tracta
-    private CtrlCataleg cataleg;// relació amb el catàleg
+    private CtrlCatalegAmbRestriccions cataleg;// relació amb el catàleg
     private Algorisme algorismeAct; //algorisme de la solució que esta tractant
     private CtrlPersistenciaSolucio ctrlPersistenciaSolucio;
 
     // Constructora
-    public CtrlSolucions(CtrlCataleg c){
+    public CtrlSolucions(CtrlCatalegAmbRestriccions c){
         this.solucions = new ArrayList<Solucio>();
         this.cataleg = c;
         this.algorismeAct = new Aproximacio(); //per defecte, el algorismeAct és d'aproximació
@@ -109,7 +109,8 @@ public class CtrlSolucions extends CtrlGeneric {
             }
         }
         double[][] similituds = cataleg.getMatriuSimilituds();
-        int[] solucio = algorismeAct.solucionar(similituds);
+        boolean[][] matriuRestriccions = cataleg.getMatrRestrConsec();
+        int[] solucio = algorismeAct.solucionar(similituds, matriuRestriccions);
 
         ArrayList<String> llistaProd = new ArrayList<String>();
         for (int i: solucio){

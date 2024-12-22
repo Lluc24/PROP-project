@@ -2,6 +2,7 @@ package layers;
 
 import layers.domain.*;
 import layers.domain.controllers.CtrlCataleg;
+import layers.domain.controllers.CtrlCatalegAmbRestriccions;
 import layers.domain.controllers.CtrlSolucions;
 import layers.domain.excepcions.FormatInputNoValid;
 import layers.domain.excepcions.IntercanviNoValid;
@@ -22,16 +23,16 @@ import static org.mockito.Mockito.*;
  */
 public class TestCtrlSolucions {
     private CtrlSolucions gs;
-    private CtrlCataleg c;
+    private CtrlCatalegAmbRestriccions c;
     private CtrlPersistenciaSolucio cps;
     private ArrayList<Double> similituds0 = new ArrayList<>();
     private ArrayList<Double> similituds1 = new ArrayList<>();
     private ArrayList<Producte> productesLit = new ArrayList<Producte>();
     private double[][] matriuSim = {{0.0, 0.5},{0.5, 0.0}};
-
+    private boolean[][] matriuRestr = {{false, false},{false, false}};
     @Before
     public void Inicialitza() {
-        c = mock(CtrlCataleg.class);
+        c = mock(CtrlCatalegAmbRestriccions.class);
         gs = new CtrlSolucions(c);
         similituds0.add(0.0);
         similituds1.add(0.5);
@@ -174,6 +175,7 @@ public class TestCtrlSolucions {
         when(c.getNomProd_index(1)).thenReturn("p1");
         when(c.getCataleg()).thenReturn(productesLit);
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
+        when(c.getMatrRestrConsec()).thenReturn(matriuRestr);
 
         try{
         gs.creaSolucio("Solucio1", 4);
@@ -205,6 +207,7 @@ public class TestCtrlSolucions {
         }
         when(c.getCataleg()).thenReturn(productesLit);
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
+        when(c.getMatrRestrConsec()).thenReturn(matriuRestr);
         when(c.getNomProd_index(0)).thenReturn("p0");
         when(c.getNomProd_index(1)).thenReturn("p1");
 
@@ -243,6 +246,7 @@ public class TestCtrlSolucions {
         }
         when(c.getCataleg()).thenReturn(productesLit);
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
+        when(c.getMatrRestrConsec()).thenReturn(matriuRestr);
         when(c.getNomProd_index(0)).thenReturn("p0");
         when(c.getNomProd_index(1)).thenReturn("p1");
 
@@ -283,6 +287,7 @@ public class TestCtrlSolucions {
         }
         when(c.getCataleg()).thenReturn(productesLit);
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
+        when(c.getMatrRestrConsec()).thenReturn(matriuRestr);
         when(c.getNomProd_index(0)).thenReturn("p0");
         when(c.getNomProd_index(1)).thenReturn("p1");
 
@@ -328,6 +333,7 @@ public class TestCtrlSolucions {
         }
         when(c.getCataleg()).thenReturn(productesLit);
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
+        when(c.getMatrRestrConsec()).thenReturn(matriuRestr);
         when(c.getNomProd_index(0)).thenReturn("p0");
         when(c.getNomProd_index(1)).thenReturn("p1");
 
@@ -375,7 +381,7 @@ public class TestCtrlSolucions {
         }
         when(c.getCataleg()).thenReturn(productesLit);
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
-
+        when(c.getMatrRestrConsec()).thenReturn(matriuRestr);
         when(c.getNomProd_index(0)).thenReturn("p0");
         when(c.getNomProd_index(1)).thenReturn("p1");
 
@@ -422,6 +428,7 @@ public class TestCtrlSolucions {
         }
         when(c.getCataleg()).thenReturn(productesLit);
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
+        when(c.getMatrRestrConsec()).thenReturn(matriuRestr);
 
         try{
         gs.creaSolucio("Solucio1", 4);
@@ -455,6 +462,7 @@ public class TestCtrlSolucions {
         }
         when(c.getCataleg()).thenReturn(productesLit);
         when(c.getMatriuSimilituds()).thenReturn(matriuSim);
+        when(c.getMatrRestrConsec()).thenReturn(matriuRestr);
         when(c.getNomProd_index(0)).thenReturn("p0");
         when(c.getNomProd_index(1)).thenReturn("p1");
 

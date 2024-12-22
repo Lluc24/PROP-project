@@ -22,6 +22,15 @@ public class VistaGestioAlgorisme extends VistaGenerica {
     private String textBotoBacktracking = "Backtracking";
     private Boto botoBacktracking;
 
+    protected String textItemAproximacio = "Canviar a Aproximacio";
+    protected MenuItem menuItemAproximacio;
+
+    protected String textItemGreedy = "Canviar a Greedy";
+    protected MenuItem menuItemGreedy;
+
+    protected String textItemBacktracking = "Canviar a Backtracking";
+    protected MenuItem menuItemBacktracking;
+
     private Boolean primeraVegada = true;
 
     public VistaGestioAlgorisme(CtrlVistaSolucions ctrl) {
@@ -85,6 +94,14 @@ public class VistaGestioAlgorisme extends VistaGenerica {
         add(Box.createRigidArea(new Dimension(0, 10)));
 
         add(Box.createVerticalGlue());
+
+        //Inicialitzem els items del menu
+        menuItemAproximacio = new Item(textItemAproximacio); // Item Respecte a
+        menuFitxer.add(menuItemAproximacio);
+        menuItemGreedy = new Item(textItemGreedy); // Item ? Ajuda
+        menuFitxer.add(menuItemGreedy);
+        menuItemBacktracking = new Item(textItemBacktracking); // Item ? Ajuda
+        menuFitxer.add(menuItemBacktracking);
     }
 
     @Override
@@ -117,6 +134,22 @@ public class VistaGestioAlgorisme extends VistaGenerica {
         }
         else {
             super.botoAccionat(textBoto);
+        }
+    }
+
+    @Override
+    protected void itemAccionat(String textItem) {
+        if (textItem.equals(textItemAproximacio)) {
+            botoAccionat(textBotoAproximacio);
+        }
+        else if (textItem.equals(textItemGreedy)) {
+            botoAccionat(textBotoGreedy);
+        }
+        else if (textItem.equals(textItemBacktracking)) {
+            botoAccionat(textBotoBacktracking);
+        }
+        else {
+            super.itemAccionat(textItem);
         }
     }
 
