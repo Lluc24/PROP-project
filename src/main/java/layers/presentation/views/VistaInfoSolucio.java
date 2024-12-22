@@ -10,6 +10,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class VistaInfoSolucio extends VistaGenerica {
@@ -91,9 +92,11 @@ public class VistaInfoSolucio extends VistaGenerica {
     }
 
     public void executar(List<List<String>> productes, String nomSolcuio) {
+        System.out.println("La matriu rebuda es:");
+        imprimir(productes);
         this.nomSolucio = nomSolcuio;
         this.productes = productes;
-        titolFrame = "Informacio de la solucio";
+        titolFrame = "Vista Informacio de la Solucio";
         ajuda = "Estas a la vista on es mostra una solucio. Des d'aquesta vista pots provar qualsevol de les quatre \n" +
                 "funcionalitats utilitzant els botons corresponents i clicant els productes sobre la taula.\n" +
                 "Veure la solucio: Amb l'estat de visualitzar pots veure la distribucio de la prestatgeria.\n" +
@@ -527,6 +530,17 @@ public class VistaInfoSolucio extends VistaGenerica {
 
         if (fila == files - 1) return columna >= columnesUltimaFila;
         else return false;
+    }
+
+    private void imprimir(List<List<String>> matriu) {
+        Iterator<List<String>> it = matriu.iterator();
+        while (it.hasNext()) {
+            Iterator<String> it2 = it.next().iterator();
+            while (it2.hasNext()) {
+                System.out.print(it2.next() + " ");
+            }
+            System.out.println();
+        }
     }
 
     protected void mostrarOptionPane(String missatge, boolean esError) {
