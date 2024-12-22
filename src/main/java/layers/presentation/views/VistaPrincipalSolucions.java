@@ -229,8 +229,11 @@ public class VistaPrincipalSolucions extends VistaControladors {
      */
     private int confirmacioAlgorisme() {
         String alg = ctrlVistaSolucions.getAlgorismeAct();
+        String mssg = " ";
+        if (alg.equals("backtracking")) mssg = "L'algorisme actual es de tipus Backtacking. \nTingues en compte que si hi ha mes de 10 productes al cataleg pot trigar molt en solucionar, vols continuar?";
+        else mssg = "L'algorisme actual es de tipus " +alg+ ", vols continuar?";
         int result = JOptionPane.showConfirmDialog(frameVista,
-                "L'algorisme actual es de tipus "+alg+", vols continuar?",
+                mssg,
                 "Confirmacio algorisme",
                 JOptionPane.YES_NO_OPTION);
 
