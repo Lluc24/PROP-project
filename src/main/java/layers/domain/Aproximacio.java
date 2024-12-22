@@ -47,6 +47,8 @@ public class Aproximacio extends Algorisme {
 
         m = k;
 
+        if (m < n-1) throw new FormatInputNoValid("No hi ha solucio");
+
         // Ordenem les arestes per pes creixent utilitzant QUICKSORT
         ordenacioRapida(arestesOrdenades, 0, m-1);
 
