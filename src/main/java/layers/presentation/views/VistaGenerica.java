@@ -26,7 +26,8 @@ public abstract class VistaGenerica extends JPanel {
             "eulalia.peiret@estudiantat.upc.edu\n" +
             "Efrain Tito Cortes\n" +
             "efrain.tito@estudiantat.upc.edu\n" +
-            "Afegiu-vos aqui";
+            "Alejandro Lorenzo Navarro\n" +
+            "alejandro.lorenzo@estudiantat.upc.edu\n";
 
 
     protected JFrame frameVista;

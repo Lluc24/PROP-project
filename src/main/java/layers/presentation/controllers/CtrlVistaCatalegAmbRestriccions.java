@@ -6,27 +6,90 @@ import layers.presentation.views.*;
 
 import java.util.Objects;
 
+/**
+ * Classe 'CtrlVistaCatalegAmbRestriccions'
+ *
+ * Controlador per gestionar la vista i interacció amb el catàleg de productes amb restriccions de consecutivitat.
+ * Aquesta classe permet la visualització, modificació i eliminació de productes i restriccions entre productes mitjançant les vistes que gestiona.
+ * També proporciona la funcionalitat per afegir productes, editar similituds, i el flux d'exportar/importar catàlegs.
+ *
+ * @see CtrlCatalegAmbRestriccions
+ * @see VistaPrincipalCataleg
+ * @see VistaAfegirProducte
+ * @see VistaInfoProducte
+ * @see VistaConsultarRest
+ *
+ * @author Efrain Tito Cortés
+ * @version 3,2
+ */
 public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
 
     //Atributs
+    /**
+     * Controlador per gestionar les operacions del catàleg amb restriccions.
+     * Aquest atribut emmagatzema una instància de CtrlCatalegAmbRestriccions que permet gestionar el catàleg i les operacions associades.
+     */
     private CtrlCatalegAmbRestriccions ctrl;
+
+    /**
+     * Vista principal de l'aplicació, que mostra la interfície principal per a l'usuari.
+     * És utilitzada quan es vol mostrar la vista principal de l'aplicació.
+     */
     private VistaPrincipal vistaPrinc;
-    private VistaPrincipalCataleg vistaPrincCat; //vista 0
-    private VistaAfegirProducte vistaAfegProd; //vista 1
-    private VistaInfoProducte vistaInfoProd; //vista 2
-    private VistaConsultarRest vistaConsRest; //vista 3
+
+    /**
+     * Vista per gestionar el catàleg de productes amb restriccions.
+     * Aquesta és la vista principal de la jerarquia del catàleg.
+     */
+    private VistaPrincipalCataleg vistaPrincCat; // Vista 0
+
+    /**
+     * Vista per afegir un nou producte al catàleg.
+     * Aquesta vista és utilitzada per mostrar la interfície per afegir productes al catàleg.
+     */
+    private VistaAfegirProducte vistaAfegProd; // Vista 1
+
+    /**
+     * Vista per mostrar informació detallada sobre un producte del catàleg.
+     * Aquesta vista es mostra quan es vol visualitzar les dades específiques d'un producte i modificar-les.
+     */
+    private VistaInfoProducte vistaInfoProd; // Vista 2
+
+    /**
+     * Vista per consultar les restriccions de consecutivitat entre productes.
+     * Aquesta vista és utilitzada per consultar i modificar les restriccions de consecutivitat entre productes.
+     */
+    private VistaConsultarRest vistaConsRest; // Vista 3
+
+    /**
+     * Nom del producte actualment seleccionat.
+     * Aquest atribut emmagatzema el nom del producte que s'està veient o editant en aquest moment.
+     */
     private String prodAct = null;
+
+    /**
+     * Enumeració que defineix els estats possibles d'una vista.
+     * Els estats possibles són:
+     * - noInicialitzada: Quan la vista no ha estat inicialitzada.
+     * - noVisible: Quan la vista està tancada.
+     * - esVisible: Quan la vista és visible.
+     */
     private enum EstatVista {
         noInicialitzada,
         noVisible,
         esVisible
     }
 
-    EstatVista[] controlVistes = {EstatVista.noInicialitzada,EstatVista.noInicialitzada,EstatVista.noInicialitzada,EstatVista.noInicialitzada};
+    /**
+     * Array que gestiona l'estat de cada vista (si és visible, no visible o no inicialitzada).
+     * Cada element de l'array representa l'estat d'una vista específica.
+     */
+    EstatVista[] controlVistes = {EstatVista.noInicialitzada, EstatVista.noInicialitzada, EstatVista.noInicialitzada, EstatVista.noInicialitzada};
+
 
     //Mètodes
-
-    /** Constructora
+    /**
+     * Constructora
      * @param ctrlCat Singleton del controlador de catàleg amb restriccions.
      */
     public CtrlVistaCatalegAmbRestriccions(CtrlCatalegAmbRestriccions ctrlCat) {
@@ -201,7 +264,6 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
         }
         controlVistes(0);
         vistaPrinc.ocultar();
-        //vistaPrinc.setVisible(false);
         vistaPrincCat.executar();
     }
 
@@ -253,33 +315,6 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
     }
 
     /**
-     * Elimina una restricció especificada per una string de text que conté els noms dels productes.
-     *
-     * @param str String que representa la restricció (format: "producte1;producte2").
-     */
-    public void eliminarRestriccio(String str) {
-
-        String[] nomProds = decodificar_producte(str);
-
-        try {
-            ctrl.remRestrConsecNom(nomProds[0], nomProds[1]);
-        } catch (ProducteNoValid e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    /**
-     * Decodifica una cadena de text que conté dos noms de productes separats per un punt i coma.
-     *
-     * @param str Cadena amb el format "producte1;producte2".
-     * @return Un array amb els dos noms dels productes.
-     */
-    private String[] decodificar_producte(String str) {
-
-        return str.split(" ; ");
-    }
-
-    /**
      * Valida si el nom del producte especificat existeix al sistema.
      *
      * @param nomProd Nom del producte a validar.
@@ -298,26 +333,6 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
     public void canviarNom(String nomAnterior, String nomNou) {
         ctrl.canviar_nom(nomAnterior, nomNou);
         prodAct = nomNou;
-    }
-
-    /**
-     * Mostra la vista corresponent.
-     *
-     * @param numVista Identificador de la vista a mostrar.
-     */
-    private void mostrarVista(int numVista){
-        if (numVista == 0){
-            vistaPrincCat.mostrar();
-        }
-        else if (numVista == 1){
-            vistaAfegProd.mostrar();
-        }
-        else if (numVista == 2){
-            vistaInfoProd.mostrar();
-        }
-        else if (numVista == 3){
-            vistaConsRest.mostrar();
-        }
     }
 
     /**
@@ -352,7 +367,6 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
             }
             else {
                 if (i == numVista) {
-                    //mostrarVista(numVista);
                     controlVistes[i] = EstatVista.esVisible;
                 }
                 else if (controlVistes[i] != EstatVista.noVisible){
@@ -386,6 +400,26 @@ public class CtrlVistaCatalegAmbRestriccions extends CtrlVistaGeneric {
     @Override
     public void importar(String path, String nomFitxer) throws FormatInputNoValid{
         ctrl.carregarCataleg(path,nomFitxer);
+    }
+
+    /**
+     * Obté tots els productes amb els que el producte indicat no té restriccions.
+     *
+     * @param nomProd nom del producte.
+     * @return Un String[] amb els noms dels productes amb els que no té restriccions.
+     */
+    public String[] getProdNoRestrConsec(String nomProd) {
+        return ctrl.getProdNoRestrConsec(ctrl.get_index_prod(nomProd));
+    }
+
+    /**
+     * Obté tots els productes amb els que el producte indicat té restriccions.
+     *
+     * @param nomProd nom del producte.
+     * @return Un String[] amb els noms dels productes amb els que té restriccions.
+     */
+    public String[] getProdRestrConsec(String nomProd) {
+        return ctrl.getProdRestrConsec(ctrl.get_index_prod(nomProd));
     }
 
 }

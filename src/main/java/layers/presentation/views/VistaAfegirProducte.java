@@ -47,9 +47,12 @@ public class VistaAfegirProducte extends VistaControladors {
                     "Label: Aqui veuras el nom que li has donat al producte, recorda no pot ser el nom d'un producte existent\n" +
                     "ComboBox: Aqui veuras tots el productes dins de cataleg, pot seleccionar un per afegir una restriccio\n" +
                     "Afegir Restriccio: Despres de seleccionar un producte, clica aquest boto per afegir una restriccio\n" +
-                    "Afegir Similituds: Començaras un proces per afegir una similitud, per cada producte indicat. Un cop donades, amb es podra editar la similitud amb el producte indicat\n" +
+                    "Afegir Similituds: Començaras un proces per afegir una similitud, per cada producte indicat. Un cop donades, aquest boto pasa a ser Editar Similituds\n" +
+                    "Editar Similituds: Un cop selecciones un producte podras editar la similitud d'aquest producte amb el que estas creant" +
                     "Canvi Nom: Permet cambiar el nom del producte\n" +
-                    "Guardar: Afegiras el producte de manera definitiva, no podras fer us d'aquest boto fins que el producte tingui nom i totes les similituds estiguin donades\n";
+                    "Guardar: Afegiras el producte de manera definitiva, no podras fer us d'aquest boto fins que el producte tingui nom i totes les similituds estiguin donades\n" +
+                    "Tornar: Et permet anar a l'anterior vista, recorda perdras la informacio del producte si no la guardas\n" +
+                    "Sortir: Finalitzar l'aplicacio\n";
 
             super.executar();
         } else {
@@ -155,29 +158,18 @@ public class VistaAfegirProducte extends VistaControladors {
     public void botoAccionat (String textBoto) {
         if (textBoto.equals(textBotoAfegir)) {
             //Afegir Restriccio
-            if (Simis_DONE) {
-                String seleccionat = (String) opcions.getSelectedItem();
-                if (seleccionat == null || seleccionat.isEmpty()) {
-                    JOptionPane.showMessageDialog(frameVista,
-                            "No se ha seleccionat cap producte del ComboBox",
-                            "Error Input",
-                            JOptionPane.ERROR_MESSAGE);
-                } else {
-                    String parts[] = seleccionat.split(" -> ");
-                    String producteSelecionat = parts[0];
-                    AfegirRestriccio(producteSelecionat);
-                }
+            String seleccionat = (String) opcions.getSelectedItem();
+            if (seleccionat == null || seleccionat.isEmpty()) {
+                JOptionPane.showMessageDialog(frameVista,
+                        "No se ha seleccionat cap producte del ComboBox",
+                        "Error Input",
+                        JOptionPane.ERROR_MESSAGE);
             } else {
-                String seleccionat = (String) opcions.getSelectedItem();
-                if (seleccionat != null && !seleccionat.isEmpty()) {
-                    AfegirRestriccio(seleccionat);
-                } else {
-                    JOptionPane.showMessageDialog(frameVista,
-                            "No se ha seleccionat cap producte del ComboBox",
-                            "Error Input",
-                            JOptionPane.ERROR_MESSAGE);
-                }
+                String parts[] = seleccionat.split(" -> ");
+                String producteSelecionat = parts[0];
+                AfegirRestriccio(producteSelecionat);
             }
+
         } else if (textBoto.equals(textBotoMostrar)) {
             if (Simis_DONE) {
                 String seleccionat = (String) opcions.getSelectedItem();
@@ -219,6 +211,7 @@ public class VistaAfegirProducte extends VistaControladors {
             } else {
                 ultimaSimi = i;
                 System.out.println("VistaAfegirProducte: Ultima similitud afegida numero "+ultimaSimi);
+                afegirSimisCombobox();
                 return;
             }
         }
@@ -250,18 +243,18 @@ public class VistaAfegirProducte extends VistaControladors {
     }
 
     private void afegirSimisCombobox() {
-        if (Simis_DONE) {
-            String[] Prod_Simi = new String[productes.length];
-            for (int i = 0; i < productes.length; ++i) {
-                Prod_Simi[i] = productes[i]+" -> "+similituds.get(i);
-            }
-
-            String prodSame = nom_prod+" -> 0.0";
-            opcions.removeAllItems();
-            for (String item : Prod_Simi) {
-                if (!item.equals(prodSame)) opcions.addItem(item);
-            }
+        String[] Prod_Simi = new String[productes.length];
+        for (int i = 0; i < productes.length; ++i) {
+            if ( i < ultimaSimi) Prod_Simi[i] = productes[i]+" -> "+similituds.get(i);
+            else Prod_Simi[i] = productes[i];
         }
+
+        String prodSame = nom_prod+" -> 0.0";
+        opcions.removeAllItems();
+        for (String item : Prod_Simi) {
+            if (!item.equals(prodSame)) opcions.addItem(item);
+        }
+
     }
 
     private void AfegirRestriccio(String prodSeleccionat) {

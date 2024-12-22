@@ -10,7 +10,7 @@ import layers.domain.excepcions.FormatInputNoValid;
  * @see Algorisme
  *
  * @author Efrain Tito Cortés
- * @version 3,0
+ * @version 4,1
  *
  * <p><b>Informació:</b></p>
  * Per al mètode 'solucionar', cal passar com a paràmetre una matriu de similituds, on l'element [i][j]
@@ -36,6 +36,7 @@ public class AlgorismeGreedy extends Algorisme {
      * Constructor de la classe AlgorismeGreedy
      * @param producteInicial L'índex del producte amb el qual comença l'algorisme. No pot ser negatiu, o superior a la quantitat de productes al catàleg, com a precondició.
      * @param numIteracions El nombre d'iteracions que realitzarà l'algorisme. No pot ser negatiu o 0, com a precondició.
+     * @throws FormatInputNoValid Si algun dels paràmetres no és correcte segons la precondició.
      */
     public AlgorismeGreedy(int producteInicial, int numIteracions) throws FormatInputNoValid {
         if (producteInicial < 0) {
@@ -67,6 +68,7 @@ public class AlgorismeGreedy extends Algorisme {
     /**
      * Estableix l'índex del producte inicial amb el qual comença l'algorisme.
      * @param producteInicial L'índex del producte inicial que no pot ser negatiu ni superior a la quantitat de productes al catàleg. Aquesta és una precondició.
+     * @throws FormatInputNoValid Si algun dels paràmetres no és correcte segons la precondició.
      */
     public void setProducteInicial(int producteInicial) throws FormatInputNoValid {
 
@@ -87,6 +89,7 @@ public class AlgorismeGreedy extends Algorisme {
     /**
      * Estableix el nombre d'iteracions que l'algorisme ha de realitzar.
      * @param numIteracions El nombre d'iteracions que ha de ser un valor positiu no zero. Aquesta és una precondició.
+     * @throws FormatInputNoValid Si algun dels paràmetres no és correcte segons la precondició.
      */
     public void setNumIteracions(int numIteracions) throws FormatInputNoValid {
 

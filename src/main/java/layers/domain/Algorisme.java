@@ -30,9 +30,11 @@ public abstract class Algorisme {
 
     //Mètodes
     /**
-     * Mètode abstracte per trobar la configuració de la prestatgeria.
+     * Mètode abstracte per trobar la configuració de la prestatgeria si no hi ha restriccions.
      *
      * @param matriuSimilituds Matriu de similituds entre productes.
+     * @return Solució donada per l'algorisme en índex dels productes al catàleg.
+     * @throws FormatInputNoValid Si algun dels paràmetres no té el format correcte.
     */
     public int[] solucionar(double[][] matriuSimilituds) throws FormatInputNoValid {
 
