@@ -14,7 +14,9 @@ import java.util.List;
 
 public class VistaInfoSolucio extends VistaGenerica {
 
-    private String errEstatTemplate = "Error %s: L'%s es %s pero hauria de ser %s";
+    private final String errEstatTemplate = "Error %s: L'%s es %s pero hauria de ser %s";
+    private final String avisIntercanviMateixProducte = "No es pot fer l'intercanvi.\n" +
+            "Els productes a intercanviar coincideixen";
 
     private enum EstatGeneral {
         INICIAL,
@@ -32,8 +34,8 @@ public class VistaInfoSolucio extends VistaGenerica {
     private EstatProducte estatProducte1;
     private EstatProducte estatProducte2;
 
-    private Pair<Integer, Integer> producte1Seleccionat = new Pair<Integer, Integer>(-1, -1);
-    private Pair<Integer, Integer> producte2Seleccionat = new Pair<Integer, Integer>(-1, -1);
+    private final Pair<Integer, Integer> producte1Seleccionat = new Pair<Integer, Integer>(-1, -1);
+    private final Pair<Integer, Integer> producte2Seleccionat = new Pair<Integer, Integer>(-1, -1);
 
     private int files;
     private int columnes;
@@ -336,6 +338,12 @@ public class VistaInfoSolucio extends VistaGenerica {
             return;
         }
 
+        if (estatProducte2 == EstatProducte.CONFIRMAT &&
+                producte2Seleccionat.first == filaSeleccionada && producte2Seleccionat.second == columnaSeleccionada) {
+            mostrarOptionPane(avisIntercanviMateixProducte, false);
+            return;
+        }
+
         estatProducte1 = EstatProducte.CONFIRMAT;
         botoPrimerProducte.setVisible(false);
 
@@ -455,6 +463,12 @@ public class VistaInfoSolucio extends VistaGenerica {
         err = String.format(errEstatTemplate, "canviEstatProducte2AConfirmat", "estatProducte1", estatProducte1, estatProducte1Desitjats);
         if (estatProducte1 != EstatProducte.INICIAL && estatProducte1 != EstatProducte.CONFIRMAT) {
             mostrarOptionPane(err, true);
+            return;
+        }
+
+        if (estatProducte1 == EstatProducte.CONFIRMAT &&
+                producte1Seleccionat.first == filaSeleccionada && producte1Seleccionat.second == columnaSeleccionada) {
+            mostrarOptionPane(avisIntercanviMateixProducte, false);
             return;
         }
 
