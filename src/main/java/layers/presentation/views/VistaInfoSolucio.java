@@ -10,11 +10,14 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class VistaInfoSolucio extends VistaGenerica {
 
-    private String errEstatTemplate = "Error %s: L'%s es %s pero hauria de ser %s";
+    private final String errEstatTemplate = "Error %s: L'%s es %s pero hauria de ser %s";
+    private final String avisIntercanviMateixProducte = "No es pot fer l'intercanvi.\n" +
+            "Els productes a intercanviar coincideixen";
 
     private enum EstatGeneral {
         INICIAL,
@@ -32,8 +35,8 @@ public class VistaInfoSolucio extends VistaGenerica {
     private EstatProducte estatProducte1;
     private EstatProducte estatProducte2;
 
-    private Pair<Integer, Integer> producte1Seleccionat = new Pair<Integer, Integer>(-1, -1);
-    private Pair<Integer, Integer> producte2Seleccionat = new Pair<Integer, Integer>(-1, -1);
+    private final Pair<Integer, Integer> producte1Seleccionat = new Pair<Integer, Integer>(-1, -1);
+    private final Pair<Integer, Integer> producte2Seleccionat = new Pair<Integer, Integer>(-1, -1);
 
     private int files;
     private int columnes;
@@ -89,9 +92,11 @@ public class VistaInfoSolucio extends VistaGenerica {
     }
 
     public void executar(List<List<String>> productes, String nomSolcuio) {
+        System.out.println("La matriu rebuda es:");
+        imprimir(productes);
         this.nomSolucio = nomSolcuio;
         this.productes = productes;
-        titolFrame = "Informacio de la solucio";
+        titolFrame = "Vista Informacio de la Solucio";
         ajuda = "Estas a la vista on es mostra una solucio. Des d'aquesta vista pots provar qualsevol de les quatre \n" +
                 "funcionalitats utilitzant els botons corresponents i clicant els productes sobre la taula.\n" +
                 "Veure la solucio: Amb l'estat de visualitzar pots veure la distribucio de la prestatgeria.\n" +
@@ -336,6 +341,12 @@ public class VistaInfoSolucio extends VistaGenerica {
             return;
         }
 
+        if (estatProducte2 == EstatProducte.CONFIRMAT &&
+                producte2Seleccionat.first == filaSeleccionada && producte2Seleccionat.second == columnaSeleccionada) {
+            mostrarOptionPane(avisIntercanviMateixProducte, false);
+            return;
+        }
+
         estatProducte1 = EstatProducte.CONFIRMAT;
         botoPrimerProducte.setVisible(false);
 
@@ -458,6 +469,12 @@ public class VistaInfoSolucio extends VistaGenerica {
             return;
         }
 
+        if (estatProducte1 == EstatProducte.CONFIRMAT &&
+                producte1Seleccionat.first == filaSeleccionada && producte1Seleccionat.second == columnaSeleccionada) {
+            mostrarOptionPane(avisIntercanviMateixProducte, false);
+            return;
+        }
+
         estatProducte2 = EstatProducte.CONFIRMAT;
         botoSegonProducte.setVisible(false);
 
@@ -513,6 +530,17 @@ public class VistaInfoSolucio extends VistaGenerica {
 
         if (fila == files - 1) return columna >= columnesUltimaFila;
         else return false;
+    }
+
+    private void imprimir(List<List<String>> matriu) {
+        Iterator<List<String>> it = matriu.iterator();
+        while (it.hasNext()) {
+            Iterator<String> it2 = it.next().iterator();
+            while (it2.hasNext()) {
+                System.out.print(it2.next() + " ");
+            }
+            System.out.println();
+        }
     }
 
     protected void mostrarOptionPane(String missatge, boolean esError) {
