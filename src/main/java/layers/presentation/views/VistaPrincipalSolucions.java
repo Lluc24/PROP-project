@@ -89,10 +89,13 @@ public class VistaPrincipalSolucions extends VistaControladors {
                 if (!nom.equals(null)) {
                     int prodPrestatge = insertaProdPrestatge();
                     if (prodPrestatge > 0) {
-                        panelInformatiu("La solucio '" +nom+ "'s'ha afegit correctament");
-                        ctrlVistaSolucions.afegeixSolucio(nom, prodPrestatge);
-                        opcions.addItem(nom);
-                        opcions.setSelectedItem(nom);
+                        if (ctrlVistaSolucions.afegeixSolucio(nom, prodPrestatge)) {
+                            panelInformatiu("La solucio '" + nom + "'s'ha afegit correctament");
+                            ctrlVistaSolucions.afegeixSolucio(nom, prodPrestatge);
+                            opcions.addItem(nom);
+                            opcions.setSelectedItem(nom);
+                        }
+                        else panelInformatiu("L'algorisme no ha pogut solucionar amb els productes actuals.");
                     }
                 }
             }

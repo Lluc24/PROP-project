@@ -72,14 +72,17 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
      * @param nom nom de la nova solucio
      * @param prodPrest numero de productes per prestatge de la nova solucio
      */
-    public void afegeixSolucio(String nom, int prodPrest){
+    public boolean afegeixSolucio(String nom, int prodPrest){
         try{
             ctrlSolucions.creaSolucio(nom, prodPrest);
         }catch (NomSolucioNoValid e) {
             System.out.println(e.getMessage());
+            return false;
         }catch (FormatInputNoValid e) {
             System.out.println(e.getMessage());
+            return false;
         }
+        return true;
     }
 
     /**

@@ -108,14 +108,27 @@ public class CtrlSolucions extends CtrlGeneric {
                 throw new NomSolucioNoValid(missatge);
             }
         }
+        int[] solucio = null;
         double[][] similituds = cataleg.getMatriuSimilituds();
         boolean[][] matriuRestriccions = cataleg.getMatrRestrConsec();
-        int[] solucio = algorismeAct.solucionar(similituds, matriuRestriccions);
+
+        try {
+            System.out.println("Crido a solucionar al algorisme");
+            solucio = algorismeAct.solucionar(similituds, matriuRestriccions);
+            System.out.println("l'algorisme ja ha tornat la solucio");
+        }catch (FormatInputNoValid e){
+            if (e.getMessage().equals("No hi ha una solucio valida amb les restriccions actuals")) {
+                throw new FormatInputNoValid(e.getMessage());
+            }
+        }
 
         ArrayList<String> llistaProd = new ArrayList<String>();
-        for (int i: solucio){
+        System.out.print("ctrlsolucions obte la traduccio: ");
+        for (int i : solucio) {
+            System.out.print("demana prod "+i+ " reb nom "+ cataleg.getNomProd_index(i));
             llistaProd.add(cataleg.getNomProd_index(i));
         }
+        System.out.println();
         Solucio sol = new Solucio(llistaProd, nomSolucio, prodPrestatge);
         solucions.add(sol);
     }
