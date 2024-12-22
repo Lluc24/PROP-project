@@ -20,6 +20,11 @@ public class Solucio {
             throw new FormatInputNoValid(missatge);
         }
         else {
+            System.out.print("solucio reb aquesta llista: ");
+            for (String pro: s){
+                System.out.print(pro + " ");
+            }
+            System.out.println();
             this.nom = n;
             //Divideix la llista en prestatges
             ArrayList<ArrayList<String>> aux = new ArrayList<ArrayList<String>>();

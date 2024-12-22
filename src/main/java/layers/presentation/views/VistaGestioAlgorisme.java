@@ -63,7 +63,7 @@ public class VistaGestioAlgorisme extends VistaGenerica {
 
         // Inicialitzem la etiqueta descriptiva
         String alg = ctrlVistaSolucions.getAlgorismeAct();
-        textEtiquetaInfo = "L'algorisme actual és de tipus " + alg;
+        textEtiquetaInfo = "L'algorisme actual és de tipus Aproximacio.";
         etiquetaInfo = new JLabel(textEtiquetaInfo);
         etiquetaInfo.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(etiquetaInfo);
@@ -112,9 +112,15 @@ public class VistaGestioAlgorisme extends VistaGenerica {
     @Override
     protected void botoAccionat(String textBoto) {
         if (textBoto.equals(textBotoAproximacio)) {
-            ctrlVistaSolucions.gestioAlgorisme("aproximacio");
-            textEtiquetaInfo = "L'algorisme actual es de tipus aproximacio";
-            etiquetaInfo.setText(textEtiquetaInfo);
+            if (textEtiquetaInfo.equals("L'algorisme actual es de tipus Aproximacio.")){
+                panelInformatiu("L'algorisme ja es de tipus Aproximacio.");
+            }
+            else {
+                ctrlVistaSolucions.gestioAlgorisme("aproximacio");
+                textEtiquetaInfo = "L'algorisme actual es de tipus Aproximacio.";
+                etiquetaInfo.setText(textEtiquetaInfo);
+                panelInformatiu("L'algorisme actual ara es de tipus Aproximacio.");
+            }
         } else if (textBoto.equals(textBotoGreedy)) {
             int idx = insertaIdx();
             if (idx >= 0) {
@@ -122,15 +128,22 @@ public class VistaGestioAlgorisme extends VistaGenerica {
                 if (iteracions >= 0) {
                     ctrlVistaSolucions.gestioAlgorisme("greedy");
                     ctrlVistaSolucions.setParametres(idx, iteracions);
-                    textEtiquetaInfo = "L'algorisme actual es de tipus greedy (idx = " + idx + ", iteracions = " + iteracions + ")";
+                    textEtiquetaInfo = "L'algorisme actual es de tipus Greedy (idx = " + idx + ", iteracions = " + iteracions + ").";
                     etiquetaInfo.setText(textEtiquetaInfo);
+                    panelInformatiu("L'algorisme actual ara es de tipus Greedy (idx = " + idx + ", iteracions = " + iteracions + ").");
                 }
             }
 
         } else if (textBoto.equals(textBotoBacktracking)) {
-            ctrlVistaSolucions.gestioAlgorisme("algorismeBT");
-            textEtiquetaInfo = "L'algorisme actual es de tipus backtracking";
-            etiquetaInfo.setText(textEtiquetaInfo);
+            if (textEtiquetaInfo.equals("L'algorisme actual es de tipus Backtracking.")){
+                panelInformatiu("L'algorisme ja es de tipus Backtracking.");
+            }
+            else {
+                ctrlVistaSolucions.gestioAlgorisme("algorismeBT");
+                textEtiquetaInfo = "L'algorisme actual es de tipus Backtracking.";
+                etiquetaInfo.setText(textEtiquetaInfo);
+                panelInformatiu("L'algorisme actual ara es de tipus Backtracking.");
+            }
         }
         else {
             super.botoAccionat(textBoto);
@@ -236,5 +249,17 @@ public class VistaGestioAlgorisme extends VistaGenerica {
             return insertaIteracions();
         }
         return inputNumber;
+    }
+
+    /**
+     * El sistema mostra un panel informatiu
+     *
+     * @param text el text del panel
+     */
+    public void panelInformatiu(String text){
+        JOptionPane.showMessageDialog(frameVista,
+                text,
+                "Confirmacio de l'accio",
+                JOptionPane.INFORMATION_MESSAGE);
     }
 }
