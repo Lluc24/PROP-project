@@ -41,6 +41,9 @@ public class SolucioModificada extends Solucio {
                 }
             }
         }
+        String producte1 = solucio.get(index1i).get(index1j);
+        solucio.get(index1i).set(index1j, solucio.get(index2i).get(index2j));
+        solucio.get(index2i).set(index2j, producte1);
     }
 
     /**
