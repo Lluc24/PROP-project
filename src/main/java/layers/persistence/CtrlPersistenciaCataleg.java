@@ -140,7 +140,7 @@ public class CtrlPersistenciaCataleg extends CtrlPersistenciaGeneric {
                     }
                     String[] valors = linies[index].trim().split("\\s+");
                     if (valors.length != numProductes) {
-                        throw new FormatInputNoValid("La matriu de restriccions no és quadrada.");
+                        throw new FormatInputNoValid("La matriu de restriccions no es quadrada.");
                     }
 
                     for (int j = 0; j < numProductes; j++) {

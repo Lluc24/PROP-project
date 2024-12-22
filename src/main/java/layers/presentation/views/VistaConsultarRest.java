@@ -186,7 +186,7 @@ public class VistaConsultarRest extends VistaControladors {
             String seleccio = (String) opcions.getSelectedItem();
             if (seleccio == null || seleccio.isEmpty()) {
                 JOptionPane.showMessageDialog(frameVista,
-                        "No s'ha seleccionat cap restriccio.",
+                        "No s'ha seleccionat cap restriccio",
                         "Error Input",
                         JOptionPane.ERROR_MESSAGE);
             } else {
