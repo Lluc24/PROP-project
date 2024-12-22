@@ -80,14 +80,16 @@ public class VistaAfegirProducte extends VistaControladors {
         similituds = new ArrayList<>();
         restriccions = new ArrayList<>();
 
+        super.inicialitzarComponents();
+
+        add(Box.createVerticalGlue());
+
         labelNomProd = new JLabel("PRODUCTE "+nom_prod);
         labelNomProd.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(labelNomProd);
         add(Box.createRigidArea(new Dimension(0,10)));
         //Capuramos nombre del producto
         afegirNom();
-
-        super.inicialitzarComponents();
 
         textEtiquetaTriar = "PRODUCTES DINS DEL CATALEG";
         etiquetaTriar.setText(textEtiquetaTriar);
@@ -109,6 +111,7 @@ public class VistaAfegirProducte extends VistaControladors {
         BotoCanviNom.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(BotoCanviNom);
         add(Box.createRigidArea(new Dimension(0,10)));
+        add(Box.createVerticalGlue());
 
         //Setear boto finalitzar
         BotoFinalitzar = new Boto(textBotoFinalitzar);
@@ -263,7 +266,7 @@ public class VistaAfegirProducte extends VistaControladors {
             if (item.equals(prodSeleccionat)) trobat = true;
         }
         if (trobat) {
-            String message = "Ya has añadido restriccion entre " + nom_prod + " y " + prodSeleccionat;
+            String message = "Ja has afegit la restriccio entre " + nom_prod + " i " + prodSeleccionat;
             JOptionPane.showMessageDialog(frameVista, message, "Afegir Restriccio", JOptionPane.ERROR_MESSAGE);
         } else {
             restriccions.add(prodSeleccionat);
@@ -330,7 +333,7 @@ public class VistaAfegirProducte extends VistaControladors {
             if (!Simis_DONE) {
                 falta_Simis = "No has afegit totes les similituds";
             }
-            String message = "No has afegit totes les informacio del producte\n" + falta_nom + "\n" + falta_Simis;
+            String message = "No has afegit tota la informacio del producte\n" + falta_nom + "\n" + falta_Simis;
             JOptionPane.showMessageDialog(frameVista, message, "Error Input", JOptionPane.ERROR_MESSAGE);
         } else {
             String[] restriccionsArray = new String[restriccions.size()];
@@ -342,7 +345,7 @@ public class VistaAfegirProducte extends VistaControladors {
                 similitudsArray[i] = similituds.get(i);
             }
             controlVista.afegirProducte(nom_prod, similitudsArray, restriccionsArray); //Retorna String, String[], String[]
-            String message = "El producte ja s'afegit";
+            String message = "El producte ja s'ha afegit";
             JOptionPane.showMessageDialog(frameVista, message, "Producte Afegit", JOptionPane.INFORMATION_MESSAGE);
             controlVista.canviaVista("PrincipalCataleg");
         }
@@ -392,6 +395,7 @@ public class VistaAfegirProducte extends VistaControladors {
         boolean numValid = false;
         String result = null;
         while (!numValid) {
+            boolean error = false;
             double ret = -1;
             String message = "Quina sera la  similtud del producte " + nom_prod +
                     " amb el producte " + producteSeleccionat + "\n" +
@@ -401,6 +405,7 @@ public class VistaAfegirProducte extends VistaControladors {
                 try {
                     ret = Double.parseDouble(result);
                 } catch (NumberFormatException e) {
+                    error = true;
                     JOptionPane.showMessageDialog(frameVista,
                             "Entrada no valida\n Si us plau, introdueix un numero del 1 al 100",
                             "Error Input",
@@ -413,7 +418,7 @@ public class VistaAfegirProducte extends VistaControladors {
 
             if (ret > 0 && ret <= 100) {
                 numValid = true;
-            } else {
+            } else if (!error){
                 JOptionPane.showMessageDialog(frameVista,
                         "Si us plau, introdueix un numero del 1 al 100",
                         "Error Input",

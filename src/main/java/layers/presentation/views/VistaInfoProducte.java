@@ -57,12 +57,13 @@ public class VistaInfoProducte extends VistaControladors {
     @Override
     public void inicialitzarComponents() {
         //Label nom producte
+
+        super.inicialitzarComponents();
+
         labelNom_prod = new JLabel("PRODUCTE: "+nom_prod);
         labelNom_prod.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         add(labelNom_prod);
         add(Box.createRigidArea(new Dimension(0,10)));
-
-        super.inicialitzarComponents();
 
         //Boto editar
         textBotoMostrar = "Editar Similitud";
