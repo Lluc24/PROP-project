@@ -13,6 +13,16 @@ import layers.domain.utils.Pair;
 import java.util.Locale;
 import java.util.Scanner;
 
+/**
+ *  Driver
+ *  Es la classe que inicia l'execucio del projecte de la primera entrega
+ * @author Lluc Santamaria Riba
+ * @version 1.0
+ *
+ * <p><b>Informació:</b></p>
+ * Conte el metode main que permet provar les funcionalitats de domini.
+ * Acutalment en desus.
+ */
 public class Driver {
     private static CtrlDomini ctrlDomini;
     private static final int numGestions = 4;
@@ -20,11 +30,20 @@ public class Driver {
     private static final String formatNoEnter = "Fomat incorrecte: \"%s\" no es un enter";
     private static final String formatNoDecimal = "Fomat incorrecte: \"%s\" no es un decimal";
 
+    /**
+     * Metode main que inicia l'execucio del projecte en la primera entrega.
+     *
+     * @param args: Els arguments passats en l'execucio del programa. Son ignorats
+     */
     public static void main(String[] args) {
         ctrlDomini = CtrlDomini.getCtrlDomini();
         executar();
     }
 
+    /**
+     * Metode executar que desencadena la sequencia d'input output del programa.
+     * Permet provar totes les funcionalitats del projecte en la logica del domini.
+     */
     private static void executar() {
         boolean finalitzat = false;
         Scanner scanner = new Scanner(System.in);
@@ -248,6 +267,9 @@ public class Driver {
         }
     }
 
+    /**
+     * Metode que imprimeix el menu inicial per consola.
+     */
     private static void imprimirMenuGestio() {
         System.out.println("Quina gestio vols realitzar?");
         System.out.println("[1] Gestionar els productes i similituds de la prestatgeria");
@@ -256,6 +278,9 @@ public class Driver {
         System.out.println("[4] Sortir");
     }
 
+    /**
+     * Metode que imprimeix el menu de gestio de cataleg [1] per consola.
+     */
     private static void imprimirMenuAccioDeGestio1() {
         System.out.println("Selecciona l'accio:");
         System.out.println("[1] Visualitzar tots els productes");
@@ -265,6 +290,9 @@ public class Driver {
         System.out.println("[5] Editar una similitud");
     }
 
+    /**
+     * Metode que imprimeix el menu de gestio de solucions [2] per consola.
+     */
     private static void imprimirMenuAccioDeGestio2() {
         System.out.println("Selecciona l'accio:");
         System.out.println("[1] Visualitzar totes les solucions existents");
@@ -275,6 +303,9 @@ public class Driver {
         System.out.println("[6] Triar tipus d'algorisme per resoldre");
     }
 
+    /**
+     * Metode que imprimeix el menu de gestio de restriccions [3] per consola.
+     */
     private static void imprimirMenuAccioDeGestio3() {
         System.out.println("Selecciona l'accio:");
         System.out.println("[1] Visualitzar totes les restriccions existents");
@@ -283,6 +314,12 @@ public class Driver {
         System.out.println("[4] Eliminar una restriccio entre dos productes");
     }
 
+    /**
+     * Metode que llegeix un enter de l'entrada. En cas
+     * @param err
+     * @param scanner
+     * @return
+     */
     private static int demanaInt(String err, Scanner scanner) {
         while (!scanner.hasNextInt()) {
             String aux = String.format(err, scanner.next());
