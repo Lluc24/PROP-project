@@ -6,14 +6,11 @@ DESCRIPCIO:
 ARXIUS:
     CtrlPersistencia
     CtrlPersistenciaCataleg
-    Ctrl
+    CtrlPersitenciaGeneric
+    CtrlPersistenciaSolucio
 
 
 ALTRES DIRECTORIS
-    controllers     (Directori amb tots el controladors)
-    excepcions      (Directori amb totes les excepcions propies)
-    utils           (Clases de java d'utilitat per les clases d'aquest directori, de creacio propia)
 
 OBSERVACIONS
-    Driver ->   La clase driver correspon al la funcio main del programa (Nomes per la primmera entrega),
-                es la primera classe en executar-se.
+    CtrlPersistenciaGeneric -> Es una clase abstracte

@@ -1,0 +1,13 @@
+DIRECTORI: presentation (main.java.layers.presentation)
+
+DESCRIPCIO:
+    Es troben les principals clases i vistes de la capa de presentacio.
+
+ARXIUS:
+
+ALTRES DIRECTORIS
+    controllers -> Conte el controladors de les vistes
+    utils -> Conte els utils d'us de les vistes
+    views -> Conte les vistes
+
+OBSERVACIONS

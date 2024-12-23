@@ -1,0 +1,12 @@
+DIRECTORI: utils (main.java.layers.presentation.utils)
+
+DESCRIPCIO:
+    Es troben totes les eines de creacio propia que fan servir les nostres classes java
+
+ARXIUS:
+    BotoGeneric
+    MenuItemGeneric
+
+ALTRES DIRECTORIS
+---
+OBSERVACIONS

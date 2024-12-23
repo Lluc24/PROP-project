@@ -1,0 +1,16 @@
+DIRECTORI: controllers (main.java.layers.presentation.controllers)
+
+DESCRIPCIO:
+    Es troben las clases que son controladors de la capa de presentacio
+
+ARXIUS:
+    CtrlPresentacio
+    CtrlVistaCatalegAmbRestriccions
+    CtrlVistaGeneric
+    CtrlVistaSolucions
+
+ALTRES DIRECTORIS
+
+
+OBSERVACIONS
+    CtrlVistaGeneric -> Es una clase abstracta
