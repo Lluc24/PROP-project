@@ -33,10 +33,18 @@ public class VistaGestioAlgorisme extends VistaGenerica {
 
     private Boolean primeraVegada = true;
 
+    /**
+     * Funcio constructora de la vista
+     *
+     * @param ctrl Controlador de la vista
+     */
     public VistaGestioAlgorisme(CtrlVistaSolucions ctrl) {
         ctrlVistaSolucions = ctrl;
     }
 
+    /**
+     * Cada vegada que el controlador vol mostrar la vista, crida aquesta funcio.
+     */
     public void executar() {
         if (primeraVegada) {
             titolFrame = "Vista gestio algorisme";
@@ -52,6 +60,9 @@ public class VistaGestioAlgorisme extends VistaGenerica {
 
     }
 
+    /**
+     * Aquesta funcio inicialitza els components especifics de la vista.
+     */
     @Override
     protected void inicialitzarComponents() {
         // Inicialitzem la superclase
@@ -104,11 +115,19 @@ public class VistaGestioAlgorisme extends VistaGenerica {
         menuFitxer.add(menuItemBacktracking);
     }
 
+    /**
+     * Si l'usuari prem el boto "Tornar", aquesta funcio informa al controlador.
+     */
     @Override
     public void tornar(){
         ctrlVistaSolucions.controlVistes(0);
     }
 
+    /**
+     * Aquesta funcio es crida quan l'usuari prem un boto de la vista.
+     *
+     * @param textBoto text associat al boto clicat.
+     */
     @Override
     protected void botoAccionat(String textBoto) {
         if (textBoto.equals(textBotoAproximacio)) {
@@ -150,6 +169,11 @@ public class VistaGestioAlgorisme extends VistaGenerica {
         }
     }
 
+    /**
+     * Aquesta funcio es crida quan l'usuari prem un item de la vista.
+     *
+     * @param textItem Text associat al item.
+     */
     @Override
     protected void itemAccionat(String textItem) {
         if (textItem.equals(textItemAproximacio)) {
@@ -166,6 +190,9 @@ public class VistaGestioAlgorisme extends VistaGenerica {
         }
     }
 
+    /**
+     * Aquesta funcio informa al controlador que l'usuari vol tancar el sistema.
+     */
     @Override
     protected void sortirSistema() {
         ctrlVistaSolucions.sortirSistema();

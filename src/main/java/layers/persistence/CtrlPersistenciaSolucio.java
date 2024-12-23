@@ -3,11 +3,7 @@ package layers.persistence;
 import layers.domain.controllers.CtrlSolucions;
 import layers.domain.excepcions.*;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -31,6 +27,12 @@ import java.util.Arrays;
 
 public class CtrlPersistenciaSolucio extends CtrlPersistenciaGeneric {
     private static CtrlSolucions ctrlSolucions = null;
+
+    /**
+     * Funcio conctructora de la classe.
+     *
+     * @param cs Controlador de la capa de domini.
+     */
     public CtrlPersistenciaSolucio(CtrlSolucions cs){
         ctrlSolucions = cs;
     }
@@ -60,11 +62,14 @@ public class CtrlPersistenciaSolucio extends CtrlPersistenciaGeneric {
             // Si hi ha mes d'una nova linea buida entre solucio
             if (lineas[index].isEmpty()) {
                 index++;
-                continue;
             }
 
             // Convertim la linea a boolean
-            boolean modificada = Boolean.parseBoolean(lineas[index].trim());
+            String valor = lineas[index].trim();
+            if (!valor.equalsIgnoreCase("true") && !valor.equalsIgnoreCase("false")) {
+                throw new FormatInputNoValid("L'arxiu '" +nombre+ "' falla.");
+            }
+            boolean modificada = Boolean.parseBoolean(valor);
             index++;
 
             // Llegir la segona linea com nomSolucio

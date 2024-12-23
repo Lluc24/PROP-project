@@ -16,7 +16,11 @@ public class CtrlSolucions extends CtrlGeneric {
     private Algorisme algorismeAct; //algorisme de la solució que esta tractant
     private CtrlPersistenciaSolucio ctrlPersistenciaSolucio;
 
-    // Constructora
+    /**
+     * Funcio contructora del controlador CtrlSolucions.
+     *
+     * @param c Instancia del controlador del cataleg.
+     */
     public CtrlSolucions(CtrlCatalegAmbRestriccions c){
         this.solucions = new ArrayList<Solucio>();
         this.cataleg = c;
@@ -25,6 +29,10 @@ public class CtrlSolucions extends CtrlGeneric {
 
     //Getters i setters
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Solucio> getSolucions(){ return solucions; }
 
     public CtrlCataleg getCataleg(){ return cataleg; }

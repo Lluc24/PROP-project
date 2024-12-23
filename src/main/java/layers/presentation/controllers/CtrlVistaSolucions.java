@@ -27,7 +27,11 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
     }
     EstatVista[] controlVistes = {EstatVista.noInicialitzada,EstatVista.noInicialitzada,EstatVista.noInicialitzada};
 
-    //Constructora
+    /**
+     * Constructora de la classe.
+     *
+     * @param cs Controlador de la classe de domini.
+     */
     public CtrlVistaSolucions(CtrlSolucions cs) {
         this.ctrlSolucions = cs;
         vistaPplSols = new VistaPrincipalSolucions(this);
@@ -36,6 +40,11 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
 
     }
 
+    /**
+     * Quan el controlador de presentacio vol executar la gestio de solucions.
+     *
+     * @param vs Instancia de la vista principal
+     */
     public void executar(VistaPrincipal vs) {
         vistaPrincipal = vs;
         vistaPplSols.executar();
@@ -43,6 +52,9 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
         controlVistes(0);
     }
 
+    /**
+     * Les vistes criden a aquesta funcio quan l'usuari ha indicat que vol sortir del sistema.
+     */
     @Override
     public void sortirSistema(){
         System.exit(0);

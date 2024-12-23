@@ -18,11 +18,18 @@ public class VistaPrincipalSolucions extends VistaControladors {
     protected String textItemAlgorisme = "Canviar algorisme actual";
     protected MenuItem menuItemAlgorisme;
 
-    //Constructora
+    /**
+     * Funcio constructora de la vista.
+     *
+     * @param ctrl Controlador de solucions que gestiona la vista.
+     */
     public VistaPrincipalSolucions(CtrlVistaSolucions ctrl){
         ctrlVistaSolucions = ctrl;
     }
 
+    /**
+     * El controlador crida aquesta funció cada vegada que vol mostrar la vista.
+     */
     public void executar() {
         //Si es la primera vegada que s'executa, inicialitzar
         if (primeraVegada) {
@@ -42,6 +49,9 @@ public class VistaPrincipalSolucions extends VistaControladors {
         }
     }
 
+    /**
+     * Inicialitza els components necessaris de la vista.
+     */
     @Override
     protected void inicialitzarComponents() {
         super.inicialitzarComponents();
@@ -75,11 +85,19 @@ public class VistaPrincipalSolucions extends VistaControladors {
         }
     }
 
+    /**
+     * Indica al controlador que l'usuari ha clickat el boto "Tornar".
+     */
     @Override
     public void tornar(){
         ctrlVistaSolucions.tornar();
     }
 
+    /**
+     * Detecta que s'ha premut un boto i gestiona que fa el sistema segons el seu text associat.
+     *
+     * @param textBoto Text associat al boto.
+     */
     @Override
     protected void botoAccionat(String textBoto) {
         if (textBoto.equals(textBotoAfegir)) {
@@ -125,6 +143,11 @@ public class VistaPrincipalSolucions extends VistaControladors {
         }
     }
 
+    /**
+     * Aquesta funcio es crida quan s'ha clickat un item de la vista.
+     *
+     * @param textItem text associat al item.
+     */
     @Override
     protected void itemAccionat(String textItem) {
         if (textItem.equals(textItemCrear)) {
@@ -138,6 +161,9 @@ public class VistaPrincipalSolucions extends VistaControladors {
         }
     }
 
+    /**
+     * L'usuari vol sortir del sistema, aquesta funcio informa d'aixo al controlador.
+     */
     @Override
     protected void sortirSistema(){
         ctrlVistaSolucions.sortirSistema();
