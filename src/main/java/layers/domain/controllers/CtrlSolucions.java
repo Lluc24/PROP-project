@@ -158,6 +158,7 @@ public class CtrlSolucions extends CtrlGeneric {
      * @param nomSolucio : nom de la nova solucio que es vol crear
      */
     public void creaSolucio(String nomSolucio, int prodPrestatge) throws NomSolucioNoValid, FormatInputNoValid {
+        System.out.println("Estic a crear solucio!!!"+ nomSolucio + " " + prodPrestatge);
         for (Solucio s: solucions){
             if (s.getNom().equals(nomSolucio)) {
                 String missatge = "Ja existeix una solucio amb nom '" +nomSolucio+ "'";
@@ -168,8 +169,13 @@ public class CtrlSolucions extends CtrlGeneric {
         double[][] similituds = cataleg.getMatriuSimilituds();
         boolean[][] matriuRestriccions = cataleg.getMatrRestrConsec();
         int[] solucio = algorismeAct.solucionar(similituds, matriuRestriccions);
+        System.out.println("Ja ha creat la solucio!!!"+ nomSolucio + " " + prodPrestatge);
 
         ArrayList<String> llistaProd = new ArrayList<String>();
+        for (int i : solucio) {
+            llistaProd.add(cataleg.getNomProd_index(i));
+        }
+
         Solucio sol = new Solucio(llistaProd, nomSolucio, prodPrestatge);
         solucions.add(sol);
     }
