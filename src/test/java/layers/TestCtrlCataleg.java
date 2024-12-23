@@ -16,7 +16,7 @@ import java.util.Random;
 
 
 /**
- * @Author Alejandro Lorenzo Navarro
+ * @author Alejandro Lorenzo Navarro
  */
 public class TestCtrlCataleg {
 

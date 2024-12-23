@@ -8,25 +8,68 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+/**
+ * Classe VistaInfoProducte
+ *   Aquesta classe te herencia de la VistaControladors
+ *   Utilitza el controlador 'CtrlVistaCatalegAmbRestriccions' per interactuar amb la lògica del sistema.
+ *   <p><b>Informació:</b></p>
+ *   Aquesta vista mostra tota la informacio sobre un producte
+ *   <ul>
+ *         <li><b>Editar Similitud:</b> Permet editar la similitud del produte de la vista amb el seleccionat</li>
+ *         <li><b>Canviar Nom:</b> Permet canviar el nom del producte de la vista</li>
+ *         <li><b>Eliminar producte</b> Permet eliminar el producte de la vista</li>
+ *     </ul>
+ *  @see VistaControladors
+ *  @see CtrlVistaCatalegAmbRestriccions
+ *  @author Alejandro Lorenzo Navarro
+ *
+ */
 public class VistaInfoProducte extends VistaControladors {
+    /**
+     * Instancia del controlador de cataleg amb restriccions
+     */
     private CtrlVistaCatalegAmbRestriccions controlVista;
+
+    /**
+     * String que conte el nom del producte que es mostra
+     */
     private String nom_prod;
 
+    /**
+     * Boolean que determina si es la primera vegada en executar la vista
+     */
     private Boolean primeraVegada = true;
 
+    /**
+     * Label per mostrar el nom del producte
+     */
     private JLabel labelNom_prod;
-
+    /**
+     * Boto Canviar Nom, permet canviar el nom del producte
+     */
     private Boto BotoCanviarNom;
+
+    /**
+     * Text del boto Canviar Nom
+     */
     private String textBotoCanviarNom = "ELIMINAR PRODUCTE";
 
+    /**
+     * String d'utilitat per determinar si una entrada de valors ha sigut cancelada
+     */
     private String textCancelat = "CANCELADO";
 
-
+    /**
+     * Constructura de la clase
+     * @param cps Instancia del controlador de restriccions
+     */
     public VistaInfoProducte(CtrlVistaCatalegAmbRestriccions cps) {
         controlVista = cps;
     }
 
+    /**
+     * Funcio que serveix per executar la vista, si es el primer cop que es fa s'inicialicien tots els components, si no s'actualitzan els components.
+     */
     public void executar(String nom) {
         if (primeraVegada) {
             this.nom_prod = nom;
@@ -49,11 +92,17 @@ public class VistaInfoProducte extends VistaControladors {
         }
     }
 
+    /**
+     * Funcio per sortir del sistema
+     */
     @Override
     public void sortirSistema() {
         controlVista.sortirSistema();
     }
 
+    /**
+     * Funcio heredada de la clase VistaGenerica, s'inicialicen tots el components de la vista
+     */
     @Override
     public void inicialitzarComponents() {
         //Label nom producte
@@ -100,6 +149,9 @@ public class VistaInfoProducte extends VistaControladors {
 
     }
 
+    /**
+     * S'acutalicen tots els components de la vista
+     */
     public void actualitzarComponents() {
 
         labelNom_prod.setText("PRODUCTE: "+nom_prod);
@@ -118,6 +170,10 @@ public class VistaInfoProducte extends VistaControladors {
         }
     }
 
+    /**
+     * Metode que tracta les accions dels botons en ser premuts
+     * @param textBoto Text que indica quin boto ha sigut premut, es igual al text d'aquest boto
+     */
     @Override
     protected void botoAccionat(String textBoto) {
         if (textBoto.equals(textBotoCanviarNom)) {
@@ -145,6 +201,11 @@ public class VistaInfoProducte extends VistaControladors {
         }
     }
 
+    /**
+     * Metode que permet obtenir la nova similitud amb el producte seleccionat
+     * @param producteSeleccionat Producte seleccionat del combobox
+     * @return String amb valor de la nova similitud
+     */
     private String Input_Similitud(String producteSeleccionat) {
         Boolean numValid = false;
         String result = null;
@@ -181,6 +242,10 @@ public class VistaInfoProducte extends VistaControladors {
 
     }
 
+    /**
+     * Metode que permet editar la similitud d'un producte
+     * @param producteSeleccionat
+     */
     private void EditarSimi(String producteSeleccionat) {
         String result = Input_Similitud(producteSeleccionat);
         if (result != null) {
@@ -189,6 +254,9 @@ public class VistaInfoProducte extends VistaControladors {
         }
     }
 
+    /**
+     * Metodo que permet eliminar el producte del sistema
+     */
     private void Eliminar() {
         int result = JOptionPane.showConfirmDialog(frameVista,
                         "Estas segur que vols eliminar el producte "+nom_prod,
@@ -199,6 +267,9 @@ public class VistaInfoProducte extends VistaControladors {
         }
     }
 
+    /**
+     * Metode que permet canviar el nom al producte
+     */
     private void canviaNom() {
         String nou_nom = afegirNom();
         if (nou_nom != null) {
@@ -214,6 +285,10 @@ public class VistaInfoProducte extends VistaControladors {
         }
     }
 
+    /**
+     * Funcio de gestio de valors, per obtenir un nom per el producte
+     * @return Retorna un string valid que compleixi el format
+     */
     private String getNomUsuari() {
         String message = "Afegeix el nom del producte que vols afegir\nCAUTION: Nomes ha de incloure lletre o numeros";
         String result = JOptionPane.showInputDialog(frameVista, message, "Afegir Nom", JOptionPane.QUESTION_MESSAGE);
@@ -235,6 +310,10 @@ public class VistaInfoProducte extends VistaControladors {
         return result;
     }
 
+    /**
+     * Funcio que obte un nom valid dins del cataleg per el producte
+     * @return Un string que te el valor del nom de producte a afegir
+     */
     private String afegirNom() {
         String nom = null;
         boolean te_nom = false;

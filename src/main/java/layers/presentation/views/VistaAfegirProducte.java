@@ -3,42 +3,108 @@ package layers.presentation.views;
 import layers.presentation.controllers.CtrlVistaCatalegAmbRestriccions;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * Classe VistaAfegirProducte
+ *
+ *   Aquesta classe te herencia de la VistaControladors
+ *   Utilitza el controlador 'CtrlVistaCatalegAmbRestriccions' per interactuar amb la lògica del sistema.
+ *   <p><b>Informació:</b></p>
+ *   Aquesta vista permet l'usuari crear un producte donant les seves similtuds i restriccions
+ *   <ul>
+ *         <li><b>Afegir Similituds/Editar Similituds:</b> Permet afegir totes les similituds, i un cop donades todes editar-les</li>
+ *         <li><b>Afegir Restricció:</b> Permet afegir una restriccio entre el nou producte i el seleccionat</li>
+ *         <li><b>Canviar Nom:</b> Permet canviar el nom del producte</li>
+ *         <li><b>Guardar:</b> Boto per afegir el producte i la seva informació al sistema</li>
+ *     </ul>
+ *  @see VistaControladors
+ *  @see CtrlVistaCatalegAmbRestriccions
+ *  @author Alejandro Lorenzo Navarro
+ *
+ */
 public class VistaAfegirProducte extends VistaControladors {
+    /**
+     * Instancia del controlador de cataleg amb restriccions
+     */
     private CtrlVistaCatalegAmbRestriccions controlVista;
 
+    /**
+     * Boolean que determina si el producte te nom
+     */
     private Boolean te_nom = false;
+
+    /**
+     * Boolean que determina si el producte ja te TOTES les similituds
+     */
     private Boolean Simis_DONE = false;
 
+    /**
+     * Array de similituds del productes, conte nombre representats per strings
+     */
     private ArrayList<String> similituds;
+
+    /**
+     * Array de restriccions del producte, conte el nom del altres productes amb els quals té restricció
+     */
     private ArrayList<String> restriccions;
+
+    /**
+     * Array que conté tots els productes del catàleg
+     */
     private String[] productes;
+
+    /**
+     * Nom del producte, es mostra a la vista
+     */
     private String nom_prod = "INSEREIX NOM";
-
+    /**
+     * Label per mostrar el nom del producte
+     */
     private JLabel labelNomProd;
+    /**
+     * Text del boto Guardar, te valor "Guardar"
+     */
+    private String textBotoGuardar = "Guardar";
+    /**
+     * Boto Guardar, serveix per afegir el producte al catàleg
+     */
+    private Boto BotoGuardar;
 
-    private String textBotoFinalitzar = "Guardar";
-    private Boto BotoFinalitzar;
-
+    /**
+     * Text del boto Canviar Nom, te valor "Canviar Nom"
+     */
     private String textBotoCanviNom = "Canvia Nom";
+    /**
+     * Boto Canviar Nom, serveix per canviar el nom del producte
+     */
     private Boto BotoCanviNom;
 
-    Boolean primeraVegada = true;
-
+    /**
+     * Boolean que determina si es la primera vegada en executar la vista
+     */
+    private Boolean primeraVegada = true;
+    /**
+     * String d'utilitat per determinar si una entrada de valors ha sigut cancelada
+     */
     private String textCancelat = "Cancelat";
-
+    /**
+     * Integer per contar quina es la ultima Similitud donada
+     */
     private int ultimaSimi = 0;
 
+    /**
+     * Constructura de la clase
+     * @param cps Instancia del controlador de restriccions
+     */
     public VistaAfegirProducte (CtrlVistaCatalegAmbRestriccions cps) {
         controlVista = cps;
     }
 
+    /**
+     * Funcio que serveix per executar la vista, si es el primer cop que es fa s'inicialicien tots els components, si no s'actualitzan els components.
+     */
     public void executar() {
         if (primeraVegada) {
             primeraVegada = false;
@@ -63,11 +129,17 @@ public class VistaAfegirProducte extends VistaControladors {
 
     }
 
+    /**
+     * Funcio per sortir del sistema
+     */
     @Override
     public void sortirSistema() {
         controlVista.sortirSistema();
     }
 
+    /**
+     * Funcio heredada de la clase VistaGenerica, s'inicialicen tots el components de la vista
+     */
     @Override
     public void inicialitzarComponents() {
         te_nom = false;
@@ -114,10 +186,10 @@ public class VistaAfegirProducte extends VistaControladors {
         add(Box.createVerticalGlue());
 
         //Setear boto finalitzar
-        BotoFinalitzar = new Boto(textBotoFinalitzar);
-        BotoFinalitzar.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        BotoFinalitzar.setBackground(Color.GREEN);
-        add(BotoFinalitzar);
+        BotoGuardar = new Boto(textBotoGuardar);
+        BotoGuardar.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        BotoGuardar.setBackground(Color.GREEN);
+        add(BotoGuardar);
         add(Box.createRigidArea(new Dimension(0, 10)));
         add(Box.createVerticalGlue());
 
@@ -127,6 +199,9 @@ public class VistaAfegirProducte extends VistaControladors {
         }
     }
 
+    /**
+     * S'acutalicen tots els components de la vista
+     */
     private void actualitzarComponents() {
         te_nom = false;
         nom_prod = "INSEREIX_NOM";
@@ -157,6 +232,10 @@ public class VistaAfegirProducte extends VistaControladors {
         }
     }
 
+    /**
+     * Metode que tracta les accions dels botons en ser premuts
+     * @param textBoto Text que indica quin boto ha sigut premut, es igual al text d'aquest boto
+     */
     @Override
     public void botoAccionat (String textBoto) {
         if (textBoto.equals(textBotoAfegir)) {
@@ -190,7 +269,7 @@ public class VistaAfegirProducte extends VistaControladors {
                 //Afegir Similituds
                 AfegirSimilituds();
             }
-        } else if (textBoto.equals(textBotoFinalitzar)) {
+        } else if (textBoto.equals(textBotoGuardar)) {
             finalizar();
         } else if (textBoto.equals(textBotoCanviNom)) {
             canviaNom();
@@ -204,6 +283,9 @@ public class VistaAfegirProducte extends VistaControladors {
         }
     }
 
+    /**
+     * Metode que afegiex una a una totes les similituds del producte, amenys que l'usuari canceli l'accio
+     */
     private void AfegirSimilituds() {
 
         for (int i = ultimaSimi; i < productes.length; ++i) {
@@ -224,6 +306,10 @@ public class VistaAfegirProducte extends VistaControladors {
         canviBotoSimilituds();
     }
 
+    /**
+     * Edita la similitud amb el producte seleccionat
+     * @param prodSeleccionat Producte seleccionat al combobox
+     */
     private void EditarSimilitud(String prodSeleccionat) {
         int index = 0;
         boolean trobat = false;
@@ -245,6 +331,9 @@ public class VistaAfegirProducte extends VistaControladors {
         afegirSimisCombobox();
     }
 
+    /**
+     * Metode que canvia el text del combobox per un amb producte i similituds
+     */
     private void afegirSimisCombobox() {
         String[] Prod_Simi = new String[productes.length];
         for (int i = 0; i < productes.length; ++i) {
@@ -260,6 +349,10 @@ public class VistaAfegirProducte extends VistaControladors {
 
     }
 
+    /**
+     * Afegeix una restriccio amb el producte seleccionat
+     * @param prodSeleccionat Producte seleccionat desde el combobox
+     */
     private void AfegirRestriccio(String prodSeleccionat) {
         boolean trobat = false;
         for (String item : restriccions) {
@@ -275,7 +368,9 @@ public class VistaAfegirProducte extends VistaControladors {
         }
     }
 
-
+    /**
+     * Funcio que afegeix el nom del producte
+     */
     private void afegirNom() {
         String nom = null;
         while (!te_nom) {
@@ -299,6 +394,9 @@ public class VistaAfegirProducte extends VistaControladors {
         labelNomProd.setText("PRODUCTE: "+nom_prod);
     }
 
+    /**
+     * Funcio que canvia el nom del producte per un altre
+     */
     private void canviaNom() {
         boolean done = false;
         while (!done) {
@@ -323,6 +421,9 @@ public class VistaAfegirProducte extends VistaControladors {
         }
     }
 
+    /**
+     * Funcio que afegeix el producte al cataleg i tenca la vista si el producte te nom i te totes les similituds
+     */
     private void finalizar() {
         if (!te_nom || !Simis_DONE) {
             String falta_nom = "";
@@ -351,6 +452,9 @@ public class VistaAfegirProducte extends VistaControladors {
         }
     }
 
+    /**
+     * Funcio que mostra al usuari un avis abans de sortir de la vista, per recordar li que ha de guardar el producte
+     */
     private void AvisSortir() {
         int  result = JOptionPane.showConfirmDialog(frameVista,
                 "CAUTION: Has d'afegir el producte, si surts perdras tota la informacio del producte\n" +
@@ -363,13 +467,19 @@ public class VistaAfegirProducte extends VistaControladors {
 
     }
 
+    /**
+     * Funcio que canvia el boto Afegir Similituds per el de Editar Similituds
+     */
     private void canviBotoSimilituds() {
         textBotoMostrar = "Editar Similituds";
         botoMostrar.setText(textBotoMostrar);
         botoMostrar.setBackground(UIManager.getColor("Button.background"));
     }
 
-
+    /**
+     * Funcio de gestio de valors, per obtenir un nom per el producte
+     * @return Retorna un string valid que compleixi el format
+     */
     private String getNomUsuari() {
         String message = "Afegeix el nom del producte que vols afegir\nCAUTION: Nomes ha de incloure lletre o numeros";
         String result = JOptionPane.showInputDialog(frameVista, message, "Afegir Nom", JOptionPane.QUESTION_MESSAGE);
@@ -391,6 +501,11 @@ public class VistaAfegirProducte extends VistaControladors {
         return result;
     }
 
+    /**
+     * Funcio de gestio de valors, per obtenir un nom per el producte
+     * @param producteSeleccionat Producte seleccionat desde el combobox
+     * @return Retorna un string valid que compleixi el format
+     */
     private String getSimilitud(String producteSeleccionat) {
         boolean numValid = false;
         String result = null;
