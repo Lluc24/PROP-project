@@ -124,9 +124,11 @@ public class AlgorismeGreedy extends Algorisme {
         double maxSimilitudTotal = -1.0;
         boolean millorSolucioBruta = true;
         int indexInicial = producteInicial;
+        int ites = numIteracions;
+        if (ites > numProd) ites = numProd;
 
         //bucle per realitzar les diferents iteracions
-        for (int iteracio = 0; iteracio < numIteracions % numProd; iteracio++) {
+        for (int iteracio = 0; iteracio < ites; iteracio++) {
 
             ArrayList<Integer> configuracioActual = new ArrayList<>();
             double similitudTotal = 0.0;

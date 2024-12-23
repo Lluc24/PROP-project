@@ -1,7 +1,5 @@
 package layers.presentation.views;
 
-import layers.presentation.controllers.CtrlVistaSolucions;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -19,7 +17,9 @@ public abstract class VistaControladors extends VistaGenerica {
 
     protected Boolean primeraVegada = true;
 
-    //Constructora
+    /**
+     * Funcio constructora de la classe
+     */
     public VistaControladors() {
         super();
         this.titolFrame = "Vista Controladors";
@@ -38,7 +38,9 @@ public abstract class VistaControladors extends VistaGenerica {
         }
     }
 
-
+    /**
+     * Inicialitza els components necessaris per visualitzar la vista correctament
+     */
     @Override
     protected void inicialitzarComponents() {
         super.inicialitzarComponents();

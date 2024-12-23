@@ -16,7 +16,11 @@ public class CtrlSolucions extends CtrlGeneric {
     private Algorisme algorismeAct; //algorisme de la solució que esta tractant
     private CtrlPersistenciaSolucio ctrlPersistenciaSolucio;
 
-    // Constructora
+    /**
+     * Funcio contructora del controlador CtrlSolucions.
+     *
+     * @param c Instancia del controlador del cataleg.
+     */
     public CtrlSolucions(CtrlCatalegAmbRestriccions c){
         this.solucions = new ArrayList<Solucio>();
         this.cataleg = c;
@@ -25,6 +29,10 @@ public class CtrlSolucions extends CtrlGeneric {
 
     //Getters i setters
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Solucio> getSolucions(){ return solucions; }
 
     public CtrlCataleg getCataleg(){ return cataleg; }
@@ -109,18 +117,11 @@ public class CtrlSolucions extends CtrlGeneric {
             }
         }
 
-        int[] solucio = null;
         double[][] similituds = cataleg.getMatriuSimilituds();
         boolean[][] matriuRestriccions = cataleg.getMatrRestrConsec();
-        try {
-            System.out.println("Crido a solucionar al algorisme");
-            solucio = algorismeAct.solucionar(similituds, matriuRestriccions);
-            System.out.println("l'algorisme ja ha tornat la solucio");
-        }catch (FormatInputNoValid e){
-            if (e.getMessage().equals("No hi ha una solucio valida amb les restriccions actuals")) {
-                throw new FormatInputNoValid(e.getMessage());
-            }
-        }
+        System.out.println("Crido a solucionar al algorisme");
+        int[] solucio = algorismeAct.solucionar(similituds, matriuRestriccions);
+        System.out.println("l'algorisme ja ha tornat la solucio");
 
         ArrayList<String> llistaProd = new ArrayList<String>();
         System.out.print("ctrlsolucions obte la traduccio: ");

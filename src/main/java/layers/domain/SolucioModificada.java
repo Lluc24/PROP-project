@@ -7,7 +7,13 @@ import java.util.*;
 
 public class SolucioModificada extends Solucio {
 
-    // Constructora
+    /**
+     * Funcio constructora de la classe.
+     *
+     * @param s Matriu que representa la solucio.
+     * @param n Nom de la solucio.
+     * @throws FormatInputNoValid Si la matriu proporcionada no es correcta, salta la excepcio.
+     */
     public SolucioModificada(ArrayList<ArrayList<String>> s, String n) throws FormatInputNoValid {
         super(s, n);
         this.solucio = s;

@@ -4,20 +4,55 @@ import layers.presentation.controllers.CtrlVistaCatalegAmbRestriccions;
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * Classe VistaPrincipalCataleg
+ *   Aquesta classe te herencia de la VistaControladors
+ *   Utilitza el controlador 'CtrlVistaCatalegAmbRestriccions' per interactuar amb la lògica del sistema.
+ *   <p><b>Informació:</b></p>
+ *   Aquesta vista es un menu per entrar a la resta de vistes de gestio de cataleg
+ *   <ul>
+ *         <li><b>Mostrar Producte:</b> Perment anar a la vista per veure la informacio del producte seleccionat</li>
+ *         <li><b>Afegir Producte:</b> Permet anar a la vista per afegir un producte nou</li>
+ *         <li><b>Menu Restriccions</b> Permet anar a la vista del menu de restriccions</li>
+ *     </ul>
+ *  @see VistaControladors
+ *  @see CtrlVistaCatalegAmbRestriccions
+ *  @author Alejandro Lorenzo Navarro
+ *
+ */
 public class VistaPrincipalCataleg extends VistaControladors {
+    /**
+     * Instancia del controlador de cataleg amb restriccions
+     */
     private CtrlVistaCatalegAmbRestriccions controlVista;
+    /**
+     * Boto de Menu de restriccions, permet anar al menu de restriccions
+     */
     protected Boto botoMenuRestriccion;
+    /**
+     * Text del boto de menu de restricicons
+     */
     protected String textBotoMenuRestriccions = "Menu Restriccions";
-
+    /**
+     * Boolean que determina si es la primera vegada en executar la vista
+     */
     private Boolean primeraVegada = true;
-
+    /**
+     * String d'utilitat per determinar si una entrada de valors ha sigut cancelada
+     */
     private String textCancelat = "CANCELAT";
-    
+
+    /**
+     * Constructura de la clase
+     * @param cps Instancia del controlador de restriccions
+     */
     public VistaPrincipalCataleg(CtrlVistaCatalegAmbRestriccions cps) {
         controlVista = cps;
     }
 
+    /**
+     * Funcio que serveix per executar la vista, si es el primer cop que es fa s'inicialicien tots els components, si no s'actualitzan els components.
+     */
     public void executar() {
         if (primeraVegada) {
             titolFrame = "Vista Principal del Cataleg";
@@ -39,11 +74,17 @@ public class VistaPrincipalCataleg extends VistaControladors {
 
     }
 
+    /**
+     * Funcio per sortir del sistema
+     */
     @Override
     public void sortirSistema() {
         controlVista.sortirSistema();
     }
 
+    /**
+     * Funcio heredada de la clase VistaGenerica, s'inicialicen tots el components de la vista
+     */
     @Override
     public void inicialitzarComponents() {
         super.inicialitzarComponents();
@@ -75,6 +116,9 @@ public class VistaPrincipalCataleg extends VistaControladors {
 
     }
 
+    /**
+     * S'acutalicen tots els components de la vista
+     */
     private void actualitzarComponents() {
         String[] productes = controlVista.getProductes();
         opcions.removeAllItems();
@@ -83,6 +127,10 @@ public class VistaPrincipalCataleg extends VistaControladors {
         }
     }
 
+    /**
+     * Metode que tracta les accions dels botons en ser premuts
+     * @param textBoto Text que indica quin boto ha sigut premut, es igual al text d'aquest boto
+     */
     @Override
     public void botoAccionat (String textBoto) {
         if (textBoto.equals(textBotoAfegir)) {
@@ -123,18 +171,31 @@ public class VistaPrincipalCataleg extends VistaControladors {
         }
     }
 
+    /**
+     * Metode que canvia a la vista d'Afegir producte, si s'ha premut el boto Afegir Producte
+     */
     private void canviVistaAfegirProducte() {
         controlVista.canviaVista("AfegirProductes");
     }
 
+    /**
+     * Metode que canvia a la vista de Menu restriccions, si s'ha premut el boto Menu Restriccions
+     */
     public void canviVistaConsultarRest() {
         controlVista.canviaVista("ConsultarRestriccions");
     }
 
+    /**
+     * Metode que canvia a la vista d'Afegir producte, si s'ha premut el boto Afegir Producte
+     */
     public void canviaVistaInfoProd(String prod) {
         controlVista.canviarVista("InfoProducte", prod);
     }
 
+    /**
+     * Funcio de gestio de valors, per obtenir un nom per el producte
+     * @return Retorna un string valid que compleixi el format
+     */
     private String getNomUsuari() {
         String message = "Afegeix el nom del producte que vols afegir\nCAUTION: Nomes ha de incloure lletre o numeros";
         String result = JOptionPane.showInputDialog(frameVista, message, "Afegir Nom", JOptionPane.QUESTION_MESSAGE);
@@ -156,6 +217,10 @@ public class VistaPrincipalCataleg extends VistaControladors {
         return result;
     }
 
+    /**
+     * Funcio que obte un nom valid dins del cataleg per el producte
+     * @return Un string que te el valor del nom de producte a afegir
+     */
     private String afegirNom() {
         String nom = null;
         boolean te_nom = false;

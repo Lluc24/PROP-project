@@ -1,0 +1,24 @@
+true
+nomSolucio1
+cereals oreos llet
+filipinos
+
+false
+nomSolucio2
+carn peix suc verdura salsa
+
+false
+nomSolucio3
+
+true
+nomSolucio4 
+poma platan melo sindria aguacate maduixa cireres 
+mango raim pressec mandarina taronja kaki pebrotVermell
+enciam pebrotVerd 
+
+false
+nomSolucio5
+poma platan melo sindria 
+aguacate maduixa cireres mango 
+raim pressec mandarina taronja 
+kaki pebrotVermell enciam pebrotVerd 

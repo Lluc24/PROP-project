@@ -13,7 +13,14 @@ public class Solucio {
     protected ArrayList<ArrayList<String>> solucio;
     protected String nom;
 
-    // Constructores
+    /**
+     * Funcio constructora de la calsse.
+     *
+     * @param s La llista de productes en ordre.
+     * @param n El nom de la solucio.
+     * @param p El numero de productes per prestatge.
+     * @throws FormatInputNoValid Si algun dels parametres d'entrada no es correcte, surt la excepcio.
+     */
     public Solucio(ArrayList<String> s, String n, int p) throws FormatInputNoValid{
         if (p <= 0) {
             String missatge = "El numero de productes per prestatgeria ha de ser minim 1";
@@ -50,7 +57,13 @@ public class Solucio {
         }
     }
 
-
+    /**
+     * Funcio constructora de la classe.
+     *
+     * @param s Matriu amb els productes ordenats.
+     * @param n Nom de la solucio.
+     * @throws FormatInputNoValid Si alguns dels parametres d'entrada no son valids, surt l'excepcio.
+     */
     public Solucio(ArrayList<ArrayList<String>> s, String n) throws FormatInputNoValid {
         if (!matriuValida(s)) {
             String missatge = "La matriu de productes no es valida";
@@ -60,11 +73,18 @@ public class Solucio {
         this.solucio = s;
     }
 
-    // Getters i Setters
+    /**
+     *
+     * @return Retorna el nom de la solucio.
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     *
+     * @return Retorna la matriu de la solucio.
+     */
     public ArrayList<ArrayList<String>> getSolucio() {
         return solucio;
     }

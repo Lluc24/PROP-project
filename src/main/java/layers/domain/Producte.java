@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 
 /**
- * @Class Producte
- * @Description Representa un producte del sistema, amb nom, llista de similituts
+ * Producte
+ * Representa un producte del sistema, amb nom, llista de similituts
  * i index que representa la seva posicio al Catalge
  * @see CtrlCataleg
  * @author Alejandro Lorenzo Navarro
@@ -56,7 +56,7 @@ public class Producte {
     public int getIndex() {return index;}
     /**
      * Funcio getter, para les similituds del producte
-     * @return ArrayList<Double></Double> del producte
+     * @return ArrayList de doubles del producte
      */
     public ArrayList<Double> getSimilituds() {return llista_Similituds;}
     /**

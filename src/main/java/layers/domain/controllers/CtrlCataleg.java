@@ -9,13 +9,10 @@ import layers.persistence.CtrlPersistenciaCataleg;
 
 import java.util.ArrayList;
 /**
- * @Class CtrlCataleg
- * @Description CtrlCataleg representa el conjunt de productes que es troben dins del sistema
- * @see Producte
- * @author Alejandro Lorenzo Navarro
- * @version 2.2
+ *  CtrlCataleg
+ *  CtrlCataleg representa el conjunt de productes que es troben dins del sistema
  *
- * @Information
+ * Informacio
  * Tots els productes estan dins de un Arraylist.
  * Es poden identificar tant per nom o per index.
  * Basat en el funcionament de ArrayList no hi ha espais buits entre productes.
@@ -28,6 +25,10 @@ import java.util.ArrayList;
  * 
  * El primer index sempre tindra valor '0', el metode num_prod_actual sempre retorna la mida correcte del cataleg, 
  * es a dir el index seguent al ultim producte.
+ *
+ * @see Producte
+ * @author Alejandro Lorenzo Navarro
+ * @version 2.2
  */
 public class CtrlCataleg extends CtrlGeneric{
     //Classe CtrlCataleg
@@ -35,6 +36,8 @@ public class CtrlCataleg extends CtrlGeneric{
 
      /** Un Array List Representa el conjunt de productes es troben din del sistema */
      protected ArrayList<Producte> Cataleg_Productes;
+
+     /** Instancia del controlador de persistencia de cataleg*/
      protected CtrlPersistenciaCataleg ctrlPersistenciaCataleg;
 
      // Constructor
@@ -55,9 +58,9 @@ public class CtrlCataleg extends CtrlGeneric{
      * tambe es confiquren les similituds associades amb el nou producte.
      * Aquests metode se ha de fer servir per la creacio i de productes dins del sistema.
      * @param new_nom Nom del producte a afegir
-     * @param llista_simi Similituds dels productes, < Nom_Productes, Similitud>
-     * @exception ProducteNoValid
-     * @exception FormatInputNoValid
+     * @param llista_simi Similituds dels productes, Nom_Productes, Similitud
+     * @throws FormatInputNoValid
+     * @throws ProducteNoValid
      */
     public void afegir_producte(String new_nom, Pair<String, Double>[] llista_simi) throws ProducteNoValid, FormatInputNoValid {
 
@@ -121,9 +124,10 @@ public class CtrlCataleg extends CtrlGeneric{
     }
 
     /**
-     * @see public void afegir_producte(String new_nom, Pair<String, Double>[] llista_simi)
+     * Afegeix un producte a un cataleg buit, nomes necesita el nom
+     *
      * @param new_nom El nom del nou producte
-     * @Description  Afegeix un producte a un cataleg buit, nomes necesita el nom
+     * @throws ProducteNoValid
      *
      */
     public void afegir_producte(String new_nom) throws ProducteNoValid {
@@ -177,6 +181,7 @@ public class CtrlCataleg extends CtrlGeneric{
       * Descripció: S'elimina un producte, i totes les similituds associades determinat si aquest es troba dins del cataleg
       * Warning: Tots el indexos inicialitzats localment abans de l'execucio de la funció seran erronis
       * @param nom_out Nom del producte que es vol eliminar
+      * @throws ProducteNoValid
       */
      public void eliminar_producte_nom(String nom_out) throws ProducteNoValid {
           
@@ -219,6 +224,8 @@ public class CtrlCataleg extends CtrlGeneric{
       * @param nom_prod1 String que representa el nom del primer producte
       * @param nom_prod2 String que representa el nom del segon producte
       * @param new_simi Nova similitud entre el dos productes
+      * @throws ProducteNoValid
+      * @throws FormatInputNoValid
       */
      public void editar_similitud(String nom_prod1, String nom_prod2, double new_simi) throws ProducteNoValid, FormatInputNoValid {
 
@@ -482,6 +489,7 @@ public class CtrlCataleg extends CtrlGeneric{
     /**
      * Mostra el valors del productes, nom i les seves similituds
      * @param nom Nom del producte a mostrar
+     * @throws ProducteNoValid
      */
      public void mostrarProducte(String nom) throws ProducteNoValid {
         int index = get_index_prod(nom);
@@ -586,6 +594,7 @@ public class CtrlCataleg extends CtrlGeneric{
      * Metode que passa el path i el nom del arxiu a carregar al controlador de persistencia de cataleg
      * @param path Path donat per la capa de presentacio
      * @param nomArxiu Nom del arxiu donat per la capa de presenctacio
+     * @throws FormatInputNoValid
      */
     public void carregarCataleg(String path, String nomArxiu) throws FormatInputNoValid {
 
