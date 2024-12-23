@@ -294,11 +294,6 @@ public class CtrlVistaSolucions extends CtrlVistaGeneric {
                 }
             }
         }
-        for (int i = 0; i < 3; ++i){
-            if (controlVistes[i] == EstatVista.esVisible) System.out.print("visible, ");
-            else if (controlVistes[i] == EstatVista.noVisible) System.out.print("no visible, ");
-            else System.out.print("no inicialitzada, ");
-        }
     }
 
     /**
