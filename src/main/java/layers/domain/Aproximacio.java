@@ -6,10 +6,35 @@ import layers.domain.utils.Pair;
 
 import java.util.*;
 
+/**
+ * @Class Aproximacio
+ * @see Algorisme
+ * @Description Permet obtenir la distribucio seguint l'algorisme 2-Aproximacio
+ * @author Lluc Santamaria Riba
+ * @version 3.1
+ *
+ * @Information
+ * Aquesta classe es una implementacio de l'algorisme 2-Aproximacio explicat pel professorat
+ * de PROP en el document d'informacio adicional. Pot treballar amb o sense restriccions.
+ * L'algorisme assegura trobar una solucio amb un valor no mes de dues vegades pitjor que l'optim
+ * i en temps polinomic. Quan treballa amb restriccions, tracta de respectar-les. Tanmateix,
+ * no pot garantir respectar-les sempre, ja que fer-ho te un cost temporal elevat.
+ */
 public class Aproximacio extends Algorisme {
+    /** La matriu de similituds amb la qual treballa. */
     private double[][] similituds;
-    private int n, m;
+    /** El nombre de productes. */
+    private int n;
+    /** El nombre de similituds sense restriccio. */
+    private int m;
 
+    /**
+     * Metode que resol el problema amb matriu de restriccions.
+     * @param matriuSimilituds Matriu de similituds entre productes.
+     * @param matriuRestrConsec Matriu de restriccions consecutives, on matriuRestrConsec[i][j] indica si els productes i i j no poden ser consecutius.
+     * @return Retorna un array que indica quin producte es troba en cada posicio.
+     * @throws FormatInputNoValid: Excepcio llencada en cas de que les especificacions no siguin valides.
+     */
     @Override
     public int[] solucionar(double[][] matriuSimilituds, boolean[][] matriuRestrConsec) throws FormatInputNoValid {
         n = matriuSimilituds.length;
@@ -79,6 +104,12 @@ public class Aproximacio extends Algorisme {
         return camiHamiltonia;
     }
 
+    /**
+     * Metode que resol el problema sense matriu de restriccions, es a dir, no hi ha restriccions.
+     * @param matriuSimilituds Matriu de similituds entre productes.
+     * @return Retorna un array que indica quin producte es troba en cada posicio.
+     * @throws FormatInputNoValid: Excepcio llencada en cas de que les especificacions no siguin valides.
+     */
     @Override
     public int[] solucionar(double[][] matriuSimilituds) throws FormatInputNoValid {
         n = matriuSimilituds.length;
@@ -89,6 +120,12 @@ public class Aproximacio extends Algorisme {
         return solucionar(matriuSimilituds, matriuRestrConsec);
     }
 
+    /**
+     * Metode recursiu per fer una ordenacio de les arestes per pes creixent. L'algorisme esta basat en QUICKSORT.
+     * @param arestes: Una llista amb totes les arestes.
+     * @param e: La posicio de la primera aresta a ordenar.
+     * @param d: La posicio de l'ultima aresta a ordenar.
+     */
     void ordenacioRapida(List<Pair<Integer, Integer>> arestes, int e, int d) {
         if (e < d) {
             int q = particioHoare(arestes, e, d);   // q es la posicio que deixa a la seva esquerra les arestes de menor
@@ -99,6 +136,13 @@ public class Aproximacio extends Algorisme {
         }
     }
 
+    /**
+     * Metode auxiliar de ordenacioRapida que permet fer una particio de les arestes seguint un pivot.
+     * @param arestes: Llista de les arestes
+     * @param e: La posicio de la primera aresta a aplicar la particio.
+     * @param d: La posicio de l'ultima aresta a aplicar la particio.
+     * @return Retorna la posicio del pivot utilitzat per fer la particio
+     */
     int particioHoare(List<Pair<Integer, Integer>> arestes, int e, int d) {
         double pivot = similituds[arestes.get(e).first][arestes.get(e).second]; // Utilitzem com a pivot la primera aresta
         int i = e;
@@ -127,6 +171,12 @@ public class Aproximacio extends Algorisme {
         return j;
     }
 
+    /**
+     * Metode per obtenir l'arbre d'expansio maxim. Basat en l'algorisme de Kruskal.
+     * @param arestesOrdenades: Llista de les arestes ordenades per pes creixentment.
+     * @return Un array dels indexs de les arestes que formen l'arbre d'expansio maxim.
+     * @throws FormatInputNoValid: Excepcio llencada en cas de que no es pugui construir l'arbre.
+     */
     int[] kruskal(List<Pair<Integer, Integer>> arestesOrdenades) throws FormatInputNoValid {
         MergeFindSet mfs = new MergeFindSet(n);
         int[] idxArestes = new int[n-1]; // Hem de trobar els indexos de les n - 1 arestes que construeixen el MST
@@ -147,6 +197,13 @@ public class Aproximacio extends Algorisme {
         return idxArestes;
     }
 
+    /**
+     * Metode recursiu per obtenir el cicle euleria de l'arbre. Basat en l'algorisme Depth-First Search.
+     * @param grafDobleDirigit: Graf dirigit representat mitjancant llistes d'adjacencia.
+     * @param cicle: Els vertexs del cicle que l'algorisme va construint
+     * @param vtxActual: Vertex que s'esta tractant en el nivell de recurrencia actual.
+     * @param vtxPrevi: Vertex tractat en el nivell de recurrencia previ.
+     */
     void dfs(List<Set<Integer>> grafDobleDirigit, List<Integer> cicle, int vtxActual, int vtxPrevi) {
         // Cada vertex que es visita s'afegeix al cicle, sigui per expansio de branques o per backtracking
         cicle.add(vtxActual); // Vertex afegir per expansio
@@ -158,6 +215,11 @@ public class Aproximacio extends Algorisme {
         }
     }
 
+    /**
+     * Metode per simplificar el cicle euleria en un cicle hamiltonia.
+     * Utilitza l'eliminacio del conjunt de vertexs consecutius de menor valor.
+     * @param cicle: El cicle euleria que acabara sent hamiltonia.
+     */
     void simplificar(List<Integer> cicle) {
         int tallaCicle = cicle.size();
         while (tallaCicle > n + 1) {
