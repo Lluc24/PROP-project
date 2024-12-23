@@ -315,10 +315,10 @@ public class Driver {
     }
 
     /**
-     * Metode que llegeix un enter de l'entrada. En cas
-     * @param err
-     * @param scanner
-     * @return
+     * Metode que llegeix un enter de l'entrada.
+     * @param err Missatge d'error
+     * @param scanner Instancia de scanner
+     * @return Returna un integer que ha donat l'usuari
      */
     private static int demanaInt(String err, Scanner scanner) {
         while (!scanner.hasNextInt()) {
@@ -328,6 +328,12 @@ public class Driver {
         return scanner.nextInt();
     }
 
+    /**
+     * Metode que llegeix un double de l'entrada
+     * @param err Missatge d'error
+     * @param scanner Instancia de scanner
+     * @return Returna un double que ha donat l'usuari
+     */
     private static double demanaDouble(String err, Scanner scanner) {
         while (!scanner.hasNextDouble()) {
             String aux = String.format(err, scanner.next());
