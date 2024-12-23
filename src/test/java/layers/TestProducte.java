@@ -8,7 +8,7 @@ import layers.domain.Producte;
 import org.junit.Test;
 
 /**
- * @Author Alejandro Lorenzo Navarro
+ * @author Alejandro Lorenzo Navarro
  */
 public class TestProducte {
 
