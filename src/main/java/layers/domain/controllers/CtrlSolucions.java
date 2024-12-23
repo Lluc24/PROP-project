@@ -9,6 +9,35 @@ import layers.persistence.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Classe 'CtrlSolucions'
+ *
+ * Controlador principal per a la gestió de solucions dins del sistema. Aquesta classe permet crear, modificar, eliminar,
+ * i gestionar solucions, així com interactuar amb el catàleg i els algorismes utilitzats per generar-les.
+ * També proporciona funcionalitats per a carregar i guardar solucions des d'arxius.
+ *
+ * @see CtrlCatalegAmbRestriccions
+ * @see Algorisme
+ * @see Solucio
+ * @see SolucioModificada
+ *
+ * @author Eulalia Peiret Santacana
+ * @version 1.0
+ *
+ * <p><b>Funcionalitats principals:</b></p>
+ * - <b>Crear solucions:</b> Genera noves solucions utilitzant un algorisme específic i un conjunt de restriccions.
+ * - <b>Modificar solucions:</b> Permet intercanviar productes dins d'una solució o modificar-ne les posicions.
+ * - <b>Eliminar solucions:</b> Elimina una solució específica del sistema.
+ * - <b>Persistència:</b> Carrega i guarda solucions en fitxers externs.
+ * - <b>Consulta:</b> Permet consultar si una solució existeix, obtenir-ne els detalls, i llistar totes les solucions disponibles.
+ * - <b>Gestió d'algorismes:</b> Triar entre tres tipus (aproximació, backtracking, greedy) per resoldre problemes.
+ *
+ * <p><b>Excepcions:</b></p>
+ * - <b>NomSolucioNoValid:</b> S'activa quan es treballa amb noms de solucions que no existeixen o no són vàlids.
+ * - <b>FormatInputNoValid:</b> S'activa quan el format d'entrada no és vàlid, com paràmetres d'algorisme incorrectes.
+ * - <b>IntercanviNoValid:</b> S'activa quan es produeix un error en intentar intercanviar productes en una solució.
+ */
+
 public class CtrlSolucions extends CtrlGeneric {
     // Llista de solucions
     private ArrayList<Solucio> solucions;//llista de solucions que tracta
@@ -31,22 +60,41 @@ public class CtrlSolucions extends CtrlGeneric {
 
     /**
      *
-     * @return
+     * @return Retorna la llista de Solucions del sistema.
      */
     public ArrayList<Solucio> getSolucions(){ return solucions; }
 
+    /**
+     *
+     * @return Retorna una instancia del cataleg del sistema
+     */
     public CtrlCataleg getCataleg(){ return cataleg; }
 
+    /**
+     *
+     * @return Retorna un string que indica el tipus d'algorisme configurat actualment.
+     */
     public String getAlgorismeAct(){
         if (algorismeAct instanceof AlgorismeBT)  return "backtracking";
         if (algorismeAct instanceof AlgorismeGreedy) return "greedy";
         return "aproximacio";
     }
 
+    /**
+     * A l'algorisme greedy se li poden especificar parametres.
+     *
+     * @param param1 Index del primer producte.
+     * @param param2 Numero d'iteracions.
+     */
     public void setParametres(int param1, int param2) throws FormatInputNoValid{
         algorismeAct = new AlgorismeGreedy(param1, param2);
     }
 
+    /**
+     * El controlador de domini crida a aquesta funcio per proporcionar el controlador de persistencia.
+     *
+     * @param cps Instancia del controlador de persistencia de solucions
+     */
     public void setCtrlPersistenciaSolucio(CtrlPersistenciaSolucio cps){
         ctrlPersistenciaSolucio = cps;
     }

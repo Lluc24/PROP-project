@@ -3,6 +3,30 @@ package layers.presentation.views;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Classe 'VistaControladors'
+ *
+ * Vista abstracta per gestionar operacions genèriques de les vistes dels controladors. Aquesta classe proporciona
+ * una estructura bàsica amb botons, etiquetes i un ComboBox per interactuar amb diferents funcionalitats.
+ * És la base per altres vistes que necessiten gestionar controladors específics.
+ *
+ * @see VistaGenerica
+ *
+ * @author Eulalia Peiret Santacana
+ *
+ * <p><b>Components principals:</b></p>
+ * <ul>
+ *     <li><b>Etiqueta:</b> `etiquetaTriar` descriu les funcionalitats disponibles a l'usuari.</li>
+ *     <li><b>ComboBox:</b> `opcions` permet seleccionar una opció d'entre les disponibles.</li>
+ *     <li><b>Botons:</b>
+ *         <ul>
+ *             <li><b>Afegir:</b> Botó per executar accions d'afegir.</li>
+ *             <li><b>Mostrar:</b> Botó per executar accions de mostrar informació.</li>
+ *         </ul>
+ *     </li>
+ * </ul>
+ *
+ */
 public abstract class VistaControladors extends VistaGenerica {
     protected String textEtiquetaTriar = "Quina funcionalitat vols realitzar?";
     protected JLabel etiquetaTriar;

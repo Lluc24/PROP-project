@@ -8,6 +8,34 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 
+/**
+ * Classe 'Solucio'
+ *
+ * Representa una solució amb un conjunt de productes organitzats en prestatges. Aquesta classe permet gestionar
+ * i validar les dades de la solució, incloent la seva estructura i la unicitat dels productes.
+ * També ofereix funcionalitats per consultar i modificar les dades de la solució.
+ *
+ * @author Eulalia Peiret Santacana
+ *
+ * <p><b>Informació:</b></p>
+ * Aquesta classe disposa de dos constructors:
+ * - Un constructor que rep una llista plana de productes i la divideix en prestatges segons el nombre de productes per prestatge.
+ * - Un constructor que rep directament una matriu de productes.
+ *
+ * Els productes es validen per assegurar que no hi hagi duplicats i que l'estructura de la matriu sigui consistent.
+ * Les files de la matriu representen prestatges, i es pot consultar o modificar cada prestatge individualment.
+ *
+ * <p><b>Funcionalitats principals:</b></p>
+ * - Validació de la matriu de productes per evitar duplicats i inconsistències.
+ * - Consulta del nom de la solució i de la seva estructura.
+ * - Cerca d'un producte dins de la solució.
+ * - Verificació de l'existència d'una posició específica dins de la matriu.
+ *
+ * <p><b>Excepcions:</b></p>
+ * - <b>FormatInputNoValid</b>: Els paràmetres d'entrada no són vàlids, com un nombre de productes per prestatge incorrecte
+ *   o una matriu amb productes repetits o estructura no vàlida.
+ *
+ */
 public class Solucio {
     // Atributs
     protected ArrayList<ArrayList<String>> solucio;

@@ -5,6 +5,37 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Classe 'VistaPrincipalSolucions'
+ *
+ * Vista principal per gestionar les solucions al sistema. Aquesta classe permet a l'usuari realitzar operacions
+ * com crear, mostrar, i gestionar l'algorisme utilitzat per resoldre-les.
+ * Utilitza el controlador 'CtrlVistaSolucions' per interactuar amb la lògica del sistema.
+ *
+ * @see CtrlVistaSolucions
+ *
+ * @author Eulalia Peiret Santacana
+ *
+ * <p><b>Components principals:</b></p>
+ * <ul>
+ *     <li><b>ComboBox:</b> Mostra una llista de les solucions disponibles al sistema.</li>
+ *     <li><b>Botons:</b>
+ *         <ul>
+ *             <li><b>Crear Solució:</b> Afegeix una nova solució al sistema.</li>
+ *             <li><b>Mostrar Solució:</b> Mostra i permet gestionar la solució seleccionada.</li>
+ *             <li><b>Canviar Algorisme Acutal:</b> Permet seleccionar un nou algorisme per generar solucions.</li>
+ *         </ul>
+ *     </li>
+ *     <li><b>Menú:</b>
+ *         <ul>
+ *             <li><b>Sortir:</b> Tanca tot el programa.</li>
+ *             <li><b>Crear Solució:</b> Accés ràpid per crear una nova solució.</li>
+ *             <li><b>Canviar Algorisme Actual:</b> Accés ràpid per gestionar l'algorisme actual.</li>
+ *         </ul>
+ *     </li>
+ * </ul>
+ *
+ */
 
 public class VistaPrincipalSolucions extends VistaControladors {
     private CtrlVistaSolucions ctrlVistaSolucions;

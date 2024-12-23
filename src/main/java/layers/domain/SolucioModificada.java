@@ -5,6 +5,26 @@ import layers.domain.excepcions.IntercanviNoValid;
 
 import java.util.*;
 
+/**
+ * Classe 'SolucioModificada'
+ *
+ * Extensió de la classe 'Solucio' que afegeix funcionalitats per modificar la solució mitjançant l'intercanvi
+ * de productes. Aquesta classe permet intercanviar productes dins de la solució, ja sigui per nom o per posició,
+ * mantenint la consistència de la matriu.
+ *
+ * @see Solucio
+ *
+ * @author Eulalia Peiret Santacana
+ *
+ * <p><b>Informació:</b></p>
+ * Aquesta classe proporciona dues funcionalitats principals per modificar la solució:
+ * - Intercanvi de dos productes donats els seus noms.
+ * - Intercanvi de dos productes donades les seves posicions dins la matriu.
+ *
+ * Els intercanvis es validen per assegurar que els productes existeixen dins la matriu i que no es tracta
+ * del mateix producte. A més, es verifica que les posicions proporcionades siguin vàlides dins de la matriu.
+ *
+ */
 public class SolucioModificada extends Solucio {
 
     /**

@@ -9,22 +9,31 @@ import java.util.Arrays;
 
 
 /**
- * Controlador de persistencia carregar i validar arxius amb solucions.
- * Permet gestionar arxius i carregar dades de manera segura.
+ * Classe 'CtrlPersistenciaSolucio'
  *
- * true
- * Solucio 1
- * huevo arroz
- * carne
+ * Controlador de persistència per a la gestió de solucions. Aquesta classe hereta de 'CtrlPersistenciaGeneric'
+ * i utilitza el controlador 'CtrlSolucions' per a carregar i validar dades de solucions des d'un arxiu.
+ * L'algorisme de processament divideix el contingut de l'arxiu en diferents fases: estat de modificació,
+ * nom de la solució i estructura de dades de la solució.
  *
- * false
- * Solucio 2
- * leche pan
- * queso
+ * @see CtrlPersistenciaGeneric
+ * @see CtrlSolucions
  *
- * @author Eulalia Peiret
+ * @author Eulalia Peiret Santacana
+ *
+ * <p><b>Informació:</b></p>
+ * El mètode 'processarDadesArxiu' carrega un arxiu que conté informació sobre diverses solucions. El format de l'arxiu ha de ser el seguent:
+ * - La primera línia indica si la solució està modificada ('true' o 'false').
+ * - La segona línia conté el nom de la solució.
+ * - Les línies següents descriuen l'estructura de la solució, amb elements separats per espais.
+ * - Cada solució està separada per una línia buida.
+ *
+ * El mètode valida que les dades tinguin el format correcte i crida al controlador de domini per carregar la informació.
+ *
+ * <p><b>Excepcions:</b></p>
+ * - <b>NomSolucioNoValid</b>: L'arxiu no té el format adequat o no es poden carregar les dades.
+ * - <b>FormatInputNoValid</b>: Els valors a l'arxiu no són vàlids, com un format incorrecte o línies invàlides.
  */
-
 public class CtrlPersistenciaSolucio extends CtrlPersistenciaGeneric {
     private static CtrlSolucions ctrlSolucions = null;
 

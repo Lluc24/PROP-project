@@ -5,6 +5,31 @@ import layers.presentation.controllers.CtrlVistaSolucions;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Classe 'VistaGestioAlgorisme'
+ *
+ * Vista per gestionar l'algorisme utilitzat pel sistema. Aquesta classe permet a l'usuari consultar
+ * l'algorisme actual, canviar-lo entre Aproximació, Greedy i Backtracking, i configurar els paràmetres
+ * necessaris per a l'execució del mode Greedy.
+ * Utilitza el controlador 'CtrlVistaSolucions' per interactuar amb la lògica del sistema.
+ *
+ * @see CtrlVistaGeneric
+ * @see CtrlVistaSolucions
+ *
+ * @author Eulalia Peiret Santacana
+ *
+ * <p><b>Informació:</b></p>
+ * Aquesta vista proporciona una interfície gràfica per gestionar l'algorisme actual del sistema.
+ * Els usuaris poden:
+ * <ul>
+ *     <li><b>Consultar l'algorisme actual:</b> Mostra el tipus d'algorisme en ús.</li>
+ *     <li><b>Canviar a Aproximació:</b> Estableix l'algorisme d'Aproximació com a actual.</li>
+ *     <li><b>Canviar a Greedy:</b> Estableix l'algorisme Greedy com a actual i permet configurar l'índex inicial i el nombre d'iteracions.</li>
+ *     <li><b>Canviar a Backtracking:</b> Estableix l'algorisme Backtracking com a actual.</li>
+ * </ul>
+ *
+ */
+
 public class VistaGestioAlgorisme extends VistaGenerica {
     private CtrlVistaSolucions ctrlVistaSolucions;
 
