@@ -1,0 +1,16 @@
+DIRECTORI: persistence (main.java.layers.persistence)
+
+DESCRIPCIO:
+    Es troben les principals clases de la capa de persistencia.
+
+ARXIUS:
+    CtrlPersistencia
+    CtrlPersistenciaCataleg
+    CtrlPersitenciaGeneric
+    CtrlPersistenciaSolucio
+
+
+ALTRES DIRECTORIS
+
+OBSERVACIONS
+    CtrlPersistenciaGeneric -> Es una clase abstracte

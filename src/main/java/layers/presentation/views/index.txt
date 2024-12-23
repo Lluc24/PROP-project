@@ -1,0 +1,22 @@
+DIRECTORI: views (main.java.layers.presentation.views)
+
+DESCRIPCIO:
+    Es troben totes les vistes de la capa de presentacio
+
+ARXIUS:
+    VistaAfegirProducte
+    VistaConsultarRest
+    VistaControladors
+    VistaGenerica
+    VistaGestioAlgorisme
+    VistaInforProducte
+    VistaInfoSolucio
+    VistaPrincipal
+    VistaPrincipalCataleg
+    VistaPrincipalSolucions
+
+ALTRES DIRECTORIS
+---
+OBSERVACIONS
+        VistaControladors -> Es una vista abstracta
+        VistaGenerica -> Es una vista abstracta

@@ -10,13 +10,13 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * @Class VistaPrincipal
- * @Description Es la primera vista que es mostra a l'executar el programa
+ *  VistaPrincipal
+ *  Es la primera vista que es mostra a l'executar el programa
  * @see VistaGenerica
  * @author Lluc Santamaria Riba
  * @version 3.4
  *
- * @Information
+ *
  * Aquesta vista proporciona un menu de diversos botons:
  * <ul>
  *     <li><b>Gestionar cataleg:</b> Inicia la vista especialitzada en gestionar els productes, similituds i restriccions.</li>

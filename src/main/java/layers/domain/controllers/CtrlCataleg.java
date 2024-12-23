@@ -12,19 +12,17 @@ import java.util.ArrayList;
  *  CtrlCataleg
  *  CtrlCataleg representa el conjunt de productes que es troben dins del sistema
  *
+ * <p><b>Informació:</b></p>
  * Informacio
- * Tots els productes estan dins de un Arraylist.
+ * Tots els productes estan dins d'un Arraylist.
  * Es poden identificar tant per nom o per index.
  * Basat en el funcionament de ArrayList no hi ha espais buits entre productes.
- * Tots el index gerenats per aquesta classe son valits sempre que no s'elimini nigun element de la llista, 
+ * Tots el index gerenats per aquesta classe son valids sempre que no s'elimini nigun element de la llista,
  * afegir-ne no causa problemas
  * 
  * Alguns metodes tenen dos versions, que es diferencien per el parametres que reben, el nom del producte o el seu index.
  * Es rellevant saber que els metodes que reben un index tenen un cost menor, ja que no es fan busquedes dels productes
  * es pren com a condicio que el dos indexos representen productes dins de la classe.
- * 
- * El primer index sempre tindra valor '0', el metode num_prod_actual sempre retorna la mida correcte del cataleg, 
- * es a dir el index seguent al ultim producte.
  *
  * @see Producte
  * @author Alejandro Lorenzo Navarro

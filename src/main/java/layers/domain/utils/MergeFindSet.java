@@ -1,5 +1,6 @@
 package layers.domain.utils;
 
+
 public class MergeFindSet {
     private int[] MFS;
     int n_conjunts;

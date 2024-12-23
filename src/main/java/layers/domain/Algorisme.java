@@ -7,6 +7,11 @@ import layers.domain.excepcions.FormatInputNoValid;
  *
  * Serveix com a superclasse per la resta d'algorismes.
  * Tracta d'emmagatzemar mètodes i atributs comuns.
+ * <p><b>Informació:</b></p>
+ * La classe Algorisme accepta un sistema de restriccions per calcular les solucions.
+ * En el cas de AlgorismeBT, es prenen com a restriccions i pot haver-hi configuracions sense solució.
+ * En el cas de Aproximacio i AlgorismeGreedy, es prenen com a prioritats i poden arribar a solucions que no les compleixin.
+ *
  *
  * @see AlgorismeBT
  * @see Aproximacio
@@ -15,10 +20,6 @@ import layers.domain.excepcions.FormatInputNoValid;
  * @author Efrain Tito Cortés
  * @version 2,0
  *
- * <p><b>Informació:</b></p>
- * La classe Algorisme accepta un sistema de restriccions per calcular les solucions.
- * En el cas de AlgorismeBT, es prenen com a restriccions i pot haver-hi configuracions sense solució.
- * En el cas de Aproximacio i AlgorismeGreedy, es prenen com a prioritats i poden arribar a solucions que no les compleixin.
  */
 public abstract class Algorisme {
 
