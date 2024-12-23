@@ -7,18 +7,18 @@ import layers.domain.utils.Pair;
 import java.util.*;
 
 /**
- * @Class Aproximacio
- * @see Algorisme
- * @Description Permet obtenir la distribucio seguint l'algorisme 2-Aproximacio
- * @author Lluc Santamaria Riba
- * @version 3.1
- *
- * @Information
+ * Aproximacio
+ * Permet obtenir la distribucio seguint l'algorisme 2-Aproximacio
+ * <p><b>Informació:</b></p>
  * Aquesta classe es una implementacio de l'algorisme 2-Aproximacio explicat pel professorat
  * de PROP en el document d'informacio adicional. Pot treballar amb o sense restriccions.
  * L'algorisme assegura trobar una solucio amb un valor no mes de dues vegades pitjor que l'optim
  * i en temps polinomic. Quan treballa amb restriccions, tracta de respectar-les. Tanmateix,
  * no pot garantir respectar-les sempre, ja que fer-ho te un cost temporal elevat.
+ * @author Lluc Santamaria Riba
+ * @version 3.1
+ *
+ * @see Algorisme
  */
 public class Aproximacio extends Algorisme {
     /** La matriu de similituds amb la qual treballa. */
@@ -33,7 +33,7 @@ public class Aproximacio extends Algorisme {
      * @param matriuSimilituds Matriu de similituds entre productes.
      * @param matriuRestrConsec Matriu de restriccions consecutives, on matriuRestrConsec[i][j] indica si els productes i i j no poden ser consecutius.
      * @return Retorna un array que indica quin producte es troba en cada posicio.
-     * @throws FormatInputNoValid: Excepcio llencada en cas de que les especificacions no siguin valides.
+     * @throws FormatInputNoValid Excepcio llencada en cas de que les especificacions no siguin valides.
      */
     @Override
     public int[] solucionar(double[][] matriuSimilituds, boolean[][] matriuRestrConsec) throws FormatInputNoValid {
@@ -108,7 +108,7 @@ public class Aproximacio extends Algorisme {
      * Metode que resol el problema sense matriu de restriccions, es a dir, no hi ha restriccions.
      * @param matriuSimilituds Matriu de similituds entre productes.
      * @return Retorna un array que indica quin producte es troba en cada posicio.
-     * @throws FormatInputNoValid: Excepcio llencada en cas de que les especificacions no siguin valides.
+     * @throws FormatInputNoValid Excepcio llencada en cas de que les especificacions no siguin valides.
      */
     @Override
     public int[] solucionar(double[][] matriuSimilituds) throws FormatInputNoValid {

@@ -6,13 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * @Class BotoGeneric
- * @Description Classe abstracte per definir un comportament comu dels botons.
+ *  BotoGeneric
+ *  Classe abstracte per definir un comportament comu dels botons.
  * @see JButton
  * @author Lluc Santamaria Riba
  * @version 3.0
  *
- * @Information
+ * <p><b>Informació:</b></p>
  * Exten un JButton. Permet definir un comportament comu que seguiran tots els
  * botons de totes les vistes.
  */

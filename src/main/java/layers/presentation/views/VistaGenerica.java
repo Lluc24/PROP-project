@@ -9,13 +9,13 @@ import java.awt.event.*;
 import java.util.Locale;
 
 /**
- * @Class VistaGenerica
- * @Description Es la vista en el nivell mes superior de l'herencia.
+ * VistaGenerica
+ * Es la vista en el nivell mes superior de l'herencia.
  * @see JPanel
  * @author Lluc Santamaria Riba
  * @version 3.1
  *
- * @Information
+ * <p><b>Informació:</b></p>
  * Es la vista de la qual totes les altres hereten directament o indirectament.
  * Defineix un compartment i un esquema comu per totes les subclasses.
  * Es una classe abstracte.
@@ -252,13 +252,13 @@ public abstract class VistaGenerica extends JPanel {
     }
 
     /**
-     * @Class Boto
-     * @Description Defineix un esquema de comportament comu per tots els botons.
+     *  Boto
+     *  Defineix un esquema de comportament comu per tots els botons.
      * @see BotoGeneric
      * @author Lluc Santamaria Riba
      * @version 3.0
      *
-     * @Information
+     * <p><b>Informació:</b></p>
      * Es la classe que s'utilitzara per definir botons en totes les vistes.
      * Defineix un comportament comu i facil d'extendre. Quan es clica un boto
      * s'executa el metode botoAccionat amb el text del boto que s'ha accionat
@@ -301,13 +301,13 @@ public abstract class VistaGenerica extends JPanel {
     }
 
     /**
-     * @Class Item
-     * @Description Defineix un esquema de comportament comu per tots els items.
+     * Item
+     *  Defineix un esquema de comportament comu per tots els items.
      * @see MenuItemGeneric
      * @author Lluc Santamaria Riba
      * @version 3.0
      *
-     * @Information
+     * <p><b>Informació:</b></p>
      * Es la classe que s'utilitzara per definir items de la barra de menu en totes les vistes.
      * Defineix un comportament comu i facil d'extendre. Quan es clica un item
      * s'executa el metode itemAccionat amb el text de l'item que s'ha accionat

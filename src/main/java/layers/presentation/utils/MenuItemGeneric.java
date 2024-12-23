@@ -7,13 +7,13 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
- * @Class BotoGeneric
- * @Description Classe abstracte per definir un comportament comu dels items.
+ *  BotoGeneric
+ *  Classe abstracte per definir un comportament comu dels items.
  * @see MenuItem
  * @author Lluc Santamaria Riba
  * @version 3.0
  *
- * @Information
+ *
  * Exten un MenuItem. Permet definir un comportament comu que seguiran tots els
  * items de les barres de menu de totes les vistes.
  */

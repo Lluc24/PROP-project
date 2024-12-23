@@ -6,12 +6,12 @@ import layers.domain.excepcions.FormatInputNoValid;
 import javax.swing.*;
 
 /**
- * @Class CtrlVistaGeneric
- * @Description Es la superclasse dels controladors de la capa de presentacio.
+ *  CtrlVistaGeneric
+ *  Es la superclasse dels controladors de la capa de presentacio.
  * @author Lluc Santamaria Riba
  * @version 3.1
  *
- * @Information
+ * <p><b>Informació:</b></p>
  * Tots els controladors de la capa de presentacio hereden d'aquest.
  * Permet definir comportament i funcions comunes.
  * Redueix l'acoblament del projecte.
@@ -47,7 +47,7 @@ public abstract class CtrlVistaGeneric {
      * Metode abstracte per importar un fitxer de disc.
      * @param path: La ruta fins al directori que conte el fitxer.
      * @param nomFitxer: El nom del fitxer
-     * @throws FormatInputNoValid: Excepcio llencada en cas de que el fitxer no sigui valid
+     * @throws FormatInputNoValid Excepcio llencada en cas de que el fitxer no sigui valid
      */
     public abstract void importar(String path, String nomFitxer) throws FormatInputNoValid;
 
@@ -55,7 +55,7 @@ public abstract class CtrlVistaGeneric {
      * Metode abstracte per exportar un fitxer de disc.
      * @param path: La ruta fins al directori on es guardara el fitxer.
      * @param nomFitxer: El nom del fitxer
-     * @throws FormatInputNoValid: Excepcio llencada en cas de que el directori o nomFitxer no permeting guardar-lo
+     * @throws FormatInputNoValid Excepcio llencada en cas de que el directori o nomFitxer no permeting guardar-lo
      */
     public abstract void exportar(String path, String nomFitxer) throws FormatInputNoValid;
 

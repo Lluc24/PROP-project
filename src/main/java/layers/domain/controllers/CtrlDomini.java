@@ -3,15 +3,14 @@ package layers.domain.controllers;
 import layers.persistence.*;
 
 /**
- * @Class CtrlDomini
- * @Description Es el controlador principal de domini.
- * @author Lluc Santamaria Riba
- * @version 3.0
- *
- * @Information
+ * CtrlDomini
+ * Es el controlador principal de domini.
+ * <p><b>Informació:</b></p>
  * Segueix el patro singleton.
  * Gestiona les instancies dels controladors especifics de la capa de domini.
  * Es comunica amb el controlador principal de persistencia.
+ * @author Lluc Santamaria Riba
+ * @version 3.0
  */
 public class CtrlDomini{
     /** La instancia de la propia classe. */

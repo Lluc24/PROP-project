@@ -11,15 +11,13 @@ import java.util.Iterator;
 
 /**
  * Aquesta classe reescriu alguns mètodes de CtrlCataleg i permet establir o eliminar restriccions entre productes.
- *
+ * <p><b>Informació:</b></p>
+ * Manté una matriu de mida igual al nombre de productes al catàleg i les restriccions entre ells per determinar quins productes no poden ser consecutius en la solució.
+ * Matriu noConsecutius: Si l'element de la fila 'i', columna 'j' és true, hi ha una restricció de consecutius entre el producte amb índex 'i' i aquell amb índex 'j'.
  * @see CtrlCataleg
  *
  * @author Efrain Tito Cortés
  * @version 3,1
- *
- * <p><b>Informació:</b></p>
- * Manté una matriu de mida igual al nombre de productes al catàleg i les restriccions entre ells per determinar quins productes no poden ser consecutius en la solució.
- * Matriu noConsecutius: Si l'element de la fila 'i', columna 'j' és true, hi ha una restricció de consecutius entre el producte amb índex 'i' i aquell amb índex 'j'.
  */
 public class CtrlCatalegAmbRestriccions extends CtrlCataleg {
 

@@ -5,12 +5,12 @@ import layers.presentation.controllers.CtrlPresentacio;
 import layers.presentation.controllers.CtrlVistaGeneric;
 
 /**
- * @Class Main
- * @Description Es la classe que inicia l'execucio del projecte de la tercera entrega
+ *  Main
+ *  Es la classe que inicia l'execucio del projecte de la tercera entrega
  * @author Lluc Santamaria Riba
  * @version 3.1
  *
- * @Information
+ * <p><b>Informació:</b></p>
  * Conte el metode main utilitzat pel gradle per donar inici a l'execucio.
  */
 public class Main {

@@ -3,12 +3,11 @@ package layers.presentation.controllers;
 import layers.domain.controllers.CtrlDomini;
 
 /**
- * @Class CtrlPresentacio
- * @Description Es el controlador principal de presentacio.
+ * CtrlPresentacio
  * @author Lluc Santamaria Riba
  * @version 3.0
  *
- * @Information
+ * <p><b>Informació:</b></p>
  * Segueix el patro singleton.
  * Gestiona les instancies dels controladors especifics de la capa de presentacio.
  * Es comunica amb el controlador principal de domini.

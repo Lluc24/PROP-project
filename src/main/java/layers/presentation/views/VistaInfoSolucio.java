@@ -15,13 +15,13 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * @Class VistaInfoSolucio
- * @Description Es la vista que permet visualitzar i modificar solucions.
- * @see VistaGenerica
+ *  VistaInfoSolucio
+ *  Es la vista que permet visualitzar i modificar solucions.
+ *  VistaGenerica
  * @author Lluc Santamaria Riba
  * @version 3.7
  *
- * @Information
+ * <p><b>Informació:</b></p>
  * Aquesta vista esta compost per una matriu on es visulitza la solucio i diversos botons que permeten:
  * <ul>
  *     <li><b>Canviar el mode:</b> Canviar entre mode nomes visualitzacio o mode edicio.</li>
@@ -801,13 +801,13 @@ public class VistaInfoSolucio extends VistaGenerica {
     }
 
     /**
-     * @Class ModelTaula
-     * @Description Defineix un la logica de model darrere la matriu.
+     *  ModelTaula
+     *  Defineix un la logica de model darrere la matriu.
      * @see AbstractTableModel
      * @author Lluc Santamaria Riba
      * @version 3.1
      *
-     * @Information
+     * <p><b>Informació:</b></p>
      * Es la classe que s'utilitzara per definir la logica de model que
      * utilitza la JTable per mostrar la matriu. Permet fer us de l'estructura
      * de dades que gestiona VistaInfoSolucio.
@@ -869,13 +869,13 @@ public class VistaInfoSolucio extends VistaGenerica {
     }
 
     /**
-     * @Class SharedRowSelectionHandler
-     * @Description Implementa un listener de files.
+     *  SharedRowSelectionHandler
+     *  Implementa un listener de files.
      * @see ListSelectionListener
      * @author Lluc Santamaria Riba
      * @version 3.1
      *
-     * @Information
+     * <p><b>Informació:</b></p>
      * Implementa la interficie ListSelectionListener per definir un listener que compartiran totes
      * les files de la matriu.
      */
@@ -897,13 +897,13 @@ public class VistaInfoSolucio extends VistaGenerica {
     }
 
     /**
-     * @Class SharedColumnSelectionHandler
-     * @Description Implementa un listener de columnes.
+     *  SharedColumnSelectionHandler
+     *  Implementa un listener de columnes.
      * @see ListSelectionListener
      * @author Lluc Santamaria Riba
      * @version 3.1
      *
-     * @Information
+     * <p><b>Informació:</b></p>
      * Implementa la interficie ListSelectionListener per definir un listener que compartiran totes
      * les columnes de la matriu.
      */
