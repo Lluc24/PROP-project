@@ -310,7 +310,7 @@ public class VistaInfoSolucio extends VistaGenerica {
             return;
         }
 
-        if (celaFantasma(filaSeleccionada, filaSeleccionada)) {
+        if (celaFantasma(filaSeleccionada, columnaSeleccionada)) {
             mostrarOptionPane("Casella fantasma en canviEstatProducte1ASeleccionat", true);
             return;
         }
