@@ -61,7 +61,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!Solucio1 4
+Ja ha creat la solucio!!!Solucio1 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -89,7 +91,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!Solucio2 4
+Ja ha creat la solucio!!!Solucio2 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -115,7 +119,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!Solucio3 4
+Ja ha creat la solucio!!!Solucio3 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -128,9 +134,12 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Solucio1: galetes, cereals, llet, poma
-Solucio2: llet, cereals, galetes, poma
-Solucio3: galetes, cereals, llet, poma
+Solucio1: 
+galetes cereals llet poma 
+Solucio2: 
+llet cereals galetes poma 
+Solucio3: 
+galetes cereals llet poma 
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -156,7 +165,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!Solucio4 4
+Ja ha creat la solucio!!!Solucio4 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -208,7 +219,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Solucio4: galetes, cereals, llet, poma, sucre
+Solucio4: 
+galetes cereals llet poma 
+sucre 
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova

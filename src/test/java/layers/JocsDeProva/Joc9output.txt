@@ -24,7 +24,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!solucio1 4
+Ja ha creat la solucio!!!solucio1 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -78,7 +80,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!solucio1 4
+Ja ha creat la solucio!!!solucio1 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -91,7 +95,8 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!solucio1 4
 Ja existeix una solucio amb nom 'solucio1'
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
@@ -117,7 +122,8 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!solucio1 4
 Ja existeix una solucio amb nom 'solucio1'
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
@@ -131,7 +137,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!solucio2 4
+Ja ha creat la solucio!!!solucio2 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova

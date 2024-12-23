@@ -10,7 +10,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!aprox 4
+Ja ha creat la solucio!!!aprox 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -36,7 +38,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!bt 4
+Ja ha creat la solucio!!!bt 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -96,7 +100,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!greedy 4
+Ja ha creat la solucio!!!greedy 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -160,7 +166,8 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!greedy2 4
 L'index del producte no pot ser negatiu o superior a la quantitat de productes al cataleg
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
@@ -203,7 +210,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!aprox2 4
+Ja ha creat la solucio!!!aprox2 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -229,7 +238,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!bt2 4
+Ja ha creat la solucio!!!bt2 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -271,7 +282,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!g0 4
+Ja ha creat la solucio!!!g0 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -299,7 +312,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!g1 4
+Ja ha creat la solucio!!!g1 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -327,7 +342,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!g2 4
+Ja ha creat la solucio!!!g2 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -355,7 +372,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!g3 4
+Ja ha creat la solucio!!!g3 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -383,7 +402,8 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!g4 4
 L'index del producte no pot ser negatiu o superior a la quantitat de productes al cataleg
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
@@ -400,12 +420,18 @@ Selecciona l'accio:
 aprox: la solucio no te cap producte
 bt: la solucio no te cap producte
 greedy: la solucio no te cap producte
-aprox2: galetes, cereals, llet, poma
-bt2: galetes, cereals, llet, poma
-g0: galetes, cereals, llet, poma
-g1: llet, cereals, galetes, poma
-g2: poma, galetes, cereals, llet
-g3: galetes, cereals, llet, poma
+aprox2: 
+galetes cereals llet poma 
+bt2: 
+galetes cereals llet poma 
+g0: 
+galetes cereals llet poma 
+g1: 
+llet cereals galetes poma 
+g2: 
+poma galetes cereals llet 
+g3: 
+poma galetes cereals llet 
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova

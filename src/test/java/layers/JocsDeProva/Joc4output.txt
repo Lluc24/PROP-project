@@ -204,7 +204,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!SolucioAproximacio 4
+Ja ha creat la solucio!!!SolucioAproximacio 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -218,7 +220,11 @@ Selecciona l'accio:
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
 Entra el nom de la solucio
-SolucioAproximacio: Fairy, Lays_onduladas, Cocacola, Pasta_dientes_OralB, Pelotazos_Cheetos, Ruffles_jamom, Cuchilla_Guillette, Gatorade, Champu_HS, Toallitas_Dodot, Pepsi, Agua_Evian, Pastillas_Ariel, Powerade, Mtn_dew
+SolucioAproximacio: 
+Fairy Lays_onduladas Cocacola Pasta_dientes_OralB 
+Gatorade Cuchilla_Guillette Ruffles_jamom Pelotazos_Cheetos 
+Champu_HS Toallitas_Dodot Pepsi Agua_Evian 
+Mtn_dew Powerade Pastillas_Ariel 
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -246,7 +252,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!SolucioGreedy01 4
+Ja ha creat la solucio!!!SolucioGreedy01 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -260,7 +268,11 @@ Selecciona l'accio:
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
 Entra el nom de la solucio
-SolucioGreedy01: Fairy, Lays_onduladas, Pasta_dientes_OralB, Pelotazos_Cheetos, Ruffles_jamom, Pepsi, Champu_HS, Gatorade, Mtn_dew, Agua_Evian, Powerade, Cocacola, Pastillas_Ariel, Cuchilla_Guillette, Toallitas_Dodot
+SolucioGreedy01: 
+Fairy Lays_onduladas Pasta_dientes_OralB Pelotazos_Cheetos 
+Cuchilla_Guillette Champu_HS Pepsi Ruffles_jamom 
+Powerade Agua_Evian Toallitas_Dodot Mtn_dew 
+Cocacola Pastillas_Ariel Gatorade 
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -288,7 +300,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!SolucioGreedy51 4
+Ja ha creat la solucio!!!SolucioGreedy51 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -302,7 +316,11 @@ Selecciona l'accio:
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
 Entra el nom de la solucio
-SolucioGreedy51: Champu_HS, Pelotazos_Cheetos, Ruffles_jamom, Pepsi, Pasta_dientes_OralB, Lays_onduladas, Fairy, Powerade, Agua_Evian, Mtn_dew, Gatorade, Toallitas_Dodot, Cuchilla_Guillette, Pastillas_Ariel, Cocacola
+SolucioGreedy51: 
+Champu_HS Pelotazos_Cheetos Ruffles_jamom Pepsi 
+Cuchilla_Guillette Fairy Lays_onduladas Pasta_dientes_OralB 
+Powerade Agua_Evian Toallitas_Dodot Mtn_dew 
+Cocacola Pastillas_Ariel Gatorade 
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -330,7 +348,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!SolucioGreedy6-15 4
+Ja ha creat la solucio!!!SolucioGreedy6-15 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -344,7 +364,11 @@ Selecciona l'accio:
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
 Entra el nom de la solucio
-SolucioGreedy6-15: Fairy, Fairy, Fairy, Fairy, Fairy, Fairy, Fairy, Fairy, Fairy, Fairy, Fairy, Fairy, Fairy, Fairy, Fairy
+SolucioGreedy6-15: 
+Toallitas_Dodot Pelotazos_Cheetos Ruffles_jamom Pepsi 
+Pastillas_Ariel Fairy Lays_onduladas Pasta_dientes_OralB 
+Agua_Evian Powerade Gatorade Champu_HS 
+Cocacola Mtn_dew Cuchilla_Guillette 
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -372,7 +396,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!SolucioGreedy6-200 4
+Ja ha creat la solucio!!!SolucioGreedy6-200 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -386,7 +412,11 @@ Selecciona l'accio:
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
 Entra el nom de la solucio
-SolucioGreedy6-200: Toallitas_Dodot, Pelotazos_Cheetos, Ruffles_jamom, Pepsi, Pasta_dientes_OralB, Lays_onduladas, Fairy, Powerade, Agua_Evian, Mtn_dew, Gatorade, Champu_HS, Cuchilla_Guillette, Pastillas_Ariel, Cocacola
+SolucioGreedy6-200: 
+Toallitas_Dodot Pelotazos_Cheetos Ruffles_jamom Pepsi 
+Pastillas_Ariel Fairy Lays_onduladas Pasta_dientes_OralB 
+Agua_Evian Powerade Gatorade Champu_HS 
+Cocacola Mtn_dew Cuchilla_Guillette 
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -472,7 +502,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!solucioBacktracking 4
+Ja ha creat la solucio!!!solucioBacktracking 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -486,7 +518,10 @@ Selecciona l'accio:
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
 Entra el nom de la solucio
-solucioBacktracking: Fairy, Pepsi, Ruffles_jamom, Pelotazos_Cheetos, Champu_HS, Cuchilla_Guillette, Toallitas_Dodot, Lays_onduladas, Cocacola, Pastillas_Ariel
+solucioBacktracking: 
+Fairy Pepsi Ruffles_jamom Pelotazos_Cheetos 
+Lays_onduladas Toallitas_Dodot Cuchilla_Guillette Champu_HS 
+Cocacola Pastillas_Ariel 
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova

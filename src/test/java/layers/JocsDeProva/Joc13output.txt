@@ -102,7 +102,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!Sol1 4
+Ja ha creat la solucio!!!Sol1 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -130,7 +132,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!Sol2 4
+Ja ha creat la solucio!!!Sol2 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -180,7 +184,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!Sol3 4
+Ja ha creat la solucio!!!Sol3 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -208,7 +214,9 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Entra el nom de la solucio
+Entra el nom de la solucio i el numero de productes per prestatge
+Estic a crear solucio!!!Sol4 4
+Ja ha creat la solucio!!!Sol4 4
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
@@ -221,10 +229,18 @@ Selecciona l'accio:
 [4] Eliminar una solucio
 [5] Editar una solucio
 [6] Triar tipus d'algorisme per resoldre
-Sol1: P0, P2, P3, P4, P1, P5
-Sol2: P1, P4, P5, P3, P0, P2
-Sol3: P0, P2, P3, P4, P1, P5
-Sol4: P0, P2, P3, P4, P1, P5
+Sol1: 
+P0 P2 P3 P4 
+P5 P1 
+Sol2: 
+P0 P2 P3 P4 
+P5 P1 
+Sol3: 
+P0 P1 P3 P4 
+P2 P5 
+Sol4: 
+P0 P1 P3 P4 
+P2 P5 
 Quina gestio vols realitzar?
 [1] Gestionar els productes i similituds de la prestatgeria
 [2] Gestionar les solucions existents i calcular una nova
