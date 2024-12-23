@@ -8,17 +8,46 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Locale;
 
+/**
+ * @Class VistaGenerica
+ * @Description Es la vista en el nivell mes superior de l'herencia.
+ * @see JPanel
+ * @author Lluc Santamaria Riba
+ * @version 3.1
+ *
+ * @Information
+ * Es la vista de la qual totes les altres hereten directament o indirectament.
+ * Defineix un compartment i un esquema comu per totes les subclasses.
+ * Es una classe abstracte.
+ * Aquesta vista permet realitzar les seguents accions amb botons o items
+ * <ul>
+ *     <li><b>Tornar:</b> Boto de tornar (opcional) per anar a la vista previa.</li>
+ *     <li><b>Sortir:</b> Item per sortir del sistema.</li>
+ *     <li><b>Respecte a:</b> Item per obtenir informacio dels autors.</li>
+ *     <li><b>Ajuda:</b> Item per obtenir ajuda. Cada vista hereu ha de posar la corresponent.</li>
+ * </ul>
+ */
 public abstract class VistaGenerica extends JPanel {
 
+    /** L'amplada de la vista. */
     protected int width = 800;
+    /** L'alcada de la vista. */
     protected int height = 600;
 
+    /** Boolea que indica si el boto de tornar es present o no. */
     protected boolean teBotoTornar = true;
+    /** Text del boto de tornar */
     protected String textBotoTornar = "Tornar";
+    /** Boto de tornar. */
     protected Boto botoTornar;
 
+    /** Titol de la vista. */
     protected String titolFrame = "Vista Generica";
+
+    /** Text d'ajuda particular de cada vista. */
     protected String ajuda = "Lorem Ipsum";
+
+    /** Text de la informacio dels autors. */
     private final String respecteA =
             "Lluc Santamaria Riba\n" +
             "lluc.santamaria@estudiantat.upc.edu\n" +
@@ -30,33 +59,57 @@ public abstract class VistaGenerica extends JPanel {
             "alejandro.lorenzo@estudiantat.upc.edu\n";
 
 
+    /** Frame principal de la vista. */
     protected JFrame frameVista;
+    /** Panel principal de continguts de la vista. */
     protected JPanel panelContinguts;
+    /** Panel inferior on es mostra el boto de tornar. */
     protected JPanel panelPageEnd;
 
+    /** Barra de menu de la vista. */
     protected MenuBar menuBar;
 
+    /** Text del submenu per gestions. */
     protected String textMenuFitxer = "Fitxer";
+    /** Submenu per gestions. */
     protected Menu menuFitxer;
+    /** Text de l'item per sortir. */
     protected String textItemSortir = "Sortir";
+    /** Item per sortir. */
     protected Item menuItemSortir;
 
+    /** Text del submenu per consultes. */
     protected String textMenuAjuda = "Ajuda";
+    /** Submenu per consultes. */
     protected Menu menuAjuda;
+    /** Text de l'item per obtenir d'ajuda. */
     protected String textItemAjuda = "? Ajuda";
+    /** Item per obtenir ajuda. */
     protected Item menuItemAjuda;
+    /** Text del l'item per obtenir informacio dels autors. */
     protected String textItemRespecteA = "Respecte a";
+    /** Item per obtenir informacio dels autors. */
     protected Item menuItemRespecteA;
 
+    /**
+     * Constuctora per defecte de la classe.
+     */
     protected VistaGenerica() {
         super();
     }
 
+    /**
+     * Metode per iniciar l'execucio de la vista.
+     * Inicialitza els components afegint-los al lloc corresponent i mostra la vista.
+     */
     protected void executar() {
         inicialitzarComponents();
         frameVista.setVisible(true);
     }
 
+    /**
+     * Metode que inicialitza els components i els insereix al seu lloc corresponent de la vista.
+     */
     protected void inicialitzarComponents() {
         // En cas que la vista ja fos inicialitzada, netegem els components
         super.removeAll();
@@ -117,6 +170,9 @@ public abstract class VistaGenerica extends JPanel {
         frameVista.setMenuBar(menuBar);
     }
 
+    /**
+     * Metode per acabar l'execucio del sistema demanant confirmacio.
+     */
     protected void sortir() {
         int result = JOptionPane.showConfirmDialog(frameVista,
                 "Estas segur que vols sortir de l'aplicacio?",
@@ -129,32 +185,60 @@ public abstract class VistaGenerica extends JPanel {
         }
     }
 
+    /**
+     * Metode per mostrar l'ajuda.
+     */
     protected void mostraAjuda() {
         JOptionPane.showMessageDialog(frameVista, ajuda, textItemAjuda, JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /**
+     * Metode per mostrar la informacio dels autors.
+     */
     protected void mostraRespecteA() {
         JOptionPane.showMessageDialog(frameVista, respecteA, textItemRespecteA, JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /**
+     * Metode abstracte per finalitzar l'execucio del sistema.
+     */
     protected abstract void sortirSistema();
 
+    /**
+     * Metode per tornar a la vista anterior.
+     */
     public void tornar() {
         frameVista.dispose();
     }
 
+    /**
+     * Metode per ocultar (finalitzar) l'execucio de la vista.
+     */
     public void ocultar() {
         frameVista.dispose();
     }
 
+    /**
+     * Metode per mostrar la vista en cas de ser invisible.
+     */
     public void mostrar() {
         frameVista.setVisible(true);
     }
 
+    /**
+     * Metode botoAccionat executat cada vegada que s'acciona un boto de la vista.
+     * El boto de la vista que s'ha accionat es diferencia pel text que hi ha en aquest.
+     * @param textBoto: El text que hi ha en el boto que s'ha accionat.
+     */
     protected void botoAccionat(String textBoto) {
         if (textBoto.equals(textBotoTornar)) tornar();
     }
 
+    /**
+     * Metode itemAccionat executat cada vegada que s'acciona un item de la barra de menu de la vista.
+     * L'item de la vista que s'ha accionat es diferencia pel text que hi ha en aquest.
+     * @param textItem: Text que hi ha en l'item que s'ha accionat.
+     */
     protected void itemAccionat(String textItem) {
         if (textItem.equals(textItemSortir)) {
             sortir();
@@ -167,30 +251,81 @@ public abstract class VistaGenerica extends JPanel {
         }
     }
 
+    /**
+     * @Class Boto
+     * @Description Defineix un esquema de comportament comu per tots els botons.
+     * @see BotoGeneric
+     * @author Lluc Santamaria Riba
+     * @version 3.0
+     *
+     * @Information
+     * Es la classe que s'utilitzara per definir botons en totes les vistes.
+     * Defineix un comportament comu i facil d'extendre. Quan es clica un boto
+     * s'executa el metode botoAccionat amb el text del boto que s'ha accionat
+     * com a parametre
+     */
     protected class Boto extends BotoGeneric {
+        /**
+         * Constructora per defecte
+         */
         public Boto() {
             super();
         }
 
+        /**
+         * Constructora que especifica el text del boto.
+         * @param text: Text que es mostrara en el boto.
+         */
         public Boto(String text) {
             super(text);
         }
 
+        /**
+         * Constructora que especifica el text i el tamanny del boto.
+         * @param width: Amplada en pixels del boto.
+         * @param height: Alcada en pixels del boto.
+         * @param text: Text que es mostrara en el boto.
+         */
         public Boto(int width, int height, String text) {
             super(width, height, text);
         }
 
+        /**
+         * Metode que s'executa cada vegada que s'acciona un boto
+         * @param event: Event que ha disparat el listener
+         */
         protected void actionPerformedBoto(ActionEvent event) {
             String textBoto = ((JButton) event.getSource()).getText();
             botoAccionat(textBoto);
         }
     }
 
+    /**
+     * @Class Item
+     * @Description Defineix un esquema de comportament comu per tots els items.
+     * @see MenuItemGeneric
+     * @author Lluc Santamaria Riba
+     * @version 3.0
+     *
+     * @Information
+     * Es la classe que s'utilitzara per definir items de la barra de menu en totes les vistes.
+     * Defineix un comportament comu i facil d'extendre. Quan es clica un item
+     * s'executa el metode itemAccionat amb el text de l'item que s'ha accionat
+     * com a parametre.
+     */
     protected class Item extends MenuItemGeneric {
+        /**
+         * Constructora que especifica el text de l'item.
+         * @param text: Text de l'item
+         */
         public Item(String text) {
             super(text);
         }
 
+        /**
+         * Metode que s'executa cada vegada que s'acciona un item.
+         * @param event: Event que ha disparat el listener.
+         */
         protected void actionPerformedItem(ActionEvent event) {
             String textItem = ((MenuItem) event.getSource()).getLabel();
             itemAccionat(textItem);
