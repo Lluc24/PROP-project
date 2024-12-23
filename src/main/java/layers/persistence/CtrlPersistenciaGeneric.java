@@ -10,12 +10,22 @@ import java.nio.file.Paths;
 
 
 /**
- * Controlador abstracte de persistencia carregar i validar arxius.
+ * Classe 'CtrlPersistenciaGeneric'
+ *
+ * Controlador abstracte de persistència que gestiona la càrrega, validació i exportació de dades des d'un arxiu.
+ * Aquesta classe proporciona mètodes generals per verificar l'existència i l'accessibilitat dels arxius,
+ * així com per processar i guardar dades. És una classe base per a controladors específics de persistència.
  *
  * @author Eulalia Peiret
+ *
+ * <p><b>Funcionalitats principals:</b></p>
+ * - Validació de l'existència i accessibilitat d'arxius.
+ * - Càrrega de contingut d'arxius.
+ * - Processament i validació de dades d'arxius.
+ * - Exportació de dades a un arxiu.
+ *
  */
-
-public class CtrlPersistenciaGeneric {
+public abstract class CtrlPersistenciaGeneric {
 
     /**
      * Metode per verificar si l'arxiu existeix i si es accesible.

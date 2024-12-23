@@ -13,6 +13,40 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe 'CtrlVistaSolucions'
+ *
+ * Controlador de la capa de presentació per a la gestió de solucions. Aquesta classe coordina la interacció
+ * entre les vistes i el controlador de domini 'CtrlSolucions'. Permet gestionar la visualització, creació,
+ * modificació, i eliminació de solucions, així com l'algorisme associat.
+ *
+ * Aquesta classe manté l'estat de visibilitat de les vistes i proporciona funcionalitats per a l'intercanvi
+ * de dades entre les vistes i el domini.
+ *
+ * @see CtrlSolucions
+ * @see VistaPrincipalSolucions
+ * @see VistaGestioAlgorisme
+ * @see VistaInfoSolucio
+ * @see VistaPrincipal
+ *
+ * @author Eulalia Peiret Santacana
+ *
+ * <p><b>Informació:</b></p>
+ * Aquesta classe inclou funcionalitats com:
+ * - Visualització de solucions existents.
+ * - Creació de noves solucions amb paràmetres personalitzats.
+ * - Gestió de l'algorisme actual, incloent-hi la configuració de paràmetres.
+ * - Importació i exportació de solucions des d'arxius.
+ * - Modificació de solucions, incloent-hi l'intercanvi de posicions de productes.
+ * - Eliminació de solucions existents.
+ * - Coordinació entre diverses vistes de la interfície gràfica.
+ *
+ * <p><b>Excepcions:</b></p>
+ * - <b>NomSolucioNoValid</b>: Quan el nom d'una solució no compleix amb els criteris establerts.
+ * - <b>FormatInputNoValid</b>: Quan els paràmetres o dades proporcionades no són vàlids.
+ * - <b>IntercanviNoValid</b>: Quan l'intent d'intercanviar productes no compleix amb les regles del sistema.
+ *
+ */
 public class CtrlVistaSolucions extends CtrlVistaGeneric {
     private CtrlSolucions ctrlSolucions = null;
     private VistaPrincipalSolucions vistaPplSols;
