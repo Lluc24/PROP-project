@@ -1,5 +1,9 @@
 # Supermarket Shelf Optimizer
 
+![Java](https://img.shields.io/badge/Java-21-orange?logo=openjdk&logoColor=white)
+![Tests](https://img.shields.io/badge/tests-105%20passing-brightgreen?logo=junit5&logoColor=white)
+![Grade](https://img.shields.io/badge/UPC%20grade-9.5%2F10-blue)
+
 > Turn a wall of products into a revenue-maximizing layout — by solving a max-weight
 > Hamiltonian-path problem with three algorithms built **from scratch** (exact, greedy,
 > and a provable 2-approximation).
